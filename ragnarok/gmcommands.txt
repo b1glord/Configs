@@ -1,0 +1,60 @@
+vip ekleme
+@vip +24h/+1d/+1m Player_name 
+
+
+
+@alive dirilme
+
+@itemreset
+
+Deletes all inventory items (not equipped items).
+
+---------------------------------------
+
+@clearstorage
+@cleargstorage
+
+Deletes all items in storage (or guild storage).
+
+---------------------------------------
+
+@clearcart
+
+Deletes all items in cart, but does not remove the cart.
+
+
+snow
+@clouds
+@clouds2
+@fog
+@fireworks
+@sakura
+@leaves
+
+Toggles weather effects on your map.
+
+---------------------------------------
+
+@clearweather
+
+Stops all weather effects. May require a map change or @refresh
+for the effect to stop client-side.
+
+
+---------------------------------------
+@makehomun <6001-6016 are the homun IDs> - make Homunculus.
+@hlvl/@hlevel/@homlvl/@homlevel - level up your Homunculus.
+@homevolution - evolve your Homunculus.
+@homfriendly, @homhungry, @homshuffle - Homunculus commands.
+
+
+
+
+@reloadscript           // npcleri tekrar yükler
+
+
+
+@agitstart        // War of Emperium start
+@agitend          // War of Emperium end
+@agitstart2       // War of Emperium [SE] start
+@agitend2         // War of Emperium [SE] end

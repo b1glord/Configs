@@ -1,1 +1,1 @@
-# gameconfigs
+Oyun ayar dosyalari

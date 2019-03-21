@@ -1,0 +1,1887 @@
+[Tue Jan 22 17:20:21 2019] [GHOST] starting up
+[Tue Jan 22 17:20:21 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 17:20:21 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 17:20:21 2019] [GHOST] starting winsock
+[Tue Jan 22 17:20:21 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 17:20:21 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 17:20:21 2019] [GHOST] opening primary database
+[Tue Jan 22 17:20:21 2019] [SQLITE3] version 3.7.13
+[Tue Jan 22 17:20:21 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:20:21 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:20:21 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 17:20:21 2019] [SQLITE3] version 3.7.13
+[Tue Jan 22 17:20:21 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:20:21 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:20:21 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 17:20:21 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 17:20:21 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 17:20:21 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 17:20:21 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 17:20:21 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 17:20:21 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 17:20:21 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 17:20:21 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 17:20:21 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 17:20:21 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 17:20:21 2019] [GHOST] adding ".cfg" to default map -> new default is [wormwar.cfg]
+[Tue Jan 22 17:20:21 2019] [CONFIG] loading file [mapcfgs\wormwar.cfg]
+[Tue Jan 22 17:20:21 2019] [UTIL] warning - unable to read file [maps\(12)WormWar.w3x]
+[Tue Jan 22 17:20:21 2019] [MAP] warning - unable to load MPQ file [maps\(12)WormWar.w3x]
+[Tue Jan 22 17:20:21 2019] [MAP] no map data available, using config file for map_size, map_info, map_crc, map_sha1
+[Tue Jan 22 17:20:21 2019] [MAP] no map data available, using config file for map_options, map_width, map_height, map_slot<x>, map_numplayers, map_numteams
+[Tue Jan 22 17:20:21 2019] [MAP] overriding calculated map_filter_type with config value map_filter_type = 0
+[Tue Jan 22 17:20:21 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 17:20:21 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 17:20:21 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 17:20:21 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 17:20:22 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 17:20:22 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 17:20:22 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 17:20:22 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 17:20:23 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 17:20:23 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 17:20:23 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 17:20:24 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 17:20:24 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 17:20:24 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 17:20:24 2019] [GHOST] GHost++ Version 17.2 (with MySQL support)
+[Tue Jan 22 17:20:24 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 17:20:24 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 17:20:24 2019] [BNET: WePlay] connected
+[Tue Jan 22 17:20:24 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 17:20:24 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 17:20:24 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 17:20:24 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 17:20:24 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 17:20:24 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 17:20:24 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 17:20:25 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 17:20:25 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:20:25 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:20:25 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay]  
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 17:20:25 2019] [INFO: WePlay]  
+[Tue Jan 22 17:20:25 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 17:22:23 2019] [GHOST] starting up
+[Tue Jan 22 17:22:23 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 17:22:23 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 17:22:23 2019] [GHOST] starting winsock
+[Tue Jan 22 17:22:23 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 17:22:23 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 17:22:23 2019] [GHOST] opening primary database
+[Tue Jan 22 17:22:23 2019] [SQLITE3] version 3.7.13
+[Tue Jan 22 17:22:23 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:22:23 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:22:23 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 17:22:23 2019] [SQLITE3] version 3.7.13
+[Tue Jan 22 17:22:23 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:22:23 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:22:23 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 17:22:23 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 17:22:23 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 17:22:23 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 17:22:23 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 17:22:23 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 17:22:23 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 17:22:23 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 17:22:23 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 17:22:23 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 17:22:23 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 17:22:23 2019] [GHOST] adding ".cfg" to default map -> new default is [wormwar.cfg]
+[Tue Jan 22 17:22:23 2019] [CONFIG] loading file [mapcfgs\wormwar.cfg]
+[Tue Jan 22 17:22:23 2019] [UTIL] warning - unable to read file [maps\(12)WormWar.w3x]
+[Tue Jan 22 17:22:23 2019] [MAP] warning - unable to load MPQ file [maps\(12)WormWar.w3x]
+[Tue Jan 22 17:22:23 2019] [MAP] no map data available, using config file for map_size, map_info, map_crc, map_sha1
+[Tue Jan 22 17:22:23 2019] [MAP] no map data available, using config file for map_options, map_width, map_height, map_slot<x>, map_numplayers, map_numteams
+[Tue Jan 22 17:22:23 2019] [MAP] overriding calculated map_filter_type with config value map_filter_type = 0
+[Tue Jan 22 17:22:23 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 17:22:23 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 17:22:23 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 17:22:23 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 17:22:23 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 17:22:24 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 17:22:24 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 17:22:24 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 17:22:24 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 17:22:25 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 17:22:25 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 17:22:25 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 17:22:26 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 17:22:26 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 17:22:26 2019] [GHOST] GHost++ Version 17.2 (with MySQL support)
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] connected
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 17:22:26 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:22:26 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:22:26 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay]  
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 17:22:26 2019] [INFO: WePlay]  
+[Tue Jan 22 17:22:27 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 17:49:56 2019] [GHOST] starting up
+[Tue Jan 22 17:49:56 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 17:49:56 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 17:49:56 2019] [GHOST] starting winsock
+[Tue Jan 22 17:49:56 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 17:49:56 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 17:49:56 2019] [GHOST] opening primary database
+[Tue Jan 22 17:49:56 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 17:49:56 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:49:56 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:49:56 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 17:49:56 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 17:49:56 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:49:56 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:49:56 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 17:49:56 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 17:49:56 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 17:49:56 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 17:49:56 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 17:49:56 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 17:49:56 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 17:49:56 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 17:49:56 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 17:49:56 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 17:49:56 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 17:49:56 2019] [GHOST] adding ".cfg" to default map -> new default is [wormwar.cfg]
+[Tue Jan 22 17:49:56 2019] [CONFIG] loading file [mapcfgs\wormwar.cfg]
+[Tue Jan 22 17:49:56 2019] [UTIL] warning - unable to read file [maps\(12)WormWar.w3x]
+[Tue Jan 22 17:49:56 2019] [MAP] warning - unable to load MPQ file [maps\(12)WormWar.w3x]
+[Tue Jan 22 17:49:56 2019] [MAP] no map data available, using config file for map_size, map_info, map_crc, map_sha1
+[Tue Jan 22 17:49:56 2019] [MAP] no map data available, using config file for map_options, map_width, map_height, map_slot<x>, map_numplayers, map_numteams
+[Tue Jan 22 17:49:56 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 17:49:56 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 17:49:56 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 17:49:56 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 17:49:56 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 17:49:57 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 17:49:57 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 17:49:57 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 17:49:58 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 17:49:58 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 17:49:58 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 17:49:59 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 17:49:59 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 17:49:59 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 17:49:59 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 17:49:59 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 17:49:59 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 17:51:05 2019] [GHOST] starting up
+[Tue Jan 22 17:51:05 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 17:51:05 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 17:51:05 2019] [GHOST] starting winsock
+[Tue Jan 22 17:51:05 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 17:51:05 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 17:51:05 2019] [GHOST] opening primary database
+[Tue Jan 22 17:51:05 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 17:51:05 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:51:05 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:51:05 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 17:51:05 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 17:51:05 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:51:05 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:51:05 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 17:51:05 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 17:51:05 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 17:51:05 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 17:51:05 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 17:51:05 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 17:51:05 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 17:51:05 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 17:51:05 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 17:51:05 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 17:51:05 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 17:51:05 2019] [GHOST] adding ".cfg" to default map -> new default is [wormwar.cfg]
+[Tue Jan 22 17:51:05 2019] [CONFIG] loading file [mapcfgs\wormwar.cfg]
+[Tue Jan 22 17:51:05 2019] [UTIL] warning - unable to read file [maps\(12)WormWar.w3x]
+[Tue Jan 22 17:51:05 2019] [MAP] warning - unable to load MPQ file [maps\(12)WormWar.w3x]
+[Tue Jan 22 17:51:05 2019] [MAP] no map data available, using config file for map_size, map_info, map_crc, map_sha1
+[Tue Jan 22 17:51:05 2019] [MAP] no map data available, using config file for map_options, map_width, map_height, map_slot<x>, map_numplayers, map_numteams
+[Tue Jan 22 17:51:05 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 17:51:05 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 17:51:05 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 17:51:06 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 17:51:06 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 17:51:06 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 17:51:07 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 17:51:07 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 17:51:07 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 17:51:08 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 17:51:08 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 17:51:08 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 17:51:08 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 17:51:08 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 17:51:08 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] connected
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 17:51:09 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:51:09 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:51:09 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay]  
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 17:51:09 2019] [INFO: WePlay]  
+[Tue Jan 22 17:51:09 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 17:51:16 2019] [BNET: WePlay] admin [hostbot1] sent command [!autohost]
+[Tue Jan 22 17:51:16 2019] [WHISPERED: WePlay] [hostbot1] Bu komutu kullanma izniniz yok!
+[Tue Jan 22 17:51:16 2019] [WHISPER: WePlay] [hostbot1] Bu komutu kullanma izniniz yok!
+[Tue Jan 22 17:51:31 2019] [BNET: WePlay] admin [hostbot1] sent command [!pub AP/EU/PROS ONLY]
+[Tue Jan 22 17:51:31 2019] [GHOST] creating game [AP/EU/PROS ONLY]
+[Tue Jan 22 17:51:31 2019] [GAME: AP/EU/PROS ONLY] loading IP blacklist file [ipblacklist.txt]
+[Tue Jan 22 17:51:31 2019] [GAME: AP/EU/PROS ONLY] loaded 635 lines from IP blacklist file
+[Tue Jan 22 17:51:31 2019] [GAME: AP/EU/PROS ONLY] attempting to bind to all available addresses
+[Tue Jan 22 17:51:31 2019] [GAME: AP/EU/PROS ONLY] listening on port 6000
+[Tue Jan 22 17:51:31 2019] [hostbot1] [hostbot1] tarafindan public oyun kuruluyor [AP/EU/PROS ONLY] .
+[Tue Jan 22 17:51:31 2019] [INFO: WePlay] No one hears you.
+[Tue Jan 22 17:52:04 2019] [GAME: AP/EU/PROS ONLY] player [burak|192.168.1.15] joined the game
+[Tue Jan 22 17:52:07 2019] [hostbot1] /whereis burak
+[Tue Jan 22 17:52:15 2019] [INFO: WePlay] burak is using Warcraft III Frozen Throne and is currently in  game "AP/EU/PROS ONLY".
+[Tue Jan 22 17:52:23 2019] [GAME: AP/EU/PROS ONLY] [Lobby] [burak]: !start
+[Tue Jan 22 17:52:23 2019] [GAME: AP/EU/PROS ONLY] admin [burak] sent command [start] with payload []
+[Tue Jan 22 17:52:23 2019] [GAME: AP/EU/PROS ONLY] [Local]: Otomatik baslama kullanilabilir. oyun 1 oyuncu olunca otomatik baslar.
+[Tue Jan 22 17:52:23 2019] [GAME: AP/EU/PROS ONLY] [Local]: 5. . .
+[Tue Jan 22 17:52:23 2019] [GAME: AP/EU/PROS ONLY] [Local]: 4. . .
+[Tue Jan 22 17:52:24 2019] [GAME: AP/EU/PROS ONLY] [Local]: 3. . .
+[Tue Jan 22 17:52:24 2019] [GAME: AP/EU/PROS ONLY] [Local]: 2. . .
+[Tue Jan 22 17:52:25 2019] [GAME: AP/EU/PROS ONLY] [Local]: 1. . .
+[Tue Jan 22 17:52:25 2019] [GAME: AP/EU/PROS ONLY] started loading with 1 players
+[Tue Jan 22 17:52:25 2019] [GAME: AP/EU/PROS ONLY] gameover timer started (one player left)
+[Tue Jan 22 17:52:29 2019] [GAME: AP/EU/PROS ONLY] player [burak] finished loading in 3.52 seconds
+[Tue Jan 22 17:52:29 2019] [GAME: AP/EU/PROS ONLY] finished loading with 1 players
+[Tue Jan 22 17:52:29 2019] [GAME: AP/EU/PROS ONLY] [Local]: En kisa surede yukleyen kullanici [burak] 3.52 saniyede yukledi.
+[Tue Jan 22 17:52:29 2019] [GAME: AP/EU/PROS ONLY] [Local]: En uzun surede yukleyen kullanici [burak] 3.52 saniyede yukledi...
+[Tue Jan 22 17:52:29 2019] [GAME: AP/EU/PROS ONLY] [Local]: This game is hosted by GHost++ (www.codelain.com).
+[Tue Jan 22 17:52:31 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:52:31 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:52:58 2019] [GAME: AP/EU/PROS ONLY] deleting player [burak]: Kendi istegiyle oyundan ayrildi.
+[Tue Jan 22 17:52:58 2019] [GAME: AP/EU/PROS ONLY] [Local]: burak Kendi istegiyle oyundan ayrildi..
+[Tue Jan 22 17:52:58 2019] [GAME: AP/EU/PROS ONLY] is over (no players left)
+[Tue Jan 22 17:52:58 2019] [GAME: AP/EU/PROS ONLY] saving game data to database
+[Tue Jan 22 17:52:58 2019] [GHOST] deleting game [AP/EU/PROS ONLY]
+[Tue Jan 22 17:52:58 2019] [hostbot1] Oyun [AP/EU/PROS ONLY : hostbot1 : 0/1 : 0m] bitti.
+[Tue Jan 22 17:52:58 2019] [GAME: AP/EU/PROS ONLY] saving player/stats data to database
+[Tue Jan 22 17:52:58 2019] [INFO: WePlay] No one hears you.
+[Tue Jan 22 17:53:02 2019] [WHISPERED: WePlay] [hostbot1] Oyun [AP/EU/PROS ONLY : hostbot1 : 0/1 : 0m] bitti.
+[Tue Jan 22 17:53:02 2019] [WHISPER: WePlay] [hostbot1] Oyun [AP/EU/PROS ONLY : hostbot1 : 0/1 : 0m] bitti.
+[Tue Jan 22 17:58:31 2019] [GHOST] starting up
+[Tue Jan 22 17:58:31 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 17:58:31 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 17:58:31 2019] [GHOST] starting winsock
+[Tue Jan 22 17:58:31 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 17:58:31 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 17:58:31 2019] [GHOST] opening primary database
+[Tue Jan 22 17:58:31 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 17:58:31 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:58:31 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:58:31 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 17:58:31 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 17:58:31 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 17:58:31 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 17:58:31 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 17:58:31 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 17:58:31 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 17:58:31 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 17:58:31 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 17:58:31 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 17:58:31 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 17:58:31 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 17:58:31 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 17:58:31 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 17:58:31 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 17:58:31 2019] [GHOST] adding ".cfg" to default map -> new default is [wormwar.cfg]
+[Tue Jan 22 17:58:31 2019] [CONFIG] loading file [mapcfgs\wormwar.cfg]
+[Tue Jan 22 17:58:31 2019] [UTIL] warning - unable to read file [maps\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 17:58:31 2019] [MAP] warning - unable to load MPQ file [maps\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 17:58:31 2019] [MAP] no map data available, using config file for map_size, map_info, map_crc, map_sha1
+[Tue Jan 22 17:58:31 2019] [MAP] no map data available, using config file for map_options, map_width, map_height, map_slot<x>, map_numplayers, map_numteams
+[Tue Jan 22 17:58:31 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 17:58:31 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 17:58:31 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 17:58:31 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 17:58:31 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 17:58:32 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 17:58:32 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 17:58:32 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 17:58:32 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 17:58:33 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 17:58:33 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 17:58:33 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 17:58:34 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 17:58:34 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 17:58:34 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] connected
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 17:58:34 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 17:58:34 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:58:35 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 17:58:35 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay]  
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 17:58:35 2019] [INFO: WePlay]  
+[Tue Jan 22 17:58:35 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 17:58:45 2019] [BNET: WePlay] admin [hostbot1] sent command [!pub AP/EU/PROS ONLY]
+[Tue Jan 22 17:58:45 2019] [GHOST] creating game [AP/EU/PROS ONLY]
+[Tue Jan 22 17:58:45 2019] [GAME: AP/EU/PROS ONLY] loading IP blacklist file [ipblacklist.txt]
+[Tue Jan 22 17:58:45 2019] [GAME: AP/EU/PROS ONLY] loaded 635 lines from IP blacklist file
+[Tue Jan 22 17:58:45 2019] [GAME: AP/EU/PROS ONLY] attempting to bind to all available addresses
+[Tue Jan 22 17:58:45 2019] [GAME: AP/EU/PROS ONLY] listening on port 6000
+[Tue Jan 22 17:58:45 2019] [STATSDOTA] using dota stats
+[Tue Jan 22 17:58:45 2019] [hostbot1] [hostbot1] tarafindan public oyun kuruluyor [AP/EU/PROS ONLY] .
+[Tue Jan 22 17:58:45 2019] [INFO: WePlay] No one hears you.
+[Tue Jan 22 17:59:17 2019] [GAME: AP/EU/PROS ONLY] player [burak|192.168.1.15] joined the game
+[Tue Jan 22 17:59:17 2019] [GAME: AP/EU/PROS ONLY] deleting player [burak]: doesn't have the map and there is no local copy of the map to send
+[Tue Jan 22 18:00:58 2019] [GHOST] starting up
+[Tue Jan 22 18:00:58 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 18:00:58 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 18:00:58 2019] [GHOST] starting winsock
+[Tue Jan 22 18:00:58 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 18:00:58 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 18:00:58 2019] [GHOST] opening primary database
+[Tue Jan 22 18:00:58 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:00:58 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:00:58 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:00:58 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 18:00:58 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:00:58 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:00:58 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:00:58 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 18:00:58 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 18:00:58 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 18:00:58 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:00:58 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 18:00:58 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 18:00:58 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 18:00:58 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 18:00:58 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 18:00:58 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 18:00:58 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 18:00:58 2019] [GHOST] adding ".cfg" to default map -> new default is [map.cfg]
+[Tue Jan 22 18:00:58 2019] [CONFIG] loading file [mapcfgs\map.cfg]
+[Tue Jan 22 18:00:58 2019] [UTIL] warning - unable to read file [maps\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 18:00:58 2019] [MAP] warning - unable to load MPQ file [maps\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 18:00:58 2019] [MAP] no map data available, using config file for map_size, map_info, map_crc, map_sha1
+[Tue Jan 22 18:00:58 2019] [MAP] no map data available, using config file for map_options, map_width, map_height, map_slot<x>, map_numplayers, map_numteams
+[Tue Jan 22 18:00:58 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 18:00:58 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 18:00:58 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 18:00:59 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 18:00:59 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 18:00:59 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 18:01:00 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 18:01:00 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 18:01:00 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 18:01:01 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 18:01:01 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 18:01:01 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 18:01:02 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 18:01:02 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 18:01:02 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] connected
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 18:01:02 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:01:02 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:01:02 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay]  
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 18:01:02 2019] [INFO: WePlay]  
+[Tue Jan 22 18:01:02 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 18:02:22 2019] [GHOST] starting up
+[Tue Jan 22 18:02:22 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 18:02:22 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 18:02:22 2019] [GHOST] starting winsock
+[Tue Jan 22 18:02:22 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 18:02:22 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 18:02:22 2019] [GHOST] opening primary database
+[Tue Jan 22 18:02:22 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:02:22 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:02:22 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:02:22 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 18:02:22 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:02:22 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:02:22 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:02:22 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 18:02:22 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 18:02:22 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 18:02:22 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:02:22 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 18:02:22 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 18:02:22 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 18:02:22 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 18:02:22 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 18:02:22 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 18:02:22 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 18:02:22 2019] [GHOST] adding ".cfg" to default map -> new default is [map.cfg]
+[Tue Jan 22 18:02:22 2019] [CONFIG] loading file [mapcfgs\map.cfg]
+[Tue Jan 22 18:02:22 2019] [UTIL] warning - unable to read file [maps\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 18:02:22 2019] [MAP] warning - unable to load MPQ file [maps\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 18:02:22 2019] [MAP] no map data available, using config file for map_size, map_info, map_crc, map_sha1
+[Tue Jan 22 18:02:22 2019] [MAP] no map data available, using config file for map_options, map_width, map_height, map_slot<x>, map_numplayers, map_numteams
+[Tue Jan 22 18:02:22 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 18:02:22 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 18:02:22 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 18:02:23 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 18:02:23 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 18:02:23 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 18:02:23 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 18:02:24 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 18:02:24 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 18:02:24 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 18:02:25 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 18:02:25 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 18:02:25 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 18:02:25 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 18:02:25 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 18:02:25 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 18:02:25 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] connected
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 18:02:26 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:02:26 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:02:26 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay]  
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 18:02:26 2019] [INFO: WePlay]  
+[Tue Jan 22 18:02:26 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 18:02:47 2019] [GHOST] starting up
+[Tue Jan 22 18:02:47 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 18:02:47 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 18:02:47 2019] [GHOST] starting winsock
+[Tue Jan 22 18:02:47 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 18:02:47 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 18:02:47 2019] [GHOST] opening primary database
+[Tue Jan 22 18:02:47 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:02:47 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:02:47 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:02:47 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 18:02:47 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:02:47 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:02:47 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:02:47 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 18:02:47 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 18:02:47 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 18:02:47 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:02:47 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 18:02:47 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 18:02:47 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 18:02:47 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 18:02:47 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 18:02:47 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 18:02:47 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 18:02:47 2019] [GHOST] adding ".cfg" to default map -> new default is [map.cfg]
+[Tue Jan 22 18:02:47 2019] [CONFIG] loading file [mapcfgs\map.cfg]
+[Tue Jan 22 18:02:47 2019] [MAP] loading MPQ file [maps\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_size = 233 209 113 0
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_info = 78 23 223 135
+[Tue Jan 22 18:02:47 2019] [UTIL] warning - unable to read file [mapcfgs\common.j]
+[Tue Jan 22 18:02:47 2019] [MAP] unable to calculate map_crc/sha1 - unable to read file [mapcfgs\common.j]
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_options = 96
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_width = 118 0
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_height = 118 0
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_numplayers = 10
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_numteams = 2
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Tue Jan 22 18:02:47 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Tue Jan 22 18:02:47 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Tue Jan 22 18:02:47 2019] [MAP] overriding calculated map_options with config value map_options = 0
+[Tue Jan 22 18:02:47 2019] [MAP] overriding calculated map_width with config value map_width = 84 0
+[Tue Jan 22 18:02:47 2019] [MAP] overriding calculated map_height with config value map_height = 84 0
+[Tue Jan 22 18:02:47 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 12
+[Tue Jan 22 18:02:47 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 1
+[Tue Jan 22 18:02:47 2019] [MAP] overriding slots
+[Tue Jan 22 18:02:47 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Tue Jan 22 18:02:47 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 18:02:47 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 18:02:47 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 18:02:47 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 18:02:48 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 18:02:48 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 18:02:48 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 18:02:49 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 18:02:49 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 18:02:49 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 18:02:50 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 18:02:50 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 18:02:50 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 18:02:50 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 18:02:50 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 18:02:50 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 18:02:50 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 18:02:50 2019] [BNET: WePlay] connected
+[Tue Jan 22 18:02:51 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 18:02:51 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 18:02:51 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:02:51 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 18:02:51 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 18:02:51 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 18:02:51 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 18:02:51 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 18:02:51 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:02:51 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:02:51 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay]  
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 18:02:51 2019] [INFO: WePlay]  
+[Tue Jan 22 18:02:51 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 18:03:03 2019] [BNET: WePlay] admin [hostbot1] sent command [!pub AP/EU/PROS ONLY]
+[Tue Jan 22 18:03:03 2019] [hostbot1] Oyun kurulamiyor. [AP/EU/PROS ONLY]. Secilen harita kurulum dosyasi yuklenemedi.
+[Tue Jan 22 18:03:03 2019] [INFO: WePlay] No one hears you.
+[Tue Jan 22 18:04:03 2019] [GHOST] starting up
+[Tue Jan 22 18:04:03 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 18:04:03 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 18:04:03 2019] [GHOST] starting winsock
+[Tue Jan 22 18:04:03 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 18:04:03 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 18:04:03 2019] [GHOST] opening primary database
+[Tue Jan 22 18:04:03 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:04:03 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:04:03 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:04:03 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 18:04:03 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:04:03 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:04:03 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:04:03 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 18:04:03 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 18:04:03 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 18:04:03 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:04:03 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 18:04:03 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 18:04:03 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 18:04:03 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 18:04:03 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 18:04:03 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 18:04:03 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 18:04:03 2019] [GHOST] adding ".cfg" to default map -> new default is [map.cfg]
+[Tue Jan 22 18:04:03 2019] [CONFIG] loading file [mapcfgs\map.cfg]
+[Tue Jan 22 18:04:03 2019] [MAP] loading MPQ file [maps\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_size = 233 209 113 0
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_info = 78 23 223 135
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_crc = 57 194 220 45
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_sha1 = 15 123 7 214 98 12 174 132 16 230 46 114 164 69 127 102 156 42 41 175
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_options = 96
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_width = 118 0
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_height = 118 0
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_numplayers = 10
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_numteams = 2
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Tue Jan 22 18:04:03 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Tue Jan 22 18:04:03 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Tue Jan 22 18:04:03 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Tue Jan 22 18:04:03 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Tue Jan 22 18:04:03 2019] [MAP] overriding calculated map_options with config value map_options = 0
+[Tue Jan 22 18:04:03 2019] [MAP] overriding calculated map_width with config value map_width = 84 0
+[Tue Jan 22 18:04:03 2019] [MAP] overriding calculated map_height with config value map_height = 84 0
+[Tue Jan 22 18:04:03 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 12
+[Tue Jan 22 18:04:03 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 1
+[Tue Jan 22 18:04:03 2019] [MAP] overriding slots
+[Tue Jan 22 18:04:03 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Tue Jan 22 18:04:03 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 18:04:03 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 18:04:03 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 18:04:03 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 18:04:04 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 18:04:04 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 18:04:04 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 18:04:05 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 18:04:05 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 18:04:05 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 18:04:06 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 18:04:06 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 18:04:06 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 18:04:06 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 18:04:06 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 18:04:06 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 18:04:06 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 18:04:06 2019] [BNET: WePlay] connected
+[Tue Jan 22 18:04:07 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 18:04:07 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 18:04:07 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:04:07 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 18:04:07 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 18:04:07 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 18:04:07 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 18:04:07 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 18:04:07 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:04:07 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:04:07 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay]  
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 18:04:07 2019] [INFO: WePlay]  
+[Tue Jan 22 18:04:07 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 18:04:55 2019] [BNET: WePlay] admin [hostbot1] sent command [!pub AP/EU/PROS ONLY]
+[Tue Jan 22 18:04:55 2019] [hostbot1] Oyun kurulamiyor. [AP/EU/PROS ONLY]. Secilen harita kurulum dosyasi yuklenemedi.
+[Tue Jan 22 18:04:55 2019] [INFO: WePlay] No one hears you.
+[Tue Jan 22 18:07:29 2019] [GHOST] starting up
+[Tue Jan 22 18:07:29 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 18:07:29 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 18:07:29 2019] [GHOST] starting winsock
+[Tue Jan 22 18:07:29 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 18:07:29 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 18:07:29 2019] [GHOST] opening primary database
+[Tue Jan 22 18:07:29 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:07:29 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:07:29 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:07:29 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 18:07:29 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:07:29 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:07:29 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:07:29 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 18:07:29 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 18:07:29 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 18:07:29 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:07:29 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 18:07:29 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 18:07:29 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 18:07:29 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 18:07:29 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 18:07:29 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 18:07:29 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 18:07:29 2019] [GHOST] adding ".cfg" to default map -> new default is [map.cfg]
+[Tue Jan 22 18:07:29 2019] [CONFIG] loading file [mapcfgs\map.cfg]
+[Tue Jan 22 18:07:29 2019] [MAP] loading MPQ file [maps\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_size = 233 209 113 0
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_info = 78 23 223 135
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_crc = 57 194 220 45
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_sha1 = 15 123 7 214 98 12 174 132 16 230 46 114 164 69 127 102 156 42 41 175
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_options = 96
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_width = 118 0
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_height = 118 0
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_numplayers = 10
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_numteams = 2
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Tue Jan 22 18:07:29 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Tue Jan 22 18:07:29 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Tue Jan 22 18:07:29 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Tue Jan 22 18:07:29 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Tue Jan 22 18:07:29 2019] [MAP] overriding calculated map_options with config value map_options = 0
+[Tue Jan 22 18:07:29 2019] [MAP] overriding calculated map_width with config value map_width = 84 0
+[Tue Jan 22 18:07:29 2019] [MAP] overriding calculated map_height with config value map_height = 84 0
+[Tue Jan 22 18:07:29 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 12
+[Tue Jan 22 18:07:29 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 1
+[Tue Jan 22 18:07:29 2019] [MAP] overriding slots
+[Tue Jan 22 18:07:29 2019] [MAP] invalid map_path detected
+[Tue Jan 22 18:07:29 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Tue Jan 22 18:07:29 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 18:07:29 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 18:07:29 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 18:07:29 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 18:07:30 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 18:07:30 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 18:07:30 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 18:07:31 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 18:07:31 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 18:07:31 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 18:07:32 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 18:07:32 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 18:07:32 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 18:07:32 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 18:07:32 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 18:07:32 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 18:07:32 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] connected
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 18:07:33 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:07:33 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:07:33 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay]  
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 18:07:33 2019] [INFO: WePlay]  
+[Tue Jan 22 18:07:33 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 18:07:43 2019] [BNET: WePlay] admin [hostbot1] sent command [!pub AP/PROS ONLY]
+[Tue Jan 22 18:07:43 2019] [hostbot1] Oyun kurulamiyor. [AP/PROS ONLY]. Secilen harita kurulum dosyasi yuklenemedi.
+[Tue Jan 22 18:07:43 2019] [INFO: WePlay] No one hears you.
+[Tue Jan 22 18:08:31 2019] [GHOST] starting up
+[Tue Jan 22 18:08:31 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 18:08:31 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 18:08:31 2019] [GHOST] starting winsock
+[Tue Jan 22 18:08:31 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 18:08:31 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 18:08:31 2019] [GHOST] opening primary database
+[Tue Jan 22 18:08:31 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:08:31 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:08:31 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:08:31 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 18:08:31 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:08:31 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:08:31 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:08:31 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 18:08:31 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 18:08:31 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 18:08:31 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:08:31 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 18:08:31 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 18:08:31 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 18:08:31 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 18:08:31 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 18:08:31 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 18:08:31 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 18:08:31 2019] [GHOST] adding ".cfg" to default map -> new default is [wormwar.cfg]
+[Tue Jan 22 18:08:31 2019] [CONFIG] loading file [mapcfgs\wormwar.cfg]
+[Tue Jan 22 18:08:31 2019] [UTIL] warning - unable to read file [maps\(12)WormWar.w3x]
+[Tue Jan 22 18:08:31 2019] [MAP] warning - unable to load MPQ file [maps\(12)WormWar.w3x]
+[Tue Jan 22 18:08:31 2019] [MAP] no map data available, using config file for map_size, map_info, map_crc, map_sha1
+[Tue Jan 22 18:08:31 2019] [MAP] no map data available, using config file for map_options, map_width, map_height, map_slot<x>, map_numplayers, map_numteams
+[Tue Jan 22 18:08:31 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 18:08:31 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 18:08:31 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 18:08:31 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 18:08:32 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 18:08:32 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 18:08:32 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 18:08:33 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 18:08:33 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 18:08:33 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 18:08:34 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 18:08:34 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 18:08:34 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 18:08:34 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 18:08:34 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 18:08:34 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 18:08:34 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 18:08:34 2019] [BNET: WePlay] connected
+[Tue Jan 22 18:08:35 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 18:08:35 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 18:08:35 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:08:35 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 18:08:35 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 18:08:35 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 18:08:35 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 18:08:35 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 18:08:35 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:08:35 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:08:35 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay]  
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 18:08:35 2019] [INFO: WePlay]  
+[Tue Jan 22 18:08:35 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 18:09:18 2019] [BNET: WePlay] admin [hostbot1] sent command [!autohost]
+[Tue Jan 22 18:09:18 2019] [WHISPERED: WePlay] [hostbot1] Bu komutu kullanma izniniz yok!
+[Tue Jan 22 18:09:18 2019] [WHISPER: WePlay] [hostbot1] Bu komutu kullanma izniniz yok!
+[Tue Jan 22 18:09:30 2019] [BNET: WePlay] admin [hostbot1] sent command [!pub AP/PROS ONLY]
+[Tue Jan 22 18:09:30 2019] [GHOST] creating game [AP/PROS ONLY]
+[Tue Jan 22 18:09:30 2019] [GAME: AP/PROS ONLY] loading IP blacklist file [ipblacklist.txt]
+[Tue Jan 22 18:09:30 2019] [GAME: AP/PROS ONLY] loaded 635 lines from IP blacklist file
+[Tue Jan 22 18:09:30 2019] [GAME: AP/PROS ONLY] attempting to bind to all available addresses
+[Tue Jan 22 18:09:30 2019] [GAME: AP/PROS ONLY] listening on port 6000
+[Tue Jan 22 18:09:30 2019] [hostbot1] [hostbot1] tarafindan public oyun kuruluyor [AP/PROS ONLY] .
+[Tue Jan 22 18:09:30 2019] [INFO: WePlay] No one hears you.
+[Tue Jan 22 18:09:55 2019] [GAME: AP/PROS ONLY] player [burak|192.168.1.15] joined the game
+[Tue Jan 22 18:09:58 2019] [hostbot1] /whereis burak
+[Tue Jan 22 18:10:06 2019] [INFO: WePlay] burak is using Warcraft III Frozen Throne and is currently in  game "AP/PROS ONLY".
+[Tue Jan 22 18:10:14 2019] [TCPSOCKET] closed by remote host
+[Tue Jan 22 18:10:14 2019] [GAME: AP/PROS ONLY] deleting player [burak]: Baglanti koptu. (uzak kullanici tarafindan baglani kapatildi)
+[Tue Jan 22 18:12:16 2019] [GHOST] starting up
+[Tue Jan 22 18:12:16 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 18:12:16 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 18:12:16 2019] [GHOST] starting winsock
+[Tue Jan 22 18:12:16 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 18:12:16 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 18:12:16 2019] [GHOST] opening primary database
+[Tue Jan 22 18:12:16 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:12:16 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:12:16 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:12:16 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 18:12:16 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:12:16 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:12:16 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:12:16 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 18:12:16 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 18:12:16 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 18:12:16 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:12:16 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 18:12:16 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 18:12:16 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 18:12:16 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 18:12:16 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 18:12:16 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 18:12:16 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 18:12:16 2019] [GHOST] adding ".cfg" to default map -> new default is [dota.cfg]
+[Tue Jan 22 18:12:16 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Tue Jan 22 18:12:16 2019] [MAP] warning - unable to load MPQ file [maps\]
+[Tue Jan 22 18:12:16 2019] [MAP] no map data available, using config file for map_size, map_info, map_crc, map_sha1
+[Tue Jan 22 18:12:16 2019] [MAP] no map data available, using config file for map_options, map_width, map_height, map_slot<x>, map_numplayers, map_numteams
+[Tue Jan 22 18:12:16 2019] [MAP] invalid map_path detected
+[Tue Jan 22 18:12:16 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 18:12:16 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 18:12:16 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 18:12:16 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 18:12:17 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 18:12:17 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 18:12:17 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 18:12:18 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 18:12:18 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 18:12:18 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 18:12:19 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 18:12:19 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 18:12:19 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 18:12:19 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 18:12:19 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 18:12:19 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 18:12:19 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 18:12:19 2019] [BNET: WePlay] connected
+[Tue Jan 22 18:12:20 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 18:12:20 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 18:12:20 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:12:20 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 18:12:20 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 18:12:20 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 18:12:20 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 18:12:20 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 18:12:20 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:12:20 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:12:20 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay]  
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 18:12:20 2019] [INFO: WePlay]  
+[Tue Jan 22 18:12:20 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 18:12:44 2019] [BNET: WePlay] admin [hostbot1] sent command [!pub AP/PROS ONLY]
+[Tue Jan 22 18:12:44 2019] [hostbot1] Oyun kurulamiyor. [AP/PROS ONLY]. Secilen harita kurulum dosyasi yuklenemedi.
+[Tue Jan 22 18:12:44 2019] [INFO: WePlay] No one hears you.
+[Tue Jan 22 18:15:08 2019] [GHOST] starting up
+[Tue Jan 22 18:15:08 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Tue Jan 22 18:15:08 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Tue Jan 22 18:15:08 2019] [GHOST] starting winsock
+[Tue Jan 22 18:15:08 2019] [GHOST] setting process priority to "above normal"
+[Tue Jan 22 18:15:08 2019] [UDPSOCKET] using default broadcast target
+[Tue Jan 22 18:15:08 2019] [GHOST] opening primary database
+[Tue Jan 22 18:15:08 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:15:08 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:15:08 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:15:08 2019] [GHOST] opening secondary (local) database
+[Tue Jan 22 18:15:08 2019] [SQLITE3] version 3.6.16
+[Tue Jan 22 18:15:08 2019] [SQLITE3] opening database [ghost.dbs]
+[Tue Jan 22 18:15:08 2019] [SQLITE3] found schema number [8]
+[Tue Jan 22 18:15:08 2019] [GHOST] attempting to find local IP addresses
+[Tue Jan 22 18:15:08 2019] [GHOST] local IP address #1 is [192.168.1.15]
+[Tue Jan 22 18:15:08 2019] [GHOST] local IP address #2 is [127.0.0.1]
+[Tue Jan 22 18:15:08 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:15:08 2019] [CONFIG] loading file [language_turkish.cfg]
+[Tue Jan 22 18:15:08 2019] [GHOST] found battle.net connection #1 for server [192.168.1.104]
+[Tue Jan 22 18:15:08 2019] [GHOST] using system locale of 1055
+[Tue Jan 22 18:15:08 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Tue Jan 22 18:15:08 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Tue Jan 22 18:15:08 2019] [GHOST] couldn't find Scripts\common.j in MPQ file
+[Tue Jan 22 18:15:08 2019] [GHOST] couldn't find Scripts\blizzard.j in MPQ file
+[Tue Jan 22 18:15:08 2019] [GHOST] adding ".cfg" to default map -> new default is [dota.cfg]
+[Tue Jan 22 18:15:08 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Tue Jan 22 18:15:08 2019] [MAP] loading MPQ file [maps\Download\DotA v6.85k Allstars.w3x]
+[Tue Jan 22 18:15:08 2019] [MAP] calculated map_size = 233 209 113 0
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_info = 78 23 223 135
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_crc = 57 194 220 45
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_sha1 = 15 123 7 214 98 12 174 132 16 230 46 114 164 69 127 102 156 42 41 175
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_options = 96
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_width = 118 0
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_height = 118 0
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_numplayers = 10
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_numteams = 2
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Tue Jan 22 18:15:09 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Tue Jan 22 18:15:09 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Tue Jan 22 18:15:09 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Tue Jan 22 18:15:09 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Tue Jan 22 18:15:09 2019] [MAP] overriding calculated map_options with config value map_options = 0
+[Tue Jan 22 18:15:09 2019] [MAP] overriding calculated map_width with config value map_width = 84 0
+[Tue Jan 22 18:15:09 2019] [MAP] overriding calculated map_height with config value map_height = 84 0
+[Tue Jan 22 18:15:09 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 12
+[Tue Jan 22 18:15:09 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 1
+[Tue Jan 22 18:15:09 2019] [MAP] overriding slots
+[Tue Jan 22 18:15:09 2019] [MAP] invalid map_path detected
+[Tue Jan 22 18:15:09 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Tue Jan 22 18:15:09 2019] [GHOST] using hardcoded admin game map
+[Tue Jan 22 18:15:09 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Tue Jan 22 18:15:09 2019] [GHOST] started loading [ip-to-country.csv]
+[Tue Jan 22 18:15:09 2019] [GHOST] iptocountry data: 10% loaded
+[Tue Jan 22 18:15:09 2019] [GHOST] iptocountry data: 20% loaded
+[Tue Jan 22 18:15:10 2019] [GHOST] iptocountry data: 30% loaded
+[Tue Jan 22 18:15:10 2019] [GHOST] iptocountry data: 40% loaded
+[Tue Jan 22 18:15:10 2019] [GHOST] iptocountry data: 50% loaded
+[Tue Jan 22 18:15:10 2019] [GHOST] iptocountry data: 60% loaded
+[Tue Jan 22 18:15:11 2019] [GHOST] iptocountry data: 70% loaded
+[Tue Jan 22 18:15:11 2019] [GHOST] iptocountry data: 80% loaded
+[Tue Jan 22 18:15:11 2019] [GHOST] iptocountry data: 90% loaded
+[Tue Jan 22 18:15:12 2019] [GHOST] iptocountry data: 100% loaded
+[Tue Jan 22 18:15:12 2019] [GHOST] finished loading [ip-to-country.csv]
+[Tue Jan 22 18:15:12 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] connecting to server [192.168.1.104] on port 6112
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.104
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] connected
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 0 5 28 1
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 201 63 116 96
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] cd keys accepted
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] username [hostbot1] accepted
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Tue Jan 22 18:15:12 2019] [WHISPER: WePlay] [PvPGN Realm] /pvpgn init
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] logon successful
+[Tue Jan 22 18:15:12 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:15:13 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Tue Jan 22 18:15:13 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on localhost.localdomain.
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay]  
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay] learn more about it.
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay] Type /language to switch translation.
+[Tue Jan 22 18:15:13 2019] [INFO: WePlay]  
+[Tue Jan 22 18:15:13 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Tue Jan 22 18:15:20 2019] [BNET: WePlay] admin [hostbot1] sent command [!pub AP/PROS ONLY]
+[Tue Jan 22 18:15:20 2019] [hostbot1] Oyun kurulamiyor. [AP/PROS ONLY]. Secilen harita kurulum dosyasi yuklenemedi.
+[Tue Jan 22 18:15:20 2019] [INFO: WePlay] No one hears you.
+[Tue Jan 22 18:15:46 2019] [BNET: WePlay] admin [hostbot1] sent command [!maps]
+[Tue Jan 22 18:15:47 2019] [BNET: WePlay] admin [hostbot1] sent command [!map]
+[Tue Jan 22 18:15:47 2019] [WHISPERED: WePlay] [hostbot1] Gecerli harita dosyasi: mapcfgs\dota.cfg
+[Tue Jan 22 18:15:48 2019] [WHISPER: WePlay] [hostbot1] Gecerli harita dosyasi: mapcfgs\dota.cfg
+[Fri Feb 08 18:50:27 2019] [GHOST] starting up
+[Fri Feb 08 18:50:27 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Fri Feb 08 18:50:27 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Fri Feb 08 18:50:27 2019] [GHOST] starting winsock
+[Fri Feb 08 18:50:27 2019] [GHOST] setting process priority to "above normal"
+[Fri Feb 08 18:50:27 2019] [UDPSOCKET] using default broadcast target
+[Fri Feb 08 18:50:27 2019] [GHOST] opening primary database
+[Fri Feb 08 18:50:27 2019] [MYSQL] connecting to database server
+[Fri Feb 08 18:50:27 2019] [GHOST] opening secondary (local) database
+[Fri Feb 08 18:50:27 2019] [SQLITE3] version 3.6.16
+[Fri Feb 08 18:50:27 2019] [SQLITE3] opening database [ghost.dbs]
+[Fri Feb 08 18:50:27 2019] [SQLITE3] found schema number [8]
+[Fri Feb 08 18:50:27 2019] [GHOST] attempting to find local IP addresses
+[Fri Feb 08 18:50:27 2019] [GHOST] local IP address #1 is [192.168.43.1]
+[Fri Feb 08 18:50:27 2019] [GHOST] local IP address #2 is [192.168.1.15]
+[Fri Feb 08 18:50:27 2019] [GHOST] local IP address #3 is [127.0.0.1]
+[Fri Feb 08 18:50:27 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Fri Feb 08 18:50:27 2019] [CONFIG] loading file [language_turkish.cfg]
+[Fri Feb 08 18:50:27 2019] [GHOST] found battle.net connection #1 for server [192.168.1.15]
+[Fri Feb 08 18:50:27 2019] [GHOST] using system locale of 1055
+[Fri Feb 08 18:50:27 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Fri Feb 08 18:50:27 2019] [GHOST] missing bnet2_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:50:27 2019] [GHOST] missing bnet3_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:50:27 2019] [GHOST] missing bnet4_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:50:27 2019] [GHOST] missing bnet5_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:50:27 2019] [GHOST] missing bnet6_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:50:27 2019] [GHOST] missing bnet7_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:50:27 2019] [GHOST] missing bnet8_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:50:27 2019] [GHOST] missing bnet9_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:50:27 2019] [GHOST] warning - unable to load MPQ file [war3data\War3Patch.mpq] - error code 2
+[Fri Feb 08 18:50:27 2019] [GHOST] adding ".cfg" to default map -> new default is [dota.cfg]
+[Fri Feb 08 18:50:27 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 18:50:28 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 18:50:28 2019] [MAP] overriding slots
+[Fri Feb 08 18:50:28 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 18:50:28 2019] [GHOST] adding ".cfg" to default admin game map -> new default is [dota.cfg]
+[Fri Feb 08 18:50:28 2019] [GHOST] trying to load default admin game map
+[Fri Feb 08 18:50:28 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 18:50:28 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 18:50:28 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 18:50:28 2019] [MAP] overriding slots
+[Fri Feb 08 18:50:28 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 18:50:28 2019] [GHOST] default admin game map isn't valid, using hardcoded admin game map instead
+[Fri Feb 08 18:50:28 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Fri Feb 08 18:50:28 2019] [GHOST] started loading [ip-to-country.csv]
+[Fri Feb 08 18:50:29 2019] [GHOST] iptocountry data: 10% loaded
+[Fri Feb 08 18:50:29 2019] [GHOST] iptocountry data: 20% loaded
+[Fri Feb 08 18:50:29 2019] [GHOST] iptocountry data: 30% loaded
+[Fri Feb 08 18:50:30 2019] [GHOST] iptocountry data: 40% loaded
+[Fri Feb 08 18:50:30 2019] [GHOST] iptocountry data: 50% loaded
+[Fri Feb 08 18:50:30 2019] [GHOST] iptocountry data: 60% loaded
+[Fri Feb 08 18:50:31 2019] [GHOST] iptocountry data: 70% loaded
+[Fri Feb 08 18:50:31 2019] [GHOST] iptocountry data: 80% loaded
+[Fri Feb 08 18:50:31 2019] [GHOST] iptocountry data: 90% loaded
+[Fri Feb 08 18:50:31 2019] [GHOST] iptocountry data: 100% loaded
+[Fri Feb 08 18:50:32 2019] [GHOST] finished loading [ip-to-country.csv]
+[Fri Feb 08 18:50:32 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] connecting to server [192.168.1.15] on port 6112
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.15
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] connected
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 1 0 26 1
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 39 240 218 47
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] cd keys accepted
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] logon failed - invalid username, disconnecting
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] disconnected from battle.net
+[Fri Feb 08 18:50:32 2019] [BNET: WePlay] waiting 90 seconds to reconnect
+[Fri Feb 08 18:51:25 2019] [GHOST] starting up
+[Fri Feb 08 18:51:25 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Fri Feb 08 18:51:25 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Fri Feb 08 18:51:25 2019] [GHOST] starting winsock
+[Fri Feb 08 18:51:25 2019] [GHOST] setting process priority to "above normal"
+[Fri Feb 08 18:51:25 2019] [UDPSOCKET] using default broadcast target
+[Fri Feb 08 18:51:25 2019] [GHOST] opening primary database
+[Fri Feb 08 18:51:25 2019] [MYSQL] connecting to database server
+[Fri Feb 08 18:51:25 2019] [GHOST] opening secondary (local) database
+[Fri Feb 08 18:51:25 2019] [SQLITE3] version 3.6.16
+[Fri Feb 08 18:51:25 2019] [SQLITE3] opening database [ghost.dbs]
+[Fri Feb 08 18:51:25 2019] [SQLITE3] found schema number [8]
+[Fri Feb 08 18:51:25 2019] [GHOST] attempting to find local IP addresses
+[Fri Feb 08 18:51:25 2019] [GHOST] local IP address #1 is [192.168.43.1]
+[Fri Feb 08 18:51:25 2019] [GHOST] local IP address #2 is [192.168.1.15]
+[Fri Feb 08 18:51:25 2019] [GHOST] local IP address #3 is [127.0.0.1]
+[Fri Feb 08 18:51:25 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Fri Feb 08 18:51:25 2019] [CONFIG] loading file [language_turkish.cfg]
+[Fri Feb 08 18:51:25 2019] [GHOST] found battle.net connection #1 for server [192.168.1.15]
+[Fri Feb 08 18:51:25 2019] [GHOST] using system locale of 1055
+[Fri Feb 08 18:51:25 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Fri Feb 08 18:51:25 2019] [GHOST] missing bnet2_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:51:25 2019] [GHOST] missing bnet3_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:51:25 2019] [GHOST] missing bnet4_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:51:25 2019] [GHOST] missing bnet5_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:51:25 2019] [GHOST] missing bnet6_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:51:25 2019] [GHOST] missing bnet7_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:51:25 2019] [GHOST] missing bnet8_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:51:25 2019] [GHOST] missing bnet9_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:51:25 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Fri Feb 08 18:51:25 2019] [GHOST] extracting Scripts\common.j from MPQ file to [mapcfgs\common.j]
+[Fri Feb 08 18:51:25 2019] [GHOST] extracting Scripts\blizzard.j from MPQ file to [mapcfgs\blizzard.j]
+[Fri Feb 08 18:51:25 2019] [GHOST] adding ".cfg" to default map -> new default is [dota.cfg]
+[Fri Feb 08 18:51:25 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 18:51:25 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 18:51:25 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 18:51:26 2019] [MAP] overriding slots
+[Fri Feb 08 18:51:26 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 18:51:26 2019] [GHOST] adding ".cfg" to default admin game map -> new default is [dota.cfg]
+[Fri Feb 08 18:51:26 2019] [GHOST] trying to load default admin game map
+[Fri Feb 08 18:51:26 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 18:51:26 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 18:51:26 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 18:51:26 2019] [MAP] overriding slots
+[Fri Feb 08 18:51:26 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 18:51:26 2019] [GHOST] default admin game map isn't valid, using hardcoded admin game map instead
+[Fri Feb 08 18:51:26 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Fri Feb 08 18:51:26 2019] [GHOST] started loading [ip-to-country.csv]
+[Fri Feb 08 18:51:26 2019] [GHOST] iptocountry data: 10% loaded
+[Fri Feb 08 18:51:27 2019] [GHOST] iptocountry data: 20% loaded
+[Fri Feb 08 18:51:27 2019] [GHOST] iptocountry data: 30% loaded
+[Fri Feb 08 18:51:27 2019] [GHOST] iptocountry data: 40% loaded
+[Fri Feb 08 18:51:28 2019] [GHOST] iptocountry data: 50% loaded
+[Fri Feb 08 18:51:28 2019] [GHOST] iptocountry data: 60% loaded
+[Fri Feb 08 18:51:28 2019] [GHOST] iptocountry data: 70% loaded
+[Fri Feb 08 18:51:29 2019] [GHOST] iptocountry data: 80% loaded
+[Fri Feb 08 18:51:29 2019] [GHOST] iptocountry data: 90% loaded
+[Fri Feb 08 18:51:29 2019] [GHOST] iptocountry data: 100% loaded
+[Fri Feb 08 18:51:29 2019] [GHOST] finished loading [ip-to-country.csv]
+[Fri Feb 08 18:51:29 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Fri Feb 08 18:51:29 2019] [BNET: WePlay] connecting to server [192.168.1.15] on port 6112
+[Fri Feb 08 18:51:29 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.15
+[Fri Feb 08 18:51:29 2019] [BNET: WePlay] connected
+[Fri Feb 08 18:51:30 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 1 0 26 1
+[Fri Feb 08 18:51:30 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 39 240 218 47
+[Fri Feb 08 18:51:30 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Fri Feb 08 18:51:30 2019] [BNET: WePlay] cd keys accepted
+[Fri Feb 08 18:51:30 2019] [BNET: WePlay] logon failed - invalid username, disconnecting
+[Fri Feb 08 18:51:30 2019] [BNET: WePlay] disconnected from battle.net
+[Fri Feb 08 18:51:30 2019] [BNET: WePlay] waiting 90 seconds to reconnect
+[Fri Feb 08 18:52:30 2019] [GHOST] starting up
+[Fri Feb 08 18:52:30 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Fri Feb 08 18:52:30 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Fri Feb 08 18:52:30 2019] [GHOST] starting winsock
+[Fri Feb 08 18:52:30 2019] [GHOST] setting process priority to "above normal"
+[Fri Feb 08 18:52:30 2019] [UDPSOCKET] using default broadcast target
+[Fri Feb 08 18:52:30 2019] [GHOST] opening primary database
+[Fri Feb 08 18:52:30 2019] [MYSQL] connecting to database server
+[Fri Feb 08 18:52:30 2019] [GHOST] opening secondary (local) database
+[Fri Feb 08 18:52:30 2019] [SQLITE3] version 3.6.16
+[Fri Feb 08 18:52:30 2019] [SQLITE3] opening database [ghost.dbs]
+[Fri Feb 08 18:52:30 2019] [SQLITE3] found schema number [8]
+[Fri Feb 08 18:52:30 2019] [GHOST] attempting to find local IP addresses
+[Fri Feb 08 18:52:30 2019] [GHOST] local IP address #1 is [192.168.43.1]
+[Fri Feb 08 18:52:30 2019] [GHOST] local IP address #2 is [192.168.1.15]
+[Fri Feb 08 18:52:30 2019] [GHOST] local IP address #3 is [127.0.0.1]
+[Fri Feb 08 18:52:30 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Fri Feb 08 18:52:30 2019] [CONFIG] loading file [language_turkish.cfg]
+[Fri Feb 08 18:52:30 2019] [GHOST] found battle.net connection #1 for server [192.168.1.15]
+[Fri Feb 08 18:52:30 2019] [GHOST] using system locale of 1055
+[Fri Feb 08 18:52:30 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Fri Feb 08 18:52:30 2019] [GHOST] missing bnet2_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:52:30 2019] [GHOST] missing bnet3_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:52:30 2019] [GHOST] missing bnet4_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:52:30 2019] [GHOST] missing bnet5_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:52:30 2019] [GHOST] missing bnet6_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:52:30 2019] [GHOST] missing bnet7_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:52:30 2019] [GHOST] missing bnet8_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:52:30 2019] [GHOST] missing bnet9_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:52:30 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Fri Feb 08 18:52:30 2019] [GHOST] extracting Scripts\common.j from MPQ file to [mapcfgs\common.j]
+[Fri Feb 08 18:52:30 2019] [GHOST] extracting Scripts\blizzard.j from MPQ file to [mapcfgs\blizzard.j]
+[Fri Feb 08 18:52:30 2019] [GHOST] adding ".cfg" to default map -> new default is [dota.cfg]
+[Fri Feb 08 18:52:30 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 18:52:30 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 18:52:30 2019] [MAP] overriding slots
+[Fri Feb 08 18:52:30 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 18:52:30 2019] [GHOST] adding ".cfg" to default admin game map -> new default is [dota.cfg]
+[Fri Feb 08 18:52:30 2019] [GHOST] trying to load default admin game map
+[Fri Feb 08 18:52:30 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 18:52:30 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 18:52:30 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 18:52:30 2019] [MAP] overriding slots
+[Fri Feb 08 18:52:30 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 18:52:30 2019] [GHOST] default admin game map isn't valid, using hardcoded admin game map instead
+[Fri Feb 08 18:52:30 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Fri Feb 08 18:52:30 2019] [GHOST] started loading [ip-to-country.csv]
+[Fri Feb 08 18:52:31 2019] [GHOST] iptocountry data: 10% loaded
+[Fri Feb 08 18:52:31 2019] [GHOST] iptocountry data: 20% loaded
+[Fri Feb 08 18:52:31 2019] [GHOST] iptocountry data: 30% loaded
+[Fri Feb 08 18:52:32 2019] [GHOST] iptocountry data: 40% loaded
+[Fri Feb 08 18:52:32 2019] [GHOST] iptocountry data: 50% loaded
+[Fri Feb 08 18:52:32 2019] [GHOST] iptocountry data: 60% loaded
+[Fri Feb 08 18:52:33 2019] [GHOST] iptocountry data: 70% loaded
+[Fri Feb 08 18:52:33 2019] [GHOST] iptocountry data: 80% loaded
+[Fri Feb 08 18:52:33 2019] [GHOST] iptocountry data: 90% loaded
+[Fri Feb 08 18:52:34 2019] [GHOST] iptocountry data: 100% loaded
+[Fri Feb 08 18:52:34 2019] [GHOST] finished loading [ip-to-country.csv]
+[Fri Feb 08 18:52:34 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] connecting to server [192.168.1.15] on port 6112
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.15
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] connected
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 1 0 26 1
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 39 240 218 47
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] cd keys accepted
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] logon failed - invalid username, disconnecting
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] disconnected from battle.net
+[Fri Feb 08 18:52:34 2019] [BNET: WePlay] waiting 90 seconds to reconnect
+[Fri Feb 08 18:53:25 2019] [GHOST] starting up
+[Fri Feb 08 18:53:25 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Fri Feb 08 18:53:25 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Fri Feb 08 18:53:25 2019] [GHOST] starting winsock
+[Fri Feb 08 18:53:25 2019] [GHOST] setting process priority to "above normal"
+[Fri Feb 08 18:53:25 2019] [UDPSOCKET] using default broadcast target
+[Fri Feb 08 18:53:25 2019] [GHOST] opening primary database
+[Fri Feb 08 18:53:25 2019] [MYSQL] connecting to database server
+[Fri Feb 08 18:53:25 2019] [GHOST] opening secondary (local) database
+[Fri Feb 08 18:53:25 2019] [SQLITE3] version 3.6.16
+[Fri Feb 08 18:53:25 2019] [SQLITE3] opening database [ghost.dbs]
+[Fri Feb 08 18:53:25 2019] [SQLITE3] found schema number [8]
+[Fri Feb 08 18:53:25 2019] [GHOST] attempting to find local IP addresses
+[Fri Feb 08 18:53:25 2019] [GHOST] local IP address #1 is [192.168.43.1]
+[Fri Feb 08 18:53:25 2019] [GHOST] local IP address #2 is [192.168.1.15]
+[Fri Feb 08 18:53:25 2019] [GHOST] local IP address #3 is [127.0.0.1]
+[Fri Feb 08 18:53:25 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Fri Feb 08 18:53:25 2019] [CONFIG] loading file [language_turkish.cfg]
+[Fri Feb 08 18:53:25 2019] [GHOST] found battle.net connection #1 for server [192.168.1.15]
+[Fri Feb 08 18:53:25 2019] [GHOST] using system locale of 1055
+[Fri Feb 08 18:53:25 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Fri Feb 08 18:53:25 2019] [GHOST] missing bnet2_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:53:25 2019] [GHOST] missing bnet3_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:53:25 2019] [GHOST] missing bnet4_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:53:25 2019] [GHOST] missing bnet5_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:53:25 2019] [GHOST] missing bnet6_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:53:25 2019] [GHOST] missing bnet7_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:53:25 2019] [GHOST] missing bnet8_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:53:25 2019] [GHOST] missing bnet9_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 18:53:25 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Fri Feb 08 18:53:25 2019] [GHOST] extracting Scripts\common.j from MPQ file to [mapcfgs\common.j]
+[Fri Feb 08 18:53:25 2019] [GHOST] extracting Scripts\blizzard.j from MPQ file to [mapcfgs\blizzard.j]
+[Fri Feb 08 18:53:25 2019] [GHOST] adding ".cfg" to default map -> new default is [dota.cfg]
+[Fri Feb 08 18:53:25 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 18:53:25 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 18:53:25 2019] [MAP] overriding slots
+[Fri Feb 08 18:53:25 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 18:53:25 2019] [GHOST] adding ".cfg" to default admin game map -> new default is [dota.cfg]
+[Fri Feb 08 18:53:25 2019] [GHOST] trying to load default admin game map
+[Fri Feb 08 18:53:25 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 18:53:25 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 18:53:25 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 18:53:25 2019] [MAP] overriding slots
+[Fri Feb 08 18:53:25 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 18:53:25 2019] [GHOST] default admin game map isn't valid, using hardcoded admin game map instead
+[Fri Feb 08 18:53:25 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Fri Feb 08 18:53:25 2019] [GHOST] started loading [ip-to-country.csv]
+[Fri Feb 08 18:53:26 2019] [GHOST] iptocountry data: 10% loaded
+[Fri Feb 08 18:53:26 2019] [GHOST] iptocountry data: 20% loaded
+[Fri Feb 08 18:53:26 2019] [GHOST] iptocountry data: 30% loaded
+[Fri Feb 08 18:53:27 2019] [GHOST] iptocountry data: 40% loaded
+[Fri Feb 08 18:53:27 2019] [GHOST] iptocountry data: 50% loaded
+[Fri Feb 08 18:53:27 2019] [GHOST] iptocountry data: 60% loaded
+[Fri Feb 08 18:53:28 2019] [GHOST] iptocountry data: 70% loaded
+[Fri Feb 08 18:53:28 2019] [GHOST] iptocountry data: 80% loaded
+[Fri Feb 08 18:53:28 2019] [GHOST] iptocountry data: 90% loaded
+[Fri Feb 08 18:53:29 2019] [GHOST] iptocountry data: 100% loaded
+[Fri Feb 08 18:53:29 2019] [GHOST] finished loading [ip-to-country.csv]
+[Fri Feb 08 18:53:29 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] connecting to server [192.168.1.15] on port 6112
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.15
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] connected
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 1 0 26 1
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 39 240 218 47
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] cd keys accepted
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] username [hostbot1] accepted
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] logon successful
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Fri Feb 08 18:53:29 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Fri Feb 08 18:53:29 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on temelticaret.
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay]  
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay] There are 1 user accounts on this server.
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay] learn more about it.
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay] Type /language to switch translation.
+[Fri Feb 08 18:53:29 2019] [INFO: WePlay]  
+[Fri Feb 08 18:53:29 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Fri Feb 08 19:04:32 2019] [GHOST] starting up
+[Fri Feb 08 19:04:32 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Fri Feb 08 19:04:32 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Fri Feb 08 19:04:32 2019] [GHOST] starting winsock
+[Fri Feb 08 19:04:32 2019] [GHOST] setting process priority to "above normal"
+[Fri Feb 08 19:04:32 2019] [UDPSOCKET] using default broadcast target
+[Fri Feb 08 19:04:32 2019] [GHOST] opening primary database
+[Fri Feb 08 19:04:32 2019] [MYSQL] connecting to database server
+[Fri Feb 08 19:04:32 2019] [GHOST] opening secondary (local) database
+[Fri Feb 08 19:04:32 2019] [SQLITE3] version 3.6.16
+[Fri Feb 08 19:04:32 2019] [SQLITE3] opening database [ghost.dbs]
+[Fri Feb 08 19:04:32 2019] [SQLITE3] found schema number [8]
+[Fri Feb 08 19:04:32 2019] [GHOST] attempting to find local IP addresses
+[Fri Feb 08 19:04:32 2019] [GHOST] local IP address #1 is [192.168.43.1]
+[Fri Feb 08 19:04:32 2019] [GHOST] local IP address #2 is [192.168.1.15]
+[Fri Feb 08 19:04:32 2019] [GHOST] local IP address #3 is [127.0.0.1]
+[Fri Feb 08 19:04:32 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Fri Feb 08 19:04:32 2019] [CONFIG] loading file [language_turkish.cfg]
+[Fri Feb 08 19:04:32 2019] [GHOST] found battle.net connection #1 for server [192.168.1.15]
+[Fri Feb 08 19:04:32 2019] [GHOST] using system locale of 1055
+[Fri Feb 08 19:04:32 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Fri Feb 08 19:04:32 2019] [GHOST] missing bnet2_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:04:32 2019] [GHOST] missing bnet3_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:04:32 2019] [GHOST] missing bnet4_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:04:32 2019] [GHOST] missing bnet5_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:04:32 2019] [GHOST] missing bnet6_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:04:32 2019] [GHOST] missing bnet7_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:04:32 2019] [GHOST] missing bnet8_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:04:32 2019] [GHOST] missing bnet9_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:04:32 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Fri Feb 08 19:04:32 2019] [GHOST] extracting Scripts\common.j from MPQ file to [mapcfgs\common.j]
+[Fri Feb 08 19:04:32 2019] [GHOST] extracting Scripts\blizzard.j from MPQ file to [mapcfgs\blizzard.j]
+[Fri Feb 08 19:04:32 2019] [GHOST] adding ".cfg" to default map -> new default is [dota.cfg]
+[Fri Feb 08 19:04:32 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 19:04:32 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 19:04:32 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 19:04:33 2019] [MAP] overriding slots
+[Fri Feb 08 19:04:33 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 19:04:33 2019] [GHOST] adding ".cfg" to default admin game map -> new default is [dota.cfg]
+[Fri Feb 08 19:04:33 2019] [GHOST] trying to load default admin game map
+[Fri Feb 08 19:04:33 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 19:04:33 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 19:04:33 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 19:04:33 2019] [MAP] overriding slots
+[Fri Feb 08 19:04:33 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 19:04:33 2019] [GHOST] default admin game map isn't valid, using hardcoded admin game map instead
+[Fri Feb 08 19:04:33 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Fri Feb 08 19:04:33 2019] [GHOST] started loading [ip-to-country.csv]
+[Fri Feb 08 19:04:34 2019] [GHOST] iptocountry data: 10% loaded
+[Fri Feb 08 19:04:34 2019] [GHOST] iptocountry data: 20% loaded
+[Fri Feb 08 19:04:34 2019] [GHOST] iptocountry data: 30% loaded
+[Fri Feb 08 19:04:35 2019] [GHOST] iptocountry data: 40% loaded
+[Fri Feb 08 19:04:35 2019] [GHOST] iptocountry data: 50% loaded
+[Fri Feb 08 19:04:35 2019] [GHOST] iptocountry data: 60% loaded
+[Fri Feb 08 19:04:36 2019] [GHOST] iptocountry data: 70% loaded
+[Fri Feb 08 19:04:36 2019] [GHOST] iptocountry data: 80% loaded
+[Fri Feb 08 19:04:36 2019] [GHOST] iptocountry data: 90% loaded
+[Fri Feb 08 19:04:37 2019] [GHOST] iptocountry data: 100% loaded
+[Fri Feb 08 19:04:37 2019] [GHOST] finished loading [ip-to-country.csv]
+[Fri Feb 08 19:04:37 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] connecting to server [192.168.1.15] on port 6112
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.15
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] connected
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 1 0 26 1
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 39 240 218 47
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] cd keys accepted
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] username [hostbot1] accepted
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] logon successful
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Fri Feb 08 19:04:37 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Fri Feb 08 19:04:37 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on temelticaret.
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay]  
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay] There are currently 2 users in 0 games of Warcraft III Frozen Throne,
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay] and 2 users playing 0 games and chatting in 44 channels.
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay] learn more about it.
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay] Type /language to switch translation.
+[Fri Feb 08 19:04:37 2019] [INFO: WePlay]  
+[Fri Feb 08 19:04:37 2019] [LOCAL: WePlay] [hostbot1] You have no mail.
+[Fri Feb 08 19:04:45 2019] [LOCAL: WePlay] [burak3] .map
+[Fri Feb 08 19:04:45 2019] [BNET: WePlay] non-admin [burak3] sent command [.map]
+[Fri Feb 08 19:04:53 2019] [WHISPER: WePlay] [burak3] .map
+[Fri Feb 08 19:04:53 2019] [BNET: WePlay] non-admin [burak3] sent command [.map]
+[Fri Feb 08 19:05:01 2019] [LOCAL: WePlay] [burak3] !map
+[Fri Feb 08 19:05:08 2019] [WHISPER: WePlay] [burak3] !map
+[Fri Feb 08 19:05:50 2019] [GHOST] starting up
+[Fri Feb 08 19:05:50 2019] [GHOST] using log method 1, logging is enabled and [ghost.log] will not be locked
+[Fri Feb 08 19:05:50 2019] [GHOST] using Windows timer with resolution 1 milliseconds
+[Fri Feb 08 19:05:50 2019] [GHOST] starting winsock
+[Fri Feb 08 19:05:50 2019] [GHOST] setting process priority to "above normal"
+[Fri Feb 08 19:05:50 2019] [UDPSOCKET] using default broadcast target
+[Fri Feb 08 19:05:50 2019] [GHOST] opening primary database
+[Fri Feb 08 19:05:50 2019] [MYSQL] connecting to database server
+[Fri Feb 08 19:05:50 2019] [GHOST] opening secondary (local) database
+[Fri Feb 08 19:05:50 2019] [SQLITE3] version 3.6.16
+[Fri Feb 08 19:05:50 2019] [SQLITE3] opening database [ghost.dbs]
+[Fri Feb 08 19:05:50 2019] [SQLITE3] found schema number [8]
+[Fri Feb 08 19:05:50 2019] [GHOST] attempting to find local IP addresses
+[Fri Feb 08 19:05:50 2019] [GHOST] local IP address #1 is [192.168.43.1]
+[Fri Feb 08 19:05:50 2019] [GHOST] local IP address #2 is [192.168.1.15]
+[Fri Feb 08 19:05:50 2019] [GHOST] local IP address #3 is [127.0.0.1]
+[Fri Feb 08 19:05:50 2019] [GHOST] acting as Warcraft III: The Frozen Throne
+[Fri Feb 08 19:05:50 2019] [CONFIG] loading file [language_turkish.cfg]
+[Fri Feb 08 19:05:50 2019] [GHOST] found battle.net connection #1 for server [192.168.1.15]
+[Fri Feb 08 19:05:50 2019] [GHOST] using system locale of 1055
+[Fri Feb 08 19:05:50 2019] [BNET: WePlay] pvpgn connection found with a configured BNLS server, ignoring BNLS server
+[Fri Feb 08 19:05:50 2019] [GHOST] missing bnet2_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:05:50 2019] [GHOST] missing bnet3_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:05:50 2019] [GHOST] missing bnet4_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:05:50 2019] [GHOST] missing bnet5_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:05:50 2019] [GHOST] missing bnet6_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:05:50 2019] [GHOST] missing bnet7_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:05:50 2019] [GHOST] missing bnet8_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:05:50 2019] [GHOST] missing bnet9_cdkeyroc, skipping this battle.net connection
+[Fri Feb 08 19:05:50 2019] [GHOST] loading MPQ file [war3data\War3Patch.mpq]
+[Fri Feb 08 19:05:50 2019] [GHOST] extracting Scripts\common.j from MPQ file to [mapcfgs\common.j]
+[Fri Feb 08 19:05:50 2019] [GHOST] extracting Scripts\blizzard.j from MPQ file to [mapcfgs\blizzard.j]
+[Fri Feb 08 19:05:50 2019] [GHOST] adding ".cfg" to default map -> new default is [dota.cfg]
+[Fri Feb 08 19:05:50 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 19:05:50 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 19:05:50 2019] [MAP] overriding slots
+[Fri Feb 08 19:05:50 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 19:05:50 2019] [GHOST] adding ".cfg" to default admin game map -> new default is [dota.cfg]
+[Fri Feb 08 19:05:50 2019] [GHOST] trying to load default admin game map
+[Fri Feb 08 19:05:50 2019] [CONFIG] loading file [mapcfgs\dota.cfg]
+[Fri Feb 08 19:05:50 2019] [MAP] loading MPQ file [maps\DotA_Allstars_6.88x7c.w3x]
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_size = 204 181 24 3
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_info = 135 73 246 127
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_crc = 146 88 162 43
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_sha1 = 175 28 57 244 66 56 188 195 118 180 120 157 248 135 198 131 221 84 249 34
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_options = 96
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_width = 120 0
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_height = 124 0
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_numplayers = 10
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_numteams = 2
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot1 = 0 255 0 0 0 1 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot2 = 0 255 0 0 0 2 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot3 = 0 255 0 0 0 3 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot4 = 0 255 0 0 0 4 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot5 = 0 255 0 0 0 5 4 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot6 = 0 255 0 0 1 7 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot7 = 0 255 0 0 1 8 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot8 = 0 255 0 0 1 9 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot9 = 0 255 0 0 1 10 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] calculated map_slot10 = 0 255 0 0 1 11 8 1 100
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_size with config value map_size = 201 213 5 0
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_info with config value map_info = 206 105 219 80
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_crc with config value map_crc = 15 15 71 22
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_sha1 with config value map_sha1 = 91 92 122 144 89 127 250 70 133 235 247 76 193 31 109 105 36 250 36 16
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_options with config value map_options = 96
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_width with config value map_width = 118 0
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_height with config value map_height = 118 0
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_numplayers with config value map_numplayers = 10
+[Fri Feb 08 19:05:50 2019] [MAP] overriding calculated map_numteams with config value map_numteams = 2
+[Fri Feb 08 19:05:50 2019] [MAP] overriding slots
+[Fri Feb 08 19:05:50 2019] [MAP] invalid map_size detected - size mismatch with actual map data
+[Fri Feb 08 19:05:50 2019] [GHOST] default admin game map isn't valid, using hardcoded admin game map instead
+[Fri Feb 08 19:05:50 2019] [MAP] using hardcoded Emerald Gardens map data for Warcraft 3 version 1.24 & 1.24b
+[Fri Feb 08 19:05:50 2019] [GHOST] started loading [ip-to-country.csv]
+[Fri Feb 08 19:05:51 2019] [GHOST] iptocountry data: 10% loaded
+[Fri Feb 08 19:05:51 2019] [GHOST] iptocountry data: 20% loaded
+[Fri Feb 08 19:05:51 2019] [GHOST] iptocountry data: 30% loaded
+[Fri Feb 08 19:05:52 2019] [GHOST] iptocountry data: 40% loaded
+[Fri Feb 08 19:05:52 2019] [GHOST] iptocountry data: 50% loaded
+[Fri Feb 08 19:05:52 2019] [GHOST] iptocountry data: 60% loaded
+[Fri Feb 08 19:05:53 2019] [GHOST] iptocountry data: 70% loaded
+[Fri Feb 08 19:05:53 2019] [GHOST] iptocountry data: 80% loaded
+[Fri Feb 08 19:05:53 2019] [GHOST] iptocountry data: 90% loaded
+[Fri Feb 08 19:05:54 2019] [GHOST] iptocountry data: 100% loaded
+[Fri Feb 08 19:05:54 2019] [GHOST] finished loading [ip-to-country.csv]
+[Fri Feb 08 19:05:54 2019] [GHOST] GHost++ Version 17.1 (with MySQL support)
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] connecting to server [192.168.1.15] on port 6112
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] resolved and cached server IP address 192.168.1.15
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] connected
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] using custom exe version bnet_custom_exeversion = 1 0 26 1
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] using custom exe version hash bnet_custom_exeversionhash = 39 240 218 47
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] attempting to auth as Warcraft III: The Frozen Throne
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] cd keys accepted
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] username [hostbot1] accepted
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] using pvpgn logon type (for pvpgn servers only)
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] logon successful
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] joining channel [Warcraft 3 Frozen Throne]
+[Fri Feb 08 19:05:54 2019] [BNET: WePlay] joined channel [Warcraft 3 Frozen Throne]
+[Fri Feb 08 19:05:54 2019] [ERROR: WePlay] Hello hostbot1, welcome to PvPGN Realm!
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay] Running version PvPGN 1.99.7.2.1-PRO on temelticaret.
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay] This server is hosted by a PvPGN user
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay]  
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay] There are 2 user accounts on this server.
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay] There are currently 1 users in 0 games of Warcraft III Frozen Throne,
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay] and 1 users playing 0 games and chatting in 44 channels.
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay] Having trouble with a command? Type /help to
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay] learn more about it.
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay] Type /language to switch translation.
+[Fri Feb 08 19:05:54 2019] [INFO: WePlay]  
+[Fri Feb 08 19:05:54 2019] [LOCAL: WePlay] [hostbot1] You have no mail.

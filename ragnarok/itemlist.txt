@@ -1,0 +1,146 @@
+	
+  B Halter Box 30Days    Item ID# 16683 (B_Halter_Box_30Days)
+  Reins Of Mount    Item ID# 12622 (Boarding_Halter)
+  
+  Rudra Bow [0]   [Two Handed]   Item ID# 1720 (Bow_Of_Rudra)
+  Balmung [0]   [Two Handed]   Item ID# 1161 (Balmung)
+  Mjolnir [0]   [One Hand]   Item ID# 1530 (Mjolnir)
+  Mjolnir [0]   [One Hand]   Item ID# 16007 (Mjolnir_C)
+  Lord Kaho's Horn [0]   [Upper Head]   Item ID# 5013 (Horn_Of_Lord_Kaho)
+  Brynhild [0]   [Body]   Item ID# 2383 (Brynhild)
+  Asprika [0]   [Garment]   Item ID# 2541 (Asprika)
+  Brisingamen [0]   [Accessory]   Item ID# 2630 (Brysinggamen)
+
+
+
+------------------------ Shadow Garments items ------------------------
+Archangel Wing [0]   [Costume Garment]   Item ID# 20500 (T_Archangel_Wing)
+Brilliant Golden Wings [0]   [Costume Garment]   Item ID# 20727 (Brilliant_Golden_Wings)
+Costume Amistr Bag [0]   [Costume Garment]   Item ID# 20763 (C_Amistr_Bag)
+Costume Cupid's Pink Wings [0]   [Costume Garment]   Item ID# 20504 
+Costume Fallen Angel Wing [0]   [Costume Garment]   Item ID# 20764 
+Costume Happiness Wings [0]   [Costume Garment]   Item ID# 20761 (C_Happiness_Wings)
+Costume Kirin Wing [0]   [Costume Garment]   Item ID# 20737 (C_Kirin_Wing)
+Costume Little Devil Wings [0]   [Costume Garment]   Item ID# 20502 
+Costume Poring Bag [0]   [Costume Garment]   Item ID# 20507 (C_Poring_Bag)
+Costume Rudra Wings [0]   [Costume Garment]   Item ID# 20746 (C_Rudra_Wings)
+Costume Sword Wing [0]   [Costume Garment]   Item ID# 20510 (C_SwordWing)
+Costume Wings of Uriel [0]   [Costume Garment]   Item ID# 20509 (C_Wings_of_Uriel)
+  
+  
+ 
+
+
+
+
+------------------------ Middle Headgears items ------------------------
+KarduiEar [0]   [Middle Head]   Item ID# 5966 (KarduiEar)
+Black Devil Mask [0]   [Middle Head]   Item ID# 18599 (Black_Devil_Mask)
+Black Devil Mask [1]   [Middle Head]   Item ID# 18603 (Black_Devil_Mask_)
+Rainbow Star [0]   [Middle Head]   Item ID# 18894 (Rainbow_Star)
+
+
+------------------------ Lower Headgears items ------------------------
+
+Orochimaru's Mask [0]   [Lower Head]   Item ID# 18948 (Mask_Of_Orochimaru)
+Candy Cane In Mouth [0]   [Lower Head]   Item ID# 18526 (Yummy_Lollipop)
+Jiraiya's Pipe [0]   [Lower Head]   Item ID# 18947 (Pipe_Of_Jiraiya)			//bu calism�yor
+
+
+
+
+
+
+
+
+Valkyrian Armor [1]   [Body]   Item ID# 2357 (Valkyrie_Armor)
+Valkyrian Manteau [1]   [Garment]   Item ID# 2524 (Valkyrie_Manteau)
+Valkyrian Shoes [1]   [Footgear]   Item ID# 2421 (Valkyrie_Shoes)
+Valkyrie Helm [1]   [Upper Head]   Item ID# 5171 (Valkyrie_Helm)
+Valkyrie Helmet [0]   [Upper Head]   Item ID# 5826 (Valkyrie_Helmet)
+Valkyrie Circlet [1]   [Upper Head]   Item ID# 18827 (Valkyrie_Circlet)
+Valkyrie Feather Band [1]   [Upper Head]   Item ID# 5256 (Valkyrie_Feather_Band)
+
+Valkyrie Hammer [4]   [One Hand]   Item ID# 16051 (Valkyrie_Hammer)
+Ring Of Valkyrie [0]   [Accessory]   Item ID# 2863 (Ring_Of_Valkyrie)
+
+Costume Valkyrie Feather Hat [0]   [Costume Upper Head]   Item ID# 19613 
+Costume Valkyrie Helm [0]   [Costume Upper Head]   Item ID# 19546 (C_Valkyrie_Helm)
+
+
+
+
+
+Shadow Guard [1]   [Shield]   Item ID# 2135 (Shadow_Guard)
+Shadow Walk [0]   [Footgear]   Item ID# 2426 (Shadow_Walk)
+
+------------------------ Footgear İtems ------------------------
+Temporal Boots Of Strength [1]   [Footgear]   Item ID# 22006 (Temporal_STR_Boots_)
+Temporal Boots Of Agility [1]   [Footgear]   Item ID# 22010 (Temporal_AGI_Boots_)
+Temporal Boots Of Vitality [1]   [Footgear]   Item ID# 22007 (Temporal_VIT_Boots_)
+Temporal Boots Of Dexterity [1]   [Footgear]   Item ID# 22008 (Temporal_DEX_Boots_)
+Temporal Boots Of Intelligence [1]   [Footgear]   Item ID# 22009 (Temporal_INT_Boots_)
+Temporal Boots Of Luck [1]   [Footgear]   Item ID# 22011 (Temporal_LUK_Boots_)
+
+
+
+
+
+
+------------------------ Accessory İtems ------------------------
+Sound Amplification Device [1]   [Accessory]   Item ID# 2899 (Sound_Amplifier)
+All In One Ring [0]   [Accessory]   Item ID# 2741 (All_In_One_Ring)
+Bawaya Agimat Tattoo [0]   [Accessory]   Item ID# 2907 (Buwaya_Tattoo)
+Bakunawa Agimat Tattoo [0]   [Accessory]   Item ID# 2910 (Bakonawa_Tattoo)
+
+
+
+
+
+Seraphim Coronet [0]   [Middle Head]   Item ID# 19138 (Seraphim_Coronet)
+Seraphim Robe [1]   [Garment]   Item ID# 20815 (SeraphimRobe)
+
+
+
+
+
+Supplement Part Dex [1]   [Accessory]   Item ID# 2995 (Supplement_Part_Dex)
+Supplement Part Str [Body]   Item ID# 15110 (Supplement_Part_Str)
+
+
+
+
+
+Heoric Nepenthes Shoes [1]   [Footgear]   Item ID# 22035 (Heoric_Nepenthes_Shoes)
+Hero Magic Coat [1]   [Body]   Item ID# 15094 (Hero_Magic_Coat)
+
+
+
+
+
+------------------------ Cast İncrease İtems ------------------------
+Home Cherry Blossom [1]   [Upper Head]   Item ID# 5673 (Home_Cherry_Blossom)
+Magical Moon Cat [1]   [Upper Head]   Item ID# 18970 (Magical_Moon_Cat)
+Blazing Sun [0]   [Upper Head]   Item ID# 5776 (Blazing_Sun)
+
+
+
+
+------------------------ Cast İncrease Cards ------------------------
+Kiel-D-01 Card [Headgear]   Item ID# 4403 (Kiel_Card)
+Dark Lord Card [Footgear]   Item ID# 4168 (Dark_Lord_Card)
+Dark Illusion Card [Headgear]   Item ID# 4169 (Dark_Illusion_Card)
+Sealed Dark Lord Card [Footgear]   Item ID# 4488 (Sealed_D_Lord_Card)
+
+
+Fenrir Card [Headgear]   Item ID# 4556 (Fenrir_Card)
+High Wizard Card [Headgear]   Item ID# 4365 (B_Katrinn_Card)
+Kathryne Keyron Card [Headgear]   Item ID# 4366 (Katrinn_Card)
+Nidhoggur Shadow Card [Armor]   Item ID# 4456 (Nidhogg_Shadow_Card)
+Rata Card [Headgear]   Item ID# 4459 (Lata_Card)
+Berzebub Card [Accessory]   Item ID# 4145 (Berzebub_Card)
+
+
+
+
+Fenrir's Power Scroll [0]      Item ID# 22511 (Fenrirs_Power_Scroll)

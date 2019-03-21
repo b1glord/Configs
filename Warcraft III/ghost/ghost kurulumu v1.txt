@@ -1,0 +1,73 @@
+# boost library installation (Gerekli) 
+
+yum install -y wget gcc-c++ libboost-all-dev libgmp-dev gmp-devel zlib1g-dev libbz2-dev bzip2-devel 
+
+
+cd /usr/src/
+wget https://dl.bintray.com/boostorg/release/1.55.0/source/boost_1_55_0.tar.gz
+tar zxf boost_1_55_0.tar.gz
+
+cd /usr/src/boost_1_55_0
+#./bootstrap.sh --prefix=/usr/local --includedir=/usr/include --with-icu(opsiyonel)
+./bootstrap.sh
+./b2
+
+
+git clone https://github.com/uakfdotb/ghostpp /home/ghostpp
+cd /home/ghostpp
+
+cd /home/ghostpp/bncsutil
+make
+make install
+
+cd /home/ghostpp/bncsutil
+mkdir build
+CC=/opt/rh/devtoolset-7/root/usr/bin/gcc CXX=/opt/rh/devtoolset-7/root/usr/bin/g++ cmake -G "Unix Makefiles" -B./build -H./
+cd build && make && sudo make install
+
+cd /home/ghostpp/StormLib
+mkdir build
+CC=/opt/rh/devtoolset-7/root/usr/bin/gcc CXX=/opt/rh/devtoolset-7/root/usr/bin/g++ cmake -G "Unix Makefiles" -B./build -H./
+cd build && make && sudo make install
+
+cd /home/ghostpp/CascLib
+mkdir build
+CC=/opt/rh/devtoolset-7/root/usr/bin/gcc CXX=/opt/rh/devtoolset-7/root/usr/bin/g++ cmake -G "Unix Makefiles" -B./build -H./
+cd build && make && sudo make install
+
+
+# Ufak bir bug var libmysqlclient.so dosyasini make komutu derleme yaparken bulamiyor o yuzden bi kisayol olusturuyoruz sonra ghost derleme asamasina geciyoruz
+sudo ln -s /usr/lib64/mysql/libmysqlclient.so /usr/lib64/
+ldconfig
+
+
+# derlemeye basliyoruz
+cd /home/ghostpp/ghost
+make
+
+
+
+mkdir ~/ghost++/
+cd /home/ghostpp/
+cp /home/ghostpp/ghost/ghost++ ~/ghost++/
+cp -R maps/ mapcfgs/ replays/ savegames/ ~/ghost++/
+cp ghost/ghost++ default.cfg ~/ghost++/
+cp gameloaded.txt gameover.txt ipblacklist.txt ~/ghost++/
+cp ip-to-country.csv ~/ghost++/
+
+ln -s /home/ghostpp/CascLib/build/libcasc.so.1 /usr/lib/
+ln -s /usr/local/lib/libboost_date_time.so.1.55.0 /usr/lib/
+ln -s /usr/local/lib/libboost_system.so.1.55.0 /usr/lib/
+ln -s /usr/local/lib/libboost_filesystem.so.1.55.0 /usr/lib/
+ln -s /usr/local/lib/libboost_thread.so.1.55.0 /usr/lib/
+
+
+
+#start ghost++
+cd ~/ghost++/
+chmod +x ./ghost++
+~/ghost++/ghost++
+
+#You can pass a command-line argument to use a different secondary configuration filename, instead of ghost.cfg:
+~/ghost++/ghost++ ~/ghost++/ghost.cfg
+

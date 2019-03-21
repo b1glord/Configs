@@ -1,0 +1,33 @@
+
+## start server
+
+/usr/local/sbin/bnetd
+
+
+
+## Playing using Ghost++
+
+enter to the channel where your ghost is. You can make your ghost come to you by whisper it /w <botname> !say /join W3-Bots
+
+load the map you want to play (You can also whisper your bot the command.)
+
+Example: 
+
+!map dota6.59d
+
+
+## start a public game
+
+Example: 
+
+!pub AP/EU/PROS ONLY
+
+
+Join the game you just created and swap your self to the blue position using !swap command.
+
+Read the readme.txt file or the following list of commands to use the other brilliant features of ghost++ such as autohosting, getting statistics about your games, banning, announcing, and many other features!
+
+Commands list
+
+Ghost++:Commands
+

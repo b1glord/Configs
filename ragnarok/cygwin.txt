@@ -1,0 +1,40 @@
+Cygwin dll mizi indiriyoruz ve kuruyoruz 
+D ye kurmak mantikli format falan atarken tasimak zorunda kalmamak icin
+
+http://ftp.fau.de 
+
+#view = category olarak ayarla
+#wget i kuruyoruz download icin gerekli
+
+wget
+
+#Cygwin64 Terminal icin sifre olusturuyoruz
+passwd sifremiz
+
+
+#apt-cyg paket yukleyici kurulumu
+wget https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg
+chmod +x apt-cyg
+mv apt-cyg /usr/local/bin
+
+
+#install database tools
+apt-cyg install mysql mysql-server libmysqlclient-devel
+#install build tools
+apt-cyg install make gcc-g++ pcre-devel zlib-devel  git
+#install optional
+apt-cyg install gdb nano screen unzip zip
+
+mysql_secure_installation
+
+
+git clone https://github.com/rathena/rathena.git ~/rAthena
+
+cd ~/rAthena
+chmod +x ./configure
+./configure
+make clean 
+#(buraya kadar cok olumlu gelisti hersey ama derleme yaparken hata verdi )
+make server      
+
+chmod a+x athena-start

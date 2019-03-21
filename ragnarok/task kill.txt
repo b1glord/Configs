@@ -1,0 +1,6 @@
+cmd:
+netstat -aon | findstr 0.0:443
+
+Kill the process 2276 by using the (2276 pid li programi kapatmak icin)
+cmd: 
+taskkill /pid 2848 -f

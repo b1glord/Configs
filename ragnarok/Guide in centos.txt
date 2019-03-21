@@ -1,0 +1,172 @@
+#============================
+#0)Temeller
+#============================
+#ip adres: local ip
+
+#Username:  root
+#Password:  password
+
+
+
+#putty kullanmak gerekiyor
+#kodlari kopyalamak daha kolay
+#winscp ile de baglanarak dosyalari gorebilirsin
+
+
+
+#firewall i kapatiyoruz (opsiyonel)
+#============================
+#systemctl stop firewalld.service
+#systemctl disable firewalld.service
+
+
+
+#Nano ve wget i kuruyoruz (opsiyonel)
+#============================
+#yum install nano wget -y
+
+
+
+#se linux u kapatiyoruz (opsiyonel)
+#============================
+#setenforce 0 
+
+
+
+#Ip kontrolu icin Net-tools kuruyoruz (Opsiyonel)
+#============================
+#yum -y install net-tools
+#ifconfig
+
+
+
+#install Development tools (Opsiyonel)
+#============================
+#yum groupinstall "Development Tools"    (yum repoda biraz daha eski versiyon var(gcc+4.8) ama bize gcc+7 gerekli)
+
+
+
+#1) ispconfig Kurulumu
+#============================
+cd /tmp; sudo yum install -y wget unzip net-tools; wget -O installer.tgz "https://github.com/b1glord/ispconfig_setup/tarball/master"; tar zxvf installer.tgz; cd *ispconfig*; sudo bash install.sh
+
+
+
+#2) install gcc-c++ versiyon 7
+#( rAthena derlemek icin gcc 7 versiyon yuklemek gerekiyor bu versiyonu fedora deposundan yukeleyelim )
+#============================
+sudo yum install -y centos-release-scl
+sudo yum install -y devtoolset-7-gcc devtoolset-7-gcc-c++
+#derleme icin her defasinda asagidaki kodu giriyoruz yada devamli yazmak istemiyorsan ./bashrc dosyasina ekliyoruz
+source scl_source enable devtoolset-7
+
+
+#3)Installing Compiler and Git Support
+#Type the following command (this will install Make, PCRE header files, and Zlib header files)
+#============================
+yum install -y git make pcre-devel zlib-devel ntp mariadb-devel 
+
+
+
+4)importing your costumized rathena git into server
+#============================
+git clone https://github.com/rathena/rathena.git ~/rAthena
+
+
+
+
+#5)Securing and adjusting your Git files
+#============================
+#/before we proceed make sure you have github and gitlab account(must have the same email on both git sites)
+#first: fork the rathena git on github
+#second: import the rathena git into gitlab
+#third: clone your rathena git into github application
+#edit the following:
+#.gitignore
+#enable import folders
+
+
+
+#6) return and compile the server
+#============================
+
+cd
+cd rAthena
+make clean
+chmod a+x ./configure
+./configure --enable-64bit --enable-packetver=20181226
+make server
+
+
+#============================
+#7) Alternatif Derleme icin asagidaki komutlari giriyoruz (mariadb-devel yuklemek gerekebilir) (Opsiyonel)
+#============================
+#./configure --enable-64bit --with-MYSQL_LIBS=/usr/lib64/libmysqlclient.so
+#yada
+#./configure --enable-64bit --with-mysql-lib64	
+
+
+
+#8) How to Recompile (optional only change or update /src)
+#In the future (after you update or edit any file in /src) to recompile, add make clean before make sql:
+#============================
+
+#cd trunk
+#./configure 
+#make clean 
+#make server
+
+
+
+
+#9) Db Yukleme sihirbazi
+#ADI isimli dosyayi rAthena/sql-files dizinine kopyaliyoruz
+#============================
+
+cd ~/rAthena/sql-files
+wget https://raw.githubusercontent.com/b1glord/ADI/master/customaccount.sql
+wget https://raw.githubusercontent.com/b1glord/ADI/master/custom.sql
+wget https://raw.githubusercontent.com/b1glord/ADI/master/ADI.sh
+chmod +x ADI.sh
+./ADI.sh
+
+
+
+#10)Start your server
+#============================
+
+cd ~/rAthena
+chmod a+x athena-start
+#To Start
+
+./athena-start start
+
+#To Stop
+#./athena-start stop
+
+#To Restart
+#./athena-start restart
+
+
+
+#11) update git 
+#============================
+
+#cd ~/rAthena
+#./athena-start stop
+
+#if you made some changes on source file do
+#============================
+#make clean 
+
+#then
+#git pull
+
+#it will ask for your gitlab user and passwd
+#again if you made some changes on source file do
+#============================
+#make server
+
+#then
+#============================
+#./athena-start start

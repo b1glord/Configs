@@ -1,0 +1,50 @@
+# boost library installation (Gerekli) 
+
+yum install -y wget unzip subversion gcc-c++ libboost-all-dev libgmp-dev gmp-devel zlib1g-dev libbz2-dev bzip2-devel libgmp3-dev libmysql++-dev libboost-dev libboost-system-dev libboost-date-time-dev libboost-thread-dev libboost-filesystem-dev
+
+cd /usr/src/
+wget https://dl.bintray.com/boostorg/release/1.55.0/source/boost_1_55_0.tar.gz
+tar zxf boost_1_55_0.tar.gz
+cd /usr/src/boost_1_55_0
+#./bootstrap.sh --prefix=/usr/local --includedir=/usr/include --with-icu(opsiyonel)
+./bootstrap.sh
+./b2
+
+cd /usr/src/
+wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/ghostplusplus/ghostplusplus_17.1.zip
+unzip ghostplusplus_17.1.zip
+
+
+cd /usr/src/ghost/bncsutil/src/bncsutil/
+make
+make install
+
+cd /usr/src/ghost/StormLib/stormlib/
+make
+make install
+
+# Ufak bir bug var libmysqlclient.so dosyasini make komutu derleme yaparken bulamiyor o yuzden bi kisayol olusturuyoruz sonra ghost derleme asamasina geciyoruz
+sudo ln -s /usr/lib64/mysql/libmysqlclient.so /usr/lib64/
+ldconfig
+
+# derlemeye basliyoruz
+cd /usr/src/ghost/ghost/
+make
+
+
+mkdir ~/ghost++/
+cd /usr/src/ghost
+cp -R maps/ mapcfgs/ replays/ savegames/ ~/ghost++/
+cp ghost/ghost++ default.cfg ~/ghost++/
+cp gameloaded.txt gameover.txt ipblacklist.txt ~/ghost++/
+cp ip-to-country.csv ~/ghost++/
+
+
+
+#start ghost++
+cd /home/ghostpp/ghost
+chmod +x ./ghost++
+./ghost++
+
+#You can pass a command-line argument to use a different secondary configuration filename, instead of ghost.cfg:
+./ghost++ /opt/myconfig.cfg
