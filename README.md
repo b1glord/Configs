@@ -1,1 +1,1 @@
-Oyun ayar dosyalari
+Çesitli ayar dosyalari
