@@ -1,0 +1,6 @@
+. knight / crusader       BigLorD
+. Mage                    BigLorD
+. Alchemist               Fury
+. Bard                    Fury
+. Priest                  MeloX
+. Hunter                  Avcı
