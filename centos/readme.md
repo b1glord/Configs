@@ -5,3 +5,8 @@
 '''
 ip add
 '''
+
+#### yum paket yöneticisinde paket arama
+yum whatprovides can find package with specific command or lib, for example:
+
+sudo yum whatprovides libmysqlclient*
