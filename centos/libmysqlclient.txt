@@ -3,9 +3,9 @@
 ```
 /usr/lib64/mysql/libmysqlclient.so
 ```
-
+#### Sorunu cozmek icin gerekli konuma kısayol ekliyoruz
 ```
 cd /usr/lib
-ln -s usr/lib64/mysql/libmysqlclient.so libmysqlclient.so
+ln -s usr/lib64/mysql/libmysqlclient.so usr/bin/ld/libmysqlclient.so
 
 ```
