@@ -1,4 +1,4 @@
-# GhostOne Windows
+# Ghost++ Windows
 ## Ghost++ Temel Ayarlar
 
 GhostOne++ Warcraft III oyununa gerek duymadan sunucuya baglanti kurup port acmadan oyun kurmanızı saglayan bir yazılımdır.
