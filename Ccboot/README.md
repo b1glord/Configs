@@ -1,2 +1,3 @@
 # Ccboot
+---
 Lokasyon   C:/Windows
