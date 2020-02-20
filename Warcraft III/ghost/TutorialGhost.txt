@@ -1,10 +1,3 @@
-
-## start server
-
-/usr/local/sbin/bnetd
-
-
-
 ## Playing using Ghost++
 
 enter to the channel where your ghost is. You can make your ghost come to you by whisper it /w <botname> !say /join W3-Bots
