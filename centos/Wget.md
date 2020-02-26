@@ -1,4 +1,4 @@
-### Wget Faydali Komutlari
+### Wget Komutlari
 
 ####
 
