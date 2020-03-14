@@ -18,7 +18,7 @@ ldconfig loader tarafından kullanılan .so dosyalarını cache'lemek için kull
 ldconfig
 ```
 
-####systemd servislerini yenileme
+#### systemd servislerini yenileme
 ```
 systemctl daemon-reload
 ```
