@@ -10,9 +10,9 @@
 ’’’
 #### daha once indirilmis dosyayi tekrar indirmemek icin 
 ’’’
- wget -nc http://examle.com
+ wget -nc http://example.com
 ’’’
 #### indirme konumu ayarlama 
 ’’’
- wget http://examle.com -P /home
+ wget http://example.com -P /home
 ’’’
