@@ -22,3 +22,11 @@ ldconfig
 ```
 systemctl daemon-reload
 ```
+
+#### Acık portlari kontrol etmek
+```
+netstat -tulpn | less
+```
+```
+ss -tulpn | less
+```
