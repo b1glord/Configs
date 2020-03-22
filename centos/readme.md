@@ -25,6 +25,9 @@ systemctl daemon-reload
 
 #### Acık portlari kontrol etmek
 ```
+netstat -plntu
+```
+```
 netstat -tulpn | less
 ```
 ```
