@@ -1,4 +1,4 @@
-https://www.dynu.com/DynamicDNS/IPUpdateClient
+https://www.dynu.com/en-US/Resources/Downloads
 ## Install
 ```
 cd /tmp
