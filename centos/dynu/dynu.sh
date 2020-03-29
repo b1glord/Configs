@@ -8,6 +8,6 @@ sed -i "s/username/username aktifhost/" /etc/dynuiuc/dynuiuc.conf
 sed -i "s/location/location work/" /etc/dynuiuc/dynuiuc.conf
 #
 # Add Password Manuel
-yum install -y nano
+yum -y install nano
 nano /etc/dynuiuc/dynuiuc.conf
 
