@@ -11,7 +11,9 @@ youtube-dl -U
 ```
 
 #### mp3 Destegi icin lib-av kutuphanesi kurulum
+```
 https://raw.githubusercontent.com/b1glord/Configs/master/youtube-dl/libav-11.sh
+```
 
 ### Centos 7 Kullanım Ornekleri
 
