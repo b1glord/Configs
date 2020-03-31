@@ -2,7 +2,7 @@
 ## https://github.com/ytdl-org/youtube-dl
 ### Centos 7 Kurulum
 ```
-yum install -y epel-release youtube-dl nv-codec-headers
+yum install -y epel-release youtube-dl
 ```
 #### Youtube-dl Update
 ```
