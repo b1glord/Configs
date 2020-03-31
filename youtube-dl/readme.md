@@ -1,6 +1,5 @@
 # Youtube-dl Centos 7 Kurulum ve Bagımlılıklar
 ## https://github.com/ytdl-org/youtube-dl
-## https://wiki.libav.org/Platform/Linux#Pre_Built_Static_Binaries
 ### Centos 7 Kurulum
 ```
 yum install -y epel-release youtube-dl nv-codec-headers
