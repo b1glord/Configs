@@ -4,11 +4,16 @@
 ```
 yum install -y epel-release youtube-dl
 ```
+
 #### Youtube-dl Update
 ```
 youtube-dl -U
 ```
-#### Centos 7 Kullanım Ornekleri
+
+#### mp3 Destegi icin lib-av kutuphanesi kurulum
+https://raw.githubusercontent.com/b1glord/Configs/master/youtube-dl/libav-11.sh
+
+### Centos 7 Kullanım Ornekleri
 
 - Videoyu mp3 formatına çevirmek için oldukça basit olan şu işlemi yapıyorsunuz.
 ```
@@ -25,6 +30,5 @@ youtube-dl --extract-audio --audio-format mp3
 
 ```
 
-
-
+### Test edilecek
 youtube-dl -o '/Output/qpgTC9MDx1o.mp3' qpgTC9MDx1o -f bestaudio --extract-audio --metadata-from-title "%(artist)s - %(title)s" 2>&1
