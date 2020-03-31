@@ -4,3 +4,8 @@ yum -y install autoconf automake gcc gcc-c++ git libtool make yasm pkgconfig zli
 cd /tmp
 wget -nc https://www.libav.org/releases/libav-12.3.tar.gz
 tar  -xvf libav-12.3.tar.gz
+
+cd /tmp/libav-12.3
+./configure
+make
+make install
