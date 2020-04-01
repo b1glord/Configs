@@ -4,4 +4,4 @@
 . Bard                    Fury
 . Priest                  MeloX
 . Hunter                  Lucy
-. Blacksmith              Tom's
+. Blacksmith              ToMs
