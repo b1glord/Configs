@@ -1,6 +1,7 @@
-. knight / crusader       BigLorD
+. knight / crusader       TorreS
 . Mage                    BigLorD
 . Alchemist               Fury
 . Bard                    Fury
 . Priest                  MeloX
-. Hunter                  Avcı
+. Hunter                  Lucy
+. Blacksmith              Tom's
