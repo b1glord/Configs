@@ -2,6 +2,6 @@
 . Mage                    BigLorD
 . Alchemist               Fury
 . Bard                    TorreS
-. Priest                  MeloX
+. Priest                  MeLoX
 . Hunter                  Lucy
 . Blacksmith              ToMs
