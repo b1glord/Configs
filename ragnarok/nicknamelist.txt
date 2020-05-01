@@ -1,7 +1,7 @@
-. knight / crusader       TorreS
+. knight / crusader       Splash
 . Mage                    BigLorD
 . Alchemist               Fury
-. Bard                    Fury
+. Bard                    TorreS
 . Priest                  MeloX
 . Hunter                  Lucy
 . Blacksmith              ToMs
