@@ -5,4 +5,6 @@
 . Bard                    TorreS
 . Priest                  MeLoX
 . Hunter                  Lucy
+. Sniper                  CroSs
 . Blacksmith              ToMs
+
