@@ -1,5 +1,5 @@
-. knight                  Splash
-. crusader                Neptun
+. knight                  SpLaSh
+. crusader                NeptuN
 . Mage                    BigLorD
 . Alchemist               Fury
 . Bard                    TorreS
