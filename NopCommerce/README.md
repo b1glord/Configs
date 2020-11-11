@@ -3,7 +3,7 @@
 ```
 cd /tmp
 rm ./installpardus.sh
-wget -nc https://raw.githubusercontent.com/b1glord/nopCommerce/autoinstall/installpardus.sh
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installpardus.sh
 chmod +x ./installpardus.sh
 ./installpardus.sh
 ```
