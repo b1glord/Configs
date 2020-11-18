@@ -1,4 +1,14 @@
 ## Install Pardus NopCommerce
+
+### Prebuilt Packages on Centos
+```
+cd /tmp
+rm ./installcentos.sh
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentos.sh
+chmod +x ./installcentos.sh
+./installcentos.sh
+```
+
 ### Prebuilt Packages on Pardus
 ```
 cd /tmp
