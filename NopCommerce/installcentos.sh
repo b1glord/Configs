@@ -16,7 +16,7 @@
 AskQuestions() {
 	if ! command -v whiptail >/dev/null; then
 		echo -n "Installing whiptail... "
-		sudo apt-get install whiptail
+		sudo yum -y install whiptail newt
 		echo -e "[${green}DONE${NC}]\n"
 	fi
 
