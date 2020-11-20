@@ -13,7 +13,7 @@
 #
 #---------------------------------------------------------------------
 
-AskQuestions() {
+
 	if ! command -v whiptail >/dev/null; then
 		echo -n "Installing whiptail... "
 		sudo yum -y install whiptail newt
@@ -24,7 +24,6 @@ AskQuestions() {
 	do
 		CFG_MYSQL_ROOT_PWD=$(whiptail --title "MySQL" --backtitle "$WT_BACKTITLE" --passwordbox "Please specify a root password" --nocancel 10 50 3>&1 1>&2 2>&3)
 	done
-}
 
 # Register Microsoft key and feed
 rpm -ivh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
