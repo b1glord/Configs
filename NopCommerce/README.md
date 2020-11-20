@@ -3,7 +3,7 @@
 ### Prebuilt Packages on Centos
 ```
 cd /tmp
-rm ./installcentos.sh
+rm -f ./installcentos.sh
 wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentos.sh
 chmod +x ./installcentos.sh
 ./installcentos.sh
@@ -12,7 +12,7 @@ chmod +x ./installcentos.sh
 ### Prebuilt Packages on Pardus
 ```
 cd /tmp
-rm ./installpardus.sh
+rm -f ./installpardus.sh
 wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installpardus.sh
 chmod +x ./installpardus.sh
 ./installpardus.sh
