@@ -61,7 +61,7 @@ fi
 
 # Ask what hostname this can be executed locally, but localhost is default.
 if [[ -z "$hostname" ]]; then
-        echo ""
+        echo "localhost"
         echo "ERROR: Please set a proper hostname such as localhost."
         exit
         # If hostname is not blank, we will continue.
@@ -74,7 +74,6 @@ if [[ -z "$database" ]]; then
         echo ""
         echo "ERROR: The database name is invalid or blank."
         exit
-        # This portion checks if user is going to use a seperate database for logs if not it will continue with the installation of the database.
 fi
 
 # Register Microsoft key and feed
