@@ -134,27 +134,17 @@ mysql -u root -p$password -e 'FLUSH PRIVILEGES;'
 yum -y install epel-release
 yum -y install nginx
 
-# Configure Nginx Default Port 81
-#sed -i "s/    listen       80;/    listen       81;/" /etc/nginx/conf.d/default.conf
-# Configure cgi.fix_pathinfo
-sed -i "s/cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php.ini
-# Configure startup and start
-systemctl enable nginx.service
-systemctl start nginx.service
-
-# and check its status:
-sudo systemctl status nginx
-
 # To configure nginx as a reverse proxy to forward requests to your ASP.NET Core app, modify /etc/nginx/sites-available/default. 
 # Open it in a text editor and replace the contents with the following:
-
+sudo mkdir /etc/nginx/sites-available
 sudo cat > /etc/nginx/sites-available/default << EOF
 # Default server configuration
 #
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    server_name   nopCommerce-430.com;
+    server_name_;
+    root   /var/www/;
     location / {
     proxy_pass         http://localhost:5000;
     proxy_http_version 1.1;
@@ -183,8 +173,17 @@ server {
 }
 EOF
 
+# Configure startup and start
+systemctl enable nginx.service
+systemctl start nginx.service
+
+# and check its status:
+sudo systemctl status nginx
+
+
 # Get nopCommerce
 # Create a directory
+sudo mkdir /var/www/
 sudo mkdir /var/www/nopCommerce430
 
 # Download and unpack the nopCommerce:
@@ -206,7 +205,7 @@ sudo chown -R nginx nopCommerce430/
 # Create the /etc/systemd/system/nopCommerce430.service file with the following contents:
 sudo  cat > /etc/systemd/system/nopCommerce430.service << EOF
 [Unit]
-Description=Example nopCommerce app running on Pardus
+Description=Example nopCommerce app running on CentOS 7
 [Service]
 WorkingDirectory=/var/www/nopCommerce430
 ExecStart=/usr/bin/dotnet /var/www/nopCommerce430/Nop.Web.dll
