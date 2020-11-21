@@ -43,7 +43,6 @@ elif [[ -n "$password" ]]; then
                 exit
         fi
 fi
-
 # Password comparing
 if [[ -n "$password2" ]] && [[ "$password" == "$password2" ]]; then
         echo ""
@@ -65,7 +64,6 @@ if [[ -z "$hostname" ]]; then
         echo ""
         echo "ERROR: Please set a proper hostname such as localhost."
         exit
-
         # If hostname is not blank, we will continue.
 elif [[ -n "$hostname" ]]; then
         read -p "Please enter your MySQL database: " database
