@@ -98,12 +98,11 @@ dotnet --list-runtimes
 # Install the MySql server 8.0 version
 
 sudo yum -y install expect mariadb-client libmariadb-dev mariadb-server
-
-# By default, the root password is empty, let's set it
-# sudo /usr/bin/mysql_secure_installation
-
 sudo  systemctl enable mariadb.service
 sudo  systemctl start mariadb.service
+
+# By default, the root password is empty, let's set it
+sudo /usr/bin/mysql_secure_installation
 SECURE_MYSQL=$(expect -c "
 set timeout 3
 spawn mysql_secure_installation
@@ -126,22 +125,20 @@ send \"y\r\"
 expect eof
 ")
 
-
 # Install nginx
 # Install the nginx package:
 
 sudo yum -y install nginx
 
 # Run the nginx service:
-
+sudo systemctl enable nginx
 sudo systemctl start nginx
 
 # and check its status:
-
 sudo systemctl status nginx
 
-
-# To configure nginx as a reverse proxy to forward requests to your ASP.NET Core app, modify /etc/nginx/sites-available/default. Open it in a text editor and replace the contents with the following:
+# To configure nginx as a reverse proxy to forward requests to your ASP.NET Core app, modify /etc/nginx/sites-available/default. 
+# Open it in a text editor and replace the contents with the following:
 
 sudo  cat > /etc/nginx/sites-available/default << EOF
 # Default server configuration
@@ -178,40 +175,27 @@ server {
 }
 EOF
 
-
 # Get nopCommerce
 # Create a directory
-
 sudo mkdir /var/www/nopCommerce430
 
 # Download and unpack the nopCommerce:
-
 cd /var/www/nopCommerce430
-
 sudo wget https://github.com/nopSolutions/nopCommerce/releases/download/release-4.30/nopCommerce_4.30_NoSource_linux_x64.zip
-
 sudo yum -y install unzip
-
 sudo unzip nopCommerce_4.30_NoSource_linux_x64.zip
 
 # Create couple directories to run nopCommerce:
-
 sudo mkdir bin
-
 sudo mkdir logs
 
 # Change the file permissions
-
 cd ..
-
 sudo chgrp -R nginx nopCommerce430/
-
 sudo chown -R nginx nopCommerce430/
-
 
 # Create the nopCommerce service
 # Create the /etc/systemd/system/nopCommerce430.service file with the following contents:
-
 sudo  cat > /etc/systemd/system/nopCommerce430.service << EOF
 [Unit]
 Description=Example nopCommerce app running on Pardus
@@ -231,13 +215,10 @@ WantedBy=multi-user.target
 EOF
 
 # Start the service
-
 sudo systemctl start nopCommerce430.service
 
 # Restart the nginx server
-
 sudo systemctl restart nginx
 
 # Check the nopCommerce service status
-
 sudo systemctl status nopCommerce430.service
