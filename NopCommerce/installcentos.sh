@@ -78,17 +78,16 @@ if [[ -z "$database" ]]; then
 fi
 
 # Register Microsoft key and feed
-sudo rpm -ivh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
+sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 
 # Install the .NET Core Runtime
 # Update the products available for installation, then install the .NET runtime:
-
 sudo yum -y update
-
-sudo yum -y install apt-transport-https aspnetcore-runtime-3.1
+sudo yum install dotnet-sdk-3.1
+sudo yum install aspnetcore-runtime-3.1
+sudo yum install dotnet-runtime-3.1
 
 # You may see all installed .Net Core runtimes by the following command:
-
 dotnet --list-runtimes
 
 
@@ -122,6 +121,12 @@ expect \"Reload privilege tables now?\"
 send \"y\r\"
 expect eof
 ")
+
+# Add Database
+mysql -u root -p$password -e 'CREATE DATABASE '$database';'
+mysql -u root -p$password -e "CREATE USER '$username'@$hostname IDENTIFIED BY '$password'"
+mysql -u root -p$password -e 'GRANT ALL PRIVILEGES on '$database'.* to '$username'@$hostname'
+mysql -u root -p$password -e 'FLUSH PRIVILEGES;'
 
 # Install nginx
 # Install the nginx package:
