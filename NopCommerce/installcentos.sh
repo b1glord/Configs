@@ -102,7 +102,7 @@ sudo systemctl enable mariadb.service
 sudo systemctl start mariadb.service
 
 # By default, the root password is empty, let's set it
-sudo /usr/bin/mysql_secure_installation
+#sudo /usr/bin/mysql_secure_installation
 SECURE_MYSQL=$(expect -c "
 set timeout 3
 spawn mysql_secure_installation
