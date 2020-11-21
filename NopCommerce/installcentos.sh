@@ -58,6 +58,7 @@ elif [[ -n "$password2" ]] && [[ "$password" != "$password2" ]]; then
         echo ""
         echo "ERROR: Passwords do not match."
         exit
+       fi
 fi
 
 # Ask what hostname this can be executed locally, but localhost is default.
@@ -95,8 +96,8 @@ dotnet --list-runtimes
 
 
 # Install MySql Server
-# Install the MySql server 8.0 version
-
+# Install the Mariadb server 10.5 version
+curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash -s -- --mariadb-server-version="mariadb-10.5"
 sudo yum -y install expect mariadb-client libmariadb-dev mariadb-server
 sudo systemctl enable mariadb.service
 sudo systemctl start mariadb.service
