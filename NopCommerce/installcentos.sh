@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 #---------------------------------------------------------------------
 # installcentos.sh
 #
@@ -12,21 +11,76 @@
 # https://docs.nopcommerce.com/en/installation-and-upgrading/installing-nopcommerce/installing-on-linux.html
 #
 #---------------------------------------------------------------------
+#!/bin/sh
+# Ask user fror the MySQL username
+# Then check if the username field is blank
+# if blank it will error out
+read -p "Please enter your MySQL username: " username
+if [[ -z "$username" ]]; then
+        echo "ERROR: That username is invalid or you didn't enter a value."
+        exit
+        # If username is valid or field is not blank continue and ask for the password
+elif [[ -n "$username" ]]; then
+        read -sp "Please enter your MySQL Password: " password
+fi
 
+# This checks if the password is valid and the field is not blank.
+# Also checks if the confirmation password is valid and not blank.
+# Then checks and compares the two passwords.
+# If one password is typed incorrectly it will error out.
+if [[ -z "$password" ]]; then
+        echo ""
+        echo "ERROR: That password is invalid or you didn't enter a value."
+        exit
+        # Password is valid.
+elif [[ -n "$password" ]]; then
+        echo ""
+        read -sp "Please re-enter your MySQL Password: " password2
+        # Confirmation Password is invalid.
+        if [[ -z "$password2" ]]; then
+                echo ""
+                echo "ERROR: The second password entered was invalid or you didn't enter a value."
+                exit
+        fi
+fi
 
-	if ! command -v whiptail >/dev/null; then
-		echo -n "Installing whiptail... "
-		sudo yum -y install whiptail newt
-		echo -e "[${green}DONE${NC}]\n"
-	fi
+# Password comparing
+if [[ -n "$password2" ]] && [[ "$password" == "$password2" ]]; then
+        echo ""
+        echo ""
+        echo "Passwords match continuing..."
+        echo ""
+        read -p "Please provide us your hostname for MySQL (default is localhost): " hostname
 
-	while [[ ! "$CFG_MYSQL_ROOT_PWD" =~ $RE ]]
-	do
-		CFG_MYSQL_ROOT_PWD=$(whiptail --title "MySQL" --backtitle "$WT_BACKTITLE" --passwordbox "Please specify a root password" --nocancel 10 50 3>&1 1>&2 2>&3)
-	done
+        # Checks if Passwords do not match
+elif [[ -n "$password2" ]] && [[ "$password" != "$password2" ]]; then
+        echo ""
+        echo ""
+        echo "ERROR: Passwords do not match."
+        exit
+fi
+
+# Ask what hostname this can be executed locally, but localhost is default.
+if [[ -z "$hostname" ]]; then
+        echo ""
+        echo "ERROR: Please set a proper hostname such as localhost."
+        exit
+
+        # If hostname is not blank, we will continue.
+elif [[ -n "$hostname" ]]; then
+        read -p "Please enter your MySQL database: " database
+fi
+
+# If database field is blank, it will error out.
+if [[ -z "$database" ]]; then
+        echo ""
+        echo "ERROR: The database name is invalid or blank."
+        exit
+        # This portion checks if user is going to use a seperate database for logs if not it will continue with the installation of the database.
+fi
 
 # Register Microsoft key and feed
-rpm -ivh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
+sudo rpm -ivh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 
 # Install the .NET Core Runtime
 # Update the products available for installation, then install the .NET runtime:
@@ -58,13 +112,13 @@ send \"\r\"
 expect \"root password?\"
 send \"y\r\"
 expect \"New password:\"
-send \"$CFG_MYSQL_ROOT_PWD\r\"
+send \"$password\r\"
 expect \"Re-enter new password:\"
-send \"$CFG_MYSQL_ROOT_PWD\r\"
+send \"$password\r\"
 expect \"Remove anonymous users?\"
 send \"y\r\"
 expect \"Disallow root login remotely?\"
-send \"y\r\"
+send \"n\r\"
 expect \"Remove test database and access to it?\"
 send \"y\r\"
 expect \"Reload privilege tables now?\"
@@ -84,7 +138,7 @@ sudo systemctl start nginx
 
 # and check its status:
 
-#sudo systemctl nginx
+sudo systemctl status nginx
 
 
 # To configure nginx as a reverse proxy to forward requests to your ASP.NET Core app, modify /etc/nginx/sites-available/default. Open it in a text editor and replace the contents with the following:
