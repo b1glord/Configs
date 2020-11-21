@@ -61,7 +61,7 @@ fi
 
 # Ask what hostname this can be executed locally, but localhost is default.
 if [[ -z "$hostname" ]]; then
-        echo "localhost"
+        echo ""
         echo "ERROR: Please set a proper hostname such as localhost."
         exit
         # If hostname is not blank, we will continue.
