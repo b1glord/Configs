@@ -98,8 +98,8 @@ dotnet --list-runtimes
 # Install the MySql server 8.0 version
 
 sudo yum -y install expect mariadb-client libmariadb-dev mariadb-server
-sudo  systemctl enable mariadb.service
-sudo  systemctl start mariadb.service
+sudo systemctl enable mariadb.service
+sudo systemctl start mariadb.service
 
 # By default, the root password is empty, let's set it
 sudo /usr/bin/mysql_secure_installation
@@ -140,7 +140,7 @@ sudo systemctl status nginx
 # To configure nginx as a reverse proxy to forward requests to your ASP.NET Core app, modify /etc/nginx/sites-available/default. 
 # Open it in a text editor and replace the contents with the following:
 
-sudo  cat > /etc/nginx/sites-available/default << EOF
+sudo cat > /etc/nginx/sites-available/default << EOF
 # Default server configuration
 #
 server {
