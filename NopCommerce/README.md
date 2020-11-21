@@ -1,4 +1,4 @@
-## Install Pardus NopCommerce
+## Auto Install NopCommerce
 
 ### Prebuilt Packages on Centos
 ```
