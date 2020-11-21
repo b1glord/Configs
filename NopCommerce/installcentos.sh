@@ -131,11 +131,8 @@ mysql -u root -p$password -e 'FLUSH PRIVILEGES;'
 # Install nginx
 # Install the nginx package:
 # Add nginx Repo
-wget -N https://raw.githubusercontent.com/b1glord/ispconfig_setup_extra/master/centos7/nginx/nginx.repo -P /etc/yum.repos.d
-sudo yum-config-manager --enable nginx-mainline
+yum -y install epel-release
 yum -y install nginx
-# add modules
-yum -y install nginx-module-geoip nginx-module-image-filter nginx-module-njs nginx-module-perl nginx-module-xslt
 
 # Configure Nginx Default Port 81
 #sed -i "s/    listen       80;/    listen       81;/" /etc/nginx/conf.d/default.conf
