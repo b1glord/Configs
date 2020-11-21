@@ -58,7 +58,7 @@ elif [[ -n "$password2" ]] && [[ "$password" != "$password2" ]]; then
         echo ""
         echo "ERROR: Passwords do not match."
         exit
-       fi
+fi
 
 # Ask what hostname this can be executed locally, but localhost is default.
 if [[ -z "$hostname" ]]; then
