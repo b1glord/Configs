@@ -223,6 +223,7 @@ WantedBy=multi-user.target
 EOF
 
 ## Start the service
+sudo systemctl enable nopCommerce430.service
 sudo systemctl start nopCommerce430.service
 
 ## Restart the nginx server
