@@ -1,5 +1,14 @@
 ## Auto Install NopCommerce
 
+### Prebuilt Packages on Centos ISPConfig
+```
+cd /tmp
+rm -f ./installcentos.sh
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentos.sh
+chmod +x installcentosispconfig.sh
+./installcentos.sh
+```
+
 ### Prebuilt Packages on Centos
 ```
 cd /tmp
