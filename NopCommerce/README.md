@@ -3,10 +3,10 @@
 ### Prebuilt Packages on Centos ISPConfig
 ```
 cd /tmp
-rm -f ./installcentos.sh
+rm -f ./installcentosispconfig.sh
 wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentosispconfig.sh
 chmod +x installcentosispconfig.sh
-./installcentos.sh
+./installcentosispconfig.sh
 ```
 
 ### Prebuilt Packages on Centos
