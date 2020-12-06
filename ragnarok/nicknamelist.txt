@@ -1,10 +1,10 @@
 . knight                  SpLaSh
-. crusader                NeptuN
+. crusader                NeptuN CroSs
 . Mage                    BigLorD
 . Alchemist               Fury
 . Bard                    TorreS
 . Priest                  MeLoX
 . Hunter                  RainBow
-. Gunlisher               CroSs
+. Gunlisher               Lucy
 . Blacksmith              ToMs
-. Doram.                  Lucy
+. Doram                   Lucy
