@@ -7,4 +7,4 @@
 . Hunter                  RainBow
 . Gunlisher               Lucy
 . Blacksmith              ToMs
-. Doram                   Lucy
+
