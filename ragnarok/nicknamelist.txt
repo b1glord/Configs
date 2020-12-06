@@ -4,7 +4,7 @@
 . Alchemist               Fury
 . Bard                    TorreS
 . Priest                  MeLoX
-. Hunter                  Lucy
+. Hunter                  RainBow
 . Gunlisher               CroSs
 . Blacksmith              ToMs
-
+. Doram.                  Lucy
