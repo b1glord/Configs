@@ -1,2 +1,0 @@
-- Nox Player keyboard ayarları
-- C:\Users\Burak\AppData\Local\Nox\keyboardConfig
