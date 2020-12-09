@@ -76,6 +76,9 @@ if [[ -z "$database" ]]; then
         exit
 fi
 
+# If you have a problem with loading images in the RichText Box (The type initializer for 'Gdip' threw an exception) just install the libgdiplus library:
+yum -y install libgdiplus
+
 # Register Microsoft key and feed
 sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 
