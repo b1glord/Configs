@@ -26,6 +26,9 @@ AskQuestions() {
 	done
 }
 
+# If you have a problem with loading images in the RichText Box (The type initializer for 'Gdip' threw an exception) just install the libgdiplus library:
+yum -y install libgdiplus
+
 # Register Microsoft key and feed
 
 wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
