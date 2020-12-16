@@ -77,7 +77,15 @@ if [[ -z "$database" ]]; then
 fi
 
 # If you have a problem with loading images in the RichText Box (The type initializer for 'Gdip' threw an exception) just install the libgdiplus library:
-yum -y install libgdiplus
+sudo yum -y install libgdiplus
+
+# install snapd
+sudo yum -y install yum-plugin-copr
+sudo yum -y copr enable ngompa/snapcore-el7
+yum -y install snapd
+sudo systemctl enable --now snapd.socket
+sudo ln -s /var/lib/snapd/snap /snap
+
 
 # Register Microsoft key and feed
 sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
@@ -86,8 +94,8 @@ sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-
 ## Update the products available for installation, then install the .NET runtime:
 sudo yum -y update
 sudo yum -y install dotnet-sdk-3.1
-sudo yum -y install aspnetcore-runtime-3.1
-sudo yum -y install dotnet-runtime-3.1
+#sudo yum -y install aspnetcore-runtime-3.1
+#sudo yum -y install dotnet-runtime-3.1
 
 ## You may see all installed .Net Core runtimes by the following command:
 dotnet --list-runtimes
