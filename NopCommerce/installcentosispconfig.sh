@@ -90,6 +90,13 @@ sudo ln -s /var/lib/snapd/snap /snap
 
 # Install the .NET Core Runtime
 ## Update the products available for installation, then install the .NET runtime:
+sudo yum -y update
+sudo yum -y install dotnet-sdk-3.1
+#sudo yum -y install aspnetcore-runtime-3.1
+#sudo yum -y install dotnet-runtime-3.1
+
+# Install the .NET Core Runtime 2
+## Update the products available for installation, then install the .NET runtime:
 wget https://dot.net/v1/dotnet-install.sh
 chmod +x dotnet-install.sh
 sudo ./dotnet-install.sh
