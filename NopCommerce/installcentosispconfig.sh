@@ -87,19 +87,21 @@ yum -y install snapd
 sudo systemctl enable --now snapd.socket
 sudo ln -s /var/lib/snapd/snap /snap
 
+# Register Microsoft key and feed
+sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 
-# Install the .NET Core Runtime
-## Update the products available for installation, then install the .NET runtime:
-sudo yum -y update
-sudo yum -y install dotnet-sdk-3.1
-#sudo yum -y install aspnetcore-runtime-3.1
-#sudo yum -y install dotnet-runtime-3.1
-
-# Install the .NET Core Runtime 2
+# Install the .NET Core Runtime 1
 ## Update the products available for installation, then install the .NET runtime:
 wget https://dot.net/v1/dotnet-install.sh
 chmod +x dotnet-install.sh
 sudo ./dotnet-install.sh
+
+# Install the .NET Core Runtime 2
+## Update the products available for installation, then install the .NET runtime:
+sudo yum -y update 
+sudo yum -y install dotnet-sdk-3.1
+#sudo yum -y install aspnetcore-runtime-3.1
+#sudo yum -y install dotnet-runtime-3.1
 
 ## You may see all installed .Net Core runtimes by the following command:
 dotnet --list-runtimes
