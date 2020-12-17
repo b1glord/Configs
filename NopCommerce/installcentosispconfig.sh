@@ -79,22 +79,14 @@ fi
 # If you have a problem with loading images in the RichText Box (The type initializer for 'Gdip' threw an exception) just install the libgdiplus library:
 sudo yum -y install libgdiplus
 
-
-# install snapd
-sudo yum -y install yum-plugin-copr
-sudo yum -y copr enable ngompa/snapcore-el7
-yum -y install snapd
-sudo systemctl enable --now snapd.socket
-sudo ln -s /var/lib/snapd/snap /snap
-
 # Register Microsoft key and feed
 sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 
 # Install the .NET Core Runtime 1
 ## Update the products available for installation, then install the .NET runtime:
-wget https://dot.net/v1/dotnet-install.sh
-chmod +x dotnet-install.sh
-sudo ./dotnet-install.sh
+#wget https://dot.net/v1/dotnet-install.sh
+#chmod +x dotnet-install.sh
+#sudo ./dotnet-install.sh
 
 # Install the .NET Core Runtime 2
 ## Update the products available for installation, then install the .NET runtime:
@@ -108,18 +100,18 @@ dotnet --list-runtimes
 
 
 ### Add Database
-mysql -u root -p$password -e 'CREATE DATABASE '$database';'
-mysql -u root -p$password -e "CREATE USER '$username'@$hostname IDENTIFIED BY '$password'"
-mysql -u root -p$password -e 'GRANT ALL PRIVILEGES on '$database'.* to '$username'@$hostname'
-mysql -u root -p$password -e 'FLUSH PRIVILEGES;'
+#mysql -u root -p$password -e 'CREATE DATABASE '$database';'
+#mysql -u root -p$password -e "CREATE USER '$username'@$hostname IDENTIFIED BY '$password'"
+#mysql -u root -p$password -e 'GRANT ALL PRIVILEGES on '$database'.* to '$username'@$hostname'
+#mysql -u root -p$password -e 'FLUSH PRIVILEGES;'
 
 
-# Create ISPConfig Client Directory
-mkdir /var/www/clients/client1/web1/web/nopCommerce430
+# Create ISPConfig Client nopCommerce Directory
+#sudo mkdir /var/www/clients/client1/web1/web/nopCommerce430
 
 
 ## Download and unpack the nopCommerce:
-cd /var/www/clients/client1/web1/web/nopCommerce430
+cd /var/www/clients/client1/web1/web
 sudo wget https://github.com/nopSolutions/nopCommerce/releases/download/release-4.30/nopCommerce_4.30_NoSource_linux_x64.zip
 sudo yum -y install unzip
 sudo unzip nopCommerce_4.30_NoSource_linux_x64.zip
@@ -134,17 +126,19 @@ sudo mkdir logs
 sudo  cat > /etc/systemd/system/nopCommerce430.service << EOF
 [Unit]
 Description=Example nopCommerce app running on CentOS 7
+
 [Service]
-WorkingDirectory=/var/www/clients/client1/web1/web/nopCommerce430
-ExecStart=/usr/bin/dotnet /var/www/clients/client1/web1/web/nopCommerce430/Nop.Web.dll
+WorkingDirectory=/var/www/clients/client1/web1/web
+ExecStart=/usr/bin/dotnet /var/www/clients/client1/web1/web/Nop.Web.dll
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
 KillSignal=SIGINT
 SyslogIdentifier=nopCommerce430-example
-User=nginx
+User=root
 Environment=ASPNETCORE_ENVIRONMENT=Production
 Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
 [Install]
 WantedBy=multi-user.target
 EOF
