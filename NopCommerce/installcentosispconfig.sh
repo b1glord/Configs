@@ -76,6 +76,13 @@ if [[ -z "$database" ]]; then
         exit
 fi
 
+# If sitename field is blank, it will error out.(test)
+if [[ -z "$website" ]]; then
+        echo ""
+        echo "ERROR: The website name is invalid or blank."
+        exit
+fi
+
 # If you have a problem with loading images in the RichText Box (The type initializer for 'Gdip' threw an exception) just install the libgdiplus library:
 sudo yum -y install libgdiplus
 
