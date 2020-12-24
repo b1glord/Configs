@@ -4,7 +4,7 @@
 # NopCommerce system installer
 #
 # Script: installcentos.sh
-# Version: 1.0.5
+# Version: 1.0.6
 # Author: B1gLorD <furytr@yandex.com>
 # Description: This script will install all the packages needed to install
 # NopCommerce on your server.
@@ -114,11 +114,11 @@ dotnet --list-runtimes
 
 
 # Create ISPConfig Client nopCommerce Directory
-#sudo mkdir /var/www/clients/client1/web1/web/nopCommerce430
+#sudo mkdir /var/www/clients/client1/$website/web/nopCommerce430
 
 
 ## Download and unpack the nopCommerce:
-cd /var/www/clients/client1/web1/web
+cd /var/www/clients/client1/$website/web
 sudo wget https://github.com/nopSolutions/nopCommerce/releases/download/release-4.30/nopCommerce_4.30_NoSource_linux_x64.zip
 sudo yum -y install unzip
 sudo unzip nopCommerce_4.30_NoSource_linux_x64.zip
@@ -135,8 +135,8 @@ sudo  cat > /etc/systemd/system/nopCommerce430.service << EOF
 Description=Example nopCommerce app running on CentOS 7
 
 [Service]
-WorkingDirectory=/var/www/clients/client1/web1/web
-ExecStart=/usr/bin/dotnet /var/www/clients/client1/web1/web/Nop.Web.dll
+WorkingDirectory=/var/www/clients/client1/$website/web
+ExecStart=/usr/bin/dotnet /var/www/clients/client1/$website/web/Nop.Web.dll
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
