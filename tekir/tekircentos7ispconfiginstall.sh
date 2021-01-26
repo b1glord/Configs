@@ -2,7 +2,7 @@
 
 
 yum -y install wget curl python3-pip
-pip3 install wldhx.yadisk-direct
+pip3 install b1glord.yadisk-direct
 
 
 
