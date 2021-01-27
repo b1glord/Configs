@@ -33,7 +33,7 @@ alternatives --config java
 
 # MYSQL KURULUMU
 # https://www.percona.com/doc/percona-server/5.6/installation/yum_repo.html
-yum install http://repo.percona.com/centos/7/RPMS/x86_64/Percona-Server-selinux-56-5.6.42-rel84.2.el7.noarch.rpm
+yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 yum install Percona-Server-server-56 Percona-Server-client-56
 service mysql start
 chkconfig --levels 235 mysql on
