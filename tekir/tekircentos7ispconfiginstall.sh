@@ -180,12 +180,12 @@ rm -f tekir-2.1-linux-install.tar.gz
 
 
 mysql -u root -p
-mysql> CREATE DATABASE tekir collate utf8_turkish_ci;
-CREATE USER 'tekir'@'127.0.0.1' IDENTIFIED BY 'ragnarok';
-mysql> GRANT ALL PRIVILEGES ON tekir.* TO 'root'@'127.0.0.1';
+mysql> CREATE DATABASE $database collate utf8_turkish_ci;
+CREATE USER '$username'@'$hostname' IDENTIFIED BY '$database';
+mysql> GRANT ALL PRIVILEGES ON $username.* TO 'root'@'$hostname';
 mysql> FLUSH PRIVILEGES;
 mysql> exit
 
 
-mysql -u root -p ragnarok -h 127.0.0.1 -p tekir < /tmp/tekir-2.1-linux-install/tekir/tekir.sql
+mysql -u root -p $password -h $hostname -p $database < /tmp/tekir-2.1-linux-install/tekir/tekir.sql
 
