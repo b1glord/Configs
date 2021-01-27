@@ -175,5 +175,5 @@ mysql> FLUSH PRIVILEGES;
 mysql> exit
 
 
-mysql -u $username -h $hostname -p $database < /tmp/tekir-2.1-linux-install/tekir/tekir.sql
+mysql -u $username $password -h $hostname -p $database < /tmp/tekir-2.1-linux-install/tekir/tekir.sql
 
