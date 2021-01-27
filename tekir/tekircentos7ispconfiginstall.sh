@@ -122,10 +122,10 @@ expect eof
 
 
 #utf8 çalışmasını sağlama almak için /etc dizinindeki my.cnf dosyasında ilgili bölümlere şu satırları ekleyelim:
-
-
+service mysql stop
+rm -f /etc/my.cnf
 wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/my.cnf -P /etc
-service mysql restart
+service mysql start
 
 
 cd /tmp
@@ -137,7 +137,7 @@ rm -f /tmp/jboss-4.2.3.GA.zip
 
 
 #Çalışma ayarını yapmak için /opt/tekir/bin/run.conf dosyasındaki x$JAVA_OPTS parametrelerini tanımlayalım:
-
+rm -f /opt/tekir/bin/run.conf
 wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/run.conf -P /opt/tekir/bin
 
 
