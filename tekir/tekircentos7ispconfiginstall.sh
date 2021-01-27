@@ -123,6 +123,7 @@ expect eof
 
 #utf8 çalışmasını sağlama almak için /etc dizinindeki my.cnf dosyasında ilgili bölümlere şu satırları ekleyelim:
 
+echo "" > /etc/my.cnf
 echo "[mysqld]" > /etc/my.cnf
 echo "character_set_server=utf8" > /etc/my.cnf
 echo "character_set_client=utf8" > /etc/my.cnf
