@@ -97,7 +97,7 @@ alternatives --config java
 yum -y install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 yum -y install Percona-Server-server-56 Percona-Server-client-56
 service mysql start
-chkconfig --levels 235 mysql on
+chkconfig --levels 235 mysqld on
 SECURE_MYSQL=$(expect -c "
 set timeout 3
 spawn mysql_secure_installation
@@ -182,7 +182,7 @@ rm -f tekir-2.1-linux-install.tar.gz
 mysql -u root -p
 mysql> CREATE DATABASE $database collate utf8_turkish_ci;
 CREATE USER '$username'@'$hostname' IDENTIFIED BY '$database';
-mysql> GRANT ALL PRIVILEGES ON $username.* TO 'root'@'$hostname';
+mysql> GRANT ALL PRIVILEGES ON $username.* TO '$username'@'$hostname';
 mysql> FLUSH PRIVILEGES;
 mysql> exit
 
