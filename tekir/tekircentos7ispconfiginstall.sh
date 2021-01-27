@@ -63,7 +63,7 @@ fi
 
 
 yum -y install wget curl python3-pip expect
-pip3 install b1glord.yadisk-direct
+pip3 install wldhx.yadisk-direct
 
 
 
