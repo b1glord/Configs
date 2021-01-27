@@ -124,7 +124,7 @@ expect eof
 #utf8 çalışmasını sağlama almak için /etc dizinindeki my.cnf dosyasında ilgili bölümlere şu satırları ekleyelim:
 
 
-wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/my.cnf -P /etc/my.cnf
+wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/my.cnf -P /etc
 service mysql restart
 
 
@@ -139,12 +139,7 @@ rm -f /tmp/jboss-4.2.3.GA.zip
 #Çalışma ayarını yapmak için /opt/tekir/bin/run.conf dosyasındaki x$JAVA_OPTS parametrelerini tanımlayalım:
 
 
-echo " if [ "x$JAVA_OPTS" = "x" ]; then" > /opt/tekir/bin/run.conf
-echo "  JAVA_OPTS="-Xms1024m -Xmx1024m -XX:MaxPermSize=1024m" > /opt/tekir/bin/run.conf
-echo "  -Dsun.rmi.dgc.client.gcInterval=3600000" > /opt/tekir/bin/run.conf
-echo "	-Dsun.rmi.dgc.server.gcInterval=3600000" > /opt/tekir/bin/run.conf
-echo "  -Duser.language=en -Duser.country=US"" " > /opt/tekir/bin/run.conf
-echo " fi" > /opt/tekir/bin/run.conf
+
 
 
 #Jboss için bir tekir kullanıcısı oluşturuyoruz
@@ -159,7 +154,7 @@ chmod +x /opt/tekir/bin/shutdown.sh
 
 
 # Jboss servisini kullanabilmek için /etc/init.d dizinine tekir adında bir servis dosyası oluşturun. Dosya içeriği aşağıdaki gibi olmalıdır:
-wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/tekir -P /etc/init.d/tekir
+wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/tekir -P /etc/init.d
 chkconfig --levels 235 tekir on
 
 
