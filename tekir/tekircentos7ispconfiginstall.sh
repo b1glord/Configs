@@ -125,7 +125,7 @@ expect eof
 
 
 wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/my.cnf -P /etc/my.cnf
-
+service mysql restart
 
 
 cd /tmp
