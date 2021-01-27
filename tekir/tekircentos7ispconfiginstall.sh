@@ -138,7 +138,7 @@ rm -f /tmp/jboss-4.2.3.GA.zip
 
 #Çalışma ayarını yapmak için /opt/tekir/bin/run.conf dosyasındaki x$JAVA_OPTS parametrelerini tanımlayalım:
 
-
+wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/run.conf -P /opt/tekir/bin
 
 
 
