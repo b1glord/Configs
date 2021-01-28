@@ -176,3 +176,28 @@ mysql -u root -p$password -e 'FLUSH PRIVILEGES;'
 
 mysql -u $username -p$password $database < /tmp/tekir-2.1-linux-install/tekir/tekir.sql
 
+
+
+  cat > /tmp/tekir-2.1-linux-install/tekir/tekir-ds.xml << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE datasources
+    PUBLIC "-//JBoss//DTD JBOSS JCA Config 1.5//EN"
+    "http://www.jboss.org/j2ee/dtd/jboss-ds_1_5.dtd">
+    
+<datasources>
+   
+   <local-tx-datasource>
+      
+      <jndi-name>tekirDatasource</jndi-name>
+      <connection-url>jdbc:mysql://$hostname:3306/$database?characterEncoding=UTF-8</connection-url>
+      <driver-class>com.mysql.jdbc.Driver</driver-class>
+      <user-name>$username</user-name>
+      <password>$password</password>
+      
+   </local-tx-datasource>
+    
+</datasources>
+EOF
+
+
