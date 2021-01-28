@@ -84,7 +84,7 @@ alternatives --config java
 #  Selection    Command
 #-----------------------------------------------
 #*+ 1           /usr/java/jdk1.7.0_71/bin/java
-send -- "1\r"
+
 
 #Enter to keep the current selection[+], or type selection number: 1
 #alternatives --set jar /usr/java/jdk1.7.0_71/bin/jar
