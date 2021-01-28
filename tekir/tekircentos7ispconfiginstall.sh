@@ -81,11 +81,10 @@ alternatives --install /usr/bin/javac javac /usr/java/jdk1.7.0_71/bin/javac 1
 alternatives --install /usr/bin/jar jar /usr/java/jdk1.7.0_71/bin/jar 1
 alternatives --install /usr/bin/javaws javaws /usr/java/jdk1.7.0_71/bin/javaws 1
 alternatives --config java
-  Selection    Command
------------------------------------------------
+#  Selection    Command
+#-----------------------------------------------
 #*+ 1           /usr/java/jdk1.7.0_71/bin/java
-expect \"*+ 1           /usr/java/jdk1.7.0_71/bin/java\"
-send \"1\r\"
+send -- "1\r"
 
 #Enter to keep the current selection[+], or type selection number: 1
 #alternatives --set jar /usr/java/jdk1.7.0_71/bin/jar
