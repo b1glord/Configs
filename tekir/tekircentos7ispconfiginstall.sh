@@ -157,7 +157,6 @@ chmod +x /opt/tekir/bin/shutdown.sh
 
 # Jboss servisini kullanabilmek için /etc/init.d dizinine tekir adında bir servis dosyası oluşturun. Dosya içeriği aşağıdaki gibi olmalıdır:
 wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/tekir -P /etc/init.d
-chkconfig --levels 235 tekir on
 
 #Tekir dosyasını çalıştırılabilir hale getirdikten sonra aşağıdaki komutları kullanarak servisi başlatıp durdurup ya da yeniden başlatabilirsiniz. 
 #Jboss’un başlaması bir kaç dakika alabilir:
@@ -167,6 +166,8 @@ service tekir start
 #service tekir stop
 #service tekir restart
 
+#Jbossun sistem açılışında çalışması için aşağıdaki komutu veriyoruz:
+chkconfig --levels 235 tekir on
 
 
 cd /tmp
