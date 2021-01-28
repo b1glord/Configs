@@ -83,7 +83,8 @@ alternatives --install /usr/bin/javaws javaws /usr/java/jdk1.7.0_71/bin/javaws 1
 alternatives --config java
   Selection    Command
 -----------------------------------------------
-*+ 1           /usr/java/jdk1.7.0_71/bin/java
+#*+ 1           /usr/java/jdk1.7.0_71/bin/java
+1
 
 #Enter to keep the current selection[+], or type selection number: 1
 #alternatives --set jar /usr/java/jdk1.7.0_71/bin/jar
