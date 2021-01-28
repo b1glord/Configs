@@ -159,6 +159,14 @@ chmod +x /opt/tekir/bin/shutdown.sh
 wget https://raw.githubusercontent.com/b1glord/Configs/master/tekir/tekir -P /etc/init.d
 chkconfig --levels 235 tekir on
 
+#Tekir dosyasını çalıştırılabilir hale getirdikten sonra aşağıdaki komutları kullanarak servisi başlatıp durdurup ya da yeniden başlatabilirsiniz. 
+#Jboss’un başlaması bir kaç dakika alabilir:
+
+chmod +x /etc/init.d/tekir
+service tekir start
+#service tekir stop
+#service tekir restart
+
 
 
 cd /tmp
@@ -233,6 +241,6 @@ service tekir restart
 yum install -y elinks.x86_64
 
 #Tarayıcıyı ile tekir uygulamasına gitmek için aşağıdaki komutu kulanabilirsiniz(ipadresi yerine sanal makinenizin IP adresini yazın). Tarayıcıdan çıkmak için ctrl+c tuşuna basmanız yeterli:
-#links 127.0.0.1:8080/tekir
+links 127.0.0.1:8080/tekir
 
 
