@@ -201,3 +201,38 @@ mysql -u $username -p$password $database < /tmp/tekir-2.1-linux-install/tekir/te
 EOF
 
 
+#TEKİR’İN JBOSS’A YÜKLENMESİ
+
+#Tekir EAR dosyasını kopyalayın:
+cp /tmp/tekir-2.1-linux-install/tekir/tekir.ear /opt/tekir/server/default/deploy
+
+#Veritabanı bağlantı bilgisini kopyalayın:
+cp /tmp/tekir-2.1-linux-install/tekir/tekir-ds.xml /opt/tekir/server/default/deploy
+
+#E-posta bağlantı bilgisini kopyalayın:
+cp /tmp/tekir-2.1-linux-install/tekir/tekir-mail-service.xml /opt/tekir/server/default/deploy
+
+#Tekir ayar dosyasını kopyalayın:
+cp /tmp/tekir-2.1-linux-install/tekir/tekir.properties /opt/tekir/server/default/conf
+
+#MySQL JDBC sürücünü kopyalayın:
+cp /tmp/tekir-2.1-linux-install/lib/mysql.jar /opt/tekir/server/default/lib
+
+#Baskı şablonları ve kullanım sırasında yüklenecek olan dosyalar için klasörleri hazırlayın:
+mkdir /var/tekir
+mkdir /var/tekir/sablonlar
+mkdir /var/tekir/dosyalar
+cp -r /tmp/tekir-2.1-linux-install/tekir/sablonlar /var/tekir
+chown tekir:tekir -R /var/tekir/
+rm -rf /tmp/tekir-2.1-linux-install
+
+#Jboss servisini yeniden başlatıyoruz:
+service tekir restart
+
+#Yukarıdaki işlemlerin sonucunda Tekir uygulama sunucusuna kurulmuş durumdadır. Denemek için metin tabanlı bir tarayıcıdan(Elinks) ip adresini girebilirsiniz. Elinks yüklemek için aşağıdaki komutu vermeniz yeterlidir. :
+yum install -y elinks.x86_64
+
+#Tarayıcıyı ile tekir uygulamasına gitmek için aşağıdaki komutu kulanabilirsiniz(ipadresi yerine sanal makinenizin IP adresini yazın). Tarayıcıdan çıkmak için ctrl+c tuşuna basmanız yeterli:
+#links 127.0.0.1:8080/tekir
+
+
