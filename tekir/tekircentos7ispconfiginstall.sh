@@ -63,7 +63,9 @@ fi
 
 # Öncelikle 80 portunun açık olduğundan ve selinuxun kapalı olduğundan emin olun. 80 portu kapalıysa açmak için /etc/sysconfig/iptables dosyasına aşağıdaki satırı ekleyin:
 setenforce 0
--A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+#Then remember to reload the firewall for changes to take effect.
+firewall-cmd --reload
 
 
 yum -y install wget curl python3-pip expect
