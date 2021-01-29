@@ -75,13 +75,8 @@ pip3 install wldhx.yadisk-direct
 
 
 # JDK ( JAVA DEVELOPMENT KİT ) KURULUMU
-
-
-
-
-
-
-
+yum install java-1.7.0-openjdk
+java -version
 
 
 
