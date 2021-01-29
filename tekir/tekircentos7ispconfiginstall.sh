@@ -75,29 +75,14 @@ pip3 install wldhx.yadisk-direct
 
 
 # JDK ( JAVA DEVELOPMENT KİT ) KURULUMU
-cd /tmp
-curl -L $(yadisk-direct https://yadi.sk/d/2z77P1RvleP5Lg) -o jdk-7u80-linux-x64.rpm
-yum install -y jdk-7u80-linux-x64.rpm
-rm -f jdk-7u80-linux-x64.rpm
 
 
 
-# Daha sonra java ve alternatiflerinin kurulumu için aşağıdaki komutları çalıştırıyoruz:
-alternatives --install /usr/bin/java java /usr/java/jdk1.7.0_71/bin/java 1
-alternatives --install /usr/bin/javac javac /usr/java/jdk1.7.0_71/bin/javac 1
-alternatives --install /usr/bin/jar jar /usr/java/jdk1.7.0_71/bin/jar 1
-alternatives --install /usr/bin/javaws javaws /usr/java/jdk1.7.0_71/bin/javaws 1
-alternatives --config java
-#  Selection    Command
-#-----------------------------------------------
-#*+ 1           /usr/java/jdk1.7.0_71/bin/java
 
 
-#Enter to keep the current selection[+], or type selection number: 1
-#alternatives --set jar /usr/java/jdk1.7.0_71/bin/jar
-#alternatives --set javac /usr/java/jdk1.7.0_71/bin/javac
-#alternatives --set java /usr/java/jdk1.7.0_71/bin/java
-#alternatives --set javaws /usr/java/jdk1.7.0_71/bin/javaws
+
+
+
 
 
 # MYSQL KURULUMU
