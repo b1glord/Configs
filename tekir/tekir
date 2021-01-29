@@ -15,8 +15,8 @@
 # the following variables are set correctly before calling the script.
 # chkconfig: - 64 36
 # description: Jboss Start|Restart|Stop Application Server
-pidfile: /var/run/jboss.pid
-#define where jboss is - this is the directory containing directories log, bin, conf etc
+# pidfile: /var/run/jboss.pid
+# define where jboss is - this is the directory containing directories log, bin, conf etc
 JBOSS_HOME=${JBOSS_HOME:-"/opt/tekir"}
 
 #define the user under which jboss will run, or use 'RUNASIS' to run as the current user
