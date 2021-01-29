@@ -64,6 +64,7 @@ fi
 # Öncelikle 80 portunun açık olduğundan ve selinuxun kapalı olduğundan emin olun. 80 portu kapalıysa açmak için /etc/sysconfig/iptables dosyasına aşağıdaki satırı ekleyin:
 setenforce 0
 firewall-cmd --zone=public --add-port=80/tcp --permanent
+firewall-cmd --zone=public --add-port=8080/tcp --permanent
 #Then remember to reload the firewall for changes to take effect.
 firewall-cmd --reload
 
