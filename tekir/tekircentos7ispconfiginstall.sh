@@ -61,6 +61,10 @@ if [[ -z "$database" ]]; then
         exit
 fi
 
+# Öncelikle 80 portunun açık olduğundan ve selinuxun kapalı olduğundan emin olun. 80 portu kapalıysa açmak için /etc/sysconfig/iptables dosyasına aşağıdaki satırı ekleyin:
+setenforce 0
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+
 
 yum -y install wget curl python3-pip expect
 pip3 install wldhx.yadisk-direct
