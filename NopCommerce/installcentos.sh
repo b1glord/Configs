@@ -179,8 +179,8 @@ expect eof
 
 ### Add Database
 mysql -u root -p$password -e 'CREATE DATABASE '$database';'
-mysql -u root -p$password -e "CREATE USER '$username'@$hostname IDENTIFIED BY '$password'"
-mysql -u root -p$password -e 'GRANT ALL PRIVILEGES on '$database'.* to '$username'@$hostname'
+mysql -u root -p$password -e "CREATE USER '$username'@'$hostname' IDENTIFIED BY '$password'"
+mysql -u root -p$password -e 'GRANT ALL PRIVILEGES on '$database'.* to '$username'@'$hostname';'
 mysql -u root -p$password -e 'FLUSH PRIVILEGES;'
 
 
