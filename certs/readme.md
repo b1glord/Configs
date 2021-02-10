@@ -11,16 +11,17 @@ https://sourceforge.net/projects/openssl/
 
 ### Sonrasında aşağıdaki örnek komutlar ile kendi sertifikanızı oluşturabilirsiniz.
 ```
-openssl req -new -newkey rsa:2048 -nodes -keyout orbilisim.net.key -out orbilisim.net.csr
+openssl req -new -newkey rsa:4096 -nodes -keyout burakcert.key -out burakcert.csr
 ```
 
 ```
-openssl x509 -req -days 365 -in orbilisim.net.csr -signkey orbilisim.net.key -out orbilisim.net.cer
+openssl x509 -req -days 365 -in burakcert.csr -signkey burakcert.key -out burakcert.cer
 ```
 
 ```
-openssl pkcs12 -export -in orbilisim.net.cer -inkey orbilisim.net.key -out orbilisim.net.pfx
+openssl pkcs12 -export -in burakcert.cer -inkey burakcert.key -out burakcert.pfx
 ```
-#### Not: “365” sertifikanın süresini belirtmektedir.
 
-#### Sonrasında; .cer, .pfx formatında sertifika dosyalarını elde edeceksiniz.
+##### Not: “365” sertifikanın süresini belirtmektedir.
+
+##### Sonrasında; .cer, .pfx formatında sertifika dosyalarını elde edeceksiniz.
