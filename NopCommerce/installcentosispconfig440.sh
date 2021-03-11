@@ -98,9 +98,9 @@ sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-
 # Install the .NET Core Runtime 2
 ## Update the products available for installation, then install the .NET runtime:
 sudo yum -y update 
-sudo yum -y install dotnet-sdk-3.1
-#sudo yum -y install aspnetcore-runtime-3.1
-#sudo yum -y install dotnet-runtime-3.1
+sudo yum -y install dotnet-sdk-5.0
+#sudo yum -y install aspnetcore-runtime-5.0
+#sudo yum -y install dotnet-runtime-5.0
 
 ## You may see all installed .Net Core runtimes by the following command:
 dotnet --list-runtimes
@@ -115,14 +115,14 @@ mysql -u root -p$password -e 'FLUSH PRIVILEGES;'
 
 
 # Create ISPConfig Client nopCommerce Directory
-#sudo mkdir /var/www/clients/client1/$website/web/nopCommerce430
+#sudo mkdir /var/www/clients/client1/$website/web/nopCommerce440
 
 
 ## Download and unpack the nopCommerce:
 cd /var/www/clients/client1/$website/web
-sudo wget https://github.com/nopSolutions/nopCommerce/releases/download/release-4.30/nopCommerce_4.30_NoSource_linux_x64.zip
+sudo wget https://github.com/nopSolutions/nopCommerce/releases/download/release-4.40/nopCommerce_4.40_NoSource_linux_x64.zip
 sudo yum -y install unzip
-sudo unzip nopCommerce_4.30_NoSource_linux_x64.zip
+sudo unzip nopCommerce_4.40_NoSource_linux_x64.zip
 
 ## Create couple directories to run nopCommerce:
 sudo mkdir bin
@@ -130,10 +130,10 @@ sudo mkdir logs
 
 
 ## Create the nopCommerce service
-## Create the /etc/systemd/system/nopCommerce430.service file with the following contents:
-sudo  cat > /etc/systemd/system/nopCommerce430.service << EOF
+## Create the /etc/systemd/system/nopCommerce440.service file with the following contents:
+sudo  cat > /etc/systemd/system/nopCommerce440.service << EOF
 [Unit]
-Description=Example nopCommerce app running on CentOS 7
+Description=$hostname nopCommerce app running on CentOS 7
 
 [Service]
 WorkingDirectory=/var/www/clients/client1/$website/web
@@ -142,7 +142,7 @@ Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
 KillSignal=SIGINT
-SyslogIdentifier=nopCommerce430-example
+SyslogIdentifier=nopCommerce440-example
 User=root
 Environment=ASPNETCORE_ENVIRONMENT=Production
 Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
@@ -152,11 +152,11 @@ WantedBy=multi-user.target
 EOF
 
 ## Start the service
-sudo systemctl enable nopCommerce430.service
-sudo systemctl start nopCommerce430.service
+sudo systemctl enable nopCommerce440.service
+sudo systemctl start nopCommerce440.service
 
 ## Restart the nginx server
 sudo systemctl restart nginx
 
 ## Check the nopCommerce service status
-sudo systemctl status nopCommerce430.service
+sudo systemctl status nopCommerce440.service
