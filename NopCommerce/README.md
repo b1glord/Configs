@@ -3,9 +3,9 @@
 ### Prebuilt Packages on Centos ISPConfig
 ```
 cd /tmp
-rm -f ./installcentosispconfig.sh
-wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentosispconfig.sh
-chmod +x installcentosispconfig.sh
+rm -f ./installcentosispconfig440.sh
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentosispconfig440.sh
+chmod +x installcentosispconfig440.sh
 ./installcentosispconfig.sh
 ```
 
@@ -13,9 +13,9 @@ chmod +x installcentosispconfig.sh
 ```
 cd /tmp
 rm -f ./installcentos.sh
-wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentos.sh
-chmod +x ./installcentos.sh
-./installcentos.sh
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentos440.sh
+chmod +x ./installcentos440.sh
+./installcentos440.sh
 ```
 
 ### Prebuilt Packages on Pardus
