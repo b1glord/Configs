@@ -46,8 +46,6 @@ mDbName = mydb
 Java
 cfg = new Config();
 dbname   = cfg.getProperty("mDbUser");
-1
-2
 cfg = new Config();
 dbname   = cfg.getProperty("mDbUser");
 ```
