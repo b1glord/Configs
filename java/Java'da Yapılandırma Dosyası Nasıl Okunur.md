@@ -43,7 +43,6 @@ mDbName = mydb
 
 ### Kullanımı
 ```
-Java
 cfg = new Config();
 dbname   = cfg.getProperty("mDbUser");
 cfg = new Config();
