@@ -2,7 +2,7 @@ https://www.dynu.com/en-US/Resources/Downloads
 ## Install
 ```
 cd /tmp
-wget -nc https://raw.githubusercontent.com/b1glord/Configs/e66cc5baaa98b5bac5138adb0e57a2fb12f697fa/centos/dynu/dynu.sh?token=ABWFSSCBD42M3A4CI6GAFXDBI6LZA
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/centos/dynu/dynu.sh
 chmod 755 ./dynu.sh
 ./dynu.sh
 ```
