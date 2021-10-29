@@ -1,5 +1,6 @@
 Logo Degistirme
 ```
 cd /usr/local/ispconfig/interface/web/themes/default/assets/images
-wget https://github.com/b1glord/Configs/blob/d1ccc87208b1304709be3360d0f54589b8251ad4/IspConfig/logo.png
+wget https://raw.githubusercontent.com/b1glord/Configs/8b740d39d0664df6a8c1b4c8f5775e5b57f81d57/IspConfig/logo.png
+wget https://raw.githubusercontent.com/b1glord/Configs/8b740d39d0664df6a8c1b4c8f5775e5b57f81d57/IspConfig/logo%402x.png
 ```
