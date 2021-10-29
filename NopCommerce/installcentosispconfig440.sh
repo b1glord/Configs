@@ -77,7 +77,7 @@ if [[ -z "$database" ]]; then
 fi
 
 # If sitename field is blank, it will error out.(test)
-read -p "Please enter your MySQL website: " website
+read -p "Please enter your website name (ornek xxx.com): " website
 if [[ -z "$website" ]]; then
         echo "ERROR: The website name is invalid or blank."
         exit
