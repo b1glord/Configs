@@ -6,7 +6,7 @@ cd /tmp
 rm -f ./installcentosispconfig440.sh
 wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentosispconfig440.sh
 chmod +x installcentosispconfig440.sh
-./installcentosispconfig.sh
+./installcentosispconfig440.sh
 ```
 
 ### Prebuilt Packages on Centos
