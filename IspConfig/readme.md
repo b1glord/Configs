@@ -9,6 +9,7 @@ wget https://raw.githubusercontent.com/b1glord/Configs/8b740d39d0664df6a8c1b4c8f
 Default index duzenleme
 ```
 cd /usr/local/ispconfig/server/conf/index
-rm -f standard_index.html_en
+rm -f standard_index.html_en user_standard_index.html_en
 wget https://raw.githubusercontent.com/b1glord/Configs/master/IspConfig/standard_index.html_en
+wget https://raw.githubusercontent.com/b1glord/Configs/master/IspConfig/user_standard_index.html_en
 ```
