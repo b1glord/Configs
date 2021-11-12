@@ -120,9 +120,9 @@ mysql -u root -p$password -e 'FLUSH PRIVILEGES;'
 
 ## Download and unpack the nopCommerce:
 cd /var/www/clients/client1/$website/web
-sudo wget https://github.com/nopSolutions/nopCommerce/releases/download/release-4.40/nopCommerce_4.40_NoSource_linux_x64.zip
+sudo wget https://github.com/nopSolutions/nopCommerce/releases/download/release-4.40.4/nopCommerce_4.40.4_NoSource_linux_x64.zip
 sudo yum -y install unzip
-sudo unzip nopCommerce_4.40_NoSource_linux_x64.zip
+sudo unzip nopCommerce_4.40.4_NoSource_linux_x64.zip
 
 ## Create couple directories to run nopCommerce:
 sudo mkdir bin
