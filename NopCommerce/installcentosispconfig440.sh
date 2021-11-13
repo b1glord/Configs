@@ -129,6 +129,19 @@ sudo mkdir bin
 sudo mkdir logs
 
 
+## (İsteğe bağlı): .NET Core web uygulamanızı çevrimiçi durumda tutmak için Süpervizör Kurulumu
+sudo yum install supervisor -y
+sudo systemctl start supervisord.service
+sudo systemctl enable supervisord.service
+
+### Load the new Supervisor settings:
+# sudo supervisorctl reread
+# sudo supervisorctl update
+
+### Now, you can use the following command to show the app's status:
+systemctl status supervisord
+
+
 ## Create the nopCommerce service
 ## Create the /etc/systemd/system/nopCommerce440.service file with the following contents:
 sudo  cat > /etc/systemd/system/nopCommerce440.service << EOF
