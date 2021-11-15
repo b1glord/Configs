@@ -131,6 +131,10 @@ sudo mkdir logs
 
 ## (İsteğe bağlı): .NET Core web uygulamanızı çevrimiçi durumda tutmak için Süpervizör Kurulumu
 sudo yum install supervisor -y
+
+cp /etc/supervisord.conf /etc/supervisord.conf.bak
+sed -i "s%files = supervisord.d/*.ini%files = supervisord.d/*.conf%" /etc/supervisord.conf
+
 sudo systemctl start supervisord.service
 sudo systemctl enable supervisord.service
 
