@@ -148,13 +148,18 @@ systemctl status supervisord
 
 ## Create the nopCommerce service
 ## Create the /etc/systemd/system/nopCommerce440.service file with the following contents:
+### Configure Execstart location
+dotnet=$(which dotnet)
+
+
+
 sudo  cat > /etc/systemd/system/nopCommerce440.service << EOF
 [Unit]
 Description=$hostname nopCommerce app running on CentOS 7
 
 [Service]
 WorkingDirectory=/var/www/clients/client1/$website/web
-ExecStart=/usr/bin/dotnet /var/www/clients/client1/$website/web/Nop.Web.dll
+ExecStart=$dotnet /var/www/clients/client1/$website/web/Nop.Web.dll
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
