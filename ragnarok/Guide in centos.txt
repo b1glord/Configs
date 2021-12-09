@@ -101,6 +101,7 @@ make server
 #============================
 #7) Alternatif Derleme icin asagidaki komutlari giriyoruz (mariadb-devel yuklemek gerekebilir) (Opsiyonel)
 #============================
+#ln -s /usr/lib64/libmysqlclient.so.18.0.0 /usr/lib64/libmysqlclient.so
 #./configure --enable-64bit --with-MYSQL_LIBS=/usr/lib64/libmysqlclient.so
 #yada
 #./configure --enable-64bit --with-mysql-lib64	
