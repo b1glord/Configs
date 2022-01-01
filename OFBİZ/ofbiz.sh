@@ -22,9 +22,10 @@ export PATH=$PATH:/opt/gradle/gradle-7.3.3/bin
 gradle –v
 
 # apache ofbiz i indiriyoruz
-cd /home/ofbiz/
-git clone https://github.com/apache/ofbiz.git 
-git clone https://gitbox.apache.org/repos/asf/ofbiz-plugins.git plugins 
+wget https://dlcdn.apache.org/ofbiz/apache-ofbiz-18.12.04.zip --no-check-certificate
+unzip apache-ofbiz-18.12.04.zip
+mv /tmp/apache-ofbiz-18.12.04 /home/ofbiz
+git clone https://gitbox.apache.org/repos/asf/ofbiz-plugins.git ~/home/ofbiz/plugins 
 # git pull
 
 ./gradlew cleanAll loadAll
