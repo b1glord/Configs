@@ -1,11 +1,13 @@
 # apache ofbiz 
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
-sudo yum -y install java-1.8.0-openjdk-devel
-sudo yum -y install java-1.8.0-openjdk
-javahomedir = $(dirname $(readlink $(readlink $(which java))))
-echo JAVA_HOME="$javahomedir" > /etc/profile.d/java.sh
+yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+cat > /etc/profile.d/java8.sh <<EOF
+export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which javac)))))
+export PATH=\$PATH:\$JAVA_HOME/bin
+export CLASSPATH=.:\$JAVA_HOME/jre/lib:\$JAVA_HOME/lib:\$JAVA_HOME/lib/tools.jar
+EOF
+source /etc/profile.d/java8.sh
 
-# source /etc/profile.d/java.sh
 # echo $JAVA_HOME
 # kontrol ediyoruz
 java –version
