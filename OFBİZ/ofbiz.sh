@@ -2,7 +2,7 @@
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
 yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
 cat > /etc/profile.d/java8.sh <<EOF
-export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which javac)))))
+export JAVA_HOME=/usr/lib/jvm/jre-openjdk
 export PATH=\$PATH:\$JAVA_HOME/bin
 export CLASSPATH=.:\$JAVA_HOME/jre/lib:\$JAVA_HOME/lib:\$JAVA_HOME/lib/tools.jar
 EOF
@@ -27,7 +27,7 @@ unzip apache-ofbiz-18.12.04.zip
 mv /tmp/apache-ofbiz-18.12.04 /home/ofbiz
 git clone https://gitbox.apache.org/repos/asf/ofbiz-plugins.git ~/home/ofbiz/plugins 
 # git pull
-
+cd /home/ofbiz/
 ./gradlew cleanAll loadAll
 
 
