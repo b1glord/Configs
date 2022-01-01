@@ -6,7 +6,7 @@ sudo yum -y install java-1.8.0-openjdk-devel
 sudo yum -y install java-1.8.0-openjdk
 
 
-javahomedir = dirname $(readlink $(readlink $(which java)))
+javahomedir = $(dirname $(readlink $(readlink $(which java))))
 echo JAVA_HOME="$javahomedir" > /etc/profile.d/java.sh
 
 ##source /etc/profile.d/java.sh
