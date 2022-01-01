@@ -14,7 +14,7 @@ java –version
 
 # gradle kurulumu https://gradle.org/releases/
 cd /tmp
-wget https://services.gradle.org/distributions/gradle-7.3.3-all.zip
+wget https://services.gradle.org/distributions/gradle-7.3.3-all.zip --no-check-certificate
 sudo mkdir /opt/gradle
 sudo unzip -d /opt/gradle gradle-7.3.3-all.zip
 export PATH=$PATH:/opt/gradle/gradle-7.3.3/bin
