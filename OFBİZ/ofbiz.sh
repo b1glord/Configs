@@ -1,6 +1,7 @@
 # apache ofbiz 
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
 # export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which javac)))))
+# adapt https://www.codegrepper.com/code-examples/java/export+java+home
 yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
 cat > /etc/profile.d/java8.sh <<EOF 
 export JAVA_HOME_BIN=`which java`
