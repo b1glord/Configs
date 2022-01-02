@@ -1,21 +1,19 @@
 # apache ofbiz 
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
-# javahomedir = $(dirname $(readlink $(readlink $(which java))))
+# export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which javac)))))
 yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
 cat > /etc/profile.d/java8.sh <<EOF 
-export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which javac)))))
+export JAVA_HOME_BIN=`which java`
 export PATH=\$PATH:\$JAVA_HOME/bin
 export CLASSPATH=.:\$JAVA_HOME/jre/lib:\$JAVA_HOME/lib:\$JAVA_HOME/lib/tools.jar
 EOF
 source /etc/profile.d/java8.sh
-
-# echo $JAVA_HOME
 # kontrol ediyoruz
 java –version
 
 # gradle kurulumu https://gradle.org/releases/
 cd /tmp
-wget https://services.gradle.org/distributions/gradle-7.3.3-all.zip --no-check-certificate
+wget https://services.gradle.org/distributions/gradle-7.3.3-all.zip #--no-check-certificate
 sudo mkdir /opt/gradle
 sudo unzip -d /opt/gradle gradle-7.3.3-all.zip
 export PATH=$PATH:/opt/gradle/gradle-7.3.3/bin
