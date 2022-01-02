@@ -2,8 +2,8 @@
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
 # javahomedir = $(dirname $(readlink $(readlink $(which java))))
 yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
-cat > /etc/profile.d/java8.sh <<EOF
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.312.b07-1.el7_9.x86_64/jre
+cat > /etc/profile.d/java8.sh <<EOF 
+export JAVA_HOME=$(dirname $(dirname $(readlink $(readlink $(which javac)))))
 export PATH=\$PATH:\$JAVA_HOME/bin
 export CLASSPATH=.:\$JAVA_HOME/jre/lib:\$JAVA_HOME/lib:\$JAVA_HOME/lib/tools.jar
 EOF
