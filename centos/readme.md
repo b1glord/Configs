@@ -1,6 +1,16 @@
 ## centos 7
 ### hızlı hatırlama notlarım
 
+#### Yardımcı site
+```
+https://ius.io/
+```
+
+```
+https://www.softwarecollections.org/en/
+```
+
+
 #### İp adresi ögrenme
 ```
 ip add
