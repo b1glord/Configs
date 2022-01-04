@@ -12,12 +12,12 @@ source /etc/profile.d/java8.sh
 # kontrol ediyoruz
 java –version
 
-# gradle kurulumu https://gradle.org/releases/
+# gradle 5.0 kurulumu https://gradle.org/releases/
 cd /tmp
-wget -nc https://services.gradle.org/distributions/gradle-7.3.3-all.zip #--no-check-certificate
+wget -nc https://services.gradle.org/distributions/gradle-5.0-all.zip #--no-check-certificate
 sudo mkdir /opt/gradle
-sudo unzip -d /opt/gradle gradle-7.3.3-all.zip
-export PATH=$PATH:/opt/gradle/gradle-7.3.3/bin
+sudo unzip -d /opt/gradle gradle-5.0-all.zip
+export PATH=$PATH:/opt/gradle/gradle-5.0-all/bin
 # kontrol ediyoruz
 gradle –v
 
