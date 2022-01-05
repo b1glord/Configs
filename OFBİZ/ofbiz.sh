@@ -38,7 +38,13 @@ cd /home/ofbiz
 
 # === Visit OFBiz through your browser:
 
-https://localhost:8443/webtools
+https://localhost:8443/ordermgr     [Order Back Office]
+
+https://localhost:8443/accounting   [Accounting Back Office]
+
+https://localhost:8443/webtools     [Administrator interface]
+
+You can log in with the user *admin* and password *ofbiz*.
 
 
 git clone https://gitbox.apache.org/repos/asf/ofbiz-framework.git ofbiz-framework 
