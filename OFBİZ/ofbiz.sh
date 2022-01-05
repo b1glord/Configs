@@ -1,7 +1,7 @@
 # apache ofbiz 
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
 cd /tmp
-wget https://gist.githubusercontent.com/mmizutani/7af056b55fd8c3339b9d/raw/cd5b40901363a8fe2f8223b62667412886d769fc/install_oraclejdk8.sh
+wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/install_oraclejdk8.sh
 chmod +x install_oraclejdk8.sh
 ./install_oraclejdk8.sh
 
