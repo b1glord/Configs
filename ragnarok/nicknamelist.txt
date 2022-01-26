@@ -2,7 +2,7 @@
 . crusader                NeptuN CroSs
 . Mage                    BigLorD
 . Alchemist               Fury
-. Bard                    TorreS
+. Bard                    TorreS HaNaBi
 . Priest                  MeLoX
 . Hunter                  RainBow
 . Gunlisher               Lucy
