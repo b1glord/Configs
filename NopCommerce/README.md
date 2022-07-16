@@ -39,9 +39,9 @@ chmod +x ./installpardus.sh
 #### Nginx 504 gateway time out hatası icin 
 ## 
 # /etc/nginx/conf.d/timeout.conf konumuna kopyalanacak
+
 ```
-cd /etc/nginx/conf.d/timeout.conf
-wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/timeout.conf
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/timeout.conf -P /etc/nginx/conf.d/
 ```
 
 nopCommerce: free and open-source eCommerce solution[![Build Status](https://travis-ci.com/nopSolutions/nopCommerce.svg?branch=develop)](https://travis-ci.com/nopSolutions/nopCommerce)
