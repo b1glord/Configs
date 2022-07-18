@@ -129,22 +129,6 @@ sudo mkdir bin
 sudo mkdir logs
 
 
-## (İsteğe bağlı): .NET Core web uygulamanızı çevrimiçi durumda tutmak için Süpervizör Kurulumu
-sudo yum install supervisor -y
-
-## https://www.vultr.com/docs/how-to-deploy-a-net-core-web-application-on-centos-7
-cp /etc/supervisord.conf /etc/supervisord.conf.bak
-sed -i "s%files = supervisord.d/*.ini%files = supervisord.d/*.conf%" /etc/supervisord.conf
-sudo systemctl start supervisord.service
-sudo systemctl enable supervisord.service
-
-### Load the new Supervisor settings:
-# sudo supervisorctl reread
-# sudo supervisorctl update
-
-### Now, you can use the following command to show the app's status:
-systemctl status supervisord
-
 
 ## Create the nopCommerce service
 ## Create the /etc/systemd/system/nopCommerce440.service file with the following contents:
@@ -172,6 +156,41 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 [Install]
 WantedBy=multi-user.target
 EOF
+
+
+
+## (İsteğe bağlı): .NET Core web uygulamanızı çevrimiçi durumda tutmak için Süpervizör Kurulumu
+sudo yum install supervisor -y
+
+## https://www.vultr.com/docs/how-to-deploy-a-net-core-web-application-on-centos-7
+cp /etc/supervisord.conf /etc/supervisord.conf.bak
+sed -i "s%files = supervisord.d/*.ini%files = supervisord.d/*.conf%" /etc/supervisord.conf
+sudo systemctl start supervisord.service
+sudo systemctl enable supervisord.service
+
+### Load the new Supervisor settings:
+# sudo supervisorctl reread
+# sudo supervisorctl update
+
+
+### Configure Suversivor.d ini files
+sudo  cat > /etc/supervisord.d/$website-nopCommerce440.ini << EOF
+[program:$website-nopCommerce440]
+
+command=dotnet run --project /var/www/clients/client1/$website/web/App_Data/appsettings.json --configuration Release
+directory=/var/www/clients/client1/$website/web
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/nop/$website-nopCommerce440.err.log
+stdout_logfile=/var/log/nop/$website-nopCommerce440.out.log
+environment=Hosting__Environment=Production,HOME=/var/www/clients/client1/$website/web
+stopsignal=INT
+user=root
+EOF
+
+### Now, you can use the following command to show the app's status:
+systemctl restart supervisord
+systemctl status supervisord
 
 ## Start the service
 sudo systemctl enable nopCommerce440.service
