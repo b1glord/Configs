@@ -4,7 +4,7 @@
 # NopCommerce system installer
 #
 # Script: installcentosispconfig450.sh
-# Version: 2.0.6
+# Version: 3.0.6
 # Author: B1gLorD <furytr@yandex.com>
 # Description: This script will autoinstall Nopcommerce IspConfig all the packages needed to install
 # NopCommerce on your server.
@@ -99,6 +99,14 @@ sudo yum -y install dotnet-sdk-6.0
 
 ## You may see all installed .Net Core runtimes by the following command:
 dotnet --list-runtimes
+
+
+
+#### Nginx 504 gateway time out hatası icin 
+## 
+# /etc/nginx/conf.d/timeout.conf konumuna kopyalanacak
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/timeout.conf -P /etc/nginx/conf.d/
+
 
 
 ### Add Database
