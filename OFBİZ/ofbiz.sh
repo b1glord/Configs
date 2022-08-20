@@ -5,15 +5,22 @@ wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/install_ora
 chmod +x install_oraclejdk8.sh
 ./install_oraclejdk8.sh
 
+# == Install Required programs
+yum -y install perl-Digest-SHA
+
 # == Quick start
 # === Download the Gradle wrapper:
+mkdir /home/ofbiz
 cd /tmp
 wget https://dlcdn.apache.org/ofbiz/apache-ofbiz-18.12.04.zip --no-check-certificate
 unzip apache-ofbiz-18.12.04.zip
 mv /tmp/apache-ofbiz-18.12.04 /home/ofbiz
 git clone https://gitbox.apache.org/repos/asf/ofbiz-plugins.git ~/home/ofbiz/plugins 
 
-yum -y install perl-Digest-SHA 
+#=== install OFBiz Framework:
+git clone https://gitbox.apache.org/repos/asf/ofbiz-framework.git ofbiz-framework 
+
+
 cd /home/ofbiz
 sh gradle/init-gradle-wrapper.sh
 
@@ -30,8 +37,7 @@ cd /home/ofbiz
 ./gradlew "ofbizBackground --start"
 
 
-#=== install OFBiz Framework:
-git clone https://gitbox.apache.org/repos/asf/ofbiz-framework.git ofbiz-framework 
+
 
 
 #=== Visit OFBiz through your browser:
