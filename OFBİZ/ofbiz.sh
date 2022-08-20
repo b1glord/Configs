@@ -11,7 +11,7 @@ yum -y install perl-Digest-SHA
 # == Quick start
 # === Download the Gradle wrapper:
 mkdir /home/ofbiz
-cd /tmp
+cd /home/ofbiz
 wget https://dlcdn.apache.org/ofbiz/apache-ofbiz-18.12.04.zip --no-check-certificate
 unzip apache-ofbiz-18.12.04.zip
 mv /tmp/apache-ofbiz-18.12.04 /home/ofbiz
