@@ -17,9 +17,9 @@ yum -y install perl-Digest-SHA
 cd /home/ofbiz
 sh gradle/init-gradle-wrapper.sh
 
-=== Prepare OFBiz:
+#=== Prepare OFBiz:
 
-==== Clean system and load the complete OFBiz data
+#==== Clean system and load the complete OFBiz data
 ./gradlew cleanAll loadAll
 
 # =====Note: As the later step, to install without the demo data follow: (beware this is for development or production, not trying)
@@ -29,15 +29,17 @@ sh gradle/init-gradle-wrapper.sh
 cd /home/ofbiz
 ./gradlew "ofbizBackground --start"
 
-# === Visit OFBiz through your browser:
 
-https://localhost:8443/ordermgr     [Order Back Office]
-
-https://localhost:8443/accounting   [Accounting Back Office]
-
-https://localhost:8443/webtools     [Administrator interface]
-
-You can log in with the user *admin* and password *ofbiz*.
-
-
+#=== install OFBiz Framework:
 git clone https://gitbox.apache.org/repos/asf/ofbiz-framework.git ofbiz-framework 
+
+
+#=== Visit OFBiz through your browser:
+
+echo "https://localhost:8443/ordermgr     [Order Back Office]"
+
+echo "https://localhost:8443/accounting   [Accounting Back Office]"
+
+echo "https://localhost:8443/webtools     [Administrator interface]"
+
+echo "You can log in with the user *admin* and password *ofbiz*."
