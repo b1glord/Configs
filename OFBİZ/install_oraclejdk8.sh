@@ -5,7 +5,7 @@ java -version
 
 # Get the latest Oracle Java SDK http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 # https://github.com/frekele/oracle-java
-wget https://github.com/frekele/oracle-java/releases/download/8u92-b14/jdk-8u92-linux-x64.rpm
+wget -nc https://github.com/frekele/oracle-java/releases/download/8u92-b14/jdk-8u92-linux-x64.rpm
 # Install Java SDK
 sudo rpm -i jdk-8u92-linux-x64.rpm
 
