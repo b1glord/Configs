@@ -17,15 +17,15 @@ yum -y install perl-Digest-SHA
 mkdir /home/ofbiz
 cd /home/ofbiz
 wget https://dlcdn.apache.org/ofbiz/apache-ofbiz-18.12.06.zip --no-check-certificate
-unzip apache-ofbiz-18.12.06.zip
-mv /tmp/apache-ofbiz-18.12.06 /home/ofbiz
+unzip apache-ofbiz-18.12.06.zip -d /home/ofbiz
+cd /home/ofbiz/apache-ofbiz-18.12.06
 git clone https://gitbox.apache.org/repos/asf/ofbiz-plugins.git ~/home/ofbiz/plugins 
 
 #=== install OFBiz Framework:
-git clone https://gitbox.apache.org/repos/asf/ofbiz-framework.git ofbiz-framework 
+#git clone https://gitbox.apache.org/repos/asf/ofbiz-framework.git ofbiz-framework 
 
 
-cd /home/ofbiz
+cd /home/ofbiz//apache-ofbiz-18.12.06
 sh gradle/init-gradle-wrapper.sh
 
 #=== Prepare OFBiz:
