@@ -37,7 +37,7 @@ sh gradle/init-gradle-wrapper.sh
 ./gradlew cleanAll "ofbiz --load-data readers=seed,seed-initial" loadAdminUserLogin -PuserLoginId=admin
 
 #=== Start OFBiz:
-cd /home/ofbiz
+cd /home/ofbiz/apache-ofbiz-18.12.06
 ./gradlew "ofbizBackground --start"
 
 
