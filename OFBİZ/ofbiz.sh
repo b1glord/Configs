@@ -11,18 +11,14 @@ yum -y install perl-Digest-SHA
 
 # == Quick start
 # === Download the Gradle wrapper:
-mkdir /home/ofbiz
-cd /home/ofbiz
+mkdir /usr/local/ofbiz
+cd /usr/local/ofbiz
 wget https://dlcdn.apache.org/ofbiz/apache-ofbiz-18.12.06.zip --no-check-certificate
-unzip apache-ofbiz-18.12.06.zip -d /home/ofbiz
-cd /home/ofbiz/apache-ofbiz-18.12.06
-git clone https://gitbox.apache.org/repos/asf/ofbiz-plugins.git ~/home/ofbiz/plugins 
-
-#=== install OFBiz Framework:
-#git clone https://gitbox.apache.org/repos/asf/ofbiz-framework.git ofbiz-framework 
+unzip apache-ofbiz-18.12.06.zip -d /usr/local/ofbiz
 
 
-cd /home/ofbiz//apache-ofbiz-18.12.06
+#=== Run Gradle:
+cd /usr/local/ofbiz/apache-ofbiz-18.12.06
 sh gradle/init-gradle-wrapper.sh
 
 #=== Prepare OFBiz:
@@ -34,7 +30,7 @@ sh gradle/init-gradle-wrapper.sh
 ./gradlew cleanAll "ofbiz --load-data readers=seed,seed-initial" loadAdminUserLogin -PuserLoginId=admin
 
 #=== Start OFBiz:
-cd /home/ofbiz/apache-ofbiz-18.12.06
+cd /usr/local/ofbiz/apache-ofbiz-18.12.06
 ./gradlew "ofbizBackground --start"
 
 
