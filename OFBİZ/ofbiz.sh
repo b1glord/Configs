@@ -31,6 +31,9 @@ sh gradle/init-gradle-wrapper.sh
 
 #=== Start OFBiz:
 cd /usr/local/ofbiz/apache-ofbiz-18.12.06
+#=== Start OFBiz:
+#./gradlew ofbiz
+#=== Start OFBiz Background:
 ./gradlew "ofbizBackground --start"
 
 
