@@ -1,10 +1,12 @@
 # apache ofbiz 
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
 cd /tmp
-wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/install_oraclejdk8.sh
-chmod +x install_oraclejdk8.sh
-./install_oraclejdk8.sh
+wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/AdoptJDK.sh
+chmod +x AdoptJDK.sh
+./AdoptJDK.sh
 
+# == Add Tomcat JAVA HOME location
+wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/javahome.sh -P /etc/profile.d
 
 # == Install Required programs
 yum -y install perl-Digest-SHA
