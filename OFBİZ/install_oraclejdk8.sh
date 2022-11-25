@@ -14,7 +14,7 @@ cat <<'EOF' >> /etc/profile.d/javahome.sh
 # echo $JAVA_HOME
 # echo $PATH
 # echo $CLASSPATH
-export JAVA_HOME=/usr/java/jdk1.8.0_92
-export JRE_HOME=/usr/java/jdk1.8.0_92/jre
-export PATH=$PATH:/usr/java/jdk1.8.0_92/bin:/usr/java/jdk1.8.0_92/jre/bin
+export JAVA_HOME=/usr/java/default
+export JRE_HOME=/usr/java/default/jre
+export PATH=$PATH:/usr/java/default/bin:/usr/java/default/jre/bin
 EOF
