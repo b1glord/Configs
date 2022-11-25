@@ -1,12 +1,9 @@
 # apache ofbiz 
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
 cd /tmp
-wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/AdoptJDK.sh
-chmod +x AdoptJDK.sh
-./AdoptJDK.sh
-
-# == Add Tomcat JAVA HOME location
-wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/javahome.sh -P /etc/profile.d
+wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/install_oraclejdk8.sh
+chmod +x install_oraclejdk8.sh
+./install_oraclejdk8.sh
 
 # == Install Required programs
 yum -y install perl-Digest-SHA
@@ -29,14 +26,14 @@ sh gradle/init-gradle-wrapper.sh
 ./gradlew cleanAll loadAll
 
 # =====Note: As the later step, to install without the demo data follow: (beware this is for development or production, not trying)
-./gradlew cleanAll "ofbiz --load-data readers=seed,seed-initial" loadAdminUserLogin -PuserLoginId=admin
+# ./gradlew cleanAll "ofbiz --load-data readers=seed,seed-initial" loadAdminUserLogin -PuserLoginId=admin
 
 #=== Start OFBiz:
 cd /usr/local/ofbiz/apache-ofbiz-18.12.06
 #=== Start OFBiz:
-#./gradlew ofbiz
+./gradlew ofbiz
 #=== Start OFBiz Background:
-./gradlew "ofbizBackground --start"
+# ./gradlew "ofbizBackground --start"
 
 
 
