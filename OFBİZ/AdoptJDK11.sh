@@ -13,6 +13,7 @@ cat <<'EOF' >> /etc/profile.d/javahome.sh
 # echo $PATH
 # echo $CLASSPATH
 export JAVA_HOME=/usr/java/default
-export JRE_HOME=/usr/java/default/jre
-export PATH=$PATH:/usr/java/default/bin:/usr/java/default/jre/bin
+export PATH=$PATH:$JAVA_HOME/bin
+export CLASSPATH=$JAVA_HOME/jre/lib/ext:$JAVA_HOME/lib/tools.jar
+# export JRE_HOME=$JAVA_HOME/jre
 EOF
