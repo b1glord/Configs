@@ -57,8 +57,13 @@ cd /tmp; sudo yum install -y wget unzip net-tools; wget -O installer.tgz "https:
 #============================
 sudo yum install -y centos-release-scl
 sudo yum install -y devtoolset-7-gcc devtoolset-7-gcc-c++
-#derleme icin her defasinda asagidaki kodu giriyoruz yada devamli yazmak istemiyorsan ./bashrc dosyasina ekliyoruz
+#derleme icin her defasinda asagidaki kodu giriyoruz 
 source scl_source enable devtoolset-7
+
+#yada derleme icin her defasinda devamli yazmak istemiyorsan ./bashrc profile dosyasina ekliyoruz
+cat <<'EOF' >> /etc/profile.d/gcc.sh
+source scl_source enable devtoolset-7
+EOF
 
 
 #3)Installing Compiler and Git Support
