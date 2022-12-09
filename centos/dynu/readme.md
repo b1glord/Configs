@@ -3,7 +3,7 @@ https://www.dynu.com/en-US/Resources/Downloads
 ```
 cd /tmp
 wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/centos/dynu/dynu.sh
-chmod 755 ./dynu.sh
+chmod a+x ./dynu.sh
 ./dynu.sh
 ```
 
