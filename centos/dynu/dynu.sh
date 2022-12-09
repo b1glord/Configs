@@ -38,6 +38,21 @@ elif [[ -n "$password" ]]; then
                 echo "ERROR: The second password entered was invalid or you didn't enter a value."
                 exit
         fi
+# Password comparing
+if [[ -n "$password2" ]] && [[ "$password" == "$password2" ]]; then
+        echo ""
+        echo ""
+        echo "Passwords match continuing..."
+        echo ""
+        read -p "Please provide us your hostname for MySQL (default is localhost): " hostname
+
+        # Checks if Passwords do not match
+elif [[ -n "$password2" ]] && [[ "$password" != "$password2" ]]; then
+        echo ""
+        echo ""
+        echo "ERROR: Passwords do not match."
+        exit
+        fi
 fi
 #https://www.dynu.com/en-US/Resources/Downloads
 #Download Dynu Client for Red Hat Enterprise Linux 7
