@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 clear
 echo ""
 echo "Welcome to the DYNU installer"
