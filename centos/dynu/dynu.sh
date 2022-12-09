@@ -1,17 +1,17 @@
 #!/bin/sh
 clear
 echo ""
-echo "Welcome to the DYNU installer"
-echo "This script will install DYNU."
+echo "Welcome to the Hercules/rAthena database installer"
+echo "This script will install your database for you, without you having to do it manually."
 #echo ""
-#echo "This script was created by BigLorD "
+#echo "This script was created by BigLorD (http://www.ankaragnarok.tk) for the Hercules and rAthena community."
 echo ""
 echo ""
 
-# Ask user fror the DYNU username
+# Ask user fror the MySQL username
 # Then check if the username field is blank
 # if blank it will error out
-read -p "Please enter your DYNU username: " username
+read -p "Please enter your MySQL username: " username
 if [[ -z "$username" ]]; then
         echo "ERROR: That username is invalid or you didn't enter a value."
         exit
@@ -31,13 +31,15 @@ if [[ -z "$password" ]]; then
         # Password is valid.
 elif [[ -n "$password" ]]; then
         echo ""
-        read -sp "Please re-enter your DYNU Password: " password2
+        read -sp "Please re-enter your MySQL Password: " password2
         # Confirmation Password is invalid.
         if [[ -z "$password2" ]]; then
                 echo ""
                 echo "ERROR: The second password entered was invalid or you didn't enter a value."
                 exit
         fi
+fi
+
 # Password comparing
 if [[ -n "$password2" ]] && [[ "$password" == "$password2" ]]; then
         echo ""
@@ -52,8 +54,8 @@ elif [[ -n "$password2" ]] && [[ "$password" != "$password2" ]]; then
         echo ""
         echo "ERROR: Passwords do not match."
         exit
-        fi
 fi
+
 #https://www.dynu.com/en-US/Resources/Downloads
 #Download Dynu Client for Red Hat Enterprise Linux 7
 rpm -ivh https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
