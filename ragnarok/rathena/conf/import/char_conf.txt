@@ -49,7 +49,7 @@ char_port: 6121
 //timestamp_format: [%d/%b %H:%M]
 
 //If redirected output contains escape sequences (color codes)
-stdout_with_ansisequence: yes
+stdout_with_ansisequence: no
 
 //Makes server log selected message types to a file in the /log/ folder
 //1: Log Warning Messages
@@ -109,7 +109,7 @@ save_log: yes
 
 // Starting point for new characters
 // Format: <map_name>,<x>,<y>{:<map_name>,<x>,<y>...}
-// Max number of start points is MAX_STARTPOINT in char.h (default 5)
+// Max number of start points is MAX_STARTPOINT in char.hpp (default 5)
 // Location is randomly picked on character creation.
 // NOTE: For Doram, this requires client 20151001 or newer.
 start_point: iz_int,18,26:iz_int01,18,26:iz_int02,18,26:iz_int03,18,26:iz_int04,18,26
@@ -117,15 +117,16 @@ start_point_pre: new_1-1,53,111:new_2-1,53,111:new_3-1,53,111:new_4-1,53,111:new
 start_point_doram: lasa_fild01,48,297
 
 // Starting items for new characters
-// Max number of items is MAX_STARTITEM in char.c (default 32)
+// Max number of items is MAX_STARTITEM in char.cpp (default 32)
 // Format: <id>,<amount>,<position>{:<id>,<amount>,<position>...}
 // To auto-equip an item, include the position where it will be equipped; otherwise, use zero.
 // NOTE: For Doram, this requires client 20151001 or newer.
-start_items: 1201,1,2:2301,1,16
+start_items: 1201,1,2:2301,1,16:23484,1,0
+start_items_pre: 1201,1,2:2301,1,16
 start_items_doram: 1681,1,2:2301,1,16
 
 // Starting zeny for new characters
-start_zeny: 0
+start_zeny: 1000000
 
 // Size for the fame-lists
 fame_list_alchemist: 10
@@ -197,7 +198,7 @@ char_del_restriction: 3
 // Uncomment to customize the restriction
 //allowed_job_flag: 3
 
-// What folder the DB files are in (item_db.txt, etc.)
+// Folder that contains the database files.
 db_path: db
 
 //===================================
@@ -206,7 +207,7 @@ db_path: db
 // NOTE: Requires client 2011-03-09aragexeRE or newer.
 // A window is opened before you can select your character and you will have to enter a pincode by using only your mouse.
 // Default: yes
-pincode_enabled: no
+pincode_enabled: yes
 
 // How often does a user have to change his pincode?
 // 0: never (default)
@@ -284,4 +285,14 @@ mail_return_days: 15
 // Default: 15
 mail_delete_days: 15
 
+// Does the Retrieve All button ignore unread mail status?
+// no: Only return attachments from read mail
+// yes: Return attachments from all mail
+// Default: yes
+mail_retrieve: yes
 
+// Should mails without any attachments be returned to their sender?
+// Default: yes
+mail_return_empty: yes
+
+import: conf/import/char_conf.txt
