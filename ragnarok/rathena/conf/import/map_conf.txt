@@ -17,7 +17,7 @@ passwd: chaos
 // The map server connects to the character server using this IP address.
 // NOTE: This is useful when you are running behind a firewall or are on
 // a machine with multiple interfaces.
-char_ip: 192.168.1.151
+char_ip: 192.168.1.170
 
 // The map server listens on the interface with this IP address.
 // NOTE: This allows you to run multiple servers on multiple interfaces
@@ -30,7 +30,7 @@ char_port: 6121
 // Map Server IP
 // The IP address which clients will use to connect.
 // Set this to what your server's public IP address is.
-map_ip: trro.webredirect.org
+map_ip: pvpgn.freeddns.org
 
 // Map Server Port
 map_port: 5121
@@ -117,10 +117,12 @@ save_settings: 4095
 motd_txt: conf/motd.txt
 
 // When @help or @h is typed when you are a gm, this is displayed for helping new gms understand gm commands.
-help_txt: conf/help.txt
-help2_txt: conf/help2.txt
 charhelp_txt: conf/charhelp.txt
 
 // Load channel config from
 channel_conf: conf/channels.conf
 
+// Maps:
+import: conf/maps_athena.conf
+
+import: conf/import/map_conf.txt
