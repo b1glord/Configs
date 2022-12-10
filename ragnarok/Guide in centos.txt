@@ -68,8 +68,9 @@ EOF
 
 #3)Installing Compiler and Git Support
 #Type the following command (this will install Make, PCRE header files, and Zlib header files)
+#MariaDB-shared paketinde libmysqlclient.so dosyası mevcut
 #============================
-yum install -y git make pcre-devel zlib-devel ntp mariadb-devel 
+yum install -y git make pcre-devel zlib-devel ntp mariadb-devel MariaDB-shared
 
 
 
