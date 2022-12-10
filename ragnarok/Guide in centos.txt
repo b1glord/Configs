@@ -115,7 +115,7 @@ cd
 cd rAthena
 make clean
 chmod a+x ./configure
-./configure --enable-64bit --enable-packetver=20211103
+./configure --enable-64bit --enable-packetver=20211103 --with-MYSQL_LIBS=/usr/lib64/libmysqlclient.so
 make server
 
 
