@@ -74,6 +74,7 @@ yum install -y git make pcre-devel zlib-devel ntp mariadb-devel MariaDB-shared
 
 
 
+
 #4-1)importing your costumized rathena git into server
 #============================
 git clone https://github.com/rathena/rathena.git ~/rAthena
@@ -91,51 +92,8 @@ git clone https://github.com/rathena/rathena.git ~/rAthena
 
 
 
-#5)Configuring Client Packet Version (Opsiyonel)
-#============================
-#Move /rAthena/src/config
-#Open packets.hpp and see lastest PACKETVER
-#/// In Linux: The same as above or run the following command: ./configure --enable-packetver=YYYYMMDD
 
-
-#============================
-#6) Alternatif Derleme icin asagidaki komutlari giriyoruz (mariadb-devel yuklemek gerekebilir) (Opsiyonel)
-#============================
-#ln -s /usr/lib64/libmysqlclient.so.18.0.0 /usr/lib64/libmysqlclient.so
-#./configure --enable-64bit --with-MYSQL_LIBS=/usr/lib64/libmysqlclient.so
-#yada
-#./configure --enable-64bit --with-mysql-lib64	
-
-
-
-#7) return and compile the server
-#============================
-
-cd
-cd rAthena
-make clean
-chmod a+x ./configure
-./configure --enable-64bit --enable-packetver=20211103 --with-MYSQL_LIBS=/usr/lib64/libmysqlclient.so
-make server
-
-
-
-
-
-
-#8) How to Recompile (optional only change or update /src)
-#In the future (after you update or edit any file in /src) to recompile, add make clean before make sql:
-#============================
-
-#cd trunk
-#./configure 
-#make clean 
-#make server
-
-
-
-
-#9) Db Yukleme sihirbazi
+#5) Db Yukleme sihirbazi
 #ADI isimli dosyayi rAthena/sql-files dizinine kopyaliyoruz
 #============================
 
@@ -148,13 +106,59 @@ chmod +x ADI.sh
 
 
 
-#10)Start your server
+
+#6)Configuring Client Packet Version (Opsiyonel)
+#============================
+#Move /rAthena/src/config
+#Open packets.hpp and see lastest PACKETVER
+#/// In Linux: The same as above or run the following command: ./configure --enable-packetver=YYYYMMDD
+
+
+
+
+#============================
+#7) Alternatif Derleme icin asagidaki komutlari giriyoruz (mariadb-devel yuklemek gerekebilir) (Opsiyonel)
+#============================
+#ln -s /usr/lib64/libmysqlclient.so.18.0.0 /usr/lib64/libmysqlclient.so
+#./configure --enable-64bit --with-MYSQL_LIBS=/usr/lib64/libmysqlclient.so
+#yada
+#./configure --enable-64bit --with-mysql-lib64	
+
+
+
+
+#8) return and compile the server
 #============================
 
+cd
+cd rAthena
+make clean
+chmod a+x ./configure
+./configure --enable-64bit --enable-packetver=20211103 --with-MYSQL_LIBS=/usr/lib64/libmysqlclient.so
+make server
+
+
+
+
+#9) How to Recompile (optional only change or update /src)
+#In the future (after you update or edit any file in /src) to recompile, add make clean before make sql:
+#============================
+
+#cd trunk
+#./configure 
+#make clean 
+#make server
+
+
+
+
+#10)Start your server
+#============================
+#rAthena sunucuyu çalıştırmadan önce port açmalıyız ilgili portlar (6121-6900)
 cd ~/rAthena
 chmod a+x athena-start
-#To Start
 
+#To Start
 ./athena-start start
 
 #To Stop
