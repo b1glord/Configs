@@ -70,10 +70,11 @@ EOF
 #Type the following command (this will install Make, PCRE header files, and Zlib header files)
 #MariaDB-shared paketinde libmysqlclient.so dosyası mevcut
 #============================
-yum install -y git make pcre-devel zlib-devel ntp mariadb-devel MariaDB-shared
+yum install -y make pcre-devel zlib-devel ntp mariadb-devel MariaDB-shared
 
-
-
+# install new git ius repo
+wget https://raw.githubusercontent.com/b1glord/ispconfig_setup_extra/master/centos7/git/install_github.sh
+./install_github.sh
 
 #4-1)importing your costumized rathena git into server
 #============================
