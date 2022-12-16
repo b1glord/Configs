@@ -1,4 +1,4 @@
-## 2020 
+## 2020 yılı
 ### libmysqlclient.so konumu devamlı degistigi icin derleme yaparken sorunlar oluyor
 #### Son Buldugum orjinal konumu burası
 ```
@@ -14,5 +14,5 @@ ln -s /usr/lib64/mysql/libmysqlclient.so /usr/lib/libmysqlclient.so
 ```
 
 
-## 2020 
+## 2022 yılı
 ### libmysqlclient.so dosyasını artık "mariadb-shared" paketini yükleyerek kuruyoruz
