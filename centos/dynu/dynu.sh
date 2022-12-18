@@ -1,17 +1,34 @@
 #!/bin/sh
 clear
 echo ""
-echo "Welcome to the Hercules/rAthena database installer"
-echo "This script will install your database for you, without you having to do it manually."
+echo "Welcome to the Dynu installer"
+echo "This script will install DYNU."
 #echo ""
-#echo "This script was created by BigLorD (http://www.ankaragnarok.tk) for the Hercules and rAthena community."
+#echo "This script was created by Fury"
 echo ""
 echo ""
 
-# Ask user fror the MySQL username
+#https://www.dynu.com/en-US/Resources/Downloads
+#Download Dynu Client for Red Hat Enterprise Linux 7
+rpm -ivh https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
+rpm -Uvh https://www.dynu.com/support/downloadfile/30
+#
+#Configure Dynu Client for Red Hat Enterprise Linux 7 (pvpgn.freeddns.org)
+sed -i "s/username/username $username/" /etc/dynuiuc/dynuiuc.conf
+sed -i "s/location/location work/" /etc/dynuiuc/dynuiuc.conf
+sed -i "s/password/password $password/" /etc/dynuiuc/dynuiuc.conf
+#
+#Add Password Manuel
+#yum -y install nano
+#nano /etc/dynuiuc/dynuiuc.conf
+
+
+
+
+# Ask user fror the Dynu username
 # Then check if the username field is blank
 # if blank it will error out
-read -p "Please enter your MySQL username: " username
+read -p "Please enter your Dynu username: " username
 if [[ -z "$username" ]]; then
         echo "ERROR: That username is invalid or you didn't enter a value."
         exit
@@ -46,7 +63,6 @@ if [[ -n "$password2" ]] && [[ "$password" == "$password2" ]]; then
         echo ""
         echo "Passwords match continuing..."
         echo ""
-        read -p "Please provide us your hostname for MySQL (default is localhost): " hostname
 
         # Checks if Passwords do not match
 elif [[ -n "$password2" ]] && [[ "$password" != "$password2" ]]; then
@@ -56,16 +72,4 @@ elif [[ -n "$password2" ]] && [[ "$password" != "$password2" ]]; then
         exit
 fi
 
-#https://www.dynu.com/en-US/Resources/Downloads
-#Download Dynu Client for Red Hat Enterprise Linux 7
-rpm -ivh https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
-rpm -Uvh https://www.dynu.com/support/downloadfile/30
-#
-#Configure Dynu Client for Red Hat Enterprise Linux 7 (pvpgn.freeddns.org)
-sed -i "s/username/username $username/" /etc/dynuiuc/dynuiuc.conf
-sed -i "s/location/location work/" /etc/dynuiuc/dynuiuc.conf
-sed -i "s/password/password $password/" /etc/dynuiuc/dynuiuc.conf
-#
-#Add Password Manuel
-#yum -y install nano
-#nano /etc/dynuiuc/dynuiuc.conf
+
