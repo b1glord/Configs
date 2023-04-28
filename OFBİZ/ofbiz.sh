@@ -21,6 +21,9 @@ unzip apache-ofbiz-18.12.07.zip -d /usr/local/ofbiz
 cd /usr/local/ofbiz/apache-ofbiz-18.12.06
 sh gradle/init-gradle-wrapper.sh
 
+./gradlew loadAll ofbiz
+
+
 #=== Prepare OFBiz:
 
 #==== Clean system and load the complete OFBiz data
