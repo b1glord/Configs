@@ -9,6 +9,8 @@ chmod +x install_oraclejdk8.sh
 yum -y install perl-Digest-SHA
 
 # == Quick start
+# == Ref Documantation
+# https://cwiki.apache.org/confluence/display/OFBIZ/How+to+install+OFBiz+with+the+Demo+Data
 # === Download the Gradle wrapper:
 # rm -f -r /usr/local/ofbiz    //need delete all files
 mkdir /usr/local/ofbiz
