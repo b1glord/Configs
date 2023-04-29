@@ -26,8 +26,11 @@ sh gradle/init-gradle-wrapper.sh
 
 
 #=== Bugları düzeltiyoruz
+#== Düzeltme 1
 cp /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/rainbowstone-saphir.less /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/raınbowstone-saphır.less
-
+#== Düzeltme 2
+/usr/local/ofbiz/apache-ofbiz-18.12.07/framework/security/config/security.properties
+host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org,192.168.1.170
 
 #=== Prepare OFBiz:
 #==== Clean system and load the complete OFBiz data
