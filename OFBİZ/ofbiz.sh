@@ -31,7 +31,7 @@ cp /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowston
 
 #=== Prepare OFBiz:
 #==== Clean system and load the complete OFBiz data
-./gradlew cleanAll loadAll
+# ./gradlew cleanAll loadAll
 
 # =====Note: As the later step, to install without the demo data follow: (beware this is for development or production, not trying)
 # ./gradlew cleanAll "ofbiz --load-data readers=seed,seed-initial" loadAdminUserLogin -PuserLoginId=admin
