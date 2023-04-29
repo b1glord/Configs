@@ -18,7 +18,7 @@ unzip apache-ofbiz-18.12.07.zip -d /usr/local/ofbiz
 
 
 #=== Run Gradle:
-cd /usr/local/ofbiz/apache-ofbiz-18.12.06
+cd /usr/local/ofbiz/apache-ofbiz-18.12.07
 sh gradle/init-gradle-wrapper.sh
 
 ./gradlew loadAll ofbiz
@@ -33,7 +33,7 @@ sh gradle/init-gradle-wrapper.sh
 # ./gradlew cleanAll "ofbiz --load-data readers=seed,seed-initial" loadAdminUserLogin -PuserLoginId=admin
 
 #=== Start OFBiz:
-cd /usr/local/ofbiz/apache-ofbiz-18.12.06
+cd /usr/local/ofbiz/apache-ofbiz-18.12.07
 #=== Start OFBiz:
 ./gradlew ofbiz
 #=== Start OFBiz Background:
