@@ -24,8 +24,12 @@ sh gradle/init-gradle-wrapper.sh
 ./gradlew loadAll ofbiz
 
 
-#=== Prepare OFBiz:
 
+#=== Bugları düzeltiyoruz
+cp /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/rainbowstone-saphir.less /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/raınbowstone-saphır.less
+
+
+#=== Prepare OFBiz:
 #==== Clean system and load the complete OFBiz data
 ./gradlew cleanAll loadAll
 
