@@ -33,6 +33,8 @@ cp /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowston
 #== Düzeltme 2
 /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/security/config/security.properties
 host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org,192.168.1.170
+#== Düzeltme 3
+#==https://cwiki.apache.org/confluence/display/OFBIZ/Install+OFBiz+with+MariaDB%2C+Apache2+Proxy+and+SSL
 
 #=== Prepare OFBiz:
 #==== Clean system and load the complete OFBiz data
