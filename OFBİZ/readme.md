@@ -5,9 +5,9 @@
 yum -y install wget unzip
 cd /tmp
 rm -f ./ofbiz.sh
-wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/ofbiz.sh
-chmod +x ofbiz.sh
-./ofbiz.sh
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/ofbiz_linux.sh
+chmod +x ofbiz_linux.sh
+./ofbiz_linux.sh
 ```
 
 
