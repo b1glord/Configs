@@ -30,6 +30,12 @@ sed -i "s/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,d
 
 #== Düzeltme 3
 #==https://cwiki.apache.org/confluence/display/OFBIZ/Install+OFBiz+with+MariaDB%2C+Apache2+Proxy+and+SSL
+sed -i "s/no.http=Y/no.http=N/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
+sed -i "s/port.https.enabled=Y/port.https.enabled=N/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
+sed -i "s/no.http=Y/no.http=N/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
+sed -i "s/port.http=8080/port.http=/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
+
+sudo certbot --apache certonly -n -d ${IP_ADDRESS[0]}
 
 
 #=== Run Gradle:
