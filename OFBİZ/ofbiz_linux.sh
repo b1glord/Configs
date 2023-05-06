@@ -8,11 +8,6 @@ chmod +x install_oraclejdk8.sh
 # == Install Required programs
 yum -y install perl-Digest-SHA
 
-#---------------------------------------------------------------------
-# Global variables
-#---------------------------------------------------------------------
-IP_ADDRESS=( $(hostname -I) );
-
 # == Quick start
 # == Ref Documantation
 # https://cwiki.apache.org/confluence/display/OFBIZ/How+to+install+OFBiz+with+the+Demo+Data
@@ -23,6 +18,19 @@ cd /usr/local/ofbiz
 wget https://dlcdn.apache.org/ofbiz/apache-ofbiz-18.12.07.zip --no-check-certificate
 unzip apache-ofbiz-18.12.07.zip -d /usr/local/ofbiz
 
+#---------------------------------------------------------------------
+# Global variables
+#---------------------------------------------------------------------
+IP_ADDRESS=( $(hostname -I) );
+#=== Bugları düzeltiyoruz
+#== Düzeltme 1
+cp /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/rainbowstone-saphir.less /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/raınbowstone-saphır.less
+#== Düzeltme 2
+sed -i "s/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org,${IP_ADDRESS[0]}/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/security/config/security.properties
+
+#== Düzeltme 3
+#==https://cwiki.apache.org/confluence/display/OFBIZ/Install+OFBiz+with+MariaDB%2C+Apache2+Proxy+and+SSL
+
 
 #=== Run Gradle:
 cd /usr/local/ofbiz/apache-ofbiz-18.12.07
@@ -30,19 +38,6 @@ sh gradle/init-gradle-wrapper.sh
 
 ./gradlew loadAll ofbiz
 
-
-
-#=== Bugları düzeltiyoruz
-#== Düzeltme 1
-cp /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/rainbowstone-saphir.less /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/raınbowstone-saphır.less
-#== Düzeltme 2
-sed -i "s/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org,${IP_ADDRESS[0]}/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/security/config/security.properties
-
-#/usr/local/ofbiz/apache-ofbiz-18.12.07/framework/security/config/security.properties
-#host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org,${IP_ADDRESS[0]}
-
-#== Düzeltme 3
-#==https://cwiki.apache.org/confluence/display/OFBIZ/Install+OFBiz+with+MariaDB%2C+Apache2+Proxy+and+SSL
 
 #=== Prepare OFBiz:
 #==== Clean system and load the complete OFBiz data
