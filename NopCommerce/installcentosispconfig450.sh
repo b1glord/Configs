@@ -176,8 +176,8 @@ sudo systemctl enable supervisord.service
 sudo  cat > /etc/supervisord.d/$website-nopCommerce450.ini << EOF
 [program:$website-nopCommerce450]
 
-command=dotnet run --project /var/www/clients/client1/$website/web/App_Data/appsettings.json --configuration Release
-directory=/var/www/clients/client1/$website/web
+command=dotnet run --project /var/www/$website/web/App_Data/appsettings.json --configuration Release
+directory=/var/www/$website/web
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/nop/$website-nopCommerce450.err.log
