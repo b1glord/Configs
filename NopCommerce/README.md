@@ -3,6 +3,14 @@
 ### Prebuilt Packages on Centos ISPConfig
 ```
 cd /tmp
+rm -f ./installcentosispconfig460.sh
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentosispconfig460.sh
+chmod +x installcentosispconfig460.sh
+./installcentosispconfig460.sh
+```
+
+```
+cd /tmp
 rm -f ./installcentosispconfig450.sh
 wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentosispconfig450.sh
 chmod +x installcentosispconfig450.sh
