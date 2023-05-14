@@ -138,7 +138,7 @@ dotnet=$(which dotnet)
 
 sudo  cat > /etc/systemd/system/$website.service << EOF
 [Unit]
-Description=$hostname nopCommerce app running on CentOS 7
+Description=$website nopCommerce app running on CentOS 7
 
 [Service]
 WorkingDirectory=/var/www/$website/web
@@ -147,7 +147,7 @@ Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
 KillSignal=SIGINT
-SyslogIdentifier=nopCommerce460-$hostname
+SyslogIdentifier=nopCommerce460-$website
 User=root
 Environment=ASPNETCORE_ENVIRONMENT=Production
 Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
@@ -192,11 +192,11 @@ systemctl restart supervisord
 systemctl status supervisord
 
 ## Start the service
-sudo systemctl enable $hostname.service
-sudo systemctl start $hostname.service
+sudo systemctl enable $website.service
+sudo systemctl start $website.service
 
 ## Restart the nginx server
 sudo systemctl restart nginx
 
 ## Check the nopCommerce service status
-sudo systemctl status $hostname.service
+sudo systemctl status $website.service
