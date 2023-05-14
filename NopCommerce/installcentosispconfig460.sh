@@ -136,7 +136,7 @@ dotnet=$(which dotnet)
 
 
 
-sudo  cat > /etc/systemd/system/$website-nopCommerce460.service << EOF
+sudo  cat > /etc/systemd/system/$website.service << EOF
 [Unit]
 Description=$hostname nopCommerce app running on CentOS 7
 
@@ -147,7 +147,7 @@ Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
 KillSignal=SIGINT
-SyslogIdentifier=nopCommerce460-example
+SyslogIdentifier=nopCommerce460-$hostname
 User=root
 Environment=ASPNETCORE_ENVIRONMENT=Production
 Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
@@ -173,7 +173,7 @@ sudo systemctl enable supervisord.service
 
 
 ### Configure Suversivor.d ini files
-sudo  cat > /etc/supervisord.d/$website-nopCommerce460.ini << EOF
+sudo  cat > /etc/supervisord.d/$website.ini << EOF
 [program:$website-nopCommerce460]
 
 command=dotnet run --project /var/www/$website/web/App_Data/appsettings.json --configuration Release
@@ -192,11 +192,11 @@ systemctl restart supervisord
 systemctl status supervisord
 
 ## Start the service
-sudo systemctl enable nopCommerce460.service
-sudo systemctl start nopCommerce460.service
+sudo systemctl enable $hostname.service
+sudo systemctl start $hostname.service
 
 ## Restart the nginx server
 sudo systemctl restart nginx
 
 ## Check the nopCommerce service status
-sudo systemctl status nopCommerce460.service
+sudo systemctl status $hostname.service
