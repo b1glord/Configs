@@ -136,7 +136,7 @@ dotnet=$(which dotnet)
 
 
 
-sudo  cat > /etc/systemd/system/nopCommerce460.service << EOF
+sudo  cat > /etc/systemd/system/$website-nopCommerce460.service << EOF
 [Unit]
 Description=$hostname nopCommerce app running on CentOS 7
 
@@ -174,7 +174,7 @@ sudo systemctl enable supervisord.service
 
 ### Configure Suversivor.d ini files
 sudo  cat > /etc/supervisord.d/$website-nopCommerce460.ini << EOF
-[program:$website-nopCommerce450]
+[program:$website-nopCommerce460]
 
 command=dotnet run --project /var/www/$website/web/App_Data/appsettings.json --configuration Release
 directory=/var/www/$website/web
