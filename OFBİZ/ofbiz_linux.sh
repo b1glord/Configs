@@ -1,3 +1,9 @@
+# If sitename field is blank, it will error out.(test)
+read -p "Please enter your website name (ornek xxx.com): " website
+if [[ -z "$website" ]]; then
+        echo "ERROR: The website name is invalid or blank."
+        exit
+fi
 # apache ofbiz 
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
 cd /tmp
@@ -26,7 +32,7 @@ IP_ADDRESS=( $(hostname -I) );
 #== Düzeltme 1
 cp /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/rainbowstone-saphir.less /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/raınbowstone-saphır.less
 #== Düzeltme 2
-sed -i "s/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org,${IP_ADDRESS[0]}/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/security/config/security.properties
+sed -i "s/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org,$website,${IP_ADDRESS[0]}/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/security/config/security.properties
 
 #== Düzeltme 3
 #==https://cwiki.apache.org/confluence/display/OFBIZ/Install+OFBiz+with+MariaDB%2C+Apache2+Proxy+and+SSL
@@ -35,7 +41,7 @@ sed -i "s/port.https.enabled=Y/port.https.enabled=N/" /usr/local/ofbiz/apache-of
 sed -i "s/no.http=Y/no.http=N/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
 sed -i "s/port.http=8080/port.http=/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
 
-sudo certbot --apache certonly -n -d ${IP_ADDRESS[0]}
+sudo certbot --apache certonly -n -d $website
 
 
 #=== Run Gradle:
@@ -65,10 +71,10 @@ cd /usr/local/ofbiz/apache-ofbiz-18.12.07
 
 #=== Visit OFBiz through your browser:
 
-echo "https://localhost:8443/ordermgr     [Order Back Office]"
+echo "https://$website:8443/ordermgr     [Order Back Office]"
 
-echo "https://localhost:8443/accounting   [Accounting Back Office]"
+echo "https://$website:8443/accounting   [Accounting Back Office]"
 
-echo "https://localhost:8443/webtools     [Administrator interface]"
+echo "https://$website:8443/webtools     [Administrator interface]"
 
 echo "You can log in with the user *admin* and password *ofbiz*."
