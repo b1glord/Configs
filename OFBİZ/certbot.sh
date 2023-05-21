@@ -1,3 +1,4 @@
+#!/bin/bash
 # https://certbot.eff.org/instructions?ws=nginx&os=pip
 
 # Install system dependencies
