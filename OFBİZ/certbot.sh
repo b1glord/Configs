@@ -1,4 +1,4 @@
-#!/bin/bash
+
 # https://certbot.eff.org/instructions?ws=nginx&os=pip
 # https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/
 
