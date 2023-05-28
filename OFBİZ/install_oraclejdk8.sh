@@ -6,7 +6,7 @@ wget -nc https://github.com/frekele/oracle-java/releases/download/8u92-b14/jdk-8
 sudo rpm -i jdk-8u92-linux-x64.rpm
 
 # Add Profile Java Home
-cat <<'EOF' >> /etc/profile.d/javahome.sh
+cat <<'EOF' >> /etc/profile.d/javahome80.sh
 #!/bin/sh
 # Set JDK installation directory according to selected Java compiler
 # Copy /etc/profile.d location
@@ -19,3 +19,5 @@ export JRE_HOME=$JAVA_HOME/jre
 export PATH=$PATH:$JAVA_HOME/bin
 export CLASSPATH=$JAVA_HOME/jre/lib/ext:$JAVA_HOME/lib/tools.jar
 EOF
+
+source /etc/profile.d/javahome80.sh
