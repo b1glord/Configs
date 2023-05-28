@@ -4,7 +4,7 @@
 ```
 yum -y install wget unzip
 cd /tmp
-rm -f ./ofbiz_linux.sh
+rm -f ./scipio.sh
 wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/scipio-erp/scipio.sh
 chmod +x scipio.sh
 ./scipio.sh
