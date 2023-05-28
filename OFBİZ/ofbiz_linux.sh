@@ -42,11 +42,11 @@ sed -i "s/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,d
 #sed -i "s/port.http=8080/port.http=/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
 
 # certbot bozuk silip tekrar yüklüyoruz
-cd /tmp
-wget https://raw.githubusercontent.com/b1glord/Configs/master/OFB%C4%B0Z/certbot.sh
-chmod +x certbot.sh
-./certbot.sh
-sudo certbot --apache certonly -n -d $website
+#cd /tmp
+#wget https://raw.githubusercontent.com/b1glord/Configs/master/OFB%C4%B0Z/certbot.sh
+#chmod +x certbot.sh
+#./certbot.sh
+#sudo certbot --apache certonly -n -d $website
 
 
 #=== Run Gradle:
