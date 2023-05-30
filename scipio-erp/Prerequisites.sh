@@ -10,8 +10,8 @@ chmod +x /tmp/install_github.sh
 
 # java 8 ile çalışıyor üst sürümlere uyumlu degil
 cd /tmp
-#wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/install_oraclejdk8.sh
-wget https://raw.githubusercontent.com/b1glord/Configs/master/scipio-erp/install_java-180-openjdk.sh
+wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/install_oraclejdk8.sh
+#wget https://raw.githubusercontent.com/b1glord/Configs/master/scipio-erp/install_java-180-openjdk.sh
 chmod +x install_oraclejdk8.sh
 ./install_oraclejdk8.sh
 
