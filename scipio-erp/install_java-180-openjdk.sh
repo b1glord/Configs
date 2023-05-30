@@ -1,7 +1,7 @@
 yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
 
 # update-alternatives --config java
-export JAVA_HOME=readlink -f $(which java)
+#export JAVA_HOME=readlink -f $(which java)
 
 # Add Profile Java Home
 cat <<'EOF' >> /etc/profile.d/javahome18.sh
