@@ -1,4 +1,5 @@
-yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
+#yum -y install java-1.8.0-openjdk
+yum -y install java-1.8.0-openjdk-devel
 
 # update-alternatives --config java
 #export JAVA_HOME=readlink -f $(which java)
