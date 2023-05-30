@@ -2,7 +2,6 @@ yum -y install java-1.8.0-openjdk java-1.8.0-openjdk-devel
 
 # update-alternatives --config java
 #export JAVA_HOME=readlink -f $(which java)
-javahome = readlink -f $(which java)
 
 # Add Profile Java Home
 cat <<'EOF' >> /etc/profile.d/javahome18.sh
@@ -13,8 +12,7 @@ cat <<'EOF' >> /etc/profile.d/javahome18.sh
 # echo $JAVA_HOME
 # echo $PATH
 # echo $CLASSPATH
-#export JAVA_HOME=/usr/lib/jvm/java
-export JAVA_HOME=$javahome
+export JAVA_HOME=/usr/lib/jvm/java-openjdk
 export JRE_HOME=$JAVA_HOME/jre
 export PATH=$PATH:$JAVA_HOME/bin
 export CLASSPATH=$JAVA_HOME/jre/lib/ext:$JAVA_HOME/lib/tools.jar
