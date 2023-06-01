@@ -14,4 +14,8 @@ git checkout 2.x
 # solr 8080 default port degistirme cakısmaları onlemek için
 # sed -i "s/solr.webapp.portOverride=/solr.webapp.portOverride=2480/" /usr/local/scipio-erp/applications/solr/config/solrconfig.properties
 
+# ispconfig ile scipio erp port çakışmaları için duzeltme 
+sed -i "s/8080/2083/" /etc/nginx/sites-available/ispconfig.vhost
+systemctl restart nginx
+
 ./install.sh
