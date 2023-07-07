@@ -28,6 +28,14 @@ chmod +x installcentosispconfig440.sh
 ```
 cd /tmp
 rm -f ./installcentosispconfig430.sh
+wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentosispconfig430.sh
+chmod +x installcentosispconfig430.sh
+./installcentosispconfig430.sh
+```
+
+```
+cd /tmp
+rm -f ./installcentosispconfig430.sh
 wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/NopCommerce/installcentos430.sh
 chmod +x installcentosispconfig430.sh
 ./installcentosispconfig430.sh
