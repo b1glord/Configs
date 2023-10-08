@@ -53,7 +53,7 @@ Rainbow Star [0]   [Middle Head]   Item ID# 18894 (Rainbow_Star)
 Orochimaru's Mask [0]   [Lower Head]   Item ID# 18948 (Mask_Of_Orochimaru)
 Candy Cane In Mouth [0]   [Lower Head]   Item ID# 18526 (Yummy_Lollipop)
 Jiraiya's Pipe [0]   [Lower Head]   Item ID# 18947 (Pipe_Of_Jiraiya)			//bu calism�yor
-
+CD In Mouth [0]   [Lower Head]   Item ID# 18666
 
 
 
