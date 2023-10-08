@@ -1,7 +1,11 @@
 	
-  B Halter Box 30Days    Item ID# 16683 (B_Halter_Box_30Days)
-  Reins Of Mount    Item ID# 12622 (Boarding_Halter)
+Reins Of Mount    Item ID# 12622 (Boarding_Halter)  
+B Halter Box 30Days    Item ID# 16683 (B_Halter_Box_30Days)
   
+
+
+------------------------ Godly items ------------------------
+  Jormungand [0]   [Two Handed]   Item ID# 2020
   Rudra Bow [0]   [Two Handed]   Item ID# 1720 (Bow_Of_Rudra)
   Balmung [0]   [Two Handed]   Item ID# 1161 (Balmung)
   Mjolnir [0]   [One Hand]   Item ID# 1530 (Mjolnir)
@@ -10,6 +14,9 @@
   Brynhild [0]   [Body]   Item ID# 2383 (Brynhild)
   Asprika [0]   [Garment]   Item ID# 2541 (Asprika)
   Brisingamen [0]   [Accessory]   Item ID# 2630 (Brysinggamen)
+
+
+------------------------ Staff items ------------------------
 
 
 
@@ -28,15 +35,16 @@ Costume Sword Wing [0]   [Costume Garment]   Item ID# 20510 (C_SwordWing)
 Costume Wings of Uriel [0]   [Costume Garment]   Item ID# 20509 (C_Wings_of_Uriel)
   
   
- 
+------------------------ Upper Headgears items ------------------------
 
+RWC13 Jormungandr Hat [1]   [Upper Head]   Item ID# 18987
 
 
 
 ------------------------ Middle Headgears items ------------------------
-KarduiEar [0]   [Middle Head]   Item ID# 5966 (KarduiEar)
-Black Devil Mask [0]   [Middle Head]   Item ID# 18599 (Black_Devil_Mask)
 Black Devil Mask [1]   [Middle Head]   Item ID# 18603 (Black_Devil_Mask_)
+Black Devil Mask [0]   [Middle Head]   Item ID# 18599 (Black_Devil_Mask)
+KarduiEar [0]   [Middle Head]   Item ID# 5966 (KarduiEar)
 Rainbow Star [0]   [Middle Head]   Item ID# 18894 (Rainbow_Star)
 
 
@@ -52,6 +60,7 @@ Jiraiya's Pipe [0]   [Lower Head]   Item ID# 18947 (Pipe_Of_Jiraiya)			//bu cali
 
 
 
+------------------------ Valkyrian items ------------------------
 
 Valkyrian Armor [1]   [Body]   Item ID# 2357 (Valkyrie_Armor)
 Valkyrian Manteau [1]   [Garment]   Item ID# 2524 (Valkyrie_Manteau)
@@ -73,6 +82,7 @@ Costume Valkyrie Helm [0]   [Costume Upper Head]   Item ID# 19546 (C_Valkyrie_He
 
 Shadow Guard [1]   [Shield]   Item ID# 2135 (Shadow_Guard)
 Shadow Walk [0]   [Footgear]   Item ID# 2426 (Shadow_Walk)
+
 
 ------------------------ Footgear İtems ------------------------
 Temporal Boots Of Strength [1]   [Footgear]   Item ID# 22006 (Temporal_STR_Boots_)
