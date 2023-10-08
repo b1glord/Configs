@@ -18,6 +18,7 @@ sed -i "s%//#define VIP_ENABLE%#define VIP_ENABLE%" /root/rAthena/src/config/cor
 
 
 #  canavarların hp bar ve benzeri bilgilerini görünür yapmak için
+#  Not: sadece /showname (ince yazı karakteri ile çalışıyor)
 # // Display some mob info next to their name? (add as needed)
 # // (does not works on guardian or Emperium)
 # // 1: Display mob HP (Hp/MaxHp format)
