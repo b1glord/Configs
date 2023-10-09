@@ -1,22 +1,27 @@
 	
-Reins Of Mount    Item ID# 12622 (Boarding_Halter)  
-B Halter Box 30Days    Item ID# 16683 (B_Halter_Box_30Days)
+------------------------ Mount items ------------------------
+  Reins Of Mount    Item ID# 12622 (Boarding_Halter)  
+  B Halter Box 30Days    Item ID# 16683 (B_Halter_Box_30Days)
   
 
 
 ------------------------ Godly items ------------------------
-  Jormungand [0]   [Two Handed]   Item ID# 2020
+  Angra Manyu [0]   [One Hand]   Item ID# 1599 (Angra_Manyu)
   Rudra Bow [0]   [Two Handed]   Item ID# 1720 (Bow_Of_Rudra)
   Balmung [0]   [Two Handed]   Item ID# 1161 (Balmung)
   Mjolnir [0]   [One Hand]   Item ID# 1530 (Mjolnir)
   Mjolnir [0]   [One Hand]   Item ID# 16007 (Mjolnir_C)
   Lord Kaho's Horn [0]   [Upper Head]   Item ID# 5013 (Horn_Of_Lord_Kaho)
+  Ahura Mazdah [0]   [Shield]   Item ID# 2199 (Ahura_Mazda)
   Brynhild [0]   [Body]   Item ID# 2383 (Brynhild)
   Asprika [0]   [Garment]   Item ID# 2541 (Asprika)
   Brisingamen [0]   [Accessory]   Item ID# 2630 (Brysinggamen)
 
 
+
+
 ------------------------ Staff items ------------------------
+  Jormungand [0]   [Two Handed]   Item ID# 2020
 
 
 
