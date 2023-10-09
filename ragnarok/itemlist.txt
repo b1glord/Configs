@@ -131,6 +131,9 @@ Hero Magic Coat [1]   [Body]   Item ID# 15094 (Hero_Magic_Coat)
 
 
 
+------------------------ Attack İncrease İtems ------------------------
+Doppelganger Card [Weapon]   Item ID# 4142 (Doppelganger_Card)
+
 
 
 ------------------------ Cast İncrease İtems ------------------------
