@@ -16,6 +16,7 @@
   Brynhild [0]   [Body]   Item ID# 2383 (Brynhild)
   Asprika [0]   [Garment]   Item ID# 2541 (Asprika)
   Brisingamen [0]   [Accessory]   Item ID# 2630 (Brysinggamen)
+  Megingjard [0]   [Accessory]   Item ID# 2629 (Magingiorde)
 
 
 
