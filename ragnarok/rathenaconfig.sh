@@ -127,6 +127,13 @@ sed -i "s%show_mob_info: 0%show_mob_info: 5%" /root/rAthena/conf/battle/monster.
 # // The rate of time it takes to cast a spell (Note 2, 0 = No casting time)
 # casting_rate: 100
 sed -i "s%casting_rate: 100%casting_rate: 0%" /root/rAthena/conf/battle/skill.conf
+
+// Does the delay time depend on the caster's DEX and/or AGI? (Note 1)
+// Note: On Official servers, neither Dex nor Agi affect delay time
+delay_dependon_dex: no
+delay_dependon_agi: no
+sed -i "s%delay_dependon_dex: no%delay_dependon_dex: yes%" /root/rAthena/conf/battle/skill.conf
+sed -i "s%delay_dependon_agi: no%delay_dependon_agi: no%" /root/rAthena/conf/battle/skill.conf
 # ===================  status.conf  ========================= #
 
 
