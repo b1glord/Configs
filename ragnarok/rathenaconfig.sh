@@ -73,8 +73,8 @@ sed -i "s%rare_drop_announce: 0%rare_drop_announce: 1%" /root/rAthena/conf/battl
 # max_body_style: 1
 
 sed -i "s%max_hair_style: 42%max_hair_style: 82%" /root/rAthena/conf/battle/client.conf
-sed -i "s%max_hair_color: 8%max_hair_color: 8%" /root/rAthena/conf/battle/client.conf
-sed -i "s%max_cloth_color: 7%max_cloth_color: 7%" /root/rAthena/conf/battle/client.conf
+sed -i "s%max_hair_color: 8%max_hair_color: 33%" /root/rAthena/conf/battle/client.conf
+sed -i "s%max_cloth_color: 7%max_cloth_color: 34%" /root/rAthena/conf/battle/client.conf
 sed -i "s%max_body_style: 1%max_body_style: 1%" /root/rAthena/conf/battle/client.conf
 
 
