@@ -124,7 +124,9 @@ sed -i "s%show_mob_info: 0%show_mob_info: 5%" /root/rAthena/conf/battle/monster.
 # ===================  player.conf  ========================= #
 
 # ===================  skill.conf  ========================== #
-
+# // The rate of time it takes to cast a spell (Note 2, 0 = No casting time)
+# casting_rate: 100
+sed -i "s%casting_rate: 100%casting_rate: 0%" /root/rAthena/conf/battle/skill.conf
 # ===================  status.conf  ========================= #
 
 
