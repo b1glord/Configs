@@ -56,12 +56,12 @@ sed -i "s%rare_drop_announce: 0%rare_drop_announce: 1%" /root/rAthena/conf/battl
 
 
 # ===================  exp.conf  =============================== #
-// Rate at which exp. is given. (Note 2)
-base_exp_rate: 100
+# // Rate at which exp. is given. (Note 2)
+# base_exp_rate: 100
 sed -i "s%base_exp_rate: 100%base_exp_rate: 10000%" /root/rAthena/conf/battle/exp.conf
 
-// Rate at which job exp. is given. (Note 2)
-job_exp_rate: 100
+# // Rate at which job exp. is given. (Note 2)
+# job_exp_rate: 100
 sed -i "s%job_exp_rate: 100%job_exp_rate: 10000%" /root/rAthena/conf/battle/exp.conf
 # ===================  feature.conf  =========================== #
 
@@ -87,8 +87,9 @@ sed -i "s%max_body_style: 1%max_body_style: 1%" /root/rAthena/conf/battle/client
 
 
 # ===================  guild.conf  =========================== #
-
-
+# // Maximum castles one guild can own (0 = unlimited)
+# guild_max_castles: 0
+sed -i "s%guild_max_castles: 0%guild_max_castles: 4%" /root/rAthena/conf/battle/guild.conf
 # ===================  homunc.conf  ========================== #
 
 
