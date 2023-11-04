@@ -77,8 +77,17 @@ wget https://raw.githubusercontent.com/b1glord/ispconfig_setup_extra/master/cent
 chmod a+x ./install_github.sh & ./install_github.sh
 
 #4-1)importing your costumized rathena git into server
+#https://github.com/rathena/rathena/wiki/installations#optional-clone-information
+#git clone https://github.com/rathena/rathena.git ~/rAthena    // outdated
 #============================
-git clone https://github.com/rathena/rathena.git ~/rAthena
+
+git clone https://github.com/b1glord/rathena.git ~/rAthena
+git remote -v
+git remote add upstream https://github.com/rathena/rathena.git
+git remote -v
+git pull upstream master
+
+
 
 
 #4-2)Securing and adjusting your Git files
