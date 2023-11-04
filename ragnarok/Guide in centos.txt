@@ -82,8 +82,12 @@ chmod a+x ./install_github.sh & ./install_github.sh
 #============================
 
 git clone https://github.com/b1glord/rathena.git ~/rAthena
+
+cd ~/rAthena
 git remote -v
+
 git remote add upstream https://github.com/rathena/rathena.git
+
 git remote -v
 git pull upstream master
 
