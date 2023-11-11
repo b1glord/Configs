@@ -91,8 +91,6 @@ git remote add upstream https://github.com/rathena/rathena.git
 git remote -v
 git pull upstream master
 
-git clone https://github.com/secretdataz/athena-web-service.git ~/web_athena
-
 
 #4-2)Securing and adjusting your Git files
 #============================
@@ -117,6 +115,23 @@ wget https://raw.githubusercontent.com/b1glord/ADI/master/custom.sql
 wget https://raw.githubusercontent.com/b1glord/ADI/master/ADI.sh
 chmod +x ADI.sh
 ./ADI.sh
+
+
+
+
+#5-2) Web Service 
+#============================
+git clone https://github.com/secretdataz/athena-web-service.git ~/web_athena
+
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+HASH="$(wget -q -O - https://composer.github.io/installer.sig)"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+composer
+
+cd ~/web_athena
+composer install
+wget https://raw.githubusercontent.com/secretdataz/athena-web-service/master/.env.example -P ~/web_athena/.env
 
 
 
