@@ -92,17 +92,6 @@ git remote -v
 git pull upstream master
 
 
-#4-2)Securing and adjusting your Git files
-#============================
-#/before we proceed make sure you have github and gitlab account(must have the same email on both git sites)
-#first: fork the rathena git on github
-#second: import the rathena git into gitlab
-#third: clone your rathena git into github application
-#edit the following:
-#.gitignore
-#enable import folders
-
-
 
 
 #5) Db Yukleme sihirbazi
@@ -131,7 +120,8 @@ composer
 
 cd ~/web_athena
 composer install
-wget https://raw.githubusercontent.com/secretdataz/athena-web-service/master/.env.example -P ~/web_athena/.env
+
+Winscp den .env.example dosyası düzenlemesi yapmak için ctrl+alt+h kombinasyonunu kullanarak gizli dosyalar(. ile başlayan)ı görüyoruz
 
 
 
@@ -198,24 +188,3 @@ chmod a+x athena-start
 
 
 
-#11) update git 
-#============================
-
-#cd ~/rAthena
-#./athena-start stop
-
-#if you made some changes on source file do
-#============================
-#make clean 
-
-#then
-#git pull
-
-#it will ask for your gitlab user and passwd
-#again if you made some changes on source file do
-#============================
-#make server
-
-#then
-#============================
-#./athena-start start
