@@ -91,7 +91,7 @@ git remote add upstream https://github.com/rathena/rathena.git
 git remote -v
 git pull upstream master
 
-
+git clone https://github.com/secretdataz/athena-web-service.git ~/web_athena
 
 
 #4-2)Securing and adjusting your Git files
