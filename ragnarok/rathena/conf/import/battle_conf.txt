@@ -1,9 +1,0 @@
-// Valid range of dyes and styles on the client.
-min_hair_style: 0
-max_hair_style: 80
-min_hair_color: 0
-max_hair_color: 33
-min_cloth_color: 0 
-max_cloth_color: 34
-min_body_style: 0
-max_body_style: 1

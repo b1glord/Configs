@@ -1,1 +1,0 @@
-Hatirlama amacli ornek dosya
