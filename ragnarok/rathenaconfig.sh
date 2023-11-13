@@ -24,7 +24,18 @@ sed -i "s%//#define VIP_ENABLE%#define VIP_ENABLE%" /root/rAthena/src/config/cor
 
 # ============  Copy Config Files in import folder  ============ #
 mkdir ~/rAthena/conf/import
-
+cp ~/rAthena/conf/atcommands.yml        ~/rAthena/conf/import/atcommands.yml
+cp ~/rAthena/conf/battle_athena.conf    ~/rAthena/conf/import/battle_conf.txt
+cp ~/rAthena/conf/char_athena.conf      ~/rAthena/conf/import/char_conf.txt
+cp ~/rAthena/conf/groups.yml            ~/rAthena/conf/import/groups.yml
+cp ~/rAthena/conf/inter_athena.conf     ~/rAthena/conf/import/inter_conf.txt
+cp ~/rAthena/conf/inter_server.yml      ~/rAthena/conf/import/inter_server.yml
+cp ~/rAthena/conf/log_athena.conf       ~/rAthena/conf/import/log_conf.txt
+cp ~/rAthena/conf/login_athena.conf     ~/rAthena/conf/import/login_conf.txt
+cp ~/rAthena/conf/map_athena.conf       ~/rAthena/conf/import/map_conf.txt
+cp ~/rAthena/conf/packet_athena.conf    ~/rAthena/conf/import/packet_conf.txt
+cp ~/rAthena/conf/script_athena.conf    ~/rAthena/conf/import/script_conf.txt
+cp ~/rAthena/conf/web_athena.conf       ~/rAthena/conf/import/web_conf.txt
 
 # ===================  Conf/Battle Settings  =================== #
 # ============================================================== #
