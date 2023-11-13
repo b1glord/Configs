@@ -22,6 +22,10 @@ sed -i "s%//#define VIP_ENABLE%#define VIP_ENABLE%" /root/rAthena/src/config/cor
 
 
 
+# ============  Copy Config Files in import folder  ============ #
+mkdir ~/rAthena/conf/import
+
+
 # ===================  Conf/Battle Settings  =================== #
 # ============================================================== #
 
