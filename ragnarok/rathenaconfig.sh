@@ -39,6 +39,26 @@ mkdir ~/rAthena/conf/import
 
 
 # ===================  drops.conf  ============================= #
+
+# https://forum.ratemyserver.net/general-discussion/what-are-your-favorite-rates-max-level/
+# // Use logarithmic drops? (Note 1)
+# // Logarithmic drops scale drop rates in a non-linear fashion using the equation 
+# // Droprate(x,y) = x * (5 - log(x)) ^ (ln(y) / ln(5))
+# // Where x is the original drop rate and y is the drop_rate modifier (the previously mentioned item_rate* variables)
+# // Use the following table for an idea of how the rate will affect drop rates when logarithmic drops are used:
+# // Y: Original Drop Rate
+# // X: Rate drop modifier (eg: item_rate_equip)
+sed -i "s%// Droprate(x,y) = x * (5 - log(x)) ^ (ln(y) / ln(5))%Droprate(x,y) = 1 - ((1 - x) ^ y)%" /root/rAthena/conf/battle/drops.conf
+sed -i "s%item_logarithmic_drops: no%item_logarithmic_drops: yes%" /root/rAthena/conf/battle/drops.conf
+
+# // Increase item drop rate +0.01%? (Note 1)
+# // On official servers it is possible to get 0.00% drop chance so all items are increased by 0.01%.
+# // NOTE: This is viewed as a bug to rAthena.
+# // Default: no
+# drop_rateincrease: no
+sed -i "s%drop_rateincrease: no%drop_rateincrease: yes%" /root/rAthena/conf/battle/drops.conf
+
+
 # // Makes your LUK value affect drop rates on an absolute basis.
 # // Setting to 100 means each luk adds 0.01% chance to find items
 # // (regardless of item's base drop rate).
