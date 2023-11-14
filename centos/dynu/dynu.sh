@@ -10,13 +10,13 @@ echo ""
 # Ask user fror the Dynu username
 # Then check if the username field is blank
 # if blank it will error out
-read -p "Please enter your MySQL username: " username
+read -p "Please enter your Dynu username: " username
 if [[ -z "$username" ]]; then
         echo "ERROR: That username is invalid or you didn't enter a value."
         exit
         # If username is valid or field is not blank continue and ask for the password
 elif [[ -n "$username" ]]; then
-        read -sp "Please enter your MySQL Password: " password
+        read -sp "Please enter your Dynu Password: " password
 fi
 
 # This checks if the password is valid and the field is not blank.
@@ -30,7 +30,7 @@ if [[ -z "$password" ]]; then
         # Password is valid.
 elif [[ -n "$password" ]]; then
         echo ""
-        read -sp "Please re-enter your MySQL Password: " password2
+        read -sp "Please re-enter your Dynu Password: " password2
         # Confirmation Password is invalid.
         if [[ -z "$password2" ]]; then
                 echo ""
@@ -45,7 +45,7 @@ if [[ -n "$password2" ]] && [[ "$password" == "$password2" ]]; then
         echo ""
         echo "Passwords match continuing..."
         echo ""
-        read -p "Please provide us your hostname for MySQL (default is localhost): " hostname
+        read -p "Please provide us your hostname for Dynu (default is localhost): " hostname
 
         # Checks if Passwords do not match
 elif [[ -n "$password2" ]] && [[ "$password" != "$password2" ]]; then
