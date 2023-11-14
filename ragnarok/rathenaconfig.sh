@@ -37,6 +37,12 @@ cp ~/rAthena/conf/packet_athena.conf    ~/rAthena/conf/import/packet_conf.txt
 cp ~/rAthena/conf/script_athena.conf    ~/rAthena/conf/import/script_conf.txt
 cp ~/rAthena/conf/web_athena.conf       ~/rAthena/conf/import/web_conf.txt
 
+# ======================  atcommands.yml  ====================== #
+sed -i "s%    - Path: conf/import/atcommands.yml%#     - Path: conf/import/atcommands.yml%" ~/rAthena/conf/import/atcommands.yml
+
+# ======================  battle_conf.txt  ====================== #
+
+
 # =========================  Char Conf  ======================== #
 sed -i "s%userid: s1%userid: chaos%" ~/rAthena/conf/import/char_conf.txt
 sed -i "s%passwd: p1%passwd: chaos%" ~/rAthena/conf/import/char_conf.txt
@@ -53,6 +59,11 @@ sed -i "s%char_del_option: 2%char_del_option: 1%" ~/rAthena/conf/import/char_con
 sed -i "s%pincode_enabled: yes%pincode_enabled: no%" ~/rAthena/conf/import/char_conf.txt
 
 sed -i "s%import: conf/import/char_conf.txt%//import: conf/import/char_conf.txt%" ~/rAthena/conf/import/char_conf.txt
+
+
+# ======================  groups.yml  ====================== #
+sed -i "s%  - Path: conf/import/groups.yml%#  - Path: conf/import/groups.yml%" ~/rAthena/conf/import/groups.yml
+
 
 # =========================  inter Conf  ======================== #
 # // MySQL Login server
@@ -89,6 +100,19 @@ sed -i "s%use_sql_db: no%use_sql_db: yes%" ~/rAthena/conf/import/inter_conf.txt
 sed -i "s%import: conf/import/inter_conf.txt%//import: conf/import/inter_conf.txt%" ~/rAthena/conf/import/inter_conf.txt
 
 
+# ========================= inter_server.yml ======================== #
+sed -i "s%    - Path: conf/import/inter_server.yml%#    - Path: conf/import/inter_server.yml%" ~/rAthena/conf/import/inter_server.yml
+
+
+# =========================  log Conf  ======================== #
+sed -i "s%import: conf/import/log_conf.txt%//import: conf/import/log_conf.txt%" ~/rAthena/conf/import/log_conf.txt
+
+
+# =========================  login Conf  ======================== #
+sed -i "s%import: conf/inter_athena.conf%//import: conf/inter_athena.conf%" ~/rAthena/conf/import/login_conf.txt
+sed -i "s%import: conf/import/login_conf.txt%//import: conf/import/login_conf.txt%" ~/rAthena/conf/import/login_conf.txt
+
+
 # =========================  Map Conf  ======================== #
 sed -i "s%userid: s1%userid: chaos%" ~/rAthena/conf/import/map_conf.txt
 sed -i "s%passwd: p1%passwd: chaos%" ~/rAthena/conf/import/map_conf.txt
@@ -97,6 +121,19 @@ sed -i "s%//char_ip: 127.0.0.1%char_ip: pvpgn.freeddns.org%" ~/rAthena/conf/impo
 sed -i "s%//map_ip: 127.0.0.1%map_ip: 127.0.0.1%" ~/rAthena/conf/import/map_conf.txt
 
 sed -i "s%import: conf/import/map_conf.txt%//import: conf/import/map_conf.txt%" ~/rAthena/conf/import/map_conf.txt
+
+
+# =========================  Packet Conf  ======================== #
+sed -i "s%import: conf/import/packet_conf.txt%//import: conf/import/packet_conf.txt%" ~/rAthena/conf/import/packet_conf.txt
+
+
+# =========================  script_conf Conf  ======================== #
+sed -i "s%import: conf/import/script_conf.txt%//import: conf/import/script_conf.txt%" ~/rAthena/conf/import/script_conf.txt
+
+
+# =========================  web_conf Conf  ======================== #
+sed -i "s%import: conf/import/web_conf.txt%//import: conf/import/web_conf.txt%" ~/rAthena/conf/import/web_conf.txt
+
 
 
 # ===================  Conf/Battle Settings  =================== #
