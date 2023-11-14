@@ -1,4 +1,4 @@
-#!/bin/sh
+# start scprits
 clear
 echo ""
 echo "Welcome to the Dynu installer"
@@ -7,7 +7,7 @@ echo "This script will install DYNU."
 #echo "This script was created by Fury"
 echo ""
 echo ""
-# Ask user fror the MySQL username
+# Ask user fror the Dynu username
 # Then check if the username field is blank
 # if blank it will error out
 read -p "Please enter your MySQL username: " username
