@@ -93,8 +93,8 @@ sed -i "s%import: conf/import/inter_conf.txt%//import: conf/import/inter_conf.tx
 sed -i "s%userid: s1%userid: chaos%" ~/rAthena/conf/import/map_conf.txt
 sed -i "s%passwd: p1%passwd: chaos%" ~/rAthena/conf/import/map_conf.txt
 
-sed -i "s%//login_ip: 127.0.0.1%login_ip: 127.0.0.1%" ~/rAthena/conf/import/map_conf.txt
 sed -i "s%//char_ip: 127.0.0.1%char_ip: pvpgn.freeddns.org%" ~/rAthena/conf/import/map_conf.txt
+sed -i "s%//map_ip: 127.0.0.1%map_ip: 127.0.0.1%" ~/rAthena/conf/import/map_conf.txt
 
 sed -i "s%import: conf/import/map_conf.txt%//import: conf/import/map_conf.txt%" ~/rAthena/conf/import/map_conf.txt
 
