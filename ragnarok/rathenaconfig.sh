@@ -37,6 +37,68 @@ cp ~/rAthena/conf/packet_athena.conf    ~/rAthena/conf/import/packet_conf.txt
 cp ~/rAthena/conf/script_athena.conf    ~/rAthena/conf/import/script_conf.txt
 cp ~/rAthena/conf/web_athena.conf       ~/rAthena/conf/import/web_conf.txt
 
+# =========================  Char Conf  ======================== #
+sed -i "s%userid: s1%userid: chaos%" ~/rAthena/conf/import/char_conf.txt
+sed -i "s%passwd: p1%passwd: chaos%" ~/rAthena/conf/import/char_conf.txt
+
+sed -i "s%server_name: rAthena%server_name: Athena%" ~/rAthena/conf/import/char_conf.txt
+
+sed -i "s%//login_ip: 127.0.0.1%login_ip: 127.0.0.1%" ~/rAthena/conf/import/char_conf.txt
+sed -i "s%//char_ip: 127.0.0.1%char_ip: pvpgn.freeddns.org%" ~/rAthena/conf/import/char_conf.txt
+
+sed -i "s%start_zeny: 0%start_zeny: 1000000%" ~/rAthena/conf/import/char_conf.txt
+
+sed -i "s%char_del_option: 2%char_del_option: 1%" ~/rAthena/conf/import/char_conf.txt
+
+sed -i "s%pincode_enabled: yes%pincode_enabled: no%" ~/rAthena/conf/import/char_conf.txt
+
+sed -i "s%import: conf/import/char_conf.txt%//import: conf/import/char_conf.txt%" ~/rAthena/conf/import/char_conf.txt
+
+# =========================  inter Conf  ======================== #
+# // MySQL Login server
+sed -i "s%login_server_id: ragnarok%login_server_id: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%login_server_pw: ragnarok%login_server_pw: gaZWLeQ9yp#%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%login_server_db: ragnarok%login_server_db: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+
+sed -i "s%ipban_db_id: ragnarok%ipban_db_id: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%ipban_db_pw: ragnarok%ipban_db_pw: gaZWLeQ9yp#%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%ipban_db_db: ragnarok%ipban_db_db: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+
+# // MySQL Character server
+sed -i "s%char_server_id: ragnarok%char_server_id: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%char_server_pw: ragnarok%char_server_pw: gaZWLeQ9yp#%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%char_server_db: ragnarok%char_server_db: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+
+# // MySQL Map Server
+sed -i "s%map_server_id: ragnarok%map_server_id: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%map_server_pw: ragnarok%map_server_pw: gaZWLeQ9yp#%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%map_server_db: ragnarok%map_server_db: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+
+# // MySQL Web Server
+sed -i "s%web_server_id: ragnarok%web_server_id: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%web_server_pw: ragnarok%web_server_pw: gaZWLeQ9yp#%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%web_server_db: ragnarok%web_server_db: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+
+# // MySQL Log Database
+sed -i "s%log_db_id: ragnarok%log_db_id: c1ragnarok%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%log_db_pw: ragnarok%log_db_pw: gaZWLeQ9yp#%" ~/rAthena/conf/import/inter_conf.txt
+sed -i "s%log_db_db: ragnarok%log_db_db: c1logs%" ~/rAthena/conf/import/inter_conf.txt
+
+sed -i "s%use_sql_db: no%use_sql_db: yes%" ~/rAthena/conf/import/inter_conf.txt
+
+sed -i "s%import: conf/import/inter_conf.txt%//import: conf/import/inter_conf.txt%" ~/rAthena/conf/import/inter_conf.txt
+
+
+# =========================  Map Conf  ======================== #
+sed -i "s%userid: s1%userid: chaos%" ~/rAthena/conf/import/map_conf.txt
+sed -i "s%passwd: p1%passwd: chaos%" ~/rAthena/conf/import/map_conf.txt
+
+sed -i "s%//login_ip: 127.0.0.1%login_ip: 127.0.0.1%" ~/rAthena/conf/import/map_conf.txt
+sed -i "s%//char_ip: 127.0.0.1%char_ip: pvpgn.freeddns.org%" ~/rAthena/conf/import/map_conf.txt
+
+sed -i "s%import: conf/import/map_conf.txt%//import: conf/import/map_conf.txt%" ~/rAthena/conf/import/map_conf.txt
+
+
 # ===================  Conf/Battle Settings  =================== #
 # ============================================================== #
 
