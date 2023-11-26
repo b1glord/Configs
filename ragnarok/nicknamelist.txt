@@ -3,8 +3,10 @@
 . Mage                    BigLorD
 . Alchemist               Fury
 . Bard                    TorreS HaNaBi
-. Priest                  MeLoX
+. Priest                  MeLoX Ultimatia
 . Hunter                  RainBow
 . Gunlisher               Lucy
 . Blacksmith              ToMs
 . Dancer                  MeLoDy
+
+Starlia lese
