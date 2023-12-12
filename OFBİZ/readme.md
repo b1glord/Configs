@@ -13,13 +13,13 @@ chmod +x ofbiz_linux.sh
 
 # === Start OFBiz:
 ```
-cd /usr/local/ofbiz/apache-ofbiz-18.12.07
+cd /usr/local/ofbiz/apache-ofbiz-18.12.10
 ./gradlew "ofbizBackground --start"
 ```
 
 # === Stop OFBiz:
 ```
-cd /usr/local/ofbiz/apache-ofbiz-18.12.07
+cd /usr/local/ofbiz/apache-ofbiz-18.12.10
 ./gradlew "ofbiz --shutdown"
 ```
 
