@@ -30,7 +30,7 @@ unzip apache-ofbiz-18.12.10.zip -d /usr/local/ofbiz
 IP_ADDRESS=( $(hostname -I) );
 #=== Bugları düzeltiyoruz
 #== Düzeltme 1
-cp /usr/local/ofbiz/apache-ofbiz-18.12.10/themes/rainbowstone/webapp/rainbowstone/rainbowstone-saphir.less /usr/local/ofbiz/apache-ofbiz-18.12.07/themes/rainbowstone/webapp/rainbowstone/raınbowstone-saphır.less
+cp /usr/local/ofbiz/apache-ofbiz-18.12.10/themes/rainbowstone/webapp/rainbowstone/rainbowstone-saphir.less /usr/local/ofbiz/apache-ofbiz-18.12.10/themes/rainbowstone/webapp/rainbowstone/raınbowstone-saphır.less
 #== Düzeltme 2
 sed -i "s/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org,$website,${IP_ADDRESS[0]}/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/security/config/security.properties
 
