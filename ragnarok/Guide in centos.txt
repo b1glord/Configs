@@ -140,7 +140,7 @@ Winscp den .env.example dosyası düzenlemesi yapmak için ctrl+alt+h kombinasyo
 
 
 #============================
-#7) Alternatif Derleme icin asagidaki komutlari giriyoruz (mariadb-devel yuklemek gerekebilir) (Opsiyonel)
+#7) Kurulum öncesi config ayarları (Opsiyonel)
 #============================
 wget https://raw.githubusercontent.com/b1glord/Configs/master/ragnarok/rathenaconfig.sh
 
