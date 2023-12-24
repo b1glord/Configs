@@ -142,8 +142,11 @@ Winscp den .env.example dosyası düzenlemesi yapmak için ctrl+alt+h kombinasyo
 #============================
 #7) Kurulum öncesi config ayarları (Opsiyonel)
 #============================
+cd
+cd rAthena
 wget https://raw.githubusercontent.com/b1glord/Configs/master/ragnarok/rathenaconfig.sh
-
+chmod a+x ./rathenaconfig.sh
+./rathenaconfig.sh
 
 
 
