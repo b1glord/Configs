@@ -142,15 +142,22 @@ Winscp den .env.example dosyası düzenlemesi yapmak için ctrl+alt+h kombinasyo
 #============================
 #7) Alternatif Derleme icin asagidaki komutlari giriyoruz (mariadb-devel yuklemek gerekebilir) (Opsiyonel)
 #============================
+wget https://raw.githubusercontent.com/b1glord/Configs/master/ragnarok/rathenaconfig.sh
+
+
+
+
+
+#============================
+#8.1) Alternatif Derleme icin asagidaki komutlari giriyoruz (mariadb-devel yuklemek gerekebilir) (Opsiyonel)
+#============================
 #ln -s /usr/lib64/libmysqlclient.so.18.0.0 /usr/lib64/libmysqlclient.so
 #./configure --enable-64bit --with-MYSQL_LIBS=/usr/lib64/libmysqlclient.so
 #yada
 #./configure --enable-64bit --with-mysql-lib64	
 
 
-
-
-#8) return and compile the server
+#8.2) return and compile the server
 #============================
 
 cd
