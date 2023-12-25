@@ -1,9 +1,11 @@
 #
 #https://www.dynu.com/en-US/Resources/Downloads
+# https://www.dynu.com/Support/DownloadFile/30
 #Download Dynu Client for Red Hat Enterprise Linux 7
 #rpm -Uvh https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
 cd /tmp
-wget https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
+wget https://www.dynu.com/Support/DownloadFile/30
+#wget https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
 rpm -Uvh dynuiuc-2.6.2-2.el7.x86_64.rpm
 # start scprits
 #
