@@ -1,5 +1,10 @@
+#
+#https://www.dynu.com/en-US/Resources/Downloads
+#Download Dynu Client for Red Hat Enterprise Linux 7
+rpm -Uvh https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
+#rpm -Uvh https://www.dynu.com/support/downloadfile/30
 # start scprits
-clear
+#
 echo ""
 echo "Welcome to the Dynu installer"
 echo "This script will install DYNU."
@@ -7,10 +12,7 @@ echo "This script will install DYNU."
 #echo "This script was created by Fury"
 echo ""
 echo ""
-# Ask user fror the Dynu username
-# Then check if the username field is blank
-# if blank it will error out
-read -p "Please enter your Dynu username: " username
+read -p "Please enter your dYNU username: " username
 if [[ -z "$username" ]]; then
         echo "ERROR: That username is invalid or you didn't enter a value."
         exit
@@ -54,13 +56,7 @@ elif [[ -n "$password2" ]] && [[ "$password" != "$password2" ]]; then
         echo "ERROR: Passwords do not match."
         exit
 fi
-
-#https://www.dynu.com/en-US/Resources/Downloads
-#Download Dynu Client for Red Hat Enterprise Linux 7
-rpm -Uvh https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
-#rpm -Uvh https://www.dynu.com/support/downloadfile/30
-
-
+#
 #
 #Configure Dynu Client for Red Hat Enterprise Linux 7 (pvpgn.freeddns.org)
 sed -i "s/username/username $username/" /etc/dynuiuc/dynuiuc.conf
