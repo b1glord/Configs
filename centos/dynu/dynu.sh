@@ -5,7 +5,7 @@
 #rpm -Uvh https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
 cd /tmp
 #curl https://www.dynu.com/Support/DownloadFile/30
-curl https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
+curl -O https://github.com/b1glord/Configs/raw/master/centos/dynu/dynuiuc-2.6.2-2.el7.x86_64.rpm
 rpm -Uvh dynuiuc-2.6.2-2.el7.x86_64.rpm
 # start scprits
 #
