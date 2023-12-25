@@ -1,3 +1,5 @@
+#!/bin/sh
+clear
 #
 #https://www.dynu.com/en-US/Resources/Downloads
 # https://www.dynu.com/Support/DownloadFile/30
