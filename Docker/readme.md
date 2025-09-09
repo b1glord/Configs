@@ -16,10 +16,13 @@ chmod +x ADI.sh
 ```
 
 ```
+wget https://raw.githubusercontent.com/b1glord/ADI/master/customaccount.sql
+wget https://raw.githubusercontent.com/b1glord/ADI/master/custom.sql
+
 rm -f import-rathena-sql.sh
-wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/import-rathena-sql.sh
-chmod +x import-rathena-sql.sh
-SQL_MODE=re import-rathena-sql.sh
+wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/import-sql.sh
+chmod +x import-sql.sh
+SQL_MODE=re import-sql.sh
 ```
 
 ```
