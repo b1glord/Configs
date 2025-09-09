@@ -19,7 +19,7 @@ chmod +x ADI.sh
 rm -f import-rathena-sql.sh
 wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/import-rathena-sql.sh
 chmod +x import-rathena-sql.sh
-SQL_MODE=re /opt/rathena/tools/import-sql.sh
+SQL_MODE=re import-rathena-sql.sh
 ```
 
 ```
