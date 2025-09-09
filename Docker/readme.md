@@ -24,7 +24,7 @@ wget https://raw.githubusercontent.com/b1glord/ADI/master/custom.sql
 rm -f import-rathena-sql.sh
 wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/import-sql.sh
 chmod +x import-sql.sh
-SQL_MODE=re import-sql.sh
+import-sql.sh --re
 ```
 
 ```
@@ -32,8 +32,8 @@ SQL_MODE=re import-sql.sh
 SQL_MODE=minimal /opt/rathena/tools/import-sql.sh
 
 # Renewal tam tablo seti (SQL DB modunda)
-SQL_MODE=re /opt/rathena/tools/import-sql.sh
+SQL_MODE=re /opt/rathena/tools/import-sql.sh --re
 
 # Pre-renewal icin
-SQL_MODE=pre /opt/rathena/tools/import-sql.sh
+SQL_MODE=pre /opt/rathena/tools/import-sql.sh --pre-re
 ```
