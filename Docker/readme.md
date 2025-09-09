@@ -17,4 +17,6 @@ chmod +x ADI.sh
 
 ```
 wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/import-rathena-sql.sh
+chmod +x import-rathena-sql.sh
+./import-rathena-sql.sh
 ```
