@@ -1,127 +1,87 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# rAthena SQL toplu yukleyici
-# Calisma yeri: repo kokunde (./rathena/sql-files mevcut)
-# Docker: rathena_db (MariaDB) container'i calisiyor olmali
-
-# ---- Ayarlar / Varsayilanlar ----
-ENV_FILE="${ENV_FILE:-.env}"
-
-# .env'den degisken cek (varsa)
+# .env degiskenleri compose ile zaten container'a gelir.
+# Yine de elde calistirma icin opsiyonel .env oku:
+ENV_FILE="${ENV_FILE:-/opt/rathena/.env}"
 if [ -f "$ENV_FILE" ]; then
-  set -a
-  # shellcheck disable=SC1090
-  . "$ENV_FILE"
-  set +a
+  set -a; . "$ENV_FILE"; set +a
 fi
 
-# DB isimleri ve sifreler
-DB_HOST_DOCKER="${DB_HOST_DOCKER:-db}"              # rAthena ic ag adi (bilgi icin)
-DB_PORT_DOCKER="${DB_PORT_DOCKER:-3306}"            # rAthena ic ag portu (bilgi icin)
+: "${MYSQL_ROOT_PASSWORD:? .env icinde MYSQL_ROOT_PASSWORD gerekli}"
+
+DB_HOST="${DB_HOST:-db}"
+DB_PORT="${DB_PORT:-3306}"
+
 DB_NAME="${DB_NAME:-ragnarok}"
 LOG_DB_NAME="${LOG_DB_NAME:-ragnaroklog}"
 
-# MariaDB root bilgisi (container icinde var)
-MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD gerekli (.env icinde tanimla)}"
+# SQL set secimi: minimal | re | pre
+SQL_MODE="${SQL_MODE:-minimal}"
 
-# SQL modu:
-# minimal  -> sadece main.sql (DB_NAME) + logs.sql (LOG_DB_NAME)
-# re       -> minimal + *_re.sql veri tablolarini ekler (SQL DB kullaniyorsan)
-# pre      -> minimal + pre-re tablolarini ekler
-SQL_MODE="${SQL_MODE:-minimal}"  # minimal | re | pre
-
-# rAthena sql-files yolu (host tarafinda)
-SQL_DIR="${SQL_DIR:-./rathena/sql-files}"
-
-# Docker container adi
-DB_CONT="${DB_CONT:-rathena_db}"
-
-# ---- Yardimci fonksiyonlar ----
-die() { echo "HATA: $*" >&2; exit 1; }
-
-need_file() { [ -f "$1" ] || die "Dosya yok: $1"; }
-
-mysql_exec() {
-  local db="$1"; shift
-  local file="$1"; shift
-  echo ">> Import: $(basename "$file") -> $db"
-  # STDIN ile icerigi container'a veriyoruz
-  docker exec -i "$DB_CONT" sh -c "exec mysql -uroot -p\"\$MYSQL_ROOT_PASSWORD\" \"$db\"" < "$file"
-}
+# rAthena sql klasoru (senin mount yapina gore)
+SQL_DIR="${SQL_DIR:-/opt/rathena/rathena/sql-files}"
 
 mysql_stmt() {
-  local stmt="$1"
-  docker exec -i "$DB_CONT" sh -c "exec mysql -uroot -p\"\$MYSQL_ROOT_PASSWORD\" -e \"$stmt\""
+  mysql -h "$DB_HOST" -P "$DB_PORT" -uroot -p"$MYSQL_ROOT_PASSWORD" -e "$1"
+}
+mysql_file() {
+  local db="$1"; local file="$2"
+  if [ ! -f "$file" ]; then
+    echo ">> yok: $(basename "$file") (atlanacak)"
+    return 0
+  fi
+  echo ">> import: $(basename "$file") -> $db"
+  mysql -h "$DB_HOST" -P "$DB_PORT" -uroot -p"$MYSQL_ROOT_PASSWORD" "$db" < "$file"
 }
 
-# ---- Kontroller ----
-command -v docker >/dev/null || die "docker bulunamadi"
-docker ps --format '{{.Names}}' | grep -qx "$DB_CONT" || die "Container calismiyor: $DB_CONT"
-[ -d "$SQL_DIR" ] || die "Klasor bulunamadi: $SQL_DIR"
-
-# ---- DB olustur / yetki ver ----
-echo ">> DB olusturma ve yetkiler"
+echo ">> DB olustur"
 mysql_stmt "CREATE DATABASE IF NOT EXISTS \`$DB_NAME\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 mysql_stmt "CREATE DATABASE IF NOT EXISTS \`$LOG_DB_NAME\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
-# Opsiyonel: uygulama kullanicisi varsa tanimla (ENV'den)
-if [ -n "${MYSQL_USER:-}" ] && [ -n "${MYSQL_PASSWORD:-}" ]; then
-  mysql_stmt "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
-  mysql_stmt "GRANT ALL PRIVILEGES ON \`${DB_NAME}\`.* TO '${MYSQL_USER}'@'%';"
-  mysql_stmt "GRANT ALL PRIVILEGES ON \`${LOG_DB_NAME}\`.* TO '${MYSQL_USER}'@'%';"
-  mysql_stmt "FLUSH PRIVILEGES;"
+# Uygulama kullanicisi (opsiyonel)
+if [ -n "${DB_USER:-}" ] && [ -n "${DB_PASS:-}" ]; then
+  echo ">> Kullanici ve yetki: $DB_USER"
+  mysql_stmt "CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
+              GRANT ALL PRIVILEGES ON \`$DB_NAME\`.* TO '${DB_USER}'@'%';
+              GRANT ALL PRIVILEGES ON \`$LOG_DB_NAME\`.* TO '${DB_USER}'@'%';
+              FLUSH PRIVILEGES;"
 fi
 
-# ---- Zorunlu importlar ----
-MAIN_SQL="$SQL_DIR/main.sql"
-LOGS_SQL="$SQL_DIR/logs.sql"
-need_file "$MAIN_SQL"
-need_file "$LOGS_SQL"
+# Zorunlu dosyalar
+mysql_file "$DB_NAME"     "$SQL_DIR/main.sql"
+mysql_file "$LOG_DB_NAME" "$SQL_DIR/logs.sql"
 
-mysql_exec "$DB_NAME" "$MAIN_SQL"
-mysql_exec "$LOG_DB_NAME" "$LOGS_SQL"
-
-# ---- Opsiyonel veri tablolarini ekle (SQL_MODE) ----
 case "$SQL_MODE" in
   minimal)
-    echo ">> SQL_MODE=minimal (yalniz main.sql ve logs.sql yuklendi)"
+    echo ">> SQL_MODE=minimal (main.sql + logs.sql)"
     ;;
   re)
-    # Renewal tablolar
+    # Renewal icin tipik siralama (dosya yoksa atlar)
     FILES=(
-      "$SQL_DIR/item_db_re.sql"
-      "$SQL_DIR/mob_db_re.sql"
-      "$SQL_DIR/mob_skill_db_re.sql"
-      # kullanacaksan digerleri:
-      # "$SQL_DIR/item_cash_db_re.sql"
-      # "$SQL_DIR/roulette.sql"
-      # "$SQL_DIR/roulette_mutual.sql"
-      # "$SQL_DIR/web.sql"
+      "web.sql"
+      "item_db_re.sql" "item_db_re_equip.sql" "item_db_re_etc.sql" "item_db_re_usable.sql" "item_db2_re.sql"
+      "mob_db_re.sql" "mob_db2_re.sql"
+      "mob_skill_db_re.sql" "mob_skill_db2_re.sql"
+      "roulette_default_data.sql" "roulette.sql" "roulette_mutual.sql"
+      "customaccount.sql" "custom.sql"
     )
-    for f in "${FILES[@]}"; do
-      if [ -f "$f" ]; then mysql_exec "$DB_NAME" "$f"; else echo ">> Atlaniyor (yok): $(basename "$f")"; fi
-    done
+    for f in "${FILES[@]}"; do mysql_file "$DB_NAME" "$SQL_DIR/$f"; done
     ;;
   pre)
-    # Pre-renewal tablolar
+    # Pre-renewal icin tipik siralama
     FILES=(
-      "$SQL_DIR/item_db.sql"
-      "$SQL_DIR/mob_db.sql"
-      "$SQL_DIR/mob_skill_db.sql"
-      # kullanacaksan digerleri:
-      # "$SQL_DIR/item_cash_db.sql"
-      # "$SQL_DIR/roulette.sql"
-      # "$SQL_DIR/roulette_mutual.sql"
-      # "$SQL_DIR/web.sql"
+      "web.sql"
+      "item_db.sql" "item_db_equip.sql" "item_db_etc.sql" "item_db_usable.sql" "item_db2.sql"
+      "mob_db.sql" "mob_db2.sql"
+      "mob_skill_db.sql" "mob_skill_db2.sql"
+      "roulette_default_data.sql" "roulette.sql" "roulette_mutual.sql"
+      "customaccount.sql" "custom.sql"
     )
-    for f in "${FILES[@]}"; do
-      if [ -f "$f" ]; then mysql_exec "$DB_NAME" "$f"; else echo ">> Atlaniyor (yok): $(basename "$f")"; fi
-    done
+    for f in "${FILES[@]}"; do mysql_file "$DB_NAME" "$SQL_DIR/$f"; done
     ;;
   *)
-    die "Gecersiz SQL_MODE: $SQL_MODE (minimal|re|pre)"
-    ;;
+    echo "HATA: Gecersiz SQL_MODE: $SQL_MODE (minimal|re|pre)"; exit 1;;
 esac
 
-echo ">> Bitti."
+echo ">> Tamam."
