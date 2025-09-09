@@ -24,3 +24,7 @@ SQL_MODE=re /opt/rathena/tools/import-sql.sh --re
 # Pre-renewal icin
 SQL_MODE=pre /opt/rathena/tools/import-sql.sh --pre-re
 ```
+
+```
+https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/dockerrathenaconfig.sh
+```
