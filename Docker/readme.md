@@ -26,5 +26,15 @@ SQL_MODE=pre /opt/rathena/tools/import-sql.sh --pre-re
 ```
 
 ```
-https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/dockerrathenaconfig.sh
+
+```
+# rAthena Config 
+
+### Config 1
+```
+cd /opt/rathena/rathena
+rm -f ./dockerrathenaconfig.sh
+[wget -nc https://raw.githubusercontent.com/b1glord/Configs/master/ragnarok/rathenaconfig.sh](https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/dockerrathenaconfig.sh)
+chmod +x dockerrathenaconfig.sh
+./dockerrathenaconfig.sh
 ```
