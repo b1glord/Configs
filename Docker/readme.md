@@ -18,5 +18,13 @@ chmod +x ADI.sh
 ```
 wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/import-rathena-sql.sh
 chmod +x import-rathena-sql.sh
+
+# 2) Varsayilan: minimal (main.sql + logs.sql)
 ./import-rathena-sql.sh
+
+# 3) Renewal SQL DB kullanacaksan:
+SQL_MODE=re ./import-rathena-sql.sh
+
+# 4) Pre-renewal taban istersen:
+SQL_MODE=pre ./import-rathena-sql.sh
 ```
