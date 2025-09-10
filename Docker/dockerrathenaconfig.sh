@@ -1,3 +1,7 @@
+set -a
+source .env
+set +a
+
 # ===================  Src COnf  ========================= #
 # ======================================================== #
 
@@ -67,33 +71,36 @@ sed -i "s%  - Path: conf/import/groups.yml%#  - Path: conf/import/groups.yml%" /
 
 # =========================  inter Conf  ======================== #
 # // MySQL Login server
-sed -i "s%login_server_id: ragnarok%login_server_id: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%login_server_pw: ragnarok%login_server_pw: gaZWLeQ9yp#%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%login_server_db: ragnarok%login_server_db: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%login_server_ip: 127.0.0.1%login_server_ip: ${DB_HOST}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%login_server_id: ragnarok%login_server_id: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%login_server_pw: ragnarok%login_server_pw: ${DB_PASS}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%login_server_db: ragnarok%login_server_db: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
 
-sed -i "s%ipban_db_id: ragnarok%ipban_db_id: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%ipban_db_pw: ragnarok%ipban_db_pw: gaZWLeQ9yp#%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%ipban_db_db: ragnarok%ipban_db_db: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%ipban_db_ip: 127.0.0.1%ipban_db_ip: ${DB_HOST}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%ipban_db_id: ragnarok%ipban_db_id: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%ipban_db_pw: ragnarok%ipban_db_pw: ${DB_PASS}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%ipban_db_db: ragnarok%ipban_db_db: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
 
 # // MySQL Character server
-sed -i "s%char_server_id: ragnarok%char_server_id: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%char_server_pw: ragnarok%char_server_pw: gaZWLeQ9yp#%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%char_server_db: ragnarok%char_server_db: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
+
+sed -i "s%char_server_id: ragnarok%char_server_id: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%char_server_pw: ragnarok%char_server_pw: ${DB_PASS}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%char_server_db: ragnarok%char_server_db: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
 
 # // MySQL Map Server
-sed -i "s%map_server_id: ragnarok%map_server_id: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%map_server_pw: ragnarok%map_server_pw: gaZWLeQ9yp#%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%map_server_db: ragnarok%map_server_db: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%map_server_id: ragnarok%map_server_id: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%map_server_pw: ragnarok%map_server_pw: ${DB_PASS}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%map_server_db: ragnarok%map_server_db: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
 
 # // MySQL Web Server
-sed -i "s%web_server_id: ragnarok%web_server_id: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%web_server_pw: ragnarok%web_server_pw: gaZWLeQ9yp#%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%web_server_db: ragnarok%web_server_db: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%web_server_id: ragnarok%web_server_id: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%web_server_pw: ragnarok%web_server_pw: ${DB_PASS}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%web_server_db: ragnarok%web_server_db: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
 
 # // MySQL Log Database
-sed -i "s%log_db_id: ragnarok%log_db_id: c1ragnarok%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%log_db_pw: ragnarok%log_db_pw: gaZWLeQ9yp#%" /opt/rathena/rathena/conf/import/inter_conf.txt
-sed -i "s%log_db_db: ragnarok%log_db_db: c1logs%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%log_db_id: ragnarok%log_db_id: ${DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%log_db_pw: ragnarok%log_db_pw: ${DB_PASS}%" /opt/rathena/rathena/conf/import/inter_conf.txt
+sed -i "s%log_db_db: ragnarok%log_db_db: ${LOG_DB_NAME}%" /opt/rathena/rathena/conf/import/inter_conf.txt
 
 sed -i "s%use_sql_db: no%use_sql_db: yes%" /opt/rathena/rathena/conf/import/inter_conf.txt
 
