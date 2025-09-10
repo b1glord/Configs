@@ -7,10 +7,10 @@ ENV_FILE="${ENV_FILE:-/opt/rathena/.env}"
 
 : "${MYSQL_ROOT_PASSWORD:? .env icinde MYSQL_ROOT_PASSWORD gerekli}"
 
-DB_HOST="${DB_HOST:-db}"
-DB_PORT="${DB_PORT:-3306}"
-DB_NAME="${DB_NAME:-ragnarok}"
-LOG_DB_NAME="${LOG_DB_NAME:-ragnaroklog}"
+DB_HOST="${DB_HOST}"
+DB_PORT="${DB_PORT}"
+DB_NAME="${DB_NAME}"
+LOG_DB_NAME="${LOG_DB_NAME}"
 SQL_DIR="${SQL_DIR:-/opt/rathena/rathena/sql-files}"
 
 # ----- MOD SECIMI: arguman -> env -> prompt -----
