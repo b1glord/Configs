@@ -15,7 +15,7 @@ chmod +x import-sql.sh
 ```
 
 ```
-# Minimal (main + logs)
+# Renewal icin
 SQL_MODE=minimal /opt/rathena/tools/import-sql.sh
 
 # Renewal tam tablo seti (SQL DB modunda)
@@ -23,6 +23,9 @@ SQL_MODE=re /opt/rathena/tools/import-sql.sh --re
 
 # Pre-renewal icin
 SQL_MODE=pre /opt/rathena/tools/import-sql.sh --pre-re
+
+# Minimal (main + logs)
+SQL_MODE=pre /opt/rathena/tools/import-sql.sh --minimal
 ```
 
 ```
