@@ -22,10 +22,6 @@ git pull upstream master
 
 cd /opt/rathena/sql-files
 
-set -a
-source .env
-set +a
-
 rm -f custom.sql
 rm -f customaccount.sql
 wget https://raw.githubusercontent.com/b1glord/ADI/master/customaccount.sql
@@ -33,6 +29,10 @@ wget https://raw.githubusercontent.com/b1glord/ADI/master/custom.sql
 
 rm -f import-rathena-sql.sh
 wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/import-sql.sh
+
+set -a; . /opt/rathena/.env; set +a
+echo "SQL_DIR=$SQL_DIR"
+
 chmod +x import-sql.sh
 ./import-sql.sh --re
 ```
