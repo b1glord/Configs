@@ -66,6 +66,8 @@ chmod +x dockerrathenaconfig.sh
 ```
 
 ```
+github.com/rathena/rathena/wiki/Install-on-Ubuntu/
+
 ./configure 
 make clean && make server
 ```
