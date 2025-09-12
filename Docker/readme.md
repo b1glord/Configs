@@ -8,13 +8,11 @@ git remote add upstream https://github.com/rathena/rathena.git
 
 git remote -v
 git pull upstream master
+```
 
+```
 ## rAthena Auto Database Installer (Otomatik Database Yukleme)
-
 ### Kurulum ###
-```
-
-```
 rm -f custom.sql
 rm -f customaccount.sql
 wget https://raw.githubusercontent.com/b1glord/ADI/master/customaccount.sql
