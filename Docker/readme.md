@@ -64,3 +64,9 @@ wget -nc https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Doc
 chmod +x dockerrathenaconfig.sh
 ./dockerrathenaconfig.sh
 ```
+
+```
+#./configure 
+#make clean 
+#make server
+```
