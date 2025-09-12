@@ -13,6 +13,8 @@ git pull upstream master
 ```
 ## rAthena Auto Database Installer (Otomatik Database Yukleme)
 ### Kurulum ###
+cd /opt/rathena
+
 rm -f custom.sql
 rm -f customaccount.sql
 wget https://raw.githubusercontent.com/b1glord/ADI/master/customaccount.sql
