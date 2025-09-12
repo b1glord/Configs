@@ -16,6 +16,10 @@ git pull upstream master
 
 cd /opt/rathena/sql-files
 
+set -a
+source .env
+set +a
+
 rm -f custom.sql
 rm -f customaccount.sql
 wget https://raw.githubusercontent.com/b1glord/ADI/master/customaccount.sql
