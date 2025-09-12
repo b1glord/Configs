@@ -1,4 +1,10 @@
 ```
+docker cp .env rathena:/opt/rathena/.env
+docker exec -it rathana bash
+```
+
+
+```
 git clone https://github.com/b1glord/rathena.git /opt/rathena
 
 cd /opt/rathena
