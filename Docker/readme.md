@@ -1,6 +1,18 @@
+```
+git clone https://github.com/b1glord/rathena.git /opt/rathena
+
+cd /opt/rathena
+git remote -v
+
+git remote add upstream https://github.com/rathena/rathena.git
+
+git remote -v
+git pull upstream master
+
 ## rAthena Auto Database Installer (Otomatik Database Yukleme)
 
 ### Kurulum ###
+```
 
 ```
 rm -f custom.sql
