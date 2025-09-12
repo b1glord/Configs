@@ -66,7 +66,6 @@ chmod +x dockerrathenaconfig.sh
 ```
 
 ```
-#./configure 
-#make clean 
-#make server
+./configure 
+make clean && make server
 ```
