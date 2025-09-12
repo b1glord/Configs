@@ -58,7 +58,7 @@ SQL_MODE=pre /opt/rathena/tools/import-sql.sh --minimal
 
 ### Config 1
 ```
-cd /opt/rathena/rathena
+cd /opt/rathena/
 rm -f ./dockerrathenaconfig.sh
 wget -nc https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/dockerrathenaconfig.sh
 chmod +x dockerrathenaconfig.sh
