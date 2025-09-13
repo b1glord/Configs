@@ -68,6 +68,10 @@ chmod +x dockerrathenaconfig.sh
 ```
 github.com/rathena/rathena/wiki/Install-on-Ubuntu/
 
-./configure 
+./configure
+./configure --enable-epoll=yes --enable-prere=no --enable-vip=no --enable-packetver=20211118
+
 make clean && make server
+
+
 ```
