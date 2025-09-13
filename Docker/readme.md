@@ -27,7 +27,7 @@ rm -f customaccount.sql
 wget https://raw.githubusercontent.com/b1glord/ADI/master/customaccount.sql
 wget https://raw.githubusercontent.com/b1glord/ADI/master/custom.sql
 
-rm -f import-rathena-sql.sh
+rm -f import-sql.sh
 wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/import-sql.sh
 
 set -a; . /opt/rathena/.env; set +a
