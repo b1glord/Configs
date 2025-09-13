@@ -209,11 +209,11 @@ sed -i "s%rare_drop_announce: 0%rare_drop_announce: 1%" /opt/rathena/conf/battle
 # ===================  exp.conf  =============================== #
 # // Rate at which exp. is given. (Note 2)
 # base_exp_rate: 100
-sed -i "s%base_exp_rate: 100%base_exp_rate: 10000%" /opt/rathena/conf/battle/exp.conf
+sed -i -E 's/^(\s*base_exp_rate:\s*).*/\110000/' /opt/rathena/conf/battle/exp.conf
 
 # // Rate at which job exp. is given. (Note 2)
 # job_exp_rate: 100
-sed -i "s%job_exp_rate: 100%job_exp_rate: 10000%" /opt/rathena/conf/battle/exp.conf
+sed -i -E 's/^(\s*job_exp_rate:\s*).*/\110000/'  /opt/rathena/conf/battle/exp.conf
 # ===================  feature.conf  =========================== #
 
 
