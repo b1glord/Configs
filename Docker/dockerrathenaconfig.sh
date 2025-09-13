@@ -8,6 +8,17 @@ else
   echo "WARN: .env bulunamadı: $ENV_FILE (docker env değişkenleri kullanılacak)."
 fi
 
+# Gerekli değişkenleri doğrula
+: "${DB_HOST:?DB_HOST yok}" \
+  "${DB_PORT:=3306}" \
+  "${DB_USER:?DB_USER yok}" \
+  "${DB_PASS:?DB_PASS yok}" \
+  "${DB_NAME:?DB_NAME yok}" \
+  "${LOG_DB_NAME:?LOG_DB_NAME yok}"
+
+echo ">> ENV OK: DB_HOST=$DB_HOST DB_NAME=$DB_NAME LOG_DB_NAME=$LOG_DB_NAME"
+
+
 # ===================  Src COnf  ========================= #
 # ======================================================== #
 
