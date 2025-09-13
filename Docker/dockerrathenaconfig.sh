@@ -1,6 +1,10 @@
-set -a
-source .env
-set +a
+# 0) .env CRLF-safe yukle
+if [ -f .env ]; then
+  TMP_ENV="$(mktemp)"
+  tr -d '\r' < .env > "$TMP_ENV"
+  set -a; . "$TMP_ENV"; set +a
+  rm -f "$TMP_ENV"
+fi
 
 # ===================  Src COnf  ========================= #
 # ======================================================== #
