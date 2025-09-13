@@ -1,9 +1,11 @@
-# 0) .env CRLF-safe yukle
-if [ -f .env ]; then
-  TMP_ENV="$(mktemp)"
-  tr -d '\r' < .env > "$TMP_ENV"
-  set -a; . "$TMP_ENV"; set +a
-  rm -f "$TMP_ENV"
+# 0) .env yükle (önce /opt/rathena/.env, yoksa ./.env)
+ENV_FILE="${ENV_FILE:-/opt/rathena/.env}"
+[ -f "$ENV_FILE" ] || ENV_FILE=".env"
+if [ -f "$ENV_FILE" ]; then
+  TMP_ENV="$(mktemp)"; tr -d '\r' < "$ENV_FILE" > "$TMP_ENV"
+  set -a; . "$TMP_ENV"; set +a; rm -f "$TMP_ENV"
+else
+  echo "WARN: .env bulunamadı: $ENV_FILE (docker env değişkenleri kullanılacak)."
 fi
 
 # ===================  Src COnf  ========================= #
@@ -95,7 +97,7 @@ sed -i "s%char_server_pw: ragnarok%char_server_pw: ${DB_PASS}%" /opt/rathena/con
 sed -i "s%char_server_db: ragnarok%char_server_db: ${DB_NAME}%" /opt/rathena/conf/import/inter_conf.txt
 
 # // MySQL Map Server
-sed -i "s%map_server_ip: 127.0.0.1%map_server_ip_ip: ${DB_HOST}%" /opt/rathena/conf/import/inter_conf.txt
+sed -i "s%map_server_ip: 127.0.0.1%map_server_ip: ${DB_HOST}%" /opt/rathena/conf/import/inter_conf.txt
 sed -i "s%map_server_id: ragnarok%map_server_id: ${DB_NAME}%" /opt/rathena/conf/import/inter_conf.txt
 sed -i "s%map_server_pw: ragnarok%map_server_pw: ${DB_PASS}%" /opt/rathena/conf/import/inter_conf.txt
 sed -i "s%map_server_db: ragnarok%map_server_db: ${DB_NAME}%" /opt/rathena/conf/import/inter_conf.txt
