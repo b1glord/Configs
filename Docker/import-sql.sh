@@ -1,38 +1,52 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Opsiyonel: .env oku (compose calistiriyorsa zaten env var)
+# .env oku (CRLF-safe)
 ENV_FILE="${ENV_FILE:-/opt/rathena/.env}"
-[ -f "$ENV_FILE" ] && { set -a; . "$ENV_FILE"; set +a; }
+if [ -f "$ENV_FILE" ]; then
+  TMP_ENV="$(mktemp)"
+  tr -d '\r' < "$ENV_FILE" > "$TMP_ENV"
+  set -a; . "$TMP_ENV"; set +a
+  rm -f "$TMP_ENV"
+fi
 
 : "${MYSQL_ROOT_PASSWORD:? .env icinde MYSQL_ROOT_PASSWORD gerekli}"
 
-DB_HOST="${DB_HOST}"
-DB_PORT="${DB_PORT}"
-DB_NAME="${DB_NAME}"
-LOG_DB_NAME="${LOG_DB_NAME}"
-SQL_DIR="${SQL_DIR:-/opt/rathena/rathena/sql-files}"
+# Varsayilanlar (set -u ile uyumlu)
+DB_HOST="${DB_HOST:-db}"
+DB_PORT="${DB_PORT:-3306}"
+DB_NAME="${DB_NAME:-ragnarok}"
+LOG_DB_NAME="${LOG_DB_NAME:-ragnaroklogs}"
+SQL_DIR="${SQL_DIR:-/opt/rathena/sql-files}"
+
+# Hata yoksayma (0/1). Tablo zaten varsa gibi hatalarda devam etmek icin FORCE=1 ver.
+FORCE="${FORCE:-0}"
+
+# mysql client kontrolu
+command -v mysql >/dev/null 2>&1 || { echo "mysql client gerekli (apt-get install -y mariadb-client)"; exit 1; }
+
+# mysql argumanlarini hazirla
+MYSQL_ARGS=( -h "$DB_HOST" -P "$DB_PORT" -uroot -p"$MYSQL_ROOT_PASSWORD" )
+[ "$FORCE" = "1" ] && MYSQL_ARGS+=( --force )
 
 # ----- MOD SECIMI: arguman -> env -> prompt -----
 MODE_INPUT="${1:-${SQL_MODE:-}}"
-# normalize
 MODE_INPUT="$(echo "${MODE_INPUT:-}" | tr '[:upper:]' '[:lower:]')"
 case "$MODE_INPUT" in
-  --re|re)          SQL_MODE="re" ;;
-  --pre|pre|pre-re) SQL_MODE="pre" ;;
-  --minimal|minimal)SQL_MODE="minimal" ;;
+  --re|re)           SQL_MODE="re" ;;
+  --pre|pre|pre-re)  SQL_MODE="pre" ;;
+  --minimal|minimal) SQL_MODE="minimal" ;;
   "" )
     echo
     read -rp "SQL modu sec (re / pre) [bos = minimal]: " ans || true
     ans="$(echo "${ans:-}" | tr '[:upper:]' '[:lower:]')"
     case "$ans" in
-      re)        SQL_MODE="re" ;;
-      pre|pre-re)SQL_MODE="pre" ;;
-      *)         SQL_MODE="minimal" ;;
+      re)  SQL_MODE="re" ;;
+      pre|pre-re) SQL_MODE="pre" ;;
+      *)   SQL_MODE="minimal" ;;
     esac
     ;;
-  *)
-    echo "Gecersiz secim: $MODE_INPUT (kullan: --re | --pre | --minimal)"; exit 1;;
+  *) echo "Gecersiz secim: $MODE_INPUT (kullan: --re | --pre | --minimal)"; exit 1;;
 esac
 
 echo ">> SQL_MODE = $SQL_MODE"
@@ -41,7 +55,7 @@ echo ">> SQL_DIR=$SQL_DIR"
 echo
 
 mysql_stmt() {
-  mysql -h "$DB_HOST" -P "$DB_PORT" -uroot -p"$MYSQL_ROOT_PASSWORD" -e "$1"
+  mysql "${MYSQL_ARGS[@]}" -e "$1"
 }
 mysql_file() {
   local db="$1"; local file="$2"
@@ -50,7 +64,7 @@ mysql_file() {
     return 0
   fi
   echo ">> import: $(basename "$file") -> $db"
-  mysql -h "$DB_HOST" -P "$DB_PORT" -uroot -p"$MYSQL_ROOT_PASSWORD" "$db" < "$file"
+  mysql "${MYSQL_ARGS[@]}" "$db" < "$file"
 }
 
 echo ">> DB olustur/varsa atla"
