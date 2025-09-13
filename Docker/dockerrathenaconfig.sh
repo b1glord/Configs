@@ -84,6 +84,7 @@ sed -i "s%pincode_enabled: yes%pincode_enabled: no%" /opt/rathena/conf/import/ch
 
 sed -i "s%import: conf/import/char_conf.txt%//import: conf/import/char_conf.txt%" /opt/rathena/conf/import/char_conf.txt
 
+sed -i 's/^map_ip: .*/map_ip: trro.webredirect.org/' /opt/rathena/conf/map_athena.conf
 
 # ======================  groups.yml  ====================== #
 sed -i "s%  - Path: conf/import/groups.yml%#  - Path: conf/import/groups.yml%" /opt/rathena/conf/import/groups.yml
