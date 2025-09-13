@@ -24,6 +24,9 @@ sed -i "s/#define MAX_LEVEL 250/#define MAX_LEVEL 512/" /opt/rathena/src/map/map
 sed -i "s%//#define VIP_ENABLE%#define VIP_ENABLE%" /opt/rathena/src/config/core.hpp
 
 
+# ===================  Src COnf  ========================= #
+# ======================================================== #
+sed -i "s%//#define MAX_MAP_PER_SERVER 1500%#//define MAX_MAP_PER_SERVER 8192%" /opt/rathena/src/config/core.hpp
 
 
 # ============  Copy Config Files in import folder  ============ #
