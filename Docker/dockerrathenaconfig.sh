@@ -26,7 +26,7 @@ sed -i "s%//#define VIP_ENABLE%#define VIP_ENABLE%" /opt/rathena/src/config/core
 
 # ===================  Src COnf  ========================= #
 # ======================================================== #
-sed -i "s%//#define MAX_MAP_PER_SERVER 1500%#//define MAX_MAP_PER_SERVER 8192%" /opt/rathena/src/config/core.hpp
+sed -i "s%//#define MAX_MAP_PER_SERVER 1500%#//define MAX_MAP_PER_SERVER 8192%" /opt/rathena/src/common/mmo.hpp
 
 
 # ============  Copy Config Files in import folder  ============ #
