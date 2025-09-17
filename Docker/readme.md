@@ -72,6 +72,8 @@ github.com/rathena/rathena/wiki/Install-on-Ubuntu/
 ./configure --enable-epoll=yes --enable-prere=no --enable-vip=no --enable-packetver=20211118
 
 make clean && make server
+```
 
-
+```
+./athena-start start --enlog
 ```
