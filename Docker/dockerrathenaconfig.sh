@@ -28,7 +28,7 @@ echo ">> ENV OK: DB_HOST=$DB_HOST DB_NAME=$DB_NAME LOG_DB_NAME=$LOG_DB_NAME"
 # #define MAX_LEVEL 175
 # //bununla degistir
 # #define MAX_LEVEL 255
-sed -i "s/#define MAX_LEVEL 250/#define MAX_LEVEL 512/" /opt/rathena/src/map/map.hpp
+# sed -i "s/#define MAX_LEVEL 250/#define MAX_LEVEL 512/" /opt/rathena/src/map/map.hpp
 
 
 
@@ -74,7 +74,7 @@ sed -i "s%passwd: p1%passwd: chaos%" /opt/rathena/conf/import/char_conf.txt
 sed -i "s%server_name: rAthena%server_name: Athena%" /opt/rathena/conf/import/char_conf.txt
 
 sed -i "s%//login_ip: 127.0.0.1%login_ip: 127.0.0.1%" /opt/rathena/conf/import/char_conf.txt
-sed -i "s%//char_ip: 127.0.0.1%char_ip: trro.webredirect.org%" /opt/rathena/conf/import/char_conf.txt
+# sed -i "s%//char_ip: 127.0.0.1%char_ip: trro.webredirect.org%" /opt/rathena/conf/import/char_conf.txt
 
 sed -i "s%start_zeny: 0%start_zeny: 1000000%" /opt/rathena/conf/import/char_conf.txt
 
@@ -84,7 +84,7 @@ sed -i "s%pincode_enabled: yes%pincode_enabled: no%" /opt/rathena/conf/import/ch
 
 sed -i "s%import: conf/import/char_conf.txt%//import: conf/import/char_conf.txt%" /opt/rathena/conf/import/char_conf.txt
 
-sed -i 's/^map_ip: .*/map_ip: trro.webredirect.org/' /opt/rathena/conf/map_athena.conf
+# sed -i 's/^map_ip: .*/map_ip: trro.webredirect.org/' /opt/rathena/conf/map_athena.conf
 
 # ======================  groups.yml  ====================== #
 sed -i "s%  - Path: conf/import/groups.yml%#  - Path: conf/import/groups.yml%" /opt/rathena/conf/import/groups.yml
@@ -189,7 +189,7 @@ sed -i "s%import: conf/import/web_conf.txt%//import: conf/import/web_conf.txt%" 
 # // Use the following table for an idea of how the rate will affect drop rates when logarithmic drops are used:
 # // Y: Original Drop Rate
 # // X: Rate drop modifier (eg: item_rate_equip)
-sed -i "s%// Droprate(x,y) = x * (5 - log(x)) ^ (ln(y) / ln(5))%Droprate(x,y) = 1 - ((1 - x) ^ y)%" /opt/rathena/conf/battle/drops.conf
+# sed -i "s%// Droprate(x,y) = x * (5 - log(x)) ^ (ln(y) / ln(5))%Droprate(x,y) = 1 - ((1 - x) ^ y)%" /opt/rathena/conf/battle/drops.conf
 sed -i "s%item_logarithmic_drops: no%item_logarithmic_drops: yes%" /opt/rathena/conf/battle/drops.conf
 
 # // Increase item drop rate +0.01%? (Note 1)
