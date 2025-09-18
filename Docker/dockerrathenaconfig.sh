@@ -149,6 +149,7 @@ sed -i "s%passwd: p1%passwd: chaos%" /opt/rathena/conf/import/map_conf.txt
 
 sed -i "s%//char_ip: 127.0.0.1%char_ip: 127.0.0.1%" /opt/rathena/conf/import/map_conf.txt
 # sed -i "s%//char_ip: 127.0.0.1%char_ip: trro.webredirect.org%" /opt/rathena/conf/import/map_conf.txt
+
 sed -i "s%//map_ip: 127.0.0.1%map_ip: 127.0.0.1%" /opt/rathena/conf/import/map_conf.txt
 
 sed -i "s%import: conf/import/map_conf.txt%//import: conf/import/map_conf.txt%" /opt/rathena/conf/import/map_conf.txt
