@@ -183,6 +183,41 @@ sed -i "s%import: conf/import/web_conf.txt%//import: conf/import/web_conf.txt%" 
 
 
 # ===================  drops.conf  ============================= #
+# COMMON (ETC)
+sed -i 's/^item_rate_common: .*/item_rate_common: 1000/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_common_boss: .*/item_rate_common_boss: 1000/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_common_mvp: .*/item_rate_common_mvp: 1000/' /opt/rathena/conf/battle/drops.conf
+
+# HEAL
+sed -i 's/^item_rate_heal: .*/item_rate_heal: 1000/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_heal_boss: .*/item_rate_heal_boss: 1000/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_heal_mvp: .*/item_rate_heal_mvp: 1000/' /opt/rathena/conf/battle/drops.conf
+
+# USE
+sed -i 's/^item_rate_use: .*/item_rate_use: 1000/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_use_boss: .*/item_rate_use_boss: 1000/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_use_mvp: .*/item_rate_use_mvp: 1000/' /opt/rathena/conf/battle/drops.conf
+
+# EQUIP
+sed -i 's/^item_rate_equip: .*/item_rate_equip: 1000/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_equip_boss: .*/item_rate_equip_boss: 1000/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_equip_mvp: .*/item_rate_equip_mvp: 1000/' /opt/rathena/conf/battle/drops.conf
+
+# CARD (daha kontrollü)
+sed -i 's/^item_rate_card: .*/item_rate_card: 300/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_card_boss: .*/item_rate_card_boss: 300/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_rate_card_mvp: .*/item_rate_card_mvp: 300/' /opt/rathena/conf/battle/drops.conf
+
+# MVP ödülleri
+sed -i 's/^item_rate_mvp: .*/item_rate_mvp: 1000/' /opt/rathena/conf/battle/drops.conf
+
+# AddDrop ve Group
+sed -i 's/^item_rate_adddrop: .*/item_rate_adddrop: 1000/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^item_group_rate: .*/item_group_rate: 1000/' /opt/rathena/conf/battle/drops.conf
+
+# Treasure Box
+sed -i 's/^item_rate_treasure: .*/item_rate_treasure: 1000/' /opt/rathena/conf/battle/drops.conf
+
 
 # https://forum.ratemyserver.net/general-discussion/what-are-your-favorite-rates-max-level/
 # // Use logarithmic drops? (Note 1)
