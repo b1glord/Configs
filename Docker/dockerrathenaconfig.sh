@@ -73,7 +73,8 @@ sed -i "s%passwd: p1%passwd: chaos%" /opt/rathena/conf/import/char_conf.txt
 
 sed -i "s%server_name: rAthena%server_name: Athena%" /opt/rathena/conf/import/char_conf.txt
 
-sed -i "s%//login_ip: 127.0.0.1%login_ip: 127.0.0.1%" /opt/rathena/conf/import/char_conf.txt
+sed -i "s%//login_ip: 127.0.0.1%login_ip: 0.0.0.0%" /opt/rathena/conf/import/char_conf.txt
+sed -i "s%//char_ip: 127.0.0.1%char_ip: 0.0.0.0%" /opt/rathena/conf/import/char_conf.txt
 # sed -i "s%//char_ip: 127.0.0.1%char_ip: trro.webredirect.org%" /opt/rathena/conf/import/char_conf.txt
 
 sed -i "s%start_zeny: 0%start_zeny: 1000000%" /opt/rathena/conf/import/char_conf.txt
@@ -147,10 +148,9 @@ sed -i "s%import: conf/import/login_conf.txt%//import: conf/import/login_conf.tx
 sed -i "s%userid: s1%userid: chaos%" /opt/rathena/conf/import/map_conf.txt
 sed -i "s%passwd: p1%passwd: chaos%" /opt/rathena/conf/import/map_conf.txt
 
-sed -i "s%//char_ip: 127.0.0.1%char_ip: 127.0.0.1%" /opt/rathena/conf/import/map_conf.txt
+sed -i "s%//char_ip: 127.0.0.1%char_ip: 0.0.0.0%" /opt/rathena/conf/import/map_conf.txt
 # sed -i "s%//char_ip: 127.0.0.1%char_ip: trro.webredirect.org%" /opt/rathena/conf/import/map_conf.txt
-
-sed -i "s%//map_ip: 127.0.0.1%map_ip: 127.0.0.1%" /opt/rathena/conf/import/map_conf.txt
+sed -i "s%//map_ip: 127.0.0.1%map_ip: 0.0.0.0%" /opt/rathena/conf/import/map_conf.txt
 
 sed -i "s%import: conf/import/map_conf.txt%//import: conf/import/map_conf.txt%" /opt/rathena/conf/import/map_conf.txt
 
@@ -191,7 +191,8 @@ sed -i "s%import: conf/import/web_conf.txt%//import: conf/import/web_conf.txt%" 
 # // Y: Original Drop Rate
 # // X: Rate drop modifier (eg: item_rate_equip)
 # sed -i "s%// Droprate(x,y) = x * (5 - log(x)) ^ (ln(y) / ln(5))%Droprate(x,y) = 1 - ((1 - x) ^ y)%" /opt/rathena/conf/battle/drops.conf
-sed -i "s%item_logarithmic_drops: no%item_logarithmic_drops: yes%" /opt/rathena/conf/battle/drops.conf
+# sed -i "s%item_logarithmic_drops: no%item_logarithmic_drops: yes%" /opt/rathena/conf/battle/drops.conf
+sed -i "s%item_logarithmic_drops: no%item_logarithmic_drops: no%" /opt/rathena/conf/battle/drops.conf
 
 # // Increase item drop rate +0.01%? (Note 1)
 # // On official servers it is possible to get 0.00% drop chance so all items are increased by 0.01%.
@@ -205,8 +206,8 @@ sed -i "s%drop_rateincrease: no%drop_rateincrease: yes%" /opt/rathena/conf/battl
 # // Setting to 100 means each luk adds 0.01% chance to find items
 # // (regardless of item's base drop rate).
 # drops_by_luk: 0
-sed -i "s%drops_by_luk: 0%drops_by_luk: 1%" /opt/rathena/conf/battle/drops.conf
-sed -i "s%drops_by_luk2: 0%drops_by_luk2: 1%" /opt/rathena/conf/battle/drops.conf
+sed -i "s%drops_by_luk: 0%drops_by_luk: 100%" /opt/rathena/conf/battle/drops.conf
+sed -i "s%drops_by_luk2: 0%drops_by_luk2: 100%" /opt/rathena/conf/battle/drops.conf
 
 # // Make broadcast ** Player1 won Pupa's Pupa Card (chance 0.01%) ***
 # // This can be set to any value between 0~10000.
@@ -216,7 +217,7 @@ sed -i "s%drops_by_luk2: 0%drops_by_luk2: 1%" /opt/rathena/conf/battle/drops.con
 # // 333 = show announces for 3.33% or lower drop chance items
 # // 10000 = show announces for all items
 # rare_drop_announce: 0
-sed -i "s%rare_drop_announce: 0%rare_drop_announce: 1%" /opt/rathena/conf/battle/drops.conf
+sed -i "s%rare_drop_announce: 0%rare_drop_announce: 333%" /opt/rathena/conf/battle/drops.conf
 
 
 
@@ -224,7 +225,7 @@ sed -i "s%rare_drop_announce: 0%rare_drop_announce: 1%" /opt/rathena/conf/battle
 # ===================  exp.conf  =============================== #
 # // Rate at which exp. is given. (Note 2)
 # base_exp_rate: 100
-sed -i -E 's/^(\s*base_exp_rate:\s*).*/\110000/' /opt/rathena/conf/battle/exp.conf
+sed -i -E 's/^(\s*base_exp_rate:\s*).*/\1100000/' /opt/rathena/conf/battle/exp.conf
 
 # // Rate at which job exp. is given. (Note 2)
 # job_exp_rate: 100
