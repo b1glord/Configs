@@ -74,8 +74,8 @@ sed -i "s%passwd: p1%passwd: chaos%" /opt/rathena/conf/import/char_conf.txt
 sed -i "s%server_name: rAthena%server_name: Athena%" /opt/rathena/conf/import/char_conf.txt
 
 sed -i "s%//login_ip: 127.0.0.1%login_ip: 0.0.0.0%" /opt/rathena/conf/import/char_conf.txt
-sed -i "s%//char_ip: 127.0.0.1%char_ip: 0.0.0.0%" /opt/rathena/conf/import/char_conf.txt
 # sed -i "s%//char_ip: 127.0.0.1%char_ip: trro.webredirect.org%" /opt/rathena/conf/import/char_conf.txt
+sed -i "s%//char_ip: 127.0.0.1%char_ip: 0.0.0.0%" /opt/rathena/conf/import/char_conf.txt
 
 sed -i "s%start_zeny: 0%start_zeny: 1000000%" /opt/rathena/conf/import/char_conf.txt
 
