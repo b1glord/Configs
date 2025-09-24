@@ -243,8 +243,8 @@ sed -i 's/^drop_rateincrease: .*/drop_rateincrease: no/' /opt/rathena/conf/battl
 # // Setting to 100 means each luk adds 0.01% chance to find items
 # // (regardless of item's base drop rate).
 # drops_by_luk: 0
-sed -i 's/^drops_by_luk: [01]/drops_by_luk: 100/' /opt/rathena/conf/battle/drops.conf
-sed -i 's/^drops_by_luk2: [01]/drops_by_luk2: 100/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^drops_by_luk: [01]/drops_by_luk: 0/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^drops_by_luk2: [01]/drops_by_luk2: 15/' /opt/rathena/conf/battle/drops.conf
 
 # // Make broadcast ** Player1 won Pupa's Pupa Card (chance 0.01%) ***
 # // This can be set to any value between 0~10000.
@@ -254,7 +254,7 @@ sed -i 's/^drops_by_luk2: [01]/drops_by_luk2: 100/' /opt/rathena/conf/battle/dro
 # // 333 = show announces for 3.33% or lower drop chance items
 # // 10000 = show announces for all items
 # rare_drop_announce: 0
-sed -i 's/^rare_drop_announce: [01]/rare_drop_announce: 333/' /opt/rathena/conf/battle/drops.conf
+sed -i 's/^rare_drop_announce: [01]/rare_drop_announce: 1/' /opt/rathena/conf/battle/drops.conf
 
 
 
