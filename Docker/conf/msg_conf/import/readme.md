@@ -8,6 +8,7 @@ sed -i 's|import: conf/msg_conf/import/map_msg_eng_conf.txt|import: conf/msg_con
 grep -q "LANG_TUR" /opt/rathena/src/common/msg_conf.hpp || \
 sed -i '/LANG_THA = 0x100,/a\ \tLANG_TUR = 0x200,   // Turkish' /opt/rathena/src/common/msg_conf.hpp
 
+sed -i 's/#define LANG_ENABLE .*/#define LANG_ENABLE 0xFFF/' /opt/rathena/src/common/msg_conf.hpp
 
 
 wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/conf/msg_conf/import/map_msg_tur_conf.txt /opt/rathena/conf/msg_conf/import/map_msg_tur_conf.txt
