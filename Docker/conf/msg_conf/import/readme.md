@@ -1,4 +1,4 @@
-
+é
 cp /opt/rathena/conf/msg_conf/map_msg.conf \
    /opt/rathena/conf/msg_conf/map_msg_tur.conf
 
