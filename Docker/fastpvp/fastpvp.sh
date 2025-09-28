@@ -5,7 +5,7 @@
 # Açıklama: skill.conf üzerinde PvP hızlandırma preset uygular
 # ======================================================
 
-CONF="conf/battle/skill.conf"
+CONF="skill.conf"
 
 # CAST & DELAY
 sed -i 's/^casting_rate:.*/casting_rate: 0/' $CONF
