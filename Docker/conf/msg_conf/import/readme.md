@@ -10,5 +10,5 @@ sed -i '/LANG_THA = 0x100,/a\ \tLANG_TUR = 0x200,   // Turkish' /opt/rathena/src
 
 
 
-wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/conf/msg_conf/import/map_msg_tur_conf.txt 
+wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/conf/msg_conf/import/map_msg_tur_conf.txt /opt/rathena/conf/msg_conf/import/map_msg_tur_conf.txt
 ```
