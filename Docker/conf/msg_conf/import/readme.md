@@ -31,6 +31,10 @@ grep -q 'extern[[:space:]]\+const[[:space:]]\+char\*[[:space:]]*MSG_CONF_NAME_TU
 sed -i '/extern[[:space:]]\+const[[:space:]]\+char\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;/a\extern const char* MSG_CONF_NAME_TUR;' "$FILE_H"
 
 
+# 1) Dizinleri olustur
 mkdir -p /opt/rathena/conf/msg_conf/import
-wget https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/conf/msg_conf/import/map_msg_tur_conf.txt /opt/rathena/conf/msg_conf/import/map_msg_tur_conf.txt
+
+# 2) Dosyayi hedefe indir (tek satir, dogru kullanim)
+wget -qO /opt/rathena/conf/msg_conf/import/map_msg_tur_conf.txt \
+'https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/conf/msg_conf/import/map_msg_tur_conf.txt'
 ```
