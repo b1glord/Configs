@@ -52,6 +52,10 @@ SQL_MODE=pre /opt/rathena/tools/import-sql.sh --minimal
 ```
 
 ```
+cd /opt/rathena && \
+cp -f athena-start athena-start.bak.$(date +%Y%m%d-%H%M%S) && \
+wget -qO athena-start 'https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/athena-start' && \
+chmod +x athena-start
 
 ```
 # rAthena Config 
