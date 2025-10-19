@@ -21,10 +21,6 @@ if ! grep -q 'MSG_CONF_NAME_TUR[[:space:]]*=' "$FILE"; then
    MSG_CONF_NAME_TUR = "conf/msg_conf/map_msg_tur.conf";   // Turkish' "$FILE"
 fi
 
-FILE_H=/opt/rathena/src/map/map.hpp
-
-# CRLF temizle (Windows satir sonu ise)
-sed -i 's/\r$//' "$FILE_H"
 
 # extern yoksa THA altina ekle
 grep -q 'extern[[:space:]]\+const[[:space:]]\+char\*[[:space:]]*MSG_CONF_NAME_TUR' "$FILE_H" || \
