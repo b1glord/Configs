@@ -1,76 +1,108 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# --- Paths ---
+CONF_DIR="/opt/rathena/conf/msg_conf"
+CONF_IMPORT_DIR="$CONF_DIR/import"
 MAP_DIR="/opt/rathena/src/map"
 MAP_CPP="$MAP_DIR/map.cpp"
 MAP_HPP="$MAP_DIR/map.hpp"
+MSG_HPP="/opt/rathena/src/common/msg_conf.hpp"
 
-# 0) Yedek
-[[ -f "$MAP_HPP" ]] && cp -n "$MAP_HPP" "$MAP_HPP.bak.$(date +%F-%H%M%S)" || true
-
-# 1) map.hpp icindeki YANLIS satirlari temizle
-#  - "\1" kalan hatali satirlar
-#  - tum MSG_CONF_NAME_* extern satirlari (yeniden yazilacak)
-sed -i -E '
-/^extern[[:space:]]+const[[:space:]]+char\*\\1;[[:space:]]*$/d
-/^extern[[:space:]]+const[[:space:]]+char\*MSG_CONF_NAME_[A-Z]+;[[:space:]]*$/d
-' "$MAP_HPP"
-
-# 2) map.cpp icindeki isimleri cikar (sirayla, uniq)
-#    once "const char*MSG_CONF_NAME_XXX;" satirlarindan, yoksa atama satirlarindan cek
-names="$(awk '
-  BEGIN{FS=""; seen_cnt=0}
-  {
-    if (match($0,/MSG_CONF_NAME_[A-Z]+/)) {
-      name=substr($0,RSTART,RLENGTH);
-      if (!seen[name]++) {
-        order[++seen_cnt]=name;
-      }
-    }
-  }
-  END{
-    for(i=1;i<=seen_cnt;i++) print order[i];
-  }
-' "$MAP_CPP" | grep -E '^MSG_CONF_NAME_[A-Z]+$' | tr '\n' ' ' )"
-
-# Guvenlik: hic isim bulunamazsa bilinen listeyi kullan
-if [[ -z "${names// }" ]]; then
-  names="MSG_CONF_NAME_RUS MSG_CONF_NAME_SPN MSG_CONF_NAME_GRM MSG_CONF_NAME_CHN MSG_CONF_NAME_MAL MSG_CONF_NAME_IDN MSG_CONF_NAME_FRN MSG_CONF_NAME_POR MSG_CONF_NAME_THA MSG_CONF_NAME_TUR"
-fi
-
-# 3) Gecici blok olustur
-tmp="$(mktemp)"
-for n in $names; do
-  echo "extern const char*${n};" >> "$tmp"
+# --- Backups ---
+mkdir -p "$CONF_IMPORT_DIR"
+for f in "$MAP_CPP" "$MAP_HPP" "$MSG_HPP"; do
+  [[ -f "$f" ]] && cp -n "$f" "$f.bak.$(date +%F-%H%M%S)" || true
 done
 
-# 4) Uygun bir yere ekle:
-#    - THA extern satiri VARSA onun hemen altina tum blok
-#    - yoksa dosyanin sonuna ekle
-if grep -q '^extern[[:space:]]\+const[[:space:]]\+char\*MSG_CONF_NAME_THA;[[:space:]]*$' "$MAP_HPP"; then
-  # THA altina ekle
-  awk -v FILEBLOCK="$tmp" '
-    BEGIN{
-      while((getline line < FILEBLOCK) > 0){ block=block line "\n" }
-      close(FILEBLOCK)
-    }
-    {
-      print $0
-      if ($0 ~ /^extern[ \t]+const[ \t]+char\*MSG_CONF_NAME_THA;[ \t]*$/) {
-        printf "%s", block
-      }
-    }
-  ' "$MAP_HPP" > "$MAP_HPP.new" && mv -f "$MAP_HPP.new" "$MAP_HPP"
-else
-  # sona ekle
-  printf "\n" >> "$MAP_HPP"
-  cat "$tmp" >> "$MAP_HPP"
+# --- 0) map.cpp restore if needed ---
+cd "$MAP_DIR"
+if [[ -f map.cpp.tmp ]]; then mv -f map.cpp.tmp map.cpp; fi
+if [[ ! -f map.cpp ]]; then
+  latest="$(ls -1t map.cpp.bak.* 2>/dev/null | head -1 || true)"
+  [[ -n "${latest:-}" ]] && cp -f "$latest" map.cpp
 fi
-rm -f "$tmp"
+cd - >/dev/null
 
-# 5) Son bir normalizasyon: "*" sonrasi bosluk KALDIR
-sed -i -E 's/^(extern[[:space:]]+const[[:space:]]+char\*)[[:space:]]+/\1/' "$MAP_HPP"
+# --- 1) TR conf prepare ---
+if [[ ! -f "$CONF_DIR/map_msg_tur.conf" ]]; then
+  cp "$CONF_DIR/map_msg.conf" "$CONF_DIR/map_msg_tur.conf"
+fi
+sed -i 's|import:[[:space:]]*conf/msg_conf/import/map_msg_eng_conf\.txt|import: conf/msg_conf/import/map_msg_tur_conf.txt|' \
+  "$CONF_DIR/map_msg_tur.conf"
+wget -qO "$CONF_IMPORT_DIR/map_msg_tur_conf.txt" \
+  'https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/conf/msg_conf/import/map_msg_tur_conf.txt' || true
 
-# 6) Kontrol
-echo "== map.hpp extern kontrol =="
-grep -n '^extern const char\*MSG_CONF_NAME_' "$MAP_HPP" || true
+# --- 2) Language enum + mask (msg_conf.hpp) ---
+if ! grep -q 'LANG_TUR' "$MSG_HPP"; then
+  sed -i '/LANG_THA[[:space:]]*=[[:space:]]*0x100[[:space:]]*,/a\ \tLANG_TUR = 0x200,   // Turkish' "$MSG_HPP"
+fi
+sed -i 's/^\(#define[[:space:]]\+LANG_ENABLE[[:space:]]\+\).*/\10xFFF/' "$MSG_HPP"
+
+# --- 3) map.hpp extern block (no spaces after *) ---
+if [[ -f "$MAP_HPP" ]]; then
+  # remove all existing MSG_CONF_NAME_* extern lines to avoid dups or broken ones
+  sed -i '/^extern[[:space:]]\+const[[:space:]]\+char\*.*MSG_CONF_NAME_[A-Z]\+;[[:space:]]*$/d' "$MAP_HPP"
+
+  # append clean block (star tight to name, no spaces)
+  cat >> "$MAP_HPP" <<'EOF'
+
+/* === Message config externs (normalized, no space after *) === */
+extern const char*MSG_CONF_NAME_RUS;
+extern const char*MSG_CONF_NAME_SPN;
+extern const char*MSG_CONF_NAME_GRM;
+extern const char*MSG_CONF_NAME_CHN;
+extern const char*MSG_CONF_NAME_MAL;
+extern const char*MSG_CONF_NAME_IDN;
+extern const char*MSG_CONF_NAME_FRN;
+extern const char*MSG_CONF_NAME_POR;
+extern const char*MSG_CONF_NAME_THA;
+extern const char*MSG_CONF_NAME_TUR;
+EOF
+fi
+
+# --- 4) map.cpp: const, assignment, listelang[] ---
+
+# 4a) const declaration after THA (use same style as file: keep "char *" here)
+if ! grep -qE '(^|[[:space:]])const[[:space:]]+char[[:space:]]*\*[[:space:]]*MSG_CONF_NAME_TUR[[:space:]]*;' "$MAP_CPP"; then
+  sed -i '/const[[:space:]]\+char[[:space:]]\*\s*MSG_CONF_NAME_THA[[:space:]]*;/a const char *MSG_CONF_NAME_TUR;' "$MAP_CPP"
+fi
+
+# 4b) assignment after THA assignment
+if ! grep -Eq 'MSG_CONF_NAME_TUR[[:space:]]*=' "$MAP_CPP"; then
+  if grep -Eq 'MSG_CONF_NAME_THA[[:space:]]*=[[:space:]]*"conf/msg_conf/map_msg_tha\.conf";[[:space:]]*//[[:space:]]*Thai' "$MAP_CPP"; then
+    sed -i '/MSG_CONF_NAME_THA[[:space:]]*=[[:space:]]*"conf\/msg_conf\/map_msg_tha\.conf";[[:space:]]*\/\/[[:space:]]*Thai/a\
+    MSG_CONF_NAME_TUR = "conf/msg_conf/map_msg_tur.conf";   // Turkish' "$MAP_CPP"
+  else
+    sed -i '/MSG_CONF_NAME_THA[[:space:]]*=[[:space:]]*"conf\/msg_conf\/map_msg_tha\.conf";/a\
+    MSG_CONF_NAME_TUR = "conf/msg_conf/map_msg_tur.conf";   // Turkish' "$MAP_CPP"
+  fi
+fi
+
+# 4c) listelang[]: insert TUR just below THA (POSIX awk; no gensub)
+awk '
+BEGIN{inarr=0; hasTur=0}
+# array start
+/^[ \t]*const[ \t]+char[ \t]*\*[ \t]*listelang\[\][ \t]*=[ \t]*\{/ { inarr=1 }
+# seen TUR inside array?
+inarr==1 && $0 ~ /^[ \t]*MSG_CONF_NAME_TUR[ \t]*,/ { hasTur=1 }
+# on THA line (with or without comma), print THA with comma then TUR if missing
+inarr==1 && $0 ~ /^[ \t]*MSG_CONF_NAME_THA[ \t]*,?[ \t]*$/ {
+    lead=""; m=match($0,/[^ \t]/); if (m>1) { lead=substr($0,1,m-1) }
+    print lead "MSG_CONF_NAME_THA,"
+    if (hasTur==0) print lead "MSG_CONF_NAME_TUR,"
+    next
+}
+# array end
+inarr==1 && $0 ~ /^[ \t]*\}[ \t]*;[ \t]*$/ { inarr=0 }
+{ print }
+' "$MAP_CPP" > "$MAP_CPP.new" && mv -f "$MAP_CPP.new" "$MAP_CPP"
+
+# --- 5) Report ---
+echo "[OK] import ->" && grep -n '^import:' "$CONF_DIR/map_msg_tur.conf" || true
+echo "[OK] enums   ->" && grep -n 'LANG_T.. = ' "$MSG_HPP" || true
+[[ -f "$MAP_HPP" ]] && { echo "[OK] map.hpp ->"; grep -n '^extern const char\*MSG_CONF_NAME_' "$MAP_HPP" || true; }
+echo "[OK] map.cpp ->" && grep -n 'MSG_CONF_NAME_T..' "$MAP_CPP" || true
+
+echo
+echo "Build tip: cd /opt/rathena/src && make clean && make server"
