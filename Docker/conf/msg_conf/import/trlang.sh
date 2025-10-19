@@ -21,7 +21,6 @@ if [[ -f map.cpp.tmp ]]; then
   mv -f map.cpp.tmp map.cpp
 fi
 if [[ ! -f map.cpp ]]; then
-  # en yeni yedegi bul ve geri yukle
   latest="$(ls -1t map.cpp.bak.* 2>/dev/null | head -1 || true)"
   [[ -n "$latest" ]] && cp -f "$latest" map.cpp
 fi
@@ -42,19 +41,27 @@ if ! grep -q 'LANG_TUR' "$MSG_HPP"; then
 fi
 sed -i 's/^\(#define[[:space:]]\+LANG_ENABLE[[:space:]]\+\).*/\10xFFF/' "$MSG_HPP"
 
-# --- 3) Header deklarasyonlari (varsa) ---
+# --- 3) map.hpp: extern format duzelt + tek satir TUR ekle ---
 if [[ -f "$MAP_HPP" ]]; then
-  if grep -qE 'extern[[:space:]]+const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;' "$MAP_HPP"; then
-    grep -qE 'extern[[:space:]]+const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_TUR[[:space:]]*;' "$MAP_HPP" || \
-    sed -i -E '/extern[[:space:]]+const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;/a extern const char* MSG_CONF_NAME_TUR;' "$MAP_HPP"
-  fi
+  # THA satirini 'extern const char*MSG_CONF_NAME_THA;' formatina zorla
+  sed -i -E 's/extern[[:space:]]+const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;/extern const char*MSG_CONF_NAME_THA;/' "$MAP_HPP"
+
+  # Mevcut TUR extern satirlarini temizle (dup olmasin)
+  sed -i -E '/extern[[:space:]]+const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_TUR[[:space:]]*;/d' "$MAP_HPP"
+
+  # THA eksterninin altina dogru formatla TUR eksternini ekle
+  sed -i -E '/extern[[:space:]]+const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;/a extern const char*MSG_CONF_NAME_TUR;' "$MAP_HPP"
 fi
 
 # --- 4) map.cpp: global const + assignment + listelang[] ---
-# 4a) THA const altina TUR const (varsa o blok)
+# 4a) THA const altinda TUR const: 'const char*MSG_CONF_NAME_TUR;' (bosluksuz)
 if grep -qE '(^|[[:space:]])const[[:space:]]+char[[:space:]]*\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;' "$MAP_CPP"; then
-  grep -qE '(^|[[:space:]])const[[:space:]]+char[[:space:]]*\*[[:space:]]*MSG_CONF_NAME_TUR[[:space:]]*;' "$MAP_CPP" || \
-  sed -i -E '/(^|[[:space:]])const[[:space:]]+char[[:space:]]*\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;/a const char *MSG_CONF_NAME_TUR;' "$MAP_CPP"
+  if ! grep -qE '(^|[[:space:]])const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_TUR[[:space:]]*;' "$MAP_CPP"; then
+    sed -i -E '/(^|[[:space:]])const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;/a const char*MSG_CONF_NAME_TUR;' "$MAP_CPP"
+  else
+    # varsa ama boslukluysa duzelt
+    sed -i -E 's/const[[:space:]]+char\*[[:space:]]+MSG_CONF_NAME_TUR[[:space:]]*;/const char*MSG_CONF_NAME_TUR;/' "$MAP_CPP"
+  fi
 fi
 
 # 4b) THA assignment altina TUR assignment (yoksa)
@@ -68,7 +75,7 @@ if ! grep -Eq 'MSG_CONF_NAME_TUR[[:space:]]*=' "$MAP_CPP"; then
   fi
 fi
 
-# 4c) listelang[] icine THA altina TUR (POSIX awk; gensub YOK)
+# 4c) listelang[] icine THA altina TUR (POSIX awk; gensub yok)
 awk '
 BEGIN{inarr=0; hasTur=0}
 # dizi baslangici
@@ -90,8 +97,8 @@ inarr==1 && $0 ~ /^[ \t]*\}[ \t]*;[ \t]*$/ { inarr=0 }
 # --- 5) Rapor ---
 echo "[OK] import ->" && grep -n '^import:' "$CONF_DIR/map_msg_tur.conf" || true
 echo "[OK] enums   ->" && grep -n 'LANG_T.. = ' "$MSG_HPP" || true
-[[ -f "$MAP_HPP" ]] && { echo "[OK] map.hpp ->"; grep -n 'MSG_CONF_NAME_TUR' "$MAP_HPP" || true; }
-echo "[OK] map.cpp ->" && grep -n 'MSG_CONF_NAME_TUR' "$MAP_CPP" || true
+[[ -f "$MAP_HPP" ]] && { echo "[OK] map.hpp ->"; grep -n 'MSG_CONF_NAME_T..' "$MAP_HPP" || true; }
+echo "[OK] map.cpp ->" && grep -n 'MSG_CONF_NAME_T..' "$MAP_CPP" || true
 
 echo
 echo "Build tip: cd /opt/rathena/src && make clean && make server"
