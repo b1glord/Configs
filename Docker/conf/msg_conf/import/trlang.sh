@@ -56,29 +56,41 @@ BEGIN{added=0}
 ' "$MAP_CPP" > "$MAP_CPP.tmp2" && mv -f "$MAP_CPP.tmp2" "$MAP_CPP"
 fi
 
-# 3) listelang[]: THA altina TUR ekle; THA virgullu, TUR VIRGULSUZ (son eleman)
+# 3) listelang[]: THA altina TUR ekle; THA virgullu, TUR VIRGULSUZ (son eleman), dup yok
 awk '
-BEGIN{inarr=0; hasTur=0}
+BEGIN{inarr=0; seenTur=0}
 # dizi baslangici
 /^[ \t]*const[ \t]+char[ \t]*\*[ \t]*listelang\[\][ \t]*=[ \t]*\{/ { inarr=1 }
-# dizi icerisinde TUR varsa: virgulu kaldir, tek satir birak
+
+# Dizi icinde TUR satiri gorulurse:
+#  - ilk goruste normalize edip yaz
+#  - daha sonraki TUR tekrarlarini yazma (dup engelle)
 inarr==1 && $0 ~ /^[ \t]*MSG_CONF_NAME_TUR[ \t]*,?[ \t]*$/ {
-  hasTur=1
-  lead=""; m=match($0,/[^ \t]/); if (m>1) lead=substr($0,1,m-1)
-  print lead "MSG_CONF_NAME_TUR"
+  if (!seenTur) {
+    lead=""; m=match($0,/[^ \t]/); if (m>1) lead=substr($0,1,m-1)
+    print lead "MSG_CONF_NAME_TUR"
+    seenTur=1
+  }
   next
 }
-# THA satiri: THA yi virgullu yaz, altina (yoksa) TUR u virgulsuz ekle
+
+# THA satiri: THA yi virgullu yaz; eger henuz TUR gorulmediyse hemen altina TUR u yaz
 inarr==1 && $0 ~ /^[ \t]*MSG_CONF_NAME_THA[ \t]*,?[ \t]*$/ {
   lead=""; m=match($0,/[^ \t]/); if (m>1) lead=substr($0,1,m-1)
   print lead "MSG_CONF_NAME_THA,"
-  if (hasTur==0) print lead "MSG_CONF_NAME_TUR"
+  if (!seenTur) {
+    print lead "MSG_CONF_NAME_TUR"
+    seenTur=1
+  }
   next
 }
+
 # dizi bitisi
 inarr==1 && $0 ~ /^[ \t]*\}[ \t]*;[ \t]*$/ { inarr=0 }
+
 { print }
-' "$MAP_CPP" > "$MAP_CPP.tmp3" && mv -f "$MAP_CPP.tmp3" "$MAP_CPP"
+' /opt/rathena/src/map/map.cpp > /opt/rathena/src/map/map.cpp.tmp && mv -f /opt/rathena/src/map/map.cpp.tmp /opt/rathena/src/map/map.cpp
+
 
 # Kontrol
 echo "[OK] map.cpp degisiklikleri:"
