@@ -1,6 +1,6 @@
 ```
 docker cp .env rathena:/opt/rathena/.env
-docker exec -it rathana bash
+docker exec -it rathena bash
 ```
 
 
