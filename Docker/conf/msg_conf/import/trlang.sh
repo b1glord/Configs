@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# MAP.HPP DÜZELTMELERİ BAŞLANGIÇ
 MAP_HPP="/opt/rathena/src/map/map.hpp"
 
 # CRLF varsa temizle (önlem)
@@ -19,3 +20,62 @@ fi
 grep -n 'MSG_CONF_NAME_' "$MAP_HPP" | tail -n 5
 
 
+# MAP.CPP DÜZELTMELERİ BAŞLANGIÇ
+MAP_CPP="/opt/rathena/src/map/map.cpp"
+
+# 0) CRLF temizligi (opsiyonel ama guvenli)
+sed -i 's/\r$//' "$MAP_CPP"
+
+# 1) const bildirimine TUR ekle (THA altina), yoksa
+if ! grep -qE '^[[:space:]]*const[[:space:]]+char[[:space:]]*\*[[:space:]]*MSG_CONF_NAME_TUR[[:space:]]*;' "$MAP_CPP"; then
+awk '
+  BEGIN{added=0}
+  /^[ \t]*const[ \t]*char[ \t]*\*[ \t]*MSG_CONF_NAME_THA[ \t]*;[ \t]*$/ && !added {
+    print $0
+    print "const char *MSG_CONF_NAME_TUR;"
+    added=1
+    next
+  }
+  {print}
+' "$MAP_CPP" > "$MAP_CPP.tmp1" && mv -f "$MAP_CPP.tmp1" "$MAP_CPP"
+fi
+
+# 2) THA assignment altina TUR assignment ekle, yoksa
+if ! grep -Eq 'MSG_CONF_NAME_TUR[[:space:]]*=' "$MAP_CPP"; then
+awk '
+  BEGIN{added=0}
+  /^[ \t]*MSG_CONF_NAME_THA[ \t]*=[ \t]*"conf\/msg_conf\/map_msg_tha\.conf";([ \t]*\/\/[ \t]*Thai)?[ \t]*$/ && !added {
+    print $0
+    print "    MSG_CONF_NAME_TUR = \"conf/msg_conf/map_msg_tur.conf\";   // Turkish"
+    added=1
+    next
+  }
+  {print}
+' "$MAP_CPP" > "$MAP_CPP.tmp2" && mv -f "$MAP_CPP.tmp2" "$MAP_CPP"
+fi
+
+# 3) listelang[] icinde THA altina TUR ekle, yoksa
+if ! grep -q 'MSG_CONF_NAME_TUR,[[:space:]]*$' "$MAP_CPP"; then
+awk '
+BEGIN{inarr=0; hasTur=0}
+# dizi baslangici
+/^[ \t]*const[ \t]+char[ \t]*\*[ \t]*listelang\[\][ \t]*=[ \t]*\{/ { inarr=1 }
+# dizi icerisinde TUR var mi?
+inarr==1 && $0 ~ /^[ \t]*MSG_CONF_NAME_TUR[ \t]*,[ \t]*$/ { hasTur=1 }
+# THA satirini virgullu yap ve altina TUR ekle (yoksa)
+inarr==1 && $0 ~ /^[ \t]*MSG_CONF_NAME_THA[ \t]*,?[ \t]*$/ {
+  lead=""; m=match($0,/[^ \t]/); if (m>1) lead=substr($0,1,m-1)
+  print lead "MSG_CONF_NAME_THA,"
+  if (hasTur==0) print lead "MSG_CONF_NAME_TUR,"
+  next
+}
+# dizi bitisi
+inarr==1 && $0 ~ /^[ \t]*\}[ \t]*;[ \t]*$/ { inarr=0 }
+{ print }
+' "$MAP_CPP" > "$MAP_CPP.tmp3" && mv -f "$MAP_CPP.tmp3" "$MAP_CPP"
+fi
+
+# Kontrol cikti
+echo "[OK] map.cpp degisiklikleri:"
+grep -n 'MSG_CONF_NAME_THA' "$MAP_CPP" | head -n 3 || true
+grep -n 'MSG_CONF_NAME_TUR' "$MAP_CPP" | head -n 5 || true
