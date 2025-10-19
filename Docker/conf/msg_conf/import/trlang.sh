@@ -43,24 +43,33 @@ sed -i 's/^\(#define[[:space:]]\+LANG_ENABLE[[:space:]]\+\).*/\10xFFF/' "$MSG_HP
 
 # --- 3) map.hpp: extern format duzelt + tek satir TUR ekle ---
 if [[ -f "$MAP_HPP" ]]; then
-  # THA satirini 'extern const char*MSG_CONF_NAME_THA;' formatina zorla
-  sed -i -E 's/extern[[:space:]]+const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;/extern const char*MSG_CONF_NAME_THA;/' "$MAP_HPP"
+  # Tum extern const char* MSG_* satirlarini "extern const char*MSG_...;" seklinde normalize et
+  sed -i -E '
+    s/extern[[:space:]]+const[[:space:]]+char[[:space:]]*\*[[:space:]]*(MSG_CONF_NAME_[A-Z]+);/extern const char*\\1;/g
+  ' "$MAP_HPP"
 
-  # Mevcut TUR extern satirlarini temizle (dup olmasin)
-  sed -i -E '/extern[[:space:]]+const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_TUR[[:space:]]*;/d' "$MAP_HPP"
+  # TUR extern dup temizle
+  sed -i -E '/^extern[[:space:]]+const[[:space:]]+char\*MSG_CONF_NAME_TUR;[[:space:]]*$/d' "$MAP_HPP"
 
-  # THA eksterninin altina dogru formatla TUR eksternini ekle
-  sed -i -E '/extern[[:space:]]+const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;/a extern const char*MSG_CONF_NAME_TUR;' "$MAP_HPP"
+  # THA altina dogru formatta tekrar ekle (THA yoksa en sona ekle)
+  if grep -q '^extern[[:space:]]\+const[[:space:]]\+char\*MSG_CONF_NAME_THA;[[:space:]]*$' "$MAP_HPP"; then
+    sed -i -E '/^extern[[:space:]]+const[[:space:]]+char\*MSG_CONF_NAME_THA;[[:space:]]*$/a extern const char*MSG_CONF_NAME_TUR;' "$MAP_HPP"
+  else
+    printf '\nextern const char*MSG_CONF_NAME_TUR;\n' >> "$MAP_HPP"
+  fi
 fi
 
 # --- 4) map.cpp: global const + assignment + listelang[] ---
-# 4a) THA const altinda TUR const: 'const char*MSG_CONF_NAME_TUR;' (bosluksuz)
-if grep -qE '(^|[[:space:]])const[[:space:]]+char[[:space:]]*\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;' "$MAP_CPP"; then
-  if ! grep -qE '(^|[[:space:]])const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_TUR[[:space:]]*;' "$MAP_CPP"; then
-    sed -i -E '/(^|[[:space:]])const[[:space:]]+char\*[[:space:]]*MSG_CONF_NAME_THA[[:space:]]*;/a const char*MSG_CONF_NAME_TUR;' "$MAP_CPP"
-  else
-    # varsa ama boslukluysa duzelt
-    sed -i -E 's/const[[:space:]]+char\*[[:space:]]+MSG_CONF_NAME_TUR[[:space:]]*;/const char*MSG_CONF_NAME_TUR;/' "$MAP_CPP"
+# 4a) Tum "const char *MSG_..." veya "const char* MSG_..." bildirimlerini "const char*MSG_...;" formatina zorla
+sed -i -E '
+  s/([[:space:];{])const[[:space:]]+char[[:space:]]*\*[[:space:]]*(MSG_CONF_NAME_[A-Z]+);/\1const char*\\2;/g
+  s/([[:space:];{])const[[:space:]]+char\*[[:space:]]+(MSG_CONF_NAME_[A-Z]+);/\1const char*\\2;/g
+' "$MAP_CPP"
+
+# THA const altinda TUR const ekle (yoksa)
+if grep -qE '(^|[[:space:]])const[[:space:]]+char\*MSG_CONF_NAME_THA;' "$MAP_CPP"; then
+  if ! grep -qE '(^|[[:space:]])const[[:space:]]+char\*MSG_CONF_NAME_TUR;' "$MAP_CPP"; then
+    sed -i -E '/(^|[[:space:]])const[[:space:]]+char\*MSG_CONF_NAME_THA;/a const char*MSG_CONF_NAME_TUR;' "$MAP_CPP"
   fi
 fi
 
@@ -97,7 +106,7 @@ inarr==1 && $0 ~ /^[ \t]*\}[ \t]*;[ \t]*$/ { inarr=0 }
 # --- 5) Rapor ---
 echo "[OK] import ->" && grep -n '^import:' "$CONF_DIR/map_msg_tur.conf" || true
 echo "[OK] enums   ->" && grep -n 'LANG_T.. = ' "$MSG_HPP" || true
-[[ -f "$MAP_HPP" ]] && { echo "[OK] map.hpp ->"; grep -n 'MSG_CONF_NAME_T..' "$MAP_HPP" || true; }
+[[ -f "$MAP_HPP" ]] && { echo "[OK] map.hpp ->"; grep -n '^extern const char\*MSG_CONF_NAME_' "$MAP_HPP" || true; }
 echo "[OK] map.cpp ->" && grep -n 'MSG_CONF_NAME_T..' "$MAP_CPP" || true
 
 echo
