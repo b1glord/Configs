@@ -96,3 +96,25 @@ inarr==1 && $0 ~ /^[ \t]*\}[ \t]*;[ \t]*$/ { inarr=0 }
 echo "[OK] map.cpp degisiklikleri:"
 grep -n 'MSG_CONF_NAME_THA' "$MAP_CPP" | head -n 3 || true
 grep -n 'MSG_CONF_NAME_TUR' "$MAP_CPP" | head -n 5 || true
+
+
+CONF_DIR="/opt/rathena/conf/msg_conf"
+CONF_IMPORT_DIR="$CONF_DIR/import"
+
+# 1) Klasorleri olustur
+mkdir -p "$CONF_IMPORT_DIR"
+
+# 2) TR conf dosyasini olustur (yoksa ENG'den kopyala)
+if [[ ! -f "$CONF_DIR/map_msg_tur.conf" ]]; then
+  cp "$CONF_DIR/map_msg.conf" "$CONF_DIR/map_msg_tur.conf"
+fi
+
+# 3) TR import satirini ayarla
+sed -i 's|import:[[:space:]]*conf/msg_conf/import/map_msg_eng_conf\.txt|import: conf/msg_conf/import/map_msg_tur_conf.txt|' \
+  "$CONF_DIR/map_msg_tur.conf"
+
+# 4) TR import dosyasini indir
+wget -qO "$CONF_IMPORT_DIR/map_msg_tur_conf.txt" \
+'https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/conf/msg_conf/import/map_msg_tur_conf.txt'
+
+echo "[OK] Klasor ve indirme adimlari tamam."
