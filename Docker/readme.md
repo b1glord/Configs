@@ -75,7 +75,10 @@ github.com/rathena/rathena/wiki/Install-on-Ubuntu/
 ./configure
 openkore supported
 ./configure --enable-epoll=yes --enable-prere=no --enable-vip=no --enable-packetver=20180620
+```
 
+```
+cd /opt/rathena
 ./configure --enable-epoll=yes --enable-prere=no --enable-vip=no --enable-packetver=20211118
 
 make clean && make server
