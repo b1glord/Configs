@@ -54,19 +54,23 @@ awk '
 ' "$MAP_CPP" > "$MAP_CPP.tmp2" && mv -f "$MAP_CPP.tmp2" "$MAP_CPP"
 fi
 
-# 3) listelang[] icinde THA altina TUR ekle, yoksa
-if ! grep -q 'MSG_CONF_NAME_TUR,[[:space:]]*$' "$MAP_CPP"; then
+# 3) listelang[]: THA altina TUR (virgulsuz) ekle / normalize et
 awk '
 BEGIN{inarr=0; hasTur=0}
 # dizi baslangici
 /^[ \t]*const[ \t]+char[ \t]*\*[ \t]*listelang\[\][ \t]*=[ \t]*\{/ { inarr=1 }
-# dizi icerisinde TUR var mi?
-inarr==1 && $0 ~ /^[ \t]*MSG_CONF_NAME_TUR[ \t]*,[ \t]*$/ { hasTur=1 }
-# THA satirini virgullu yap ve altina TUR ekle (yoksa)
+# dizi icerisinde TUR satirini yakala ve virgulu kaldir
+inarr==1 && $0 ~ /^[ \t]*MSG_CONF_NAME_TUR[ \t]*,?[ \t]*$/ {
+  hasTur=1
+  lead=""; m=match($0,/[^ \t]/); if (m>1) lead=substr($0,1,m-1)
+  print lead "MSG_CONF_NAME_TUR"
+  next
+}
+# THA satirini yakala: THA yi virgullu yaz, altina (yoksa) TUR u virgulsuz ekle
 inarr==1 && $0 ~ /^[ \t]*MSG_CONF_NAME_THA[ \t]*,?[ \t]*$/ {
   lead=""; m=match($0,/[^ \t]/); if (m>1) lead=substr($0,1,m-1)
   print lead "MSG_CONF_NAME_THA,"
-  if (hasTur==0) print lead "MSG_CONF_NAME_TUR,"
+  if (hasTur==0) print lead "MSG_CONF_NAME_TUR"
   next
 }
 # dizi bitisi
