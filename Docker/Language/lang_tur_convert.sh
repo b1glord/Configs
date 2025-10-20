@@ -31,6 +31,15 @@ echo "[+] map_msg_tur_conf.txt indirildi."
 
 
 
+# ======================================================
+# === map.hpp DÜZENLEMELERİ ===
+# ======================================================
+sed -i 's/\<MSG_CONF_NAME_THA\>/MSG_CONF_NAME_TUR/' /opt/rathena/src/map/map.hpp
+
+
+
+
+
 
 
 # ======================================================
