@@ -1,6 +1,43 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+
+echo "=== [1/4] Klasör ve Dosya Hazırlığı ==="
+
+CONF_DIR="/opt/rathena/conf/msg_conf"
+CONF_IMPORT_DIR="$CONF_DIR/import"
+MAP_DIR="/opt/rathena/src/map"
+MAP_HPP="$MAP_DIR/map.hpp"
+MAP_CPP="$MAP_DIR/map.cpp"
+
+# 1) Klasör oluştur
+mkdir -p "$CONF_IMPORT_DIR"
+
+# 2) map_msg_tur.conf oluştur (yoksa ENG'den kopyala)
+if [[ ! -f "$CONF_DIR/map_msg_tur.conf" ]]; then
+  cp "$CONF_DIR/map_msg.conf" "$CONF_DIR/map_msg_tur.conf"
+  echo "[+] map_msg_tur.conf oluşturuldu (ENG'den kopyalandı)"
+fi
+
+# 3) import satırını Türkçe import dosyasına yönlendir
+sed -i 's|import:[[:space:]]*conf/msg_conf/import/map_msg_eng_conf\.txt|import: conf/msg_conf/import/map_msg_tur_conf.txt|' \
+  "$CONF_DIR/map_msg_tur.conf"
+
+# 4) TR import dosyasını indir
+wget -qO "$CONF_IMPORT_DIR/map_msg_tur_conf.txt" \
+'https://raw.githubusercontent.com/b1glord/Configs/refs/heads/master/Docker/conf/msg_conf/import/map_msg_tur_conf.txt'
+echo "[+] map_msg_tur_conf.txt indirildi."
+
+
+
+
+
+
+
+
+
+
+
 # === Dosya yolları ===
 MSG_HPP="/opt/rathena/src/common/msg_conf.hpp"
 MSG_CPP="/opt/rathena/src/common/msg_conf.cpp"
