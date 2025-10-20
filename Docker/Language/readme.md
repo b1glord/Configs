@@ -1,4 +1,4 @@
-
+Dil ekleme ile ugraşmamak için tha dilinin üzerine yazdırıyorum 
 ```
 cd /opt/rathena/src
 rm -f ./lang_tur_convert.sh
