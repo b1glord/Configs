@@ -31,10 +31,54 @@ echo "[+] map_msg_tur_conf.txt indirildi."
 
 
 
+
+
+
+
+
+
 # ======================================================
 # === map.hpp DÜZENLEMELERİ ===
 # ======================================================
 sed -i 's/\<MSG_CONF_NAME_THA\>/MSG_CONF_NAME_TUR/' /opt/rathena/src/map/map.hpp
+
+
+
+
+
+
+
+
+
+
+# ======================================================
+# === map.cpp DÜZENLEMELERİ ===
+# ======================================================
+MAP_CPP="/opt/rathena/src/map/map.cpp"
+
+# CRLF temizle (önlem)
+sed -i 's/\r$//' "$MAP_CPP"
+
+# 1️⃣ const tanımı düzelt
+# const char *MSG_CONF_NAME_THA;  →  const char *MSG_CONF_NAME_TUR;
+sed -i 's/\<const[[:space:]]\+char[[:space:]]\*\MSG_CONF_NAME_THA;/const char *MSG_CONF_NAME_TUR;/' "$MAP_CPP"
+
+# 2️⃣ dizideki THA ifadesi düzelt
+# MSG_CONF_NAME_THA,  →  MSG_CONF_NAME_TUR
+sed -i 's/\<MSG_CONF_NAME_THA\>[[:space:]]*,/MSG_CONF_NAME_TUR,/' "$MAP_CPP"
+
+# 3️⃣ dosya ataması düzelt
+# MSG_CONF_NAME_THA = "conf/msg_conf/map_msg_tha.conf"; // Thai
+# ↓↓↓
+# MSG_CONF_NAME_TUR = "conf/msg_conf/map_msg_tur.conf"; // Turkish
+sed -i 's/\<MSG_CONF_NAME_THA\>[[:space:]]*=[[:space:]]*"conf\/msg_conf\/map_msg_tha\.conf";[[:space:]]*\/\/[[:space:]]*Thai/MSG_CONF_NAME_TUR = "conf\/msg_conf\/map_msg_tur.conf";   \/\/ Turkish/' "$MAP_CPP"
+
+# Kontrol çıktısı
+echo "[OK] map.cpp düzenlendi:"
+grep -n 'MSG_CONF_NAME_TUR' "$MAP_CPP" || true
+
+
+
 
 
 
@@ -47,6 +91,7 @@ sed -i 's/\<MSG_CONF_NAME_THA\>/MSG_CONF_NAME_TUR/' /opt/rathena/src/map/map.hpp
 # ======================================================
 sed -i 's/^\([[:space:]]*#define[[:space:]]\+LANG_ENABLE[[:space:]]\+\)0x000/\10xFFF/' /opt/rathena/src/common/msg_conf.hpp
 grep -n 'LANG_ENABLE' /opt/rathena/src/common/msg_conf.hpp
+
 
 
 
