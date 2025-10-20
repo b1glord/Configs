@@ -50,16 +50,16 @@ sed -i 's/\r$//' "$MSG_CPP"
 # === msg_conf.hpp DÜZENLEMELERİ ===
 # ======================================================
 
-# 1️⃣ Yorumlarda Thai → Turkish
-sed -i 's|//[[:space:]]*Thai|// Turkish|g' "$MSG_HPP"
+# 1️⃣ LANG_THA satırını LANG_TUR ve Türkçe yorumla değiştir
+sed -i 's/\<LANG_THA\>[[:space:]]*=[[:space:]]*0x100[[:space:]]*,*/LANG_TUR = 0x100,   \/\/ Turkish/' "$MSG_HPP"
 
-# 2️⃣ LANG_THA satırını Türkçe olarak değiştir
-sed -i 's/\<LANG_THA\>[[:space:]]*=[[:space:]]*0x100[[:space:]]*,[[:space:]]*\/\/[[:space:]]*Thai/LANG_THA = 0x100,   \/\/ Turkish/' "$MSG_HPP"
+# 2️⃣ Yorumlarda Thai → Turkish
+sed -i 's|//[[:space:]]*Thai|// Turkish|g' "$MSG_HPP"
 
 # 3️⃣ LANG_ENABLE değerini 0xFFF yap
 sed -i 's/^\(#define[[:space:]]\+LANG_ENABLE[[:space:]]\+\).*/\10xFFF/' "$MSG_HPP"
 
-# 4️⃣ "THA" tanımlarını "TUR" ile değiştir
+# 4️⃣ THA → TUR genel dönüşümü
 sed -i 's/\<THA\>/TUR/g' "$MSG_HPP"
 
 # Kontrol çıktısı
@@ -71,18 +71,18 @@ grep -n 'LANG_' "$MSG_HPP" | tail -n 10 || true
 # === msg_conf.cpp DÜZENLEMELERİ ===
 # ======================================================
 
-# 1️⃣ Fonksiyon içinde 'tha' kontrolünü 'tur' olarak değiştir
+# 1️⃣ 'tha' kontrollerini 'tur' olarak değiştir
 sed -i 's/!strncmpi(langtype,[[:space:]]*"tha"/!strncmpi(langtype, "tur"/g' "$MSG_CPP"
 
-# 2️⃣ Thai → Turkish dönüşümleri
+# 2️⃣ Thai (THA) → Turkish (TUR)
 sed -i 's/Thai (THA)/Turkish (TUR)/g' "$MSG_CPP"
 
-# 3️⃣ Tekil "THA" → "TUR" dönüşümleri (dizi, enum, yorum vb.)
+# 3️⃣ THA → TUR dönüşümü (kalan tanımlar)
 sed -i 's/\<THA\>/TUR/g' "$MSG_CPP"
 
-# 4️⃣ case kısmında Turkish (TUR) ekli (güvenlik amaçlı)
+# 4️⃣ case kısmında Turkish (TUR) yoksa ekle
 grep -q 'Turkish (TUR)' "$MSG_CPP" || \
-sed -i '/case[[:space:]]*9:[[:space:]]*return[[:space:]]*"Thai (THA)";/a\		case 9: return "Turkish (TUR)";' "$MSG_CPP"
+sed -i '/case[[:space:]]*9:[[:space:]]*return[[:space:]]*"Turkish (TUR)";/!{/case[[:space:]]*9:[[:space:]]*return[[:space:]]*"Thai (THA)";/a\		case 9: return "Turkish (TUR)";}' "$MSG_CPP"
 
 # Kontrol çıktısı
 echo
@@ -92,6 +92,6 @@ grep -n 'TUR' "$MSG_CPP" | tail -n 10 || true
 
 # === Derleme önerisi ===
 echo
-echo "✅ Değişiklikler tamamlandı."
-echo "Şimdi yeniden derleyin:"
+echo "✅ Dönüşüm tamamlandı."
+echo "Yeniden derlemek için:"
 echo "cd /opt/rathena && make clean && make server"
