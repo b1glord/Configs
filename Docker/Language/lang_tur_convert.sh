@@ -158,3 +158,5 @@ echo
 echo "✅ Dönüşüm tamamlandı."
 echo "Yeniden derlemek için:"
 echo "cd /opt/rathena && make clean && make server"
+
+
