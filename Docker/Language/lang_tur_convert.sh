@@ -72,6 +72,8 @@ sed -i 's/\<MSG_CONF_NAME_THA\>[[:space:]]*,/MSG_CONF_NAME_TUR,/' "$MAP_CPP"
 # ↓↓↓
 # MSG_CONF_NAME_TUR = "conf/msg_conf/map_msg_tur.conf"; // Turkish
 sed -i 's/\<MSG_CONF_NAME_THA\>[[:space:]]*=[[:space:]]*"conf\/msg_conf\/map_msg_tha\.conf";[[:space:]]*\/\/[[:space:]]*Thai/MSG_CONF_NAME_TUR = "conf\/msg_conf\/map_msg_tur.conf";   \/\/ Turkish/' "$MAP_CPP"
+sed -i 's/\<MSG_CONF_NAME_THA\>/MSG_CONF_NAME_TUR/' /opt/rathena/src/map/map.cpp
+
 
 # Kontrol çıktısı
 echo "[OK] map.cpp düzenlendi:"
