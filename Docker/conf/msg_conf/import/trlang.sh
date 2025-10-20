@@ -113,6 +113,74 @@ echo "=== [4/4] Kontrol Çıktısı ==="
 grep -n 'MSG_CONF_NAME_THA' "$MAP_CPP" | head -n 3 || true
 grep -n 'MSG_CONF_NAME_TUR' "$MAP_CPP" | head -n 5 || true
 
+
+
+
+
+
+
+
+
+
+MSG_HPP="/opt/rathena/src/common/msg_conf.hpp"
+
+# 0) CRLF temizle
+sed -i 's/\r$//' "$MSG_HPP"
+
+# 1) #ifndef LANG_ENABLE bloğu İÇİNDE değeri 0xFFF yap
+sed -i -E '/^[[:space:]]*#ifndef[[:space:]]+LANG_ENABLE/,/^[[:space:]]*#endif/ s/^[[:space:]]*#define[[:space:]]+LANG_ENABLE[[:space:]]+0x[0-9A-Fa-f]+/#define LANG_ENABLE 0xFFF/' "$MSG_HPP"
+
+# 2) Dosyanın başka yerlerindeki olası #define LANG_ENABLE değerlerini de 0xFFF yap
+sed -i -E 's/^[[:space:]]*#define[[:space:]]+LANG_ENABLE[[:space:]]+0x[0-9A-Fa-f]+/#define LANG_ENABLE 0xFFF/' "$MSG_HPP"
+
+# 3) Hâlâ hiç define yoksa, #ifndef satırının HEMEN ALTINA ekle; o da yoksa dosyanın başına koy
+if ! grep -qE '^[[:space:]]*#define[[:space:]]+LANG_ENABLE[[:space:]]+0xFFF' "$MSG_HPP"; then
+  if grep -qE '^[[:space:]]*#ifndef[[:space:]]+LANG_ENABLE' "$MSG_HPP"; then
+    sed -i -E '/^[[:space:]]*#ifndef[[:space:]]+LANG_ENABLE/a #define LANG_ENABLE 0xFFF' "$MSG_HPP"
+  else
+    sed -i '1i #define LANG_ENABLE 0xFFF' "$MSG_HPP"
+  fi
+fi
+
+# 4) Kontrol
+echo "== Son durum =="
+grep -nE '^[[:space:]]*#(ifndef|define|endif)[[:space:]]+LANG_ENABLE|^#define LANG_ENABLE' "$MSG_HPP"
+
+
 echo
 echo "✅ İşlem tamamlandı. Derleme komutu:"
 echo "cd /opt/rathena/src && make clean && make server"
+
+
+
+
+
+
+
+
+
+
+MSG_CPP="/opt/rathena/src/common/msg_conf.cpp"
+
+# CRLF temizle
+sed -i 's/\r$//' "$MSG_CPP"
+
+# 1) msg_langstr2langtype() içine Turkish ekle
+if ! grep -q 'langtype, "tur"' "$MSG_CPP"; then
+  sed -i '/else if (!strncmpi(langtype, "tha",2)) lang = 9;/a\	else if (!strncmpi(langtype, "tur",2)) lang = 10;' "$MSG_CPP"
+  echo "[OK] Turkish eklendi -> msg_langstr2langtype"
+else
+  echo "[SKIP] Turkish zaten var -> msg_langstr2langtype"
+fi
+
+# 2) msg_langtype2langstr() içine Turkish case ekle
+if ! grep -q 'return "Turkish (TUR)"' "$MSG_CPP"; then
+  sed -i '/case 9: return "Thai (THA)";/a\		case 10: return "Turkish (TUR)";' "$MSG_CPP"
+  echo "[OK] Turkish eklendi -> msg_langtype2langstr"
+else
+  echo "[SKIP] Turkish zaten var -> msg_langtype2langstr"
+fi
+
+# Kontrol
+grep -n 'tur' "$MSG_CPP" | grep -E 'langtype|Turkish' || true
+
