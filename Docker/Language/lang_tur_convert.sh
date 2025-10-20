@@ -33,6 +33,15 @@ echo "[+] map_msg_tur_conf.txt indirildi."
 
 
 
+# ======================================================
+# === msg_conf.hpp DÜZENLEMELERİ 1 ===
+# ======================================================
+sed -i 's/^\([[:space:]]*#define[[:space:]]\+LANG_ENABLE[[:space:]]\+\)0x000/\10xFFF/' /opt/rathena/src/common/msg_conf.hpp
+grep -n 'LANG_ENABLE' /opt/rathena/src/common/msg_conf.hpp
+
+
+
+
 
 
 
@@ -47,7 +56,7 @@ sed -i 's/\r$//' "$MSG_HPP"
 sed -i 's/\r$//' "$MSG_CPP"
 
 # ======================================================
-# === msg_conf.hpp DÜZENLEMELERİ ===
+# === msg_conf.hpp DÜZENLEMELERİ 2 ===
 # ======================================================
 
 # 1️⃣ LANG_THA satırını LANG_TUR ve Türkçe yorumla değiştir
