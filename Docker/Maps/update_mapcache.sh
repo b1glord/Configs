@@ -9,6 +9,7 @@ set -e
 RA_DIR="/opt/rathena"
 
 # Harita ve araç yolları
+mkdir -p "$RA_DIR/maps"
 MAP_DIR="$RA_DIR/maps"
 MAPCACHE="$RA_DIR/tools/mapcache"
 
