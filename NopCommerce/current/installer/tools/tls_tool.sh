@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/tools/tls_tool.sh
 # 📌 Amac: Native veya Docker nopCommerce deploymenti icin Let's Encrypt sertifika alma ve yenilemeyi yonetmek
 # 📌 Modul - Shell
-# Version: 1.1.0
+# Version: 1.1.1
 # Aciklama: Certbot webroot issuance, Docker Certbot image, deploy hook ve systemd renewal timer adaptoru
 # Bagimli Oldugu Katman: Config | Repo | View | Language
 
@@ -141,6 +141,9 @@ EOF
 # Bagimli Oldugu Katman: Tool
 
 set -Eeuo pipefail
+
+export NOP_DB_NAME="${NOP_DB_NAME}"
+export NOP_DB_USER="${NOP_DB_USER}"
 
 if [[ -f "${NOP_DB_SECRET_FILE}" ]]; then
     set -a

@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/tools/docker_stack_tool.sh
 # 📌 Amac: nopCommerce uygulama, Nginx ve opsiyonel DB servislerini Docker Compose ile yonetmek
 # 📌 Modul - Shell
-# Version: 1.2.0
+# Version: 1.2.1
 # Aciklama: Resmi NoSource release'i surume uygun ASP.NET runtime image ile paketler; HTTP/HTTPS Nginx ve Compose stack olusturur
 # Bagimli Oldugu Katman: Config | Repo | View | Language
 

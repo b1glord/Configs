@@ -292,6 +292,7 @@ jobs:
           database_repository_resolve_provider "mysql"
           database_repository_resolve_mode "docker"
           database_repository_prepare_connection "stack"
+          export NOP_DB_NAME NOP_DB_USER
 
           docker_stack_tool_validate_config
           docker_stack_tool_prepare_persistent_data
@@ -303,6 +304,7 @@ jobs:
           docker compose             -p "$NOP_DOCKER_STACK_PROJECT"             -f "$NOP_DOCKER_STACK_COMPOSE_FILE"             config -q
 
           grep -q 'image: "mysql:8.4"' "$NOP_DOCKER_STACK_COMPOSE_FILE"
+          grep -q 'MYSQL_PWD="$MYSQL_ROOT_PASSWORD"' "$NOP_DOCKER_STACK_COMPOSE_FILE"
           grep -q '"0.0.0.0:80:80"' "$NOP_DOCKER_STACK_COMPOSE_FILE"
 
           if grep -q ':443"' "$NOP_DOCKER_STACK_COMPOSE_FILE"; then
@@ -394,10 +396,12 @@ jobs:
           export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
 
           source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/version-catalog.env"
           source "$INSTALLER_ROOT/config/application-catalog.env"
           source "$INSTALLER_ROOT/config/tls-catalog.env"
           source "$INSTALLER_ROOT/language/tr.labels"
           source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/version_repository.sh"
           source "$INSTALLER_ROOT/repositories/application_repository.sh"
           source "$INSTALLER_ROOT/repositories/tls_repository.sh"
           source "$INSTALLER_ROOT/tools/tls_tool.sh"
@@ -410,6 +414,7 @@ jobs:
           NOP_TLS_DOCKER_WEBROOT="$RUNNER_TEMP/webroot"
           NOP_DB_SECRET_FILE="$RUNNER_TEMP/db.secret.env"
 
+          version_repository_resolve "4.90.8"
           application_repository_resolve_mode "native"
           tls_repository_resolve_mode "letsencrypt"
           tls_tool_write_deploy_hook
