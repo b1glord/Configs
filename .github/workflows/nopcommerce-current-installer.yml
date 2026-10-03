@@ -128,13 +128,16 @@ jobs:
           export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
 
           source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/version-catalog.env"
           source "$INSTALLER_ROOT/config/application-catalog.env"
           source "$INSTALLER_ROOT/config/tls-catalog.env"
           source "$INSTALLER_ROOT/language/tr.labels"
           source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/version_repository.sh"
           source "$INSTALLER_ROOT/repositories/application_repository.sh"
           source "$INSTALLER_ROOT/repositories/tls_repository.sh"
 
+          version_repository_resolve "4.90.8"
           application_repository_resolve_mode "native"
           tls_repository_resolve_mode "off"
           test "$NOP_TLS_MODE_RESOLVED" = "off"
