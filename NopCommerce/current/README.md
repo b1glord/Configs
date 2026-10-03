@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/README.md
-# 📌 Amac: Cok surumlu nopCommerce Linux installer kullanimini ve destek matrisini tanimlamak
+# 📌 Amac: Cok surumlu nopCommerce Linux installer kullanimini, veritabani secimini ve destek matrisini tanimlamak
 # 📌 Modul - Markdown
-# Version: 1.3.0
-# Aciklama: nopCommerce 4.30-4.90 stable ve acikca secilen 5.00 beta surumu icin katmanli installer dokumani
+# Version: 1.4.0
+# Aciklama: nopCommerce 4.30-4.90 stable ve acikca secilen 5.00 beta icin surum/runtime/DB uyumlu installer dokumani
 
 Bagimli Oldugu Katman: Controller | Service | Repo | Tool | View | Language | Config
 
@@ -12,102 +12,144 @@ Bu alan nopCommerce 4.30 ve sonrasi desteklenen Linux release paketlerini ayni i
 
 ## Desteklenen surum aileleri
 
-| nopCommerce | Runtime | Kanal |
+| nopCommerce | Runtime | Veritabani |
 | --- | --- | --- |
-| 4.30 | .NET Core 3.1 | stable |
-| 4.40 | .NET 5 | stable |
-| 4.50.x | .NET 6 | stable |
-| 4.60.x | .NET 7 | stable |
-| 4.70.x | .NET 8 | stable |
-| 4.80.x | .NET 9 | stable |
-| 4.90.x | .NET 9 | stable |
-| 5.00.0-beta | .NET 10 | prerelease |
+| 4.30 | .NET Core 3.1 | SQL Server, MySQL |
+| 4.40 | .NET 5 | SQL Server, MySQL, PostgreSQL |
+| 4.50.x | .NET 6 | SQL Server, MySQL, PostgreSQL |
+| 4.60.x | .NET 7 | SQL Server, MySQL, PostgreSQL |
+| 4.70.x | .NET 8 | SQL Server, MySQL, PostgreSQL |
+| 4.80.x | .NET 9 | SQL Server, MySQL, PostgreSQL |
+| 4.90.x | .NET 9 | SQL Server, MySQL, PostgreSQL |
+| 5.00.0-beta | .NET 10 | SQL Server, MySQL, PostgreSQL |
 
-`latest` her zaman stable profile gider. Prerelease otomatik secilmez.
+MySQL nopCommerce 4.30 ile, PostgreSQL nopCommerce 4.40 ile desteklenmeye baslar.
 
 ## Surum secimi
 
-Temel surum:
-
 ```bash
 sudo bash installer/controllers/install.sh --version 4.30 --config /etc/nopcommerce-installer.env
-sudo bash installer/controllers/install.sh --version 4.50 --config /etc/nopcommerce-installer.env
-sudo bash installer/controllers/install.sh --version 4.90 --config /etc/nopcommerce-installer.env
-```
-
-Belirli patch surumu:
-
-```bash
 sudo bash installer/controllers/install.sh --version 4.60.3 --config /etc/nopcommerce-installer.env
-sudo bash installer/controllers/install.sh --version 4.80.9 --config /etc/nopcommerce-installer.env
-sudo bash installer/controllers/install.sh --version 4.90.8 --config /etc/nopcommerce-installer.env
-```
-
-Bir surum ailesinin son bilinen stable patch'i:
-
-```bash
-sudo bash installer/controllers/install.sh --version latest-4.60 --config /etc/nopcommerce-installer.env
 sudo bash installer/controllers/install.sh --version latest-4.80 --config /etc/nopcommerce-installer.env
-```
-
-Genel son stable profil:
-
-```bash
 sudo bash installer/controllers/install.sh --version latest --config /etc/nopcommerce-installer.env
+sudo bash installer/controllers/install.sh --version beta --config /etc/nopcommerce-installer.env
 ```
 
-Prerelease ancak acikca secilir:
+`latest` stable surume gider. Prerelease otomatik secilmez.
+
+## Veritabani secimi
+
+Varsayilan davranis `web` provideridir. Bu durumda installer veritabani bilgisi yazmaz ve nopCommerce ilk kurulum sihirbazi kullanilir.
 
 ```bash
-sudo bash installer/controllers/install.sh --version beta --config /etc/nopcommerce-installer.env
-sudo bash installer/controllers/install.sh --version 5.00.0-beta --config /etc/nopcommerce-installer.env
+sudo bash installer/controllers/install.sh \
+  --version 4.90.8 \
+  --db web \
+  --config /etc/nopcommerce-installer.env
 ```
 
-Secenekleri listelemek icin root yetkisi gerekmez:
+Otomatik DB config icin once secret dosyasini hazirla:
+
+```bash
+sudo cp installer/config/database/mysql.secret.env.example /etc/nopcommerce-db.secret.env
+sudo chmod 600 /etc/nopcommerce-db.secret.env
+sudo nano /etc/nopcommerce-db.secret.env
+```
+
+Sonra provideri sec:
+
+```bash
+sudo bash installer/controllers/install.sh \
+  --version 4.90.8 \
+  --db mysql \
+  --config /etc/nopcommerce-installer.env
+```
+
+SQL Server:
+
+```bash
+sudo cp installer/config/database/sqlserver.secret.env.example /etc/nopcommerce-db.secret.env
+sudo chmod 600 /etc/nopcommerce-db.secret.env
+
+sudo bash installer/controllers/install.sh \
+  --version 4.30 \
+  --db sqlserver \
+  --config /etc/nopcommerce-installer.env
+```
+
+PostgreSQL:
+
+```bash
+sudo cp installer/config/database/postgresql.secret.env.example /etc/nopcommerce-db.secret.env
+sudo chmod 600 /etc/nopcommerce-db.secret.env
+
+sudo bash installer/controllers/install.sh \
+  --version 4.40 \
+  --db postgresql \
+  --config /etc/nopcommerce-installer.env
+```
+
+4.30 ile PostgreSQL secilirse installer kurulum baslamadan hata verir.
+
+## Secret yapisi
+
+Secret dosyasi repo icine commit edilmez. Varsayilan konum:
+
+```text
+/etc/nopcommerce-db.secret.env
+```
+
+Icerik tek secret degiskenidir:
+
+```bash
+NOP_DB_CONNECTION_STRING='...'
+```
+
+Dosya group veya world tarafindan okunabiliyorsa installer varsayilan olarak islemi durdurur. Tavsiye edilen izin:
+
+```bash
+sudo chown root:root /etc/nopcommerce-db.secret.env
+sudo chmod 600 /etc/nopcommerce-db.secret.env
+```
+
+Connection string konsola yazdirilmaz.
+
+## DB config uyumlulugu
+
+Installer `App_Data/dataSettings.json` dosyasini geriye uyumlu sekilde uretir:
+
+```json
+{
+  "DataConnectionString": "...",
+  "DataProvider": "MySql"
+}
+```
+
+4.30 ve 4.40 bu dosyayi dogrudan okuyabilir. Yeni nopCommerce surumleri eski `dataSettings.json` formatini okuyup yeni `DataConfig` yapisina tasiyabilir. Bu nedenle tek adapter eski ve yeni kurulumlarda kullanilir.
+
+Provider isimleri nopCommerce'in bekledigi resmi enum isimleriyle yazilir:
+
+- `SqlServer`
+- `MySql`
+- `PostgreSQL`
+
+## Listeleme
 
 ```bash
 bash installer/controllers/install.sh --list-versions
+bash installer/controllers/install.sh --list-databases
 ```
-
-## Alias davranisi
-
-- `4.30` -> 4.30
-- `4.40` -> 4.40
-- `4.50` -> 4.50.0
-- `4.60` -> 4.60.0
-- `4.70` -> 4.70.0
-- `4.80` -> 4.80.0
-- `4.90` -> 4.90.0
-- `latest-4.40` -> 4.40.4
-- `latest-4.50` -> 4.50.4
-- `latest-4.60` -> 4.60.6
-- `latest-4.70` -> 4.70.5
-- `latest-4.80` -> 4.80.9
-- `latest-4.90` -> 4.90.8
-- `latest` -> 4.90.8
-- `beta` -> 5.00.0-beta
-
-Tam patch surumleri alias katalogunda bulunmak zorunda degildir. Ornegin `4.60.2` verildiginde installer GitHub release metadata uzerinden paketin gercekten var oldugunu kontrol eder.
 
 ## Runtime yonetimi
 
-.NET runtime paketleri sistem apt deposuna tek bir major surum olarak sabitlenmez. Installer Microsoft `dotnet-install.sh` mekanizmasini kullanarak runtime'lari `/opt/dotnet` altinda side-by-side tutar.
-
-Bu sayede farkli nopCommerce surumlerinin gerektirdigi runtime'lar ayni host uzerinde bulunabilir.
-
-Eski .NET runtime'lari modern Linux dagitimlarinin tum kutuphane kombinasyonlari ile uyumlu olmayabilir. Ozellikle 4.30 ve 4.40 gibi eski nopCommerce surumleri icin kurulum yapilabilse bile uygulama runtime uyumlulugu hedef sunucuda test edilmelidir.
+.NET runtime paketleri `/opt/dotnet` altinda side-by-side tutulur. Eski .NET runtime'lari modern Linux dagitimlarinda ek kutuphane veya eski OS gerektirebilir.
 
 ## Release dogrulamasi
 
-Installer once resmi GitHub release API kaydini okur.
-
-- Release yoksa kurulum durur.
+- Release resmi GitHub API uzerinden dogrulanir.
 - Linux x64 NoSource asset yoksa kurulum durur.
-- GitHub SHA-256 digest yayinlamissa cryptographic checksum kontrol edilir.
-- Eski release kaydinda digest yoksa dosya boyutu kontrol edilir ve acik uyari verilir.
-- `NOP_ALLOW_LEGACY_WITHOUT_SHA256=0` yapilirsa digest olmayan eski release paketleri reddedilir.
-
-5.00.0-beta paket adi stable surumlerden farkli oldugu icin bu bilgi `version-catalog.env` icindeki paket override tablosunda tutulur.
+- SHA-256 digest varsa checksum kontrol edilir.
+- Eski release kaydinda digest yoksa dosya boyutu kontrol edilir ve uyari verilir.
 
 ## Mimari
 
@@ -118,6 +160,7 @@ installer/
 ├── services/
 │   └── install_service.sh
 ├── repositories/
+│   ├── database_repository.sh
 │   ├── release_repository.sh
 │   └── version_repository.sh
 ├── tools/
@@ -129,38 +172,21 @@ installer/
 ├── language/
 │   └── tr.labels
 └── config/
+    ├── database/
+    │   ├── mysql.secret.env.example
+    │   ├── postgresql.secret.env.example
+    │   └── sqlserver.secret.env.example
+    ├── database-catalog.env
     ├── installer.env.example
     ├── version-catalog.env
     ├── nginx.conf.tpl
     └── nopcommerce.service.tpl
 ```
 
-Controller sadece istegi Service katmanina iletir. Surum ve release bilgisi Repository katmaninda cozulur. OS, runtime, Nginx ve systemd entegrasyonlari Tool katmanindadir. Konsol ciktilari View, metinler Language katmanindadir.
-
-## Config
-
-```bash
-cp installer/config/installer.env.example /etc/nopcommerce-installer.env
-sudo nano /etc/nopcommerce-installer.env
-```
-
-Eski kullanim sekli de korunur. Surum verilmezse `NOP_DEFAULT_VERSION` kullanilir:
-
-```bash
-sudo bash installer/controllers/install.sh /etc/nopcommerce-installer.env
-```
-
-## Veritabani notlari
-
-- MySQL destegi nopCommerce 4.30 ile baslar.
-- PostgreSQL destegi nopCommerce 4.40 ile baslar.
-- Bu installer halen veritabani provisioning yapmaz.
-- Farkli nopCommerce surumlerini ayni veritabanina sirayla baglamak upgrade islemi degildir ve veri kaybina yol acabilir.
-
 ## Sinirlar
 
-- Bu mekanizma yeni kurulum/deployment icindir; otomatik database upgrade sistemi degildir.
-- TLS/Let's Encrypt henuz ayri modul olarak eklenmemistir.
-- Docker deployment henuz ayri modul olarak eklenmemistir.
+- DB provider ve connection config otomatiklestirildi; veritabani sunucusunun kendisi henuz provisioning edilmez.
+- Bu mekanizma database upgrade/migration zinciri degildir.
+- TLS/Let's Encrypt ayri modul olarak eklenmelidir.
+- Docker deployment ayri modul olarak eklenmelidir.
 - Eski .NET runtime'larinin modern OS uyumlulugu garanti edilmez.
-- Prerelease surum production icin varsayilan secim degildir.

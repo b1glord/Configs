@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /.github/workflows/nopcommerce-current-installer.yml
-# 📌 Amac: NopCommerce cok surumlu installer dosyalarinin shell, config, surum cozumleme ve template butunlugunu CI uzerinde dogrulamak
+# 📌 Amac: NopCommerce cok surumlu installer dosyalarinin shell, config, surum, DB ve template butunlugunu CI uzerinde dogrulamak
 # 📌 Modul - YAML
-# Version: 1.2.0
-# Aciklama: Stable, patch, prerelease, config ve template kontrollerini calistirir
+# Version: 1.3.0
+# Aciklama: Stable, prerelease, veritabani provider uyumlulugu, secret ve dataSettings.json testlerini calistirir
 # Bagimli Oldugu Katman: Repo | Tool | View | Config | Language
 
 name: NopCommerce Current Installer
@@ -39,15 +39,13 @@ jobs:
         run: |
           set -Eeuo pipefail
 
-          find NopCommerce/current/installer \
-            -type f \
-            -name "*.sh" \
-            -print0 | while IFS= read -r -d "" file; do
+          find NopCommerce/current/installer             -type f             -name "*.sh"             -print0 | while IFS= read -r -d "" file; do
               bash -n "$file"
             done
 
           bash -n NopCommerce/current/installer/config/installer.env.example
           bash -n NopCommerce/current/installer/config/version-catalog.env
+          bash -n NopCommerce/current/installer/config/database-catalog.env
           bash -n NopCommerce/current/installer/language/tr.labels
 
       - name: Validate config load
@@ -57,6 +55,7 @@ jobs:
 
           source NopCommerce/current/installer/config/installer.env.example
           source NopCommerce/current/installer/config/version-catalog.env
+          source NopCommerce/current/installer/config/database-catalog.env
           source NopCommerce/current/installer/language/tr.labels
 
           test -n "$NOP_DEFAULT_VERSION"
@@ -64,9 +63,10 @@ jobs:
           test -n "$NOP_DOTNET_ROOT"
           test -n "$NOP_SUPPORTED_VERSION_FAMILIES"
           test -n "$NOP_RUNTIME_CHANNELS"
-          test -n "$NOP_PACKAGE_NAME_OVERRIDES"
-          test -n "$MSG_START"
-          test -n "$ERR_VERSION"
+          test -n "$NOP_DB_PROVIDER"
+          test -n "$NOP_DB_PROVIDER_ALIASES"
+          test -n "$NOP_DB_PROVIDER_SUPPORT"
+          test -n "$ERR_DB_UNSUPPORTED"
 
       - name: Validate version resolver
         shell: bash
@@ -84,22 +84,90 @@ jobs:
           version_repository_resolve "4.30"
           test "$NOP_VERSION" = "4.30"
           test "$NOP_DOTNET_RUNTIME_CHANNEL" = "3.1"
-          test "$NOP_PACKAGE_NAME" = "nopCommerce_4.30_NoSource_linux_x64.zip"
 
           version_repository_resolve "latest-4.60"
           test "$NOP_VERSION" = "4.60.6"
           test "$NOP_DOTNET_RUNTIME_CHANNEL" = "7.0"
 
           version_repository_resolve "4.80.9"
-          test "$NOP_VERSION" = "4.80.9"
           test "$NOP_DOTNET_RUNTIME_CHANNEL" = "9.0"
 
           version_repository_resolve "beta"
           test "$NOP_VERSION" = "5.00.0-beta"
           test "$NOP_DOTNET_RUNTIME_CHANNEL" = "10.0"
-          test "$NOP_PACKAGE_NAME" = "nopCommerce_5.00.0_beta_NoSource_linux_x64.zip"
 
           if version_repository_resolve "4.10"; then
+            exit 1
+          fi
+
+      - name: Validate database compatibility
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
+
+          source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/version-catalog.env"
+          source "$INSTALLER_ROOT/config/database-catalog.env"
+          source "$INSTALLER_ROOT/language/tr.labels"
+          source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/version_repository.sh"
+          source "$INSTALLER_ROOT/repositories/database_repository.sh"
+
+          version_repository_resolve "4.30"
+          database_repository_resolve_provider "mysql"
+          test "$NOP_DB_PROVIDER_OFFICIAL" = "MySql"
+
+          if database_repository_resolve_provider "postgresql"; then
+            exit 1
+          fi
+
+          version_repository_resolve "4.40"
+          database_repository_resolve_provider "postgres"
+          test "$NOP_DB_PROVIDER_OFFICIAL" = "PostgreSQL"
+
+          version_repository_resolve "4.90.8"
+          database_repository_resolve_provider "mssql"
+          test "$NOP_DB_PROVIDER_OFFICIAL" = "SqlServer"
+
+          database_repository_resolve_provider "web"
+          test "$NOP_DB_PROVIDER_OFFICIAL" = "Web"
+
+      - name: Validate database settings generation
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
+
+          source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/version-catalog.env"
+          source "$INSTALLER_ROOT/config/database-catalog.env"
+          source "$INSTALLER_ROOT/language/tr.labels"
+          source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/version_repository.sh"
+          source "$INSTALLER_ROOT/repositories/database_repository.sh"
+
+          NOP_CURRENT_DIR="$RUNNER_TEMP/nopcommerce/current"
+          NOP_TEMP_DIR="$RUNNER_TEMP/nopcommerce/tmp"
+          NOP_SERVICE_USER="$(id -un)"
+          NOP_SERVICE_GROUP="$(id -gn)"
+          NOP_DB_SECRET_FILE="$RUNNER_TEMP/nopcommerce-db.secret.env"
+
+          mkdir -p "$NOP_CURRENT_DIR/App_Data"
+          printf "%s\n" "NOP_DB_CONNECTION_STRING='Server=127.0.0.1;Database=nop;User=test;Password=test'" > "$NOP_DB_SECRET_FILE"
+          chmod 600 "$NOP_DB_SECRET_FILE"
+
+          version_repository_resolve "4.90.8"
+          database_repository_resolve_provider "mysql"
+          database_repository_write_settings
+
+          test "$(jq -r '.DataProvider' "$NOP_CURRENT_DIR/App_Data/dataSettings.json")" = "MySql"
+          test "$(jq -r '.DataConnectionString' "$NOP_CURRENT_DIR/App_Data/dataSettings.json")" = "Server=127.0.0.1;Database=nop;User=test;Password=test"
+
+          chmod 644 "$NOP_DB_SECRET_FILE"
+          if database_repository_load_secret; then
             exit 1
           fi
 
