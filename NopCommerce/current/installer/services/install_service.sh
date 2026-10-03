@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/services/install_service.sh
-# 📌 Amac: nopCommerce cok surumlu ve veritabani-secimli kurulum is akisinin tum is kurallarini yonetmek
+# 📌 Amac: nopCommerce cok surumlu, DB-secimli ve opsiyonel Docker DB kurulum akisinin is kurallarini yonetmek
 # 📌 Modul - Shell
-# Version: 1.3.0
-# Aciklama: CLI, config, surum/DB cozumleme, release deploy, runtime, DB config, systemd ve Nginx orkestrasyonu
+# Version: 1.4.0
+# Aciklama: CLI, surum/DB cozumleme, release, runtime, DB provisioning/config, systemd ve Nginx orkestrasyonu
 # Bagimli Oldugu Katman: Repo | Tool | View | Config | Language
 
 set -Eeuo pipefail
@@ -10,7 +10,7 @@ set -Eeuo pipefail
 install_service_require_config() {
     local key
 
-    for key in         NOP_DEFAULT_VERSION         NOP_RELEASE_API_BASE         NOP_RELEASE_TAG_FORMAT         NOP_PACKAGE_NAME_FORMAT         NOP_ALLOW_LEGACY_WITHOUT_SHA256         NOP_INSTALL_ROOT         NOP_RELEASES_DIR         NOP_CURRENT_DIR         NOP_BACKUP_DIR         NOP_TEMP_DIR         NOP_SERVICE_NAME         NOP_SERVICE_USER         NOP_SERVICE_GROUP         NOP_ASPNETCORE_URLS         NOP_PUBLIC_HOST         NOP_NGINX_SITE_AVAILABLE         NOP_NGINX_SITE_ENABLED         NOP_DEFAULT_NGINX_SITE         NOP_SYSTEMD_UNIT         NOP_DOTNET_ROOT         NOP_DOTNET_EXECUTABLE         NOP_DOTNET_SYMLINK         NOP_DOTNET_INSTALL_SCRIPT_URL         NOP_DOTNET_RUNTIME_KIND         NOP_DB_PROVIDER         NOP_DB_SECRET_FILE         NOP_DB_SECRET_REQUIRE_PRIVATE         NOP_DB_SETTINGS_RELATIVE_PATH         NOP_DB_SETTINGS_FILE_MODE         NOP_SUPPORTED_OS         NOP_OS_RELEASE_FILE         NOP_NOLOGIN_SHELL         NOP_APT_BASE_PACKAGES         NOP_WRITABLE_PATHS         NOP_SUPPORTED_VERSION_FAMILIES         NOP_VERSION_PATTERN         NOP_VERSION_ALIASES         NOP_RUNTIME_CHANNELS         NOP_PACKAGE_NAME_OVERRIDES         NOP_LEGACY_VERSION_FAMILIES         NOP_DB_PROVIDER_ALIASES         NOP_DB_PROVIDER_SUPPORT
+    for key in         NOP_DEFAULT_VERSION         NOP_RELEASE_API_BASE         NOP_RELEASE_TAG_FORMAT         NOP_PACKAGE_NAME_FORMAT         NOP_ALLOW_LEGACY_WITHOUT_SHA256         NOP_INSTALL_ROOT         NOP_RELEASES_DIR         NOP_CURRENT_DIR         NOP_BACKUP_DIR         NOP_TEMP_DIR         NOP_SERVICE_NAME         NOP_SERVICE_USER         NOP_SERVICE_GROUP         NOP_ASPNETCORE_URLS         NOP_PUBLIC_HOST         NOP_NGINX_SITE_AVAILABLE         NOP_NGINX_SITE_ENABLED         NOP_DEFAULT_NGINX_SITE         NOP_SYSTEMD_UNIT         NOP_DOTNET_ROOT         NOP_DOTNET_EXECUTABLE         NOP_DOTNET_SYMLINK         NOP_DOTNET_INSTALL_SCRIPT_URL         NOP_DOTNET_RUNTIME_KIND         NOP_DB_PROVIDER         NOP_DB_MODE         NOP_DB_SECRET_FILE         NOP_DB_SECRET_REQUIRE_PRIVATE         NOP_DB_SETTINGS_RELATIVE_PATH         NOP_DB_SETTINGS_FILE_MODE         NOP_DB_NAME         NOP_DB_USER         NOP_DB_DOCKER_BIND_HOST         NOP_DB_DOCKER_MYSQL_PORT         NOP_DB_DOCKER_POSTGRESQL_PORT         NOP_DB_DOCKER_MYSQL_IMAGE         NOP_DB_DOCKER_POSTGRESQL_IMAGE         NOP_DB_DOCKER_CONTAINER_PREFIX         NOP_DB_DOCKER_VOLUME_PREFIX         NOP_DB_DOCKER_START_TIMEOUT         NOP_DOCKER_EXECUTABLE         NOP_SUPPORTED_OS         NOP_OS_RELEASE_FILE         NOP_NOLOGIN_SHELL         NOP_APT_BASE_PACKAGES         NOP_WRITABLE_PATHS         NOP_SUPPORTED_VERSION_FAMILIES         NOP_VERSION_PATTERN         NOP_VERSION_ALIASES         NOP_RUNTIME_CHANNELS         NOP_PACKAGE_NAME_OVERRIDES         NOP_LEGACY_VERSION_FAMILIES         NOP_DB_PROVIDER_ALIASES         NOP_DB_PROVIDER_SUPPORT         NOP_DB_MODES         NOP_DB_DOCKER_PROVIDERS
     do
         if [[ -z "${!key:-}" ]]; then
             console_view_error "${ERR_CONFIG_KEY}: ${key}"
@@ -23,6 +23,7 @@ install_service_parse_args() {
     local config_path=""
     local requested_version=""
     local requested_db=""
+    local requested_db_mode=""
     local list_versions="0"
     local list_databases="0"
 
@@ -42,6 +43,14 @@ install_service_parse_args() {
                     return 64
                 fi
                 requested_db="$2"
+                shift 2
+                ;;
+            --db-mode)
+                if [[ "$#" -lt 2 || -z "${2:-}" ]]; then
+                    console_view_error "${ERR_USAGE}"
+                    return 64
+                fi
+                requested_db_mode="$2"
                 shift 2
                 ;;
             --config)
@@ -79,6 +88,7 @@ install_service_parse_args() {
     export INSTALL_REQUEST_CONFIG="${config_path}"
     export INSTALL_REQUEST_VERSION="${requested_version}"
     export INSTALL_REQUEST_DB_PROVIDER="${requested_db}"
+    export INSTALL_REQUEST_DB_MODE="${requested_db_mode}"
     export INSTALL_REQUEST_LIST_VERSIONS="${list_versions}"
     export INSTALL_REQUEST_LIST_DATABASES="${list_databases}"
 }
@@ -105,6 +115,18 @@ install_service_load_config() {
     source "${config_path}"
     install_service_load_catalogs
     set +a
+}
+
+install_service_prepare_database() {
+    if [[ "${NOP_DB_PROVIDER_OFFICIAL}" == "Web" ]]; then
+        return 0
+    fi
+
+    database_repository_prepare_connection
+
+    if [[ "${NOP_DB_MODE_RESOLVED}" == "docker" ]]; then
+        docker_database_tool_provision
+    fi
 }
 
 install_service_run() {
@@ -139,9 +161,11 @@ install_service_run() {
     source "${INSTALLER_ROOT}/tools/os_tool.sh"
     source "${INSTALLER_ROOT}/tools/systemd_tool.sh"
     source "${INSTALLER_ROOT}/tools/nginx_tool.sh"
+    source "${INSTALLER_ROOT}/tools/docker_database_tool.sh"
 
     version_repository_resolve "${INSTALL_REQUEST_VERSION:-${NOP_DEFAULT_VERSION}}"
     database_repository_resolve_provider "${INSTALL_REQUEST_DB_PROVIDER:-${NOP_DB_PROVIDER}}"
+    database_repository_resolve_mode "${INSTALL_REQUEST_DB_MODE:-${NOP_DB_MODE}}"
 
     console_view_info "${MSG_START}"
 
@@ -153,6 +177,8 @@ install_service_run() {
 
     os_tool_install_dotnet_runtime
     os_tool_ensure_service_account
+
+    install_service_prepare_database
 
     release_repository_prepare
     release_repository_download
