@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/tools/os_tool.sh
 # 📌 Amac: Linux platform, bagimlilik, side-by-side .NET runtime ve servis hesabini yonetmek
 # 📌 Modul - Shell
-# Version: 1.1.0
-# Aciklama: Ubuntu ve Debian icin cok surumlu runtime dis sistem adaptoru
+# Version: 1.2.0
+# Aciklama: Native modda host .NET/Nginx bagimliliklarini, Docker modda yalniz ortak paketleri kurar
 # Bagimli Oldugu Katman: Config | View | Language
 
 set -Eeuo pipefail
@@ -43,9 +43,17 @@ os_tool_validate_platform() {
 }
 
 os_tool_install_dependencies() {
+    local app_mode="${1:-native}"
+    local package_string
     local packages
 
-    IFS=' ' read -r -a packages <<< "${NOP_APT_BASE_PACKAGES}"
+    package_string="${NOP_APT_BASE_PACKAGES}"
+
+    if [[ "${app_mode}" == "native" ]]; then
+        package_string+=" ${NOP_APT_NATIVE_PACKAGES}"
+    fi
+
+    IFS=' ' read -r -a packages <<< "${package_string}"
 
     console_view_info "${MSG_DEPENDENCIES}"
     apt-get update

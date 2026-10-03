@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/repositories/database_repository.sh
 # 📌 Amac: Veritabani provider/mod secimini, surum uyumlulugunu ve dataSettings.json uretimini yonetmek
 # 📌 Modul - Shell
-# Version: 1.1.1
-# Aciklama: External veya Docker DB icin geriye uyumlu ve secret-korumali nopCommerce config adapteri
+# Version: 1.2.0
+# Aciklama: Native host veya Docker stack hedefi icin geriye uyumlu ve secret-korumali DB config adapteri
 # Bagimli Oldugu Katman: Config | View | Language
 
 set -Eeuo pipefail
@@ -145,16 +145,12 @@ database_repository_validate_docker_config() {
     database_repository_validate_identifier "NOP_DB_NAME" "${NOP_DB_NAME}"
     database_repository_validate_identifier "NOP_DB_USER" "${NOP_DB_USER}"
 
-    if ! database_repository_validate_port "${NOP_DB_DOCKER_MYSQL_PORT}" || \
-       ! database_repository_validate_port "${NOP_DB_DOCKER_POSTGRESQL_PORT}" || \
-       ! [[ "${NOP_DB_DOCKER_START_TIMEOUT}" =~ ^[0-9]+$ ]] || \
-       (( NOP_DB_DOCKER_START_TIMEOUT < 1 )); then
+    if ! database_repository_validate_port "${NOP_DB_DOCKER_MYSQL_PORT}" ||        ! database_repository_validate_port "${NOP_DB_DOCKER_POSTGRESQL_PORT}" ||        ! database_repository_validate_port "${NOP_DB_DOCKER_MYSQL_INTERNAL_PORT}" ||        ! database_repository_validate_port "${NOP_DB_DOCKER_POSTGRESQL_INTERNAL_PORT}" ||        ! [[ "${NOP_DB_DOCKER_START_TIMEOUT}" =~ ^[0-9]+$ ]] ||        (( NOP_DB_DOCKER_START_TIMEOUT < 1 )); then
         console_view_error "${ERR_DB_DOCKER_NUMBER}"
         return 64
     fi
 
-    if ! [[ "${NOP_DB_DOCKER_CONTAINER_PREFIX}" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*$ ]] || \
-       ! [[ "${NOP_DB_DOCKER_VOLUME_PREFIX}" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*$ ]]; then
+    if ! [[ "${NOP_DB_DOCKER_CONTAINER_PREFIX}" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*$ ]] ||        ! [[ "${NOP_DB_DOCKER_VOLUME_PREFIX}" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*$ ]]; then
         console_view_error "${ERR_DB_DOCKER_NAME}"
         return 64
     fi
@@ -215,12 +211,39 @@ database_repository_load_secret() {
 }
 
 database_repository_build_docker_connection_string() {
+    local scope="${1:-host}"
+    local host
+    local port
+
+    case "${scope}" in
+        host)
+            host="${NOP_DB_DOCKER_BIND_HOST}"
+            ;;
+        stack)
+            host="${NOP_DOCKER_STACK_DATABASE_SERVICE}"
+            ;;
+        *)
+            console_view_error "${ERR_DB_CONNECTION_SCOPE}: ${scope}"
+            return 64
+            ;;
+    esac
+
     case "${NOP_DB_PROVIDER_OFFICIAL}" in
         MySql)
-            export NOP_DB_CONNECTION_STRING="Server=${NOP_DB_DOCKER_BIND_HOST};Port=${NOP_DB_DOCKER_MYSQL_PORT};Database=${NOP_DB_NAME};User=${NOP_DB_USER};Password=${NOP_DB_PASSWORD};SslMode=Preferred"
+            if [[ "${scope}" == "stack" ]]; then
+                port="${NOP_DB_DOCKER_MYSQL_INTERNAL_PORT}"
+            else
+                port="${NOP_DB_DOCKER_MYSQL_PORT}"
+            fi
+            export NOP_DB_CONNECTION_STRING="Server=${host};Port=${port};Database=${NOP_DB_NAME};User=${NOP_DB_USER};Password=${NOP_DB_PASSWORD};SslMode=Preferred"
             ;;
         PostgreSQL)
-            export NOP_DB_CONNECTION_STRING="Host=${NOP_DB_DOCKER_BIND_HOST};Port=${NOP_DB_DOCKER_POSTGRESQL_PORT};Database=${NOP_DB_NAME};Username=${NOP_DB_USER};Password=${NOP_DB_PASSWORD}"
+            if [[ "${scope}" == "stack" ]]; then
+                port="${NOP_DB_DOCKER_POSTGRESQL_INTERNAL_PORT}"
+            else
+                port="${NOP_DB_DOCKER_POSTGRESQL_PORT}"
+            fi
+            export NOP_DB_CONNECTION_STRING="Host=${host};Port=${port};Database=${NOP_DB_NAME};Username=${NOP_DB_USER};Password=${NOP_DB_PASSWORD}"
             ;;
         *)
             console_view_error "${ERR_DB_DOCKER_PROVIDER}: ${NOP_DB_PROVIDER_OFFICIAL}"
@@ -230,6 +253,8 @@ database_repository_build_docker_connection_string() {
 }
 
 database_repository_prepare_connection() {
+    local scope="${1:-host}"
+
     if [[ "${NOP_DB_PROVIDER_OFFICIAL}" == "Web" ]]; then
         return 0
     fi
@@ -238,11 +263,12 @@ database_repository_prepare_connection() {
 
     if [[ "${NOP_DB_MODE_RESOLVED}" == "docker" ]]; then
         database_repository_validate_docker_config
-        database_repository_build_docker_connection_string
+        database_repository_build_docker_connection_string "${scope}"
     fi
 }
 
 database_repository_write_settings() {
+    local app_root="${1:-${NOP_CURRENT_DIR}}"
     local target_file
     local target_dir
     local temp_file
@@ -256,7 +282,7 @@ database_repository_write_settings() {
         return 78
     fi
 
-    target_file="${NOP_CURRENT_DIR}/${NOP_DB_SETTINGS_RELATIVE_PATH}"
+    target_file="${app_root}/${NOP_DB_SETTINGS_RELATIVE_PATH}"
     target_dir="$(dirname "${target_file}")"
     temp_file="${NOP_TEMP_DIR}/dataSettings.json"
 
@@ -279,5 +305,6 @@ database_repository_list() {
     printf '%s\n' "4.30: SqlServer, MySql"
     printf '%s\n' "4.40+: SqlServer, MySql, PostgreSQL"
     printf '%s\n' "external: Web, SqlServer, MySql, PostgreSQL"
-    printf '%s\n' "docker: MySql, PostgreSQL"
+    printf '%s\n' "docker + native app: MySql, PostgreSQL"
+    printf '%s\n' "docker + docker app: MySql, PostgreSQL (internal Compose network)"
 }
