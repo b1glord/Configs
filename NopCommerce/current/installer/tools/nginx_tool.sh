@@ -1,9 +1,9 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/tools/nginx_tool.sh
 # 📌 Amac: nopCommerce Nginx reverse proxy konfigurasyonunu uretmek ve etkinlestirmek
 # 📌 Modul - Shell
-# Version: 1.0.1
-# Aciklama: Nginx dis dunya adaptoru
-# Bagimli Oldugu Katman: Config | Language
+# Version: 1.1.0
+# Aciklama: Nginx dis dunya adaptoru; kullanici ciktilarini View katmanina aktarir
+# Bagimli Oldugu Katman: Config | View | Language
 
 set -Eeuo pipefail
 
@@ -20,7 +20,7 @@ nginx_tool_install() {
     public_host="$(nginx_tool_escape_sed "${NOP_PUBLIC_HOST}")"
     upstream="$(nginx_tool_escape_sed "${NOP_ASPNETCORE_URLS}")"
 
-    printf '%s\n' "${MSG_NGINX}"
+    console_view_info "${MSG_NGINX}"
 
     sed         -e "s|__PUBLIC_HOST__|${public_host}|g"         -e "s|__UPSTREAM__|${upstream}|g"         "${template_path}" > "${NOP_NGINX_SITE_AVAILABLE}"
 
