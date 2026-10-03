@@ -1,0 +1,72 @@
+# 📄 Dosya Yolu: /.github/workflows/nopcommerce-current-installer.yml
+# 📌 Amac: NopCommerce current installer dosyalarinin shell ve config butunlugunu CI uzerinde dogrulamak
+# 📌 Modul - YAML
+# Version: 1.0.0
+# Aciklama: bash syntax, config yukleme ve template placeholder kontrollerini calistirir
+# Bagimli Oldugu Katman: Tool | Config
+
+name: NopCommerce Current Installer
+
+on:
+  pull_request:
+    paths:
+      - "NopCommerce/current/installer/**"
+      - ".github/workflows/nopcommerce-current-installer.yml"
+  push:
+    branches:
+      - master
+    paths:
+      - "NopCommerce/current/installer/**"
+      - ".github/workflows/nopcommerce-current-installer.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate shell syntax
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          find NopCommerce/current/installer \
+            -type f \
+            -name "*.sh" \
+            -print0 | while IFS= read -r -d "" file; do
+              bash -n "$file"
+            done
+
+          bash -n NopCommerce/current/installer/config/installer.env.example
+          bash -n NopCommerce/current/installer/language/tr.labels
+
+      - name: Validate config load
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          source NopCommerce/current/installer/config/installer.env.example
+          source NopCommerce/current/installer/language/tr.labels
+
+          test -n "$NOP_VERSION"
+          test -n "$NOP_PACKAGE_SHA256"
+          test -n "$NOP_DOTNET_RUNTIME_PACKAGE"
+          test -n "$NOP_SUPPORTED_OS"
+          test -n "$MSG_START"
+          test -n "$ERR_CHECKSUM"
+
+      - name: Validate templates
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          grep -q "__APP_DIR__" NopCommerce/current/installer/config/nopcommerce.service.tpl
+          grep -q "__DOTNET_EXECUTABLE__" NopCommerce/current/installer/config/nopcommerce.service.tpl
+          grep -q "__ASPNETCORE_URLS__" NopCommerce/current/installer/config/nopcommerce.service.tpl
+          grep -q "__PUBLIC_HOST__" NopCommerce/current/installer/config/nginx.conf.tpl
+          grep -q "__UPSTREAM__" NopCommerce/current/installer/config/nginx.conf.tpl

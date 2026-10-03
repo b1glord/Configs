@@ -1,0 +1,25 @@
+# 📄 Dosya Yolu: /NopCommerce/current/installer/language/tr.labels
+# 📌 Amac: Installer kullanici mesajlarini merkezi olarak tanimlamak
+# 📌 Modul - Language
+# Version: 1.0.1
+# Aciklama: Shell katmanlarindaki kullaniciya donuk metinleri magic string olmaktan cikarir
+# Bagimli Oldugu Katman: Service | Repo | Tool
+
+MSG_START="nopCommerce kurulumu baslatiliyor."
+MSG_DEPENDENCIES="Sistem bagimliliklari kuruluyor."
+MSG_DOTNET=".NET ASP.NET Core runtime kuruluyor."
+MSG_DOWNLOAD="nopCommerce release paketi indiriliyor."
+MSG_DEPLOY="nopCommerce release paketi deploy ediliyor."
+MSG_SYSTEMD="systemd servisi yapilandiriliyor."
+MSG_NGINX="Nginx reverse proxy yapilandiriliyor."
+MSG_DONE="nopCommerce kurulumu tamamlandi."
+MSG_URL="Ilk kurulum icin host:"
+
+ERR_USAGE="Kullanim: sudo bash installer/controllers/install.sh /path/installer.env"
+ERR_CONFIG_FILE="Config dosyasi bulunamadi"
+ERR_ROOT="Bu installer root yetkisi ile calistirilmalidir."
+ERR_OS_RELEASE="OS release dosyasi bulunamadi."
+ERR_UNSUPPORTED_OS="Desteklenmeyen Linux dagitimi"
+ERR_CONFIG_KEY="Eksik config anahtari"
+ERR_CHECKSUM="Release paketi SHA-256 kontrolunden gecemedi."
+ERR_PACKAGE_CONTENT="Release paketi Nop.Web.dll icermiyor."
