@@ -1,0 +1,125 @@
+# 📄 Dosya Yolu: /Configs/.github/workflows/organize-nova-ai.yml
+# 📌 Amac: Configs/nova.ai klasor yapisini guvenli bicimde duzenlemek
+# 📌 Tool - YAML
+# Version: 1.0.0
+# Aciklama: Nova AI arsiv yapisini yeniden adlandirir ve dokumantasyonu olusturur
+# Bagimli Oldugu Katman: Tool
+
+name: Organize nova.ai
+
+on:
+  push:
+    branches:
+      - chore/organize-nova-ai
+
+permissions:
+  contents: write
+
+jobs:
+  organize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Configs
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Organize nova.ai
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -f "nova.ai/readme.md" ] && [ ! -f "nova.ai/README.md" ]; then
+            git mv nova.ai/readme.md nova.ai/README.md
+          fi
+
+          if [ -d "nova.ai/openwebui/original" ] && [ ! -d "nova.ai/openwebui/upstream-original" ]; then
+            git mv nova.ai/openwebui/original nova.ai/openwebui/upstream-original
+          fi
+
+          cat > nova.ai/README.md <<'EOF'
+# 📄 Dosya Yolu: /Configs/nova.ai/README.md
+# 📌 Amac: Nova AI ile ilgili saklanan konfigurasyon ve marka varliklarini tanimlamak
+# 📌 View - Markdown
+# Version: 1.0.0
+# Aciklama: Nova AI arsivinin klasor yapisini, kapsamını ve kullanim amacini belgeler
+# Bagimli Oldugu Katman: View
+
+# Nova AI Config Archive
+
+Bu klasor, eski `b1glord/nova.ai` deposundan Configs reposuna aktarilan Nova AI dosyalarini saklar.
+
+## Kapsam
+
+- `openwebui/branding/`: Nova icin kullanilan ozellestirilmis Open WebUI marka varliklari.
+- `openwebui/upstream-original/`: Karsilastirma ve geri donus icin saklanan orijinal Open WebUI varliklari.
+- `openwebui/README.md`: Open WebUI alt yapisinin klasor ve kullanim aciklamasi.
+
+## Kurallar
+
+1. `branding/` altindaki dosyalar Nova ozellestirmeleridir.
+2. `upstream-original/` altindaki dosyalar referans kopyadir; Nova markalamasi olarak kullanilmaz.
+3. Kaynak uygulamanin gercek hedef dizinlerini gosteren `backend-static`, `backend_static`, `build-root`, `build_root` ve `build-static` adlari bilerek korunmustur.
+4. Yeni Open WebUI surumlerinde dosyalar degisirse once upstream kopya guncellenmeli, sonra Nova branding farklari kontrol edilmelidir.
+
+## Kaynak
+
+Aktarim kaynagi: `b1glord/nova.ai`
+
+Bu klasor artik Configs icindeki merkezi arsiv konumudur.
+EOF
+
+          cat > nova.ai/openwebui/README.md <<'EOF'
+# 📄 Dosya Yolu: /Configs/nova.ai/openwebui/README.md
+# 📌 Amac: Nova AI Open WebUI marka varliklarinin klasor eslemesini belgelemek
+# 📌 View - Markdown
+# Version: 1.0.0
+# Aciklama: Branding ve upstream-original dizinlerinin rollerini ve hedef yollarini aciklar
+# Bagimli Oldugu Katman: View
+
+# Nova AI - Open WebUI Assets
+
+Bu dizin iki farkli amaci ayirir: Nova markalamasi ve upstream referans dosyalari.
+
+## branding
+
+Nova AI icin ozellestirilmis dosyalar burada tutulur.
+
+- `branding/backend-static/`: Backend static hedefi icin Nova favicon ve logo varliklari.
+- `branding/build-root/`: Build root hedefi icin Nova favicon ve kullanici gorseli.
+- `branding/build-static/`: Build static hedefi icin Nova favicon ve logo varliklari.
+
+## upstream-original
+
+Open WebUI tarafindan gelen orijinal dosyalar karsilastirma ve geri donus referansi olarak burada tutulur.
+
+- `upstream-original/backend_static/`
+- `upstream-original/build_root/`
+- `upstream-original/build_static/`
+
+Bu dizindeki dosyalar Nova branding dosyalariyla karistirilmamalidir.
+
+## Guncelleme Akisi
+
+1. Yeni Open WebUI surumunun orijinal varliklarini `upstream-original/` altinda yenile.
+2. Orijinal dosyalar ile `branding/` dosyalarini karsilastir.
+3. Gerekli Nova logo, favicon ve kullanici varliklarini guncelle.
+4. Uygulama hedef yollarina kopyalama eslemesini kontrol et.
+5. Degisiklikleri tek bir surumlu commit ile kaydet.
+EOF
+
+          rm -f .github/workflows/organize-nova-ai.yml
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore(nova-ai): organize Open WebUI asset archive"
+          git push origin HEAD:chore/organize-nova-ai
