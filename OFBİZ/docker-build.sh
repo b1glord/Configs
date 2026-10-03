@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: /OFBİZ/docker-build.sh
 # 📌 Amac: Secilen Apache OFBiz release surumu icin Docker image olusturur
 # 📌 Tool - Shell
-# Version: 2.0.0
+# Version: 2.0.1
 # Aciklama: Release katalogundan surum ve Java secerek resmi veya uyumluluk Dockerfile'i ile image build eder
 #
 # Bagimli Oldugu Katman: Tool | Service | Config
@@ -136,7 +136,6 @@ main() {
     local command="${1:-latest}"
 
     trap cleanup EXIT
-    check_dependencies
 
     case "${command}" in
         list)
@@ -146,6 +145,7 @@ main() {
             usage
             ;;
         *)
+            check_dependencies
             build_image "${command}"
             ;;
     esac
