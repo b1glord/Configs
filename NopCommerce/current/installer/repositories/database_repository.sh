@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/repositories/database_repository.sh
 # 📌 Amac: Veritabani provider secimini, surum uyumlulugunu ve dataSettings.json uretimini yonetmek
 # 📌 Modul - Shell
-# Version: 1.0.1
+# Version: 1.0.2
 # Aciklama: SQL Server, MySQL ve PostgreSQL icin geriye uyumlu ve secret-korumali DB config adapteri
 # Bagimli Oldugu Katman: Config | View | Language
 
@@ -92,6 +92,8 @@ database_repository_validate_secret_permissions() {
         console_view_error "${ERR_DB_SECRET_PERMISSIONS}: ${NOP_DB_SECRET_FILE}"
         return 77
     fi
+
+    return 0
 }
 
 database_repository_load_secret() {
@@ -100,7 +102,9 @@ database_repository_load_secret() {
         return 66
     fi
 
-    database_repository_validate_secret_permissions
+    if ! database_repository_validate_secret_permissions; then
+        return 77
+    fi
 
     unset NOP_DB_CONNECTION_STRING
 
@@ -112,6 +116,8 @@ database_repository_load_secret() {
         console_view_error "${ERR_DB_CONNECTION_STRING}"
         return 78
     fi
+
+    return 0
 }
 
 database_repository_write_settings() {
@@ -123,7 +129,9 @@ database_repository_write_settings() {
         return 0
     fi
 
-    database_repository_load_secret
+    if ! database_repository_load_secret; then
+        return $?
+    fi
 
     target_file="${NOP_CURRENT_DIR}/${NOP_DB_SETTINGS_RELATIVE_PATH}"
     target_dir="$(dirname "${target_file}")"
