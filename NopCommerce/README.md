@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/README.md
 # 📌 Amac: NopCommerce current installer, legacy script, nginx konfigurasyon ve arsiv yapisini dokumante etmek
 # 📌 Modul - Markdown
-# Version: 2.1.0
-# Aciklama: Cok surumlu current installer ile tarihsel dosyalarin ayrimini aciklar
+# Version: 2.2.0
+# Aciklama: Cok surumlu stable/prerelease current installer ile tarihsel dosyalarin ayrimini aciklar
 
 Bagimli Oldugu Katman: Controller | Service | Repo | Tool | View | Language | Config
 
@@ -12,8 +12,9 @@ Bu klasor nopCommerce icin guncel cok surumlu installer'i, eski kurulum scriptle
 
 ## Surum durumu
 
-- Resmi stable hat icin current installer 4.30-4.90 ailelerini destekler.
+- Current installer 4.30-4.90 stable ailelerini destekler.
 - Genel `latest` alias'i bu duzenleme tarihinde 4.90.8'e gider.
+- 5.00.0-beta yalniz `beta` veya tam prerelease surumu acikca secilirse kurulur.
 - Tam patch surumu verilebilir; release varligi resmi GitHub metadata ile dogrulanir.
 - Eski CentOS/ISPConfig/Pardus scriptleri `legacy/` altinda tarihsel referans olarak korunur.
 - Yeni kurulumlar icin `current/installer/` kullanilmalidir.
@@ -53,6 +54,7 @@ bash NopCommerce/current/installer/controllers/install.sh --list-versions
 sudo bash NopCommerce/current/installer/controllers/install.sh --version 4.30 --config /etc/nopcommerce-installer.env
 sudo bash NopCommerce/current/installer/controllers/install.sh --version 4.60.6 --config /etc/nopcommerce-installer.env
 sudo bash NopCommerce/current/installer/controllers/install.sh --version latest --config /etc/nopcommerce-installer.env
+sudo bash NopCommerce/current/installer/controllers/install.sh --version beta --config /etc/nopcommerce-installer.env
 ```
 
 Detayli kullanim icin `current/README.md` dosyasina bak.
@@ -86,6 +88,8 @@ Legacy scriptler yeni sunucularda production installer olarak kullanilmamalidir.
 Current installer eski nopCommerce surumlerini de kurabilir; ancak .NET Core 3.1, .NET 5, .NET 6 ve .NET 7 gibi eski runtime'lar modern Linux dagitimlarinda ek sistem kutuphanesi veya eski OS gerektirebilir. Installer bu durumu uyari olarak bildirir.
 
 Eski GitHub release kayitlarinda SHA-256 digest bulunmadiginda dosya boyutu kontrol edilir. Bu davranis config uzerinden kapatilabilir.
+
+Prerelease surumler `latest` tarafindan otomatik secilmez.
 
 ## Arsiv
 

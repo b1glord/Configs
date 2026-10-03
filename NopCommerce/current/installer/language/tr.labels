@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/language/tr.labels
 # 📌 Amac: Installer kullanici mesajlarini merkezi olarak tanimlamak
 # 📌 Modul - Language
-# Version: 1.1.1
-# Aciklama: Cok surumlu yukleyici mesajlarini merkezi olarak tutar
+# Version: 1.2.0
+# Aciklama: Cok surumlu stable ve prerelease yukleyici mesajlarini merkezi olarak tutar
 # Bagimli Oldugu Katman: View | Service | Repo | Tool
 
 LABEL_INFO="BILGI"
@@ -25,11 +25,12 @@ MSG_SHA256_VERIFIED="Release paketi SHA-256 ile dogrulandi."
 MSG_SIZE_VERIFIED="Release paketi boyut bilgisi ile dogrulandi."
 MSG_LEGACY_RUNTIME="Eski nopCommerce/.NET surumleri modern Linux dagitimlarinda calismayabilir. Kurulum yapilabilir ancak runtime OS uyumlulugu ayrica test edilmelidir."
 MSG_NO_DIGEST="Bu eski GitHub release kaydinda SHA-256 digest yayinlanmamis. Dosya boyutu dogrulanarak devam ediliyor."
+MSG_PRERELEASE="Prerelease surum acikca secildi. Production ortaminda stable surum tercih edilmelidir."
 MSG_AVAILABLE_VERSIONS="Desteklenen surum secenekleri"
-MSG_VERSION_EXAMPLES="Ornekler: 4.30, 4.50, 4.60.6, latest-4.80, 4.90.8, latest"
+MSG_VERSION_EXAMPLES="Ornekler: 4.30, 4.50, 4.60.6, latest-4.80, 4.90.8, latest, beta"
 MSG_EXACT_VERSION_SUPPORT="Desteklenen ailelerde GitHub'da bulunan tam patch surumu de dogrudan verilebilir."
 
-ERR_USAGE="Kullanim: install.sh --version <surum|latest> --config <dosya> veya install.sh --list-versions"
+ERR_USAGE="Kullanim: install.sh --version <surum|latest|beta> --config <dosya> veya install.sh --list-versions"
 ERR_CONFIG_FILE="Config dosyasi bulunamadi"
 ERR_ROOT="Bu installer root yetkisi ile calistirilmalidir."
 ERR_OS_RELEASE="OS release dosyasi bulunamadi."

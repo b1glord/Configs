@@ -1,28 +1,29 @@
 # 📄 Dosya Yolu: /NopCommerce/current/README.md
 # 📌 Amac: Cok surumlu nopCommerce Linux installer kullanimini ve destek matrisini tanimlamak
 # 📌 Modul - Markdown
-# Version: 1.2.0
-# Aciklama: nopCommerce 4.30-4.90 stable surumleri icin katmanli installer dokumani
+# Version: 1.3.0
+# Aciklama: nopCommerce 4.30-4.90 stable ve acikca secilen 5.00 beta surumu icin katmanli installer dokumani
 
 Bagimli Oldugu Katman: Controller | Service | Repo | Tool | View | Language | Config
 
 # Current Installer
 
-Bu alan nopCommerce 4.30 ve sonrasi stable Linux release paketlerini ayni installer mimarisi ile kurmak icin kullanilir.
+Bu alan nopCommerce 4.30 ve sonrasi desteklenen Linux release paketlerini ayni installer mimarisi ile kurmak icin kullanilir.
 
 ## Desteklenen surum aileleri
 
-| nopCommerce | Runtime |
-| --- | --- |
-| 4.30 | .NET Core 3.1 |
-| 4.40 | .NET 5 |
-| 4.50.x | .NET 6 |
-| 4.60.x | .NET 7 |
-| 4.70.x | .NET 8 |
-| 4.80.x | .NET 9 |
-| 4.90.x | .NET 9 |
+| nopCommerce | Runtime | Kanal |
+| --- | --- | --- |
+| 4.30 | .NET Core 3.1 | stable |
+| 4.40 | .NET 5 | stable |
+| 4.50.x | .NET 6 | stable |
+| 4.60.x | .NET 7 | stable |
+| 4.70.x | .NET 8 | stable |
+| 4.80.x | .NET 9 | stable |
+| 4.90.x | .NET 9 | stable |
+| 5.00.0-beta | .NET 10 | prerelease |
 
-Runtime eslestirmeleri nopCommerce resmi sistem gereksinimleri ile uyumludur.
+`latest` her zaman stable profile gider. Prerelease otomatik secilmez.
 
 ## Surum secimi
 
@@ -55,6 +56,13 @@ Genel son stable profil:
 sudo bash installer/controllers/install.sh --version latest --config /etc/nopcommerce-installer.env
 ```
 
+Prerelease ancak acikca secilir:
+
+```bash
+sudo bash installer/controllers/install.sh --version beta --config /etc/nopcommerce-installer.env
+sudo bash installer/controllers/install.sh --version 5.00.0-beta --config /etc/nopcommerce-installer.env
+```
+
 Secenekleri listelemek icin root yetkisi gerekmez:
 
 ```bash
@@ -77,6 +85,7 @@ bash installer/controllers/install.sh --list-versions
 - `latest-4.80` -> 4.80.9
 - `latest-4.90` -> 4.90.8
 - `latest` -> 4.90.8
+- `beta` -> 5.00.0-beta
 
 Tam patch surumleri alias katalogunda bulunmak zorunda degildir. Ornegin `4.60.2` verildiginde installer GitHub release metadata uzerinden paketin gercekten var oldugunu kontrol eder.
 
@@ -86,7 +95,7 @@ Tam patch surumleri alias katalogunda bulunmak zorunda degildir. Ornegin `4.60.2
 
 Bu sayede farkli nopCommerce surumlerinin gerektirdigi runtime'lar ayni host uzerinde bulunabilir.
 
-Eski .NET runtime'lari artik modern Linux dagitimlarinin tum kutuphane kombinasyonlari ile uyumlu olmayabilir. Ozellikle 4.30 ve 4.40 gibi eski nopCommerce surumleri icin kurulum yapilabilse bile uygulama runtime uyumlulugu hedef sunucuda test edilmelidir.
+Eski .NET runtime'lari modern Linux dagitimlarinin tum kutuphane kombinasyonlari ile uyumlu olmayabilir. Ozellikle 4.30 ve 4.40 gibi eski nopCommerce surumleri icin kurulum yapilabilse bile uygulama runtime uyumlulugu hedef sunucuda test edilmelidir.
 
 ## Release dogrulamasi
 
@@ -97,6 +106,8 @@ Installer once resmi GitHub release API kaydini okur.
 - GitHub SHA-256 digest yayinlamissa cryptographic checksum kontrol edilir.
 - Eski release kaydinda digest yoksa dosya boyutu kontrol edilir ve acik uyari verilir.
 - `NOP_ALLOW_LEGACY_WITHOUT_SHA256=0` yapilirsa digest olmayan eski release paketleri reddedilir.
+
+5.00.0-beta paket adi stable surumlerden farkli oldugu icin bu bilgi `version-catalog.env` icindeki paket override tablosunda tutulur.
 
 ## Mimari
 
@@ -152,3 +163,4 @@ sudo bash installer/controllers/install.sh /etc/nopcommerce-installer.env
 - TLS/Let's Encrypt henuz ayri modul olarak eklenmemistir.
 - Docker deployment henuz ayri modul olarak eklenmemistir.
 - Eski .NET runtime'larinin modern OS uyumlulugu garanti edilmez.
+- Prerelease surum production icin varsayilan secim degildir.

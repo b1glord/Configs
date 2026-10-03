@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/repositories/version_repository.sh
-# 📌 Amac: nopCommerce surum alias, aile ve .NET runtime eslestirmelerini cozumlemek
+# 📌 Amac: nopCommerce surum alias, aile, paket ve .NET runtime eslestirmelerini cozumlemek
 # 📌 Modul - Shell
-# Version: 1.0.1
-# Aciklama: Surum katalogunu okuyarak kurulum icin normalize edilmis release bilgilerini uretir
+# Version: 1.1.0
+# Aciklama: Surum katalogunu okuyarak stable ve acikca secilen prerelease bilgilerini normalize eder
 # Bagimli Oldugu Katman: Config | View | Language
 
 set -Eeuo pipefail
@@ -68,6 +68,7 @@ version_repository_resolve() {
     local resolved_version
     local version_family
     local runtime_channel
+    local package_override
 
     resolved_version="$(version_repository_map_get "${NOP_VERSION_ALIASES}" "${requested_version}" || true)"
 
@@ -99,7 +100,14 @@ version_repository_resolve() {
     export NOP_DOTNET_RUNTIME_CHANNEL="${runtime_channel}"
 
     printf -v NOP_RELEASE_TAG "${NOP_RELEASE_TAG_FORMAT}" "${NOP_VERSION}"
-    printf -v NOP_PACKAGE_NAME "${NOP_PACKAGE_NAME_FORMAT}" "${NOP_VERSION}"
+
+    package_override="$(version_repository_map_get "${NOP_PACKAGE_NAME_OVERRIDES}" "${NOP_VERSION}" || true)"
+
+    if [[ -n "${package_override}" ]]; then
+        NOP_PACKAGE_NAME="${package_override}"
+    else
+        printf -v NOP_PACKAGE_NAME "${NOP_PACKAGE_NAME_FORMAT}" "${NOP_VERSION}"
+    fi
 
     export NOP_RELEASE_TAG
     export NOP_PACKAGE_NAME
@@ -109,6 +117,10 @@ version_repository_resolve() {
 
     if version_repository_is_legacy_family "${NOP_VERSION_FAMILY}"; then
         console_view_warn "${MSG_LEGACY_RUNTIME}"
+    fi
+
+    if [[ "${NOP_VERSION}" == *-* ]]; then
+        console_view_warn "${MSG_PRERELEASE}"
     fi
 }
 

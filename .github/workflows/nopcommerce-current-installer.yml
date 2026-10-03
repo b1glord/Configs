@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /.github/workflows/nopcommerce-current-installer.yml
 # 📌 Amac: NopCommerce cok surumlu installer dosyalarinin shell, config, surum cozumleme ve template butunlugunu CI uzerinde dogrulamak
 # 📌 Modul - YAML
-# Version: 1.1.0
-# Aciklama: bash syntax, config, surum katalogu ve template kontrollerini calistirir
+# Version: 1.2.0
+# Aciklama: Stable, patch, prerelease, config ve template kontrollerini calistirir
 # Bagimli Oldugu Katman: Repo | Tool | View | Config | Language
 
 name: NopCommerce Current Installer
@@ -12,6 +12,7 @@ on:
     paths:
       - "NopCommerce/current/installer/**"
       - "NopCommerce/current/README.md"
+      - "NopCommerce/README.md"
       - ".github/workflows/nopcommerce-current-installer.yml"
   push:
     branches:
@@ -19,6 +20,7 @@ on:
     paths:
       - "NopCommerce/current/installer/**"
       - "NopCommerce/current/README.md"
+      - "NopCommerce/README.md"
       - ".github/workflows/nopcommerce-current-installer.yml"
 
 permissions:
@@ -62,6 +64,7 @@ jobs:
           test -n "$NOP_DOTNET_ROOT"
           test -n "$NOP_SUPPORTED_VERSION_FAMILIES"
           test -n "$NOP_RUNTIME_CHANNELS"
+          test -n "$NOP_PACKAGE_NAME_OVERRIDES"
           test -n "$MSG_START"
           test -n "$ERR_VERSION"
 
@@ -81,6 +84,7 @@ jobs:
           version_repository_resolve "4.30"
           test "$NOP_VERSION" = "4.30"
           test "$NOP_DOTNET_RUNTIME_CHANNEL" = "3.1"
+          test "$NOP_PACKAGE_NAME" = "nopCommerce_4.30_NoSource_linux_x64.zip"
 
           version_repository_resolve "latest-4.60"
           test "$NOP_VERSION" = "4.60.6"
@@ -89,6 +93,11 @@ jobs:
           version_repository_resolve "4.80.9"
           test "$NOP_VERSION" = "4.80.9"
           test "$NOP_DOTNET_RUNTIME_CHANNEL" = "9.0"
+
+          version_repository_resolve "beta"
+          test "$NOP_VERSION" = "5.00.0-beta"
+          test "$NOP_DOTNET_RUNTIME_CHANNEL" = "10.0"
+          test "$NOP_PACKAGE_NAME" = "nopCommerce_5.00.0_beta_NoSource_linux_x64.zip"
 
           if version_repository_resolve "4.10"; then
             exit 1

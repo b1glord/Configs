@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/services/install_service.sh
 # 📌 Amac: nopCommerce cok surumlu kurulum is akisinin tum is kurallarini yonetmek
 # 📌 Modul - Shell
-# Version: 1.1.1
+# Version: 1.2.0
 # Aciklama: CLI, config, surum cozumleme, release deploy, runtime, systemd ve Nginx orkestrasyonu
 # Bagimli Oldugu Katman: Repo | Tool | View | Config | Language
 
@@ -10,7 +10,7 @@ set -Eeuo pipefail
 install_service_require_config() {
     local key
 
-    for key in         NOP_DEFAULT_VERSION         NOP_RELEASE_API_BASE         NOP_RELEASE_TAG_FORMAT         NOP_PACKAGE_NAME_FORMAT         NOP_ALLOW_LEGACY_WITHOUT_SHA256         NOP_INSTALL_ROOT         NOP_RELEASES_DIR         NOP_CURRENT_DIR         NOP_BACKUP_DIR         NOP_TEMP_DIR         NOP_SERVICE_NAME         NOP_SERVICE_USER         NOP_SERVICE_GROUP         NOP_ASPNETCORE_URLS         NOP_PUBLIC_HOST         NOP_NGINX_SITE_AVAILABLE         NOP_NGINX_SITE_ENABLED         NOP_DEFAULT_NGINX_SITE         NOP_SYSTEMD_UNIT         NOP_DOTNET_ROOT         NOP_DOTNET_EXECUTABLE         NOP_DOTNET_SYMLINK         NOP_DOTNET_INSTALL_SCRIPT_URL         NOP_DOTNET_RUNTIME_KIND         NOP_SUPPORTED_OS         NOP_OS_RELEASE_FILE         NOP_NOLOGIN_SHELL         NOP_APT_BASE_PACKAGES         NOP_WRITABLE_PATHS         NOP_SUPPORTED_VERSION_FAMILIES         NOP_VERSION_PATTERN         NOP_VERSION_ALIASES         NOP_RUNTIME_CHANNELS         NOP_LEGACY_VERSION_FAMILIES
+    for key in         NOP_DEFAULT_VERSION         NOP_RELEASE_API_BASE         NOP_RELEASE_TAG_FORMAT         NOP_PACKAGE_NAME_FORMAT         NOP_ALLOW_LEGACY_WITHOUT_SHA256         NOP_INSTALL_ROOT         NOP_RELEASES_DIR         NOP_CURRENT_DIR         NOP_BACKUP_DIR         NOP_TEMP_DIR         NOP_SERVICE_NAME         NOP_SERVICE_USER         NOP_SERVICE_GROUP         NOP_ASPNETCORE_URLS         NOP_PUBLIC_HOST         NOP_NGINX_SITE_AVAILABLE         NOP_NGINX_SITE_ENABLED         NOP_DEFAULT_NGINX_SITE         NOP_SYSTEMD_UNIT         NOP_DOTNET_ROOT         NOP_DOTNET_EXECUTABLE         NOP_DOTNET_SYMLINK         NOP_DOTNET_INSTALL_SCRIPT_URL         NOP_DOTNET_RUNTIME_KIND         NOP_SUPPORTED_OS         NOP_OS_RELEASE_FILE         NOP_NOLOGIN_SHELL         NOP_APT_BASE_PACKAGES         NOP_WRITABLE_PATHS         NOP_SUPPORTED_VERSION_FAMILIES         NOP_VERSION_PATTERN         NOP_VERSION_ALIASES         NOP_RUNTIME_CHANNELS         NOP_PACKAGE_NAME_OVERRIDES         NOP_LEGACY_VERSION_FAMILIES
     do
         if [[ -z "${!key:-}" ]]; then
             console_view_error "${ERR_CONFIG_KEY}: ${key}"
