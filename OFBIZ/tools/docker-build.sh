@@ -1,7 +1,7 @@
 # Dosya Yolu: /OFBIZ/tools/docker-build.sh
 # Amac: Secilen Apache OFBiz release surumu icin Docker image olusturur
 # Tool - Shell
-# Version: 2.1.0
+# Version: 2.2.0
 # Aciklama: Release katalogundan surum ve Java secerek resmi veya uyumluluk Dockerfile'i ile image build eder
 #
 # Bagimli Oldugu Katman: Tool | Service | Config
@@ -11,10 +11,13 @@ set -euo pipefail
 readonly TOOL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly OFBIZ_ROOT_DIR="$(cd "${TOOL_DIR}/.." && pwd)"
 readonly VERSION_RESOLVER="${OFBIZ_ROOT_DIR}/services/version-resolver.sh"
+readonly SOURCES_CONFIG="${OFBIZ_ROOT_DIR}/config/sources.conf"
 readonly COMPAT_DOCKERFILE="${OFBIZ_ROOT_DIR}/tools/docker/Dockerfile.compat"
 
 # shellcheck source=/dev/null
 source "${VERSION_RESOLVER}"
+# shellcheck source=/dev/null
+source "${SOURCES_CONFIG}"
 
 OFBIZ_DOCKER_LOAD_DEMO="${OFBIZ_DOCKER_LOAD_DEMO:-1}"
 OFBIZ_DOCKER_TARGET="${OFBIZ_DOCKER_TARGET:-demo}"
@@ -41,18 +44,6 @@ usage() {
 Usage:
   bash tools/docker-build.sh list
   bash tools/docker-build.sh [latest|24.09|18.12|17.12|exact-version]
-
-Examples:
-  bash tools/docker-build.sh latest
-  bash tools/docker-build.sh 24.09.07
-  bash tools/docker-build.sh 18.12.19
-  bash tools/docker-build.sh 18.12.10
-  bash tools/docker-build.sh 17.12.09
-
-Environment:
-  OFBIZ_IMAGE=local/ofbiz:<version>
-  OFBIZ_DOCKER_LOAD_DEMO=1
-  OFBIZ_DOCKER_TARGET=demo
 EOF
 }
 
@@ -110,20 +101,11 @@ build_image() {
 
     [[ -d "${source_dir}" ]] || fail "Extracted release directory not found: ${source_dir}"
 
-    log "Building OFBiz ${version} with Java ${java_major}"
-    log "Image: ${image_name}"
-
     if [[ -f "${source_dir}/Dockerfile" ]]; then
-        log "Using release Dockerfile"
-
         if docker build             --target "${OFBIZ_DOCKER_TARGET}"             --tag "${image_name}"             "${source_dir}"; then
             log "Build completed: ${image_name}"
             return
         fi
-
-        log "Release Dockerfile target failed; using compatibility Dockerfile"
-    else
-        log "Release Dockerfile not found; using compatibility Dockerfile"
     fi
 
     cp "${COMPAT_DOCKERFILE}" "${source_dir}/Dockerfile.compat"

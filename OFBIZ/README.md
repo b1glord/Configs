@@ -1,72 +1,96 @@
 # Dosya Yolu: /OFBIZ/README.md
 # Amac: OFBiz konfigurasyon paketinin ana giris ve klasor haritasini sunar
 # View - Markdown
-# Version: 1.0.0
-# Aciklama: Katmanli klasor yapisi, temel komutlar ve detayli dokumana yonlendirme
+# Version: 2.1.0
+# Aciklama: Release, snapshot, runtime ve Docker araclari icin hizli baslangic rehberi
 #
-# Bagimli Oldugu Katman: View | Controller | Service | Tool | Config
+# Bagimli Oldugu Katman: View | Controller | Service | Repo | Tool | Language | Config
 
 # Apache OFBiz Configs
 
-Bu klasor coklu OFBiz release kurulumu, aktif surum secimi ve Docker image olusturma araclarini barindirir.
+Bu paket Apache OFBiz'in sabit release surumlerini ve branch tabanli snapshot hedeflerini ayni makinede yan yana yonetir.
 
 ## Klasor yapisi
 
 ~~~text
 OFBIZ/
+  config/
+    runtime.conf
+    snapshots.conf
+    sources.conf
+    versions.conf
   controllers/
     ofbiz.sh
   services/
+    release-service.sh
+    runtime-service.sh
+    snapshot-resolver.sh
+    snapshot-service.sh
     version-resolver.sh
-  config/
-    versions.conf
+  repositories/
+    install-repository.sh
   tools/
-    ofbiz-run.sh
-    docker-build.sh
+    ci/
     docker/
-      Dockerfile.compat
-      compose.yml
-      .env.example
     legacy/
-      java/
-      ofbiz/
-      server/
+    docker-build.sh
+    git-tool.sh
+    java-tool.sh
+    ofbiz-run.sh
+    release-tool.sh
+    system-tool.sh
   views/
+    ARCHITECTURE.md
     README.md
+    help-view.sh
+  language/
+    en.conf
   README.md
 ~~~
 
-## Hizli kullanim
-
-Surumleri listele:
+## Release
 
 ~~~bash
-bash controllers/ofbiz.sh list
+bash controllers/ofbiz.sh release list
+sudo bash controllers/ofbiz.sh release install 24.09.07
+sudo bash controllers/ofbiz.sh release install 18.12.10
 ~~~
 
-Belirli surumu kur:
+## Snapshot / branch
 
 ~~~bash
-sudo bash controllers/ofbiz.sh install 24.09.07
-sudo bash controllers/ofbiz.sh install 18.12.10
+bash controllers/ofbiz.sh snapshot list
+sudo bash controllers/ofbiz.sh snapshot install trunk
+sudo bash controllers/ofbiz.sh snapshot install 24.09
+sudo bash controllers/ofbiz.sh snapshot install 22.01
+sudo bash controllers/ofbiz.sh snapshot update trunk
 ~~~
 
-Aktif surumu degistir:
+## Aktif hedef
 
 ~~~bash
-sudo bash controllers/ofbiz.sh use 18.12.10
+bash controllers/ofbiz.sh current
+sudo bash controllers/ofbiz.sh release use 24.09.07
+sudo bash controllers/ofbiz.sh snapshot use trunk
 ~~~
 
-Baslat:
+## Calistirma
 
 ~~~bash
-bash tools/ofbiz-run.sh start
+bash controllers/ofbiz.sh run start
+bash controllers/ofbiz.sh run background
+bash controllers/ofbiz.sh run stop
+bash controllers/ofbiz.sh run java
 ~~~
 
-Docker image olustur:
+Belirli hedef:
 
 ~~~bash
-bash tools/docker-build.sh 24.09.07
+bash controllers/ofbiz.sh run start release:18.12.10
+bash controllers/ofbiz.sh run start snapshot:trunk
+bash controllers/ofbiz.sh run start snapshot:22.01
 ~~~
 
-Detayli kullanim icin views/README.md dosyasina bakin.
+Detayli kullanim: views/README.md
+
+Mimari: views/ARCHITECTURE.md

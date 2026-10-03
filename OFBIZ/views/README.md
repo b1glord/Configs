@@ -1,115 +1,127 @@
 # Dosya Yolu: /OFBIZ/views/README.md
-# Amac: Apache OFBiz coklu surum kurulum, calistirma ve Docker kullanimini aciklar
+# Amac: Apache OFBiz release, snapshot, runtime ve Docker kullanimini aciklar
 # View - Markdown
-# Version: 3.1.0
-# Aciklama: OFBiz 17.12, 18.12 ve 24.09 release serileri icin detayli kullanim rehberi
+# Version: 4.0.0
+# Aciklama: OFBiz 17.12, 18.12, 24.09 release ve trunk/22.01/24.09 snapshot rehberi
 #
-# Bagimli Oldugu Katman: View | Controller | Service | Tool | Config
+# Bagimli Oldugu Katman: View | Controller | Service | Repo | Tool | Config
 
 # Apache OFBiz Version Manager
 
-Aktif akista katmanlar ayridir:
+## Release katalogu
 
-- Controller: controllers/ofbiz.sh
-- Service: services/version-resolver.sh
-- Config: config/versions.conf
-- Tool: tools/ofbiz-run.sh ve tools/docker-build.sh
-- Docker: tools/docker/
-- Legacy: tools/legacy/
+| Seri | Release araligi | Java |
+| --- | --- | ---: |
+| 24.09 | 24.09.01 - 24.09.07 | 17 |
+| 18.12 | 18.12.01 - 18.12.19 | 8 |
+| 17.12 | 17.12.01 - 17.12.09 | 8 |
 
-## Desteklenen release serileri
+~~~bash
+bash controllers/ofbiz.sh release list
+sudo bash controllers/ofbiz.sh release install latest
+sudo bash controllers/ofbiz.sh release install 24.09.07
+sudo bash controllers/ofbiz.sh release install 18.12.10
+~~~
 
-| Seri | Release araligi | Java | Durum |
-| --- | --- | ---: | --- |
-| 24.09 | 24.09.01 - 24.09.07 | 17 | Guncel seri |
-| 18.12 | 18.12.01 - 18.12.19 | 8 | Legacy release serisi |
-| 17.12 | 17.12.01 - 17.12.09 | 8 | Legacy release serisi |
-
-22.01 resmi release ZIP katalogunda bulunmadigi icin release kurucusuna eklenmez.
-
-## Surumleri listele
+Eski komutlar geriye uyumludur:
 
 ~~~bash
 bash controllers/ofbiz.sh list
-~~~
-
-Aliaslar:
-
-~~~text
-latest -> 24.09.07
-24.09  -> 24.09.07
-18.12  -> 18.12.19
-17.12  -> 17.12.09
-~~~
-
-## Linux kurulum
-
-~~~bash
-sudo bash controllers/ofbiz.sh install latest
-sudo bash controllers/ofbiz.sh install 24.09.07
-sudo bash controllers/ofbiz.sh install 18.12.19
 sudo bash controllers/ofbiz.sh install 18.12.10
-sudo bash controllers/ofbiz.sh install 17.12.09
 ~~~
 
-Kurulu release listesi:
+## Snapshot katalogu
+
+Snapshot kurulumu ZIP release degil, Apache Git branch'i kullanir.
+
+| Alias | Apache branch | Java |
+| --- | --- | ---: |
+| trunk | trunk | 17 |
+| 24.09 | release24.09 | 17 |
+| 22.01 | release22.01 | 17 |
 
 ~~~bash
-bash controllers/ofbiz.sh installed
+bash controllers/ofbiz.sh snapshot list
+sudo bash controllers/ofbiz.sh snapshot install trunk
+sudo bash controllers/ofbiz.sh snapshot install 24.09
+sudo bash controllers/ofbiz.sh snapshot install 22.01
 ~~~
 
-Aktif release:
+Snapshot guncelleme:
+
+~~~bash
+sudo bash controllers/ofbiz.sh snapshot update trunk
+sudo bash controllers/ofbiz.sh snapshot update 22.01
+~~~
+
+Kurulu snapshotlar:
+
+~~~bash
+bash controllers/ofbiz.sh snapshot installed
+~~~
+
+## Aktif hedef secme
+
+Release:
+
+~~~bash
+sudo bash controllers/ofbiz.sh release use 24.09.07
+~~~
+
+Snapshot:
+
+~~~bash
+sudo bash controllers/ofbiz.sh snapshot use trunk
+~~~
+
+Aktif hedefi gor:
 
 ~~~bash
 bash controllers/ofbiz.sh current
 ~~~
 
-Aktif release degistirme:
-
-~~~bash
-sudo bash controllers/ofbiz.sh use 18.12.10
-sudo bash controllers/ofbiz.sh use 24.09.07
-~~~
-
 ## Calistirma
 
 ~~~bash
-bash tools/ofbiz-run.sh start
-bash tools/ofbiz-run.sh background
-bash tools/ofbiz-run.sh stop
-bash tools/ofbiz-run.sh java 18.12.10
+bash controllers/ofbiz.sh run start
+bash controllers/ofbiz.sh run background
+bash controllers/ofbiz.sh run stop
+bash controllers/ofbiz.sh run java
 ~~~
 
-Belirli kurulu release'i aktif release'i degistirmeden calistirma:
+Belirli release:
 
 ~~~bash
-bash tools/ofbiz-run.sh start 18.12.10
+bash controllers/ofbiz.sh run start release:18.12.10
+~~~
+
+Belirli snapshot:
+
+~~~bash
+bash controllers/ofbiz.sh run start snapshot:trunk
+bash controllers/ofbiz.sh run start snapshot:22.01
 ~~~
 
 ## Demo veri
 
 ~~~bash
-sudo OFBIZ_LOAD_DEMO=1 bash controllers/ofbiz.sh install 24.09.07
+sudo OFBIZ_LOAD_DEMO=1 bash controllers/ofbiz.sh release install 24.09.07
+sudo OFBIZ_LOAD_DEMO=1 bash controllers/ofbiz.sh snapshot install trunk
 ~~~
 
-## Yeniden kurulum
+## Zorla yeniden kurulum
 
 ~~~bash
-sudo OFBIZ_FORCE_REINSTALL=1 bash controllers/ofbiz.sh install 18.12.10
+sudo OFBIZ_FORCE_REINSTALL=1 bash controllers/ofbiz.sh release install 18.12.10
+sudo OFBIZ_FORCE_REINSTALL=1 bash controllers/ofbiz.sh snapshot install 22.01
 ~~~
 
-## Docker image
+## Docker release image
 
 ~~~bash
 bash tools/docker-build.sh list
 bash tools/docker-build.sh 24.09.07
 bash tools/docker-build.sh 18.12.10
-~~~
-
-Varsayilan image adi:
-
-~~~text
-local/ofbiz:<version>
 ~~~
 
 ## Docker Compose
@@ -122,14 +134,20 @@ docker compose -f compose.yml logs -f ofbiz
 docker compose -f compose.yml down
 ~~~
 
+## CI dogrulama
+
+Local:
+
+~~~bash
+bash tools/ci/validate-structure.sh
+~~~
+
+GitHub Actions yalnizca OFBIZ altindaki degisikliklerde syntax, klasor yapisi, header ve resolver testlerini calistirir.
+
 ## Legacy
 
-tools/legacy/ altindaki scriptler sadece tarihsel referans icindir. Yeni kurulumlarda kullanilmaz.
+tools/legacy altindaki scriptler tarihsel referans icindir ve aktif kurulum akisi tarafindan cagirilmaz.
 
-## Guvenlik
+## Mimari
 
-OFBiz release ZIP dosyalari Apache SHA-512 dosyasi ile dogrulanir.
-
-Java paketleri Eclipse Temurin kaynagindan indirilir ve checksum kontrolunden gecirilir.
-
-Production ortaminda demo kullanici bilgilerini kullanmayin. Veritabani, secret, TLS ve reverse proxy ayarlarini ayri yonetin.
+Detayli katman aciklamasi icin views/ARCHITECTURE.md dosyasina bakin.

@@ -1,22 +1,22 @@
 # Dosya Yolu: /OFBIZ/services/version-resolver.sh
 # Amac: OFBiz surum aliaslarini cozer ve release metadata bilgisini saglar
 # Service - Shell
-# Version: 1.1.0
+# Version: 1.2.0
 # Aciklama: Surum dogrulama, Java major secimi ve release listeleme servisi
 #
 # Bagimli Oldugu Katman: Service | Config
 
+if [[ "${OFBIZ_VERSION_RESOLVER_LOADED:-0}" == "1" ]]; then
+    return 0 2>/dev/null || exit 0
+fi
+OFBIZ_VERSION_RESOLVER_LOADED="1"
+
 set -euo pipefail
 
 readonly VERSION_SERVICE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly OFBIZ_ROOT_DIR="$(cd "${VERSION_SERVICE_DIR}/.." && pwd)"
-readonly OFBIZ_VERSION_CONFIG="${OFBIZ_ROOT_DIR}/config/versions.conf"
-readonly OFBIZ_CONTROLLER="${OFBIZ_ROOT_DIR}/controllers/ofbiz.sh"
-
-[[ -f "${OFBIZ_VERSION_CONFIG}" ]] || {
-    printf 'ERROR: Version config not found: %s\n' "${OFBIZ_VERSION_CONFIG}" >&2
-    exit 1
-}
+readonly VERSION_ROOT_DIR="$(cd "${VERSION_SERVICE_DIR}/.." && pwd)"
+readonly OFBIZ_VERSION_CONFIG="${VERSION_ROOT_DIR}/config/versions.conf"
+readonly OFBIZ_CONTROLLER="${VERSION_ROOT_DIR}/controllers/ofbiz.sh"
 
 # shellcheck source=/dev/null
 source "${OFBIZ_VERSION_CONFIG}"
@@ -92,7 +92,7 @@ ofbiz_resolve_version() {
 
     if ! ofbiz_is_known_release "${resolved}"; then
         printf 'ERROR: Unsupported OFBiz release: %s\n' "${requested}" >&2
-        printf 'Run: bash %s list\n' "${OFBIZ_CONTROLLER}" >&2
+        printf 'Run: bash %s release list\n' "${OFBIZ_CONTROLLER}" >&2
         return 1
     fi
 
