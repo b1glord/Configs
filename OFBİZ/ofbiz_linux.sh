@@ -1,85 +1,134 @@
-# If sitename field is blank, it will error out.(test)
-read -p "Please enter your website name (ornek xxx.com): " website
-if [[ -z "$website" ]]; then
-        echo "ERROR: The website name is invalid or blank."
-        exit
-fi
-# apache ofbiz 
-# java 8 ile çalışıyor üst sürümlere uyumlu degil
-cd /tmp
-wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBİZ/install_oraclejdk8.sh
-chmod +x install_oraclejdk8.sh
-./install_oraclejdk8.sh
+# 📄 Dosya Yolu: /OFBİZ/ofbiz_linux.sh
+# 📌 Amac: Apache OFBiz 24.09.x surumunu JDK 17 ile Linux sistemine kurar
+# 📌 Tool - Shell
+# Version: 2.0.0
+# Aciklama: Guncel OFBiz kurulumu, SHA-512 dogrulamasi ve opsiyonel demo veri yukleme akisi
+#
+# Bagimli Oldugu Katman: Tool
 
-# == Install Required programs
-yum -y install perl-Digest-SHA
+set -euo pipefail
 
-# == Quick start
-# == Ref Documantation
-# https://cwiki.apache.org/confluence/display/OFBIZ/How+to+install+OFBiz+with+the+Demo+Data
-# === Download the Gradle wrapper:
-# rm -f -r /usr/local/ofbiz    //need delete all files
-mkdir /usr/local/ofbiz
-cd /usr/local/ofbiz
-wget https://dlcdn.apache.org/ofbiz/apache-ofbiz-18.12.10.zip --no-check-certificate
-unzip apache-ofbiz-18.12.10.zip -d /usr/local/ofbiz
+readonly DEFAULT_OFBIZ_VERSION="24.09.07"
+readonly DEFAULT_INSTALL_ROOT="/opt/ofbiz"
 
-#---------------------------------------------------------------------
-# Global variables
-#---------------------------------------------------------------------
-IP_ADDRESS=( $(hostname -I) );
-#=== Bugları düzeltiyoruz
-#== Düzeltme 1
-cp /usr/local/ofbiz/apache-ofbiz-18.12.10/themes/rainbowstone/webapp/rainbowstone/rainbowstone-saphir.less /usr/local/ofbiz/apache-ofbiz-18.12.10/themes/rainbowstone/webapp/rainbowstone/raınbowstone-saphır.less
-#== Düzeltme 2
-sed -i "s/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org/host-headers-allowed=localhost,127.0.0.1,demo-trunk.ofbiz.apache.org,demo-stable.ofbiz.apache.org,demo-next.ofbiz.apache.org,$website,${IP_ADDRESS[0]}/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/security/config/security.properties
+OFBIZ_VERSION="${OFBIZ_VERSION:-${DEFAULT_OFBIZ_VERSION}}"
+OFBIZ_INSTALL_ROOT="${OFBIZ_INSTALL_ROOT:-${DEFAULT_INSTALL_ROOT}}"
+OFBIZ_LOAD_DEMO="${OFBIZ_LOAD_DEMO:-0}"
+OFBIZ_FORCE_REINSTALL="${OFBIZ_FORCE_REINSTALL:-0}"
 
-#== Düzeltme 3 deneysel
-#==https://cwiki.apache.org/confluence/display/OFBIZ/Install+OFBiz+with+MariaDB%2C+Apache2+Proxy+and+SSL
-#sed -i "s/no.http=Y/no.http=N/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
-#sed -i "s/port.https.enabled=Y/port.https.enabled=N/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
-#sed -i "s/no.http=Y/no.http=N/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
-#sed -i "s/port.http=8080/port.http=/" /usr/local/ofbiz/apache-ofbiz-18.12.07/framework/webapp/config/url.properties
+readonly ARCHIVE_NAME="apache-ofbiz-${OFBIZ_VERSION}.zip"
+readonly DOWNLOAD_BASE_URL="https://dlcdn.apache.org/ofbiz"
+readonly RELEASES_DIR="${OFBIZ_INSTALL_ROOT}/releases"
+readonly RELEASE_DIR="${RELEASES_DIR}/apache-ofbiz-${OFBIZ_VERSION}"
+readonly CURRENT_LINK="${OFBIZ_INSTALL_ROOT}/current"
 
-# certbot bozuk silip tekrar yüklüyoruz
-#cd /tmp
-#wget https://raw.githubusercontent.com/b1glord/Configs/master/OFB%C4%B0Z/certbot.sh
-#chmod +x certbot.sh
-#./certbot.sh
-#sudo certbot --apache certonly -n -d $website
+log() {
+    printf '[ofbiz-install] %s\n' "$*"
+}
 
+fail() {
+    printf '[ofbiz-install] ERROR: %s\n' "$*" >&2
+    exit 1
+}
 
-#=== Run Gradle:
-cd /usr/local/ofbiz/apache-ofbiz-18.12.10
-sh gradle/init-gradle-wrapper.sh
+require_root() {
+    if [[ "${EUID}" -ne 0 ]]; then
+        fail "Run this script as root: sudo bash ofbiz_linux.sh"
+    fi
+}
 
-./gradlew loadAll ofbiz
+install_packages() {
+    if command -v apt-get >/dev/null 2>&1; then
+        apt-get update
+        DEBIAN_FRONTEND=noninteractive apt-get install -y curl unzip ca-certificates openjdk-17-jdk
+    elif command -v dnf >/dev/null 2>&1; then
+        dnf install -y curl unzip ca-certificates java-17-openjdk-devel
+    elif command -v yum >/dev/null 2>&1; then
+        yum install -y curl unzip ca-certificates java-17-openjdk-devel
+    elif command -v zypper >/dev/null 2>&1; then
+        zypper --non-interactive install curl unzip ca-certificates java-17-openjdk-devel
+    else
+        fail "Supported package manager not found. Install JDK 17, curl, unzip and ca-certificates manually."
+    fi
+}
 
+verify_java() {
+    command -v javac >/dev/null 2>&1 || fail "JDK is missing; javac was not found."
 
-#=== Prepare OFBiz:
-#==== Clean system and load the complete OFBiz data
-# ./gradlew cleanAll loadAll
+    local java_major
+    java_major="$(javac -version 2>&1 | awk '{print $2}' | cut -d. -f1)"
 
-# =====Note: As the later step, to install without the demo data follow: (beware this is for development or production, not trying)
-# ./gradlew cleanAll "ofbiz --load-data readers=seed,seed-initial" loadAdminUserLogin -PuserLoginId=admin
+    if [[ "${java_major}" != "17" ]]; then
+        fail "OFBiz 24.09 requires JDK 17. Detected javac major version: ${java_major}"
+    fi
+}
 
-#=== Start OFBiz:
-cd /usr/local/ofbiz/apache-ofbiz-18.12.10
-#=== Start OFBiz:
-./gradlew ofbiz
-#=== Start OFBiz Background:
-# ./gradlew "ofbizBackground --start"
+download_and_extract() {
+    local work_dir
+    work_dir="$(mktemp -d)"
+    trap 'rm -rf "${work_dir}"' EXIT
 
+    if [[ -d "${RELEASE_DIR}" && "${OFBIZ_FORCE_REINSTALL}" != "1" ]]; then
+        log "Release already exists: ${RELEASE_DIR}"
+        return
+    fi
 
+    rm -rf "${RELEASE_DIR}"
+    mkdir -p "${RELEASES_DIR}"
 
+    log "Downloading OFBiz ${OFBIZ_VERSION}"
+    curl --fail --location --retry 3 --output "${work_dir}/${ARCHIVE_NAME}"         "${DOWNLOAD_BASE_URL}/${ARCHIVE_NAME}"
+    curl --fail --location --retry 3 --output "${work_dir}/${ARCHIVE_NAME}.sha512"         "${DOWNLOAD_BASE_URL}/${ARCHIVE_NAME}.sha512"
 
+    (
+        cd "${work_dir}"
+        sha512sum --check "${ARCHIVE_NAME}.sha512"
+    )
 
-#=== Visit OFBiz through your browser:
+    unzip -q "${work_dir}/${ARCHIVE_NAME}" -d "${RELEASES_DIR}"
+    [[ -d "${RELEASE_DIR}" ]] || fail "Expected release directory was not created: ${RELEASE_DIR}"
+}
 
-echo "https://$website:8443/ordermgr     [Order Back Office]"
+prepare_ofbiz() {
+    ln -sfn "${RELEASE_DIR}" "${CURRENT_LINK}"
+    cd "${CURRENT_LINK}"
 
-echo "https://$website:8443/accounting   [Accounting Back Office]"
+    if [[ -f "gradle/init-gradle-wrapper.sh" ]]; then
+        bash gradle/init-gradle-wrapper.sh
+    fi
 
-echo "https://$website:8443/webtools     [Administrator interface]"
+    if [[ "${OFBIZ_LOAD_DEMO}" == "1" ]]; then
+        log "Loading demo data"
+        ./gradlew --no-daemon loadAll
+    fi
+}
 
-echo "You can log in with the user *admin* and password *ofbiz*."
+print_summary() {
+    cat <<EOF
+OFBiz installation completed.
+
+Version : ${OFBIZ_VERSION}
+Path    : ${CURRENT_LINK}
+Java    : $(javac -version 2>&1)
+
+Start:
+  cd ${CURRENT_LINK}
+  ./gradlew ofbiz
+
+Default HTTPS:
+  https://localhost:8443/
+
+Demo data was loaded only when OFBIZ_LOAD_DEMO=1.
+EOF
+}
+
+main() {
+    require_root
+    install_packages
+    verify_java
+    download_and_extract
+    prepare_ofbiz
+    print_summary
+}
+
+main "$@"
