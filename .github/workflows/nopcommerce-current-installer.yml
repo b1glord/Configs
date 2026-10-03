@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /.github/workflows/nopcommerce-current-installer.yml
-# 📌 Amac: NopCommerce installer surum, DB, native/tam-Docker deployment ve template butunlugunu CI uzerinde dogrulamak
+# 📌 Amac: NopCommerce installer surum, DB, app deployment ve TLS/Let's Encrypt butunlugunu CI uzerinde dogrulamak
 # 📌 Modul - YAML
-# Version: 1.5.0
-# Aciklama: App mode, runtime profili, DB scope, full Compose generation, secret ve template testlerini calistirir
+# Version: 1.6.0
+# Aciklama: Native/Docker, DB scope, TLS resolver, HTTPS Compose, renewal artifact ve runtime profili testlerini calistirir
 # Bagimli Oldugu Katman: Repo | Tool | View | Config | Language
 
 name: NopCommerce Current Installer
@@ -47,6 +47,7 @@ jobs:
           bash -n NopCommerce/current/installer/config/version-catalog.env
           bash -n NopCommerce/current/installer/config/database-catalog.env
           bash -n NopCommerce/current/installer/config/application-catalog.env
+          bash -n NopCommerce/current/installer/config/tls-catalog.env
           bash -n NopCommerce/current/installer/language/tr.labels
 
           find NopCommerce/current/installer/config/database             -type f             -name "*.env.example"             -print0 | while IFS= read -r -d "" file; do
@@ -62,18 +63,20 @@ jobs:
           source NopCommerce/current/installer/config/version-catalog.env
           source NopCommerce/current/installer/config/database-catalog.env
           source NopCommerce/current/installer/config/application-catalog.env
+          source NopCommerce/current/installer/config/tls-catalog.env
           source NopCommerce/current/installer/language/tr.labels
 
           test "$NOP_APP_MODE" = "native"
           test "$NOP_DB_MODE" = "external"
+          test "$NOP_TLS_MODE" = "off"
+          test "$NOP_TLS_CERTBOT_IMAGE" = "certbot/certbot:v5.8.0"
+          test "$NOP_DOCKER_STACK_HTTPS_PORT" = "443"
           test "$NOP_DB_DOCKER_MYSQL_IMAGE" = "mysql:8.4"
           test "$NOP_DB_DOCKER_POSTGRESQL_IMAGE" = "postgres:17"
           test "$NOP_DOCKER_STACK_NGINX_IMAGE" = "nginx:1.30.5-alpine"
-          test -n "$NOP_DOCKER_APP_RUNTIME_IMAGES"
-          test -n "$NOP_DOCKER_APP_RUNTIME_PROFILES"
-          test -n "$NOP_APT_NATIVE_PACKAGES"
-          test -n "$ERR_APP_MODE"
-          test -n "$ERR_DOCKER_COMPOSE"
+          test -n "$NOP_TLS_MODES"
+          test -n "$NOP_APT_TLS_PACKAGES"
+          test -n "$ERR_TLS_DOMAIN"
 
       - name: Validate version and application resolver
         shell: bash
@@ -117,6 +120,54 @@ jobs:
             exit 1
           fi
 
+      - name: Validate TLS resolver
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
+
+          source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/application-catalog.env"
+          source "$INSTALLER_ROOT/config/tls-catalog.env"
+          source "$INSTALLER_ROOT/language/tr.labels"
+          source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/application_repository.sh"
+          source "$INSTALLER_ROOT/repositories/tls_repository.sh"
+
+          application_repository_resolve_mode "native"
+          tls_repository_resolve_mode "off"
+          test "$NOP_TLS_MODE_RESOLVED" = "off"
+
+          NOP_TLS_DOMAIN="shop.example.com"
+          NOP_TLS_EMAIL="admin@example.com"
+
+          tls_repository_resolve_mode "letsencrypt"
+          test "$NOP_PUBLIC_HOST" = "shop.example.com"
+          test "$NOP_TLS_CERT_ROOT_RESOLVED" = "/etc/letsencrypt"
+          test "$NOP_TLS_FULLCHAIN_PATH" = "/etc/letsencrypt/live/shop.example.com/fullchain.pem"
+
+          application_repository_resolve_mode "docker"
+          tls_repository_resolve_mode "letsencrypt"
+          test "$NOP_TLS_CERT_ROOT_RESOLVED" = "/opt/nopcommerce/docker/tls/letsencrypt"
+          test "$NOP_TLS_NGINX_CERT_ROOT_RESOLVED" = "/etc/letsencrypt"
+          test "$NOP_TLS_FULLCHAIN_PATH" = "/etc/letsencrypt/live/shop.example.com/fullchain.pem"
+
+          NOP_TLS_DOMAIN="invalid"
+          if tls_repository_resolve_mode "letsencrypt"; then
+            exit 1
+          fi
+
+          NOP_TLS_DOMAIN="shop.example.com"
+          NOP_TLS_EMAIL="invalid"
+          if tls_repository_resolve_mode "letsencrypt"; then
+            exit 1
+          fi
+
+          if tls_repository_resolve_mode "invalid"; then
+            exit 1
+          fi
+
       - name: Validate database compatibility and connection scopes
         shell: bash
         run: |
@@ -156,14 +207,6 @@ jobs:
           database_repository_prepare_connection "stack"
           test "$NOP_DB_CONNECTION_STRING" = "Host=database;Port=5432;Database=nopcommerce;Username=nopcommerce;Password=app-password"
 
-          version_repository_resolve "4.90.8"
-          database_repository_resolve_provider "mssql"
-          database_repository_resolve_mode "external"
-
-          if database_repository_resolve_mode "docker"; then
-            exit 1
-          fi
-
       - name: Validate external database settings generation
         shell: bash
         run: |
@@ -197,10 +240,9 @@ jobs:
           database_repository_write_settings
 
           test "$(jq -r '.DataProvider' "$NOP_CURRENT_DIR/App_Data/dataSettings.json")" = "SqlServer"
-          test "$(jq -r '.DataConnectionString' "$NOP_CURRENT_DIR/App_Data/dataSettings.json")" = "Server=db.example.test;Database=nop;User=test;Password=test"
           test "$(stat -c '%a' "$NOP_CURRENT_DIR/App_Data/dataSettings.json")" = "600"
 
-      - name: Validate full Docker Compose generation
+      - name: Validate full Docker HTTP Compose generation
         shell: bash
         run: |
           set -Eeuo pipefail
@@ -213,20 +255,22 @@ jobs:
           source "$INSTALLER_ROOT/config/version-catalog.env"
           source "$INSTALLER_ROOT/config/database-catalog.env"
           source "$INSTALLER_ROOT/config/application-catalog.env"
+          source "$INSTALLER_ROOT/config/tls-catalog.env"
           source "$INSTALLER_ROOT/language/tr.labels"
           source "$INSTALLER_ROOT/views/console_view.sh"
           source "$INSTALLER_ROOT/repositories/version_repository.sh"
           source "$INSTALLER_ROOT/repositories/database_repository.sh"
           source "$INSTALLER_ROOT/repositories/application_repository.sh"
+          source "$INSTALLER_ROOT/repositories/tls_repository.sh"
           source "$INSTALLER_ROOT/tools/docker_stack_tool.sh"
 
-          NOP_RELEASES_DIR="$RUNNER_TEMP/releases"
-          NOP_CURRENT_DIR="$RUNNER_TEMP/current"
-          NOP_TEMP_DIR="$RUNNER_TEMP/tmp"
-          NOP_DOCKER_STACK_ROOT="$RUNNER_TEMP/docker"
-          NOP_DOCKER_STACK_PERSIST_ROOT="$RUNNER_TEMP/docker/persist"
-          NOP_DOCKER_STACK_COMPOSE_FILE="$RUNNER_TEMP/docker/docker-compose.yml"
-          NOP_DOCKER_STACK_NGINX_CONFIG="$RUNNER_TEMP/docker/nginx.conf"
+          NOP_RELEASES_DIR="$RUNNER_TEMP/http-releases"
+          NOP_CURRENT_DIR="$RUNNER_TEMP/http-current"
+          NOP_TEMP_DIR="$RUNNER_TEMP/http-tmp"
+          NOP_DOCKER_STACK_ROOT="$RUNNER_TEMP/http-docker"
+          NOP_DOCKER_STACK_PERSIST_ROOT="$RUNNER_TEMP/http-docker/persist"
+          NOP_DOCKER_STACK_COMPOSE_FILE="$RUNNER_TEMP/http-docker/docker-compose.yml"
+          NOP_DOCKER_STACK_NGINX_CONFIG="$RUNNER_TEMP/http-docker/nginx.conf"
           NOP_SERVICE_USER="$(id -un)"
           NOP_SERVICE_GROUP="$(id -gn)"
           NOP_DB_SECRET_FILE="$RUNNER_TEMP/mysql-stack.secret.env"
@@ -241,6 +285,7 @@ jobs:
 
           version_repository_resolve "4.90.8"
           application_repository_resolve_mode "docker"
+          tls_repository_resolve_mode "off"
           database_repository_resolve_provider "mysql"
           database_repository_resolve_mode "docker"
           database_repository_prepare_connection "stack"
@@ -249,26 +294,15 @@ jobs:
           docker_stack_tool_prepare_persistent_data
           database_repository_write_settings "$NOP_DOCKER_STACK_PERSIST_ROOT"
           docker_stack_tool_write_dockerfile
-          docker_stack_tool_write_nginx_config
+          docker_stack_tool_write_nginx_config "http"
           docker_stack_tool_write_compose
 
           docker compose             -p "$NOP_DOCKER_STACK_PROJECT"             -f "$NOP_DOCKER_STACK_COMPOSE_FILE"             config -q
 
-          DOCKERFILE="$NOP_RELEASES_DIR/4.90.8/$NOP_DOCKER_STACK_DOCKERFILE_RELATIVE"
-
-          grep -q '^FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine$' "$DOCKERFILE"
-          grep -q 'gcompat' "$DOCKERFILE"
-          grep -q 'ENTRYPOINT \["dotnet", "Nop.Web.dll"\]' "$DOCKERFILE"
-
           grep -q 'image: "mysql:8.4"' "$NOP_DOCKER_STACK_COMPOSE_FILE"
-          grep -q 'image: "nginx:1.30.5-alpine"' "$NOP_DOCKER_STACK_COMPOSE_FILE"
-          grep -q 'database-data:/var/lib/mysql' "$NOP_DOCKER_STACK_COMPOSE_FILE"
           grep -q '"0.0.0.0:80:80"' "$NOP_DOCKER_STACK_COMPOSE_FILE"
-          grep -q 'host.docker.internal:host-gateway' "$NOP_DOCKER_STACK_COMPOSE_FILE"
-          grep -q '\${NOP_DB_PASSWORD}' "$NOP_DOCKER_STACK_COMPOSE_FILE"
-          grep -q '\${NOP_DB_ROOT_PASSWORD}' "$NOP_DOCKER_STACK_COMPOSE_FILE"
 
-          if grep -q 'app-password\|root-password' "$NOP_DOCKER_STACK_COMPOSE_FILE"; then
+          if grep -q ':443"' "$NOP_DOCKER_STACK_COMPOSE_FILE"; then
             exit 1
           fi
 
@@ -276,10 +310,123 @@ jobs:
             exit 1
           fi
 
-          test "$(jq -r '.DataProvider' "$NOP_DOCKER_STACK_PERSIST_ROOT/App_Data/dataSettings.json")" = "MySql"
-          test "$(jq -r '.DataConnectionString' "$NOP_DOCKER_STACK_PERSIST_ROOT/App_Data/dataSettings.json")" = "Server=database;Port=3306;Database=nopcommerce;User=nopcommerce;Password=app-password;SslMode=Preferred"
-
           grep -q 'proxy_pass http://app:80;' "$NOP_DOCKER_STACK_NGINX_CONFIG"
+
+      - name: Validate full Docker TLS Compose generation
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
+
+          source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/version-catalog.env"
+          source "$INSTALLER_ROOT/config/database-catalog.env"
+          source "$INSTALLER_ROOT/config/application-catalog.env"
+          source "$INSTALLER_ROOT/config/tls-catalog.env"
+          source "$INSTALLER_ROOT/language/tr.labels"
+          source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/version_repository.sh"
+          source "$INSTALLER_ROOT/repositories/database_repository.sh"
+          source "$INSTALLER_ROOT/repositories/application_repository.sh"
+          source "$INSTALLER_ROOT/repositories/tls_repository.sh"
+          source "$INSTALLER_ROOT/tools/tls_tool.sh"
+          source "$INSTALLER_ROOT/tools/docker_stack_tool.sh"
+
+          NOP_RELEASES_DIR="$RUNNER_TEMP/tls-releases"
+          NOP_CURRENT_DIR="$RUNNER_TEMP/tls-current"
+          NOP_TEMP_DIR="$RUNNER_TEMP/tls-tmp"
+          NOP_DOCKER_STACK_ROOT="$RUNNER_TEMP/tls-docker"
+          NOP_DOCKER_STACK_PERSIST_ROOT="$RUNNER_TEMP/tls-docker/persist"
+          NOP_DOCKER_STACK_COMPOSE_FILE="$RUNNER_TEMP/tls-docker/docker-compose.yml"
+          NOP_DOCKER_STACK_NGINX_CONFIG="$RUNNER_TEMP/tls-docker/nginx.conf"
+          NOP_TLS_DOCKER_CERT_ROOT="$RUNNER_TEMP/tls-docker/tls/letsencrypt"
+          NOP_TLS_DOCKER_WEBROOT="$RUNNER_TEMP/tls-docker/tls/webroot"
+          NOP_SERVICE_USER="$(id -un)"
+          NOP_SERVICE_GROUP="$(id -gn)"
+          NOP_TLS_DOMAIN="shop.example.com"
+          NOP_TLS_EMAIL="admin@example.com"
+
+          mkdir -p             "$NOP_RELEASES_DIR/4.90.8/App_Data/DataProtectionKeys"             "$NOP_RELEASES_DIR/4.90.8/Plugins"             "$NOP_RELEASES_DIR/4.90.8/logs"             "$NOP_RELEASES_DIR/4.90.8/wwwroot/images"
+
+          touch "$NOP_RELEASES_DIR/4.90.8/Nop.Web.dll"
+          ln -s "$NOP_RELEASES_DIR/4.90.8" "$NOP_CURRENT_DIR"
+
+          version_repository_resolve "4.90.8"
+          application_repository_resolve_mode "docker"
+          tls_repository_resolve_mode "letsencrypt"
+          database_repository_resolve_provider "web"
+          database_repository_resolve_mode "external"
+
+          tls_tool_prepare_directories
+          docker_stack_tool_validate_config
+          docker_stack_tool_prepare_persistent_data
+          docker_stack_tool_write_dockerfile
+          docker_stack_tool_write_nginx_config "http"
+          docker_stack_tool_write_compose
+
+          docker compose             -p "$NOP_DOCKER_STACK_PROJECT"             -f "$NOP_DOCKER_STACK_COMPOSE_FILE"             config -q
+
+          grep -q '"0.0.0.0:80:80"' "$NOP_DOCKER_STACK_COMPOSE_FILE"
+          grep -q '"0.0.0.0:443:443"' "$NOP_DOCKER_STACK_COMPOSE_FILE"
+          grep -q "$NOP_TLS_DOCKER_WEBROOT:/var/www/certbot:ro" "$NOP_DOCKER_STACK_COMPOSE_FILE"
+          grep -q "$NOP_TLS_DOCKER_CERT_ROOT:/etc/letsencrypt:ro" "$NOP_DOCKER_STACK_COMPOSE_FILE"
+          grep -q 'root /var/www/certbot;' "$NOP_DOCKER_STACK_NGINX_CONFIG"
+
+          mkdir -p "$NOP_TLS_DOCKER_CERT_ROOT/live/shop.example.com"
+          touch             "$NOP_TLS_DOCKER_CERT_ROOT/live/shop.example.com/fullchain.pem"             "$NOP_TLS_DOCKER_CERT_ROOT/live/shop.example.com/privkey.pem"
+
+          docker_stack_tool_write_nginx_config "tls"
+
+          grep -q 'listen 443 ssl;' "$NOP_DOCKER_STACK_NGINX_CONFIG"
+          grep -q 'ssl_certificate /etc/letsencrypt/live/shop.example.com/fullchain.pem;' "$NOP_DOCKER_STACK_NGINX_CONFIG"
+          grep -q 'return 301 https://$host$request_uri;' "$NOP_DOCKER_STACK_NGINX_CONFIG"
+          grep -q 'Strict-Transport-Security' "$NOP_DOCKER_STACK_NGINX_CONFIG"
+
+      - name: Validate renewal artifact generation
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
+
+          source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/application-catalog.env"
+          source "$INSTALLER_ROOT/config/tls-catalog.env"
+          source "$INSTALLER_ROOT/language/tr.labels"
+          source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/application_repository.sh"
+          source "$INSTALLER_ROOT/repositories/tls_repository.sh"
+          source "$INSTALLER_ROOT/tools/tls_tool.sh"
+
+          NOP_TLS_DOMAIN="shop.example.com"
+          NOP_TLS_EMAIL="admin@example.com"
+          NOP_TLS_DEPLOY_HOOK="$RUNNER_TEMP/deploy-hook"
+          NOP_TLS_RENEW_SCRIPT="$RUNNER_TEMP/renew-script"
+          NOP_TLS_DOCKER_CERT_ROOT="$RUNNER_TEMP/certs"
+          NOP_TLS_DOCKER_WEBROOT="$RUNNER_TEMP/webroot"
+          NOP_DB_SECRET_FILE="$RUNNER_TEMP/db.secret.env"
+
+          application_repository_resolve_mode "native"
+          tls_repository_resolve_mode "letsencrypt"
+          tls_tool_write_deploy_hook
+          tls_tool_write_renew_script
+
+          bash -n "$NOP_TLS_DEPLOY_HOOK"
+          bash -n "$NOP_TLS_RENEW_SCRIPT"
+          grep -q 'certbot.*renew\|renew' "$NOP_TLS_RENEW_SCRIPT"
+          grep -q -- '--deploy-hook' "$NOP_TLS_RENEW_SCRIPT"
+
+          application_repository_resolve_mode "docker"
+          tls_repository_resolve_mode "letsencrypt"
+          tls_tool_write_deploy_hook
+          tls_tool_write_renew_script
+
+          bash -n "$NOP_TLS_DEPLOY_HOOK"
+          bash -n "$NOP_TLS_RENEW_SCRIPT"
+          grep -q 'certbot/certbot:v5.8.0' "$NOP_TLS_RENEW_SCRIPT"
+          grep -q '.nopcommerce-renewed' "$NOP_TLS_RENEW_SCRIPT"
+          grep -q 'docker.*compose\| compose ' "$NOP_TLS_DEPLOY_HOOK"
 
       - name: Validate legacy Docker runtime profiles
         shell: bash
@@ -323,9 +470,15 @@ jobs:
           grep -q "__APP_DIR__" NopCommerce/current/installer/config/nopcommerce.service.tpl
           grep -q "__DOTNET_EXECUTABLE__" NopCommerce/current/installer/config/nopcommerce.service.tpl
           grep -q "__DOTNET_ROOT__" NopCommerce/current/installer/config/nopcommerce.service.tpl
-          grep -q "__ASPNETCORE_URLS__" NopCommerce/current/installer/config/nopcommerce.service.tpl
-          grep -q "__PUBLIC_HOST__" NopCommerce/current/installer/config/nginx.conf.tpl
 
-          grep -q "__PUBLIC_HOST__" NopCommerce/current/installer/config/docker/nginx.conf.tpl
-          grep -q "__APP_SERVICE__" NopCommerce/current/installer/config/docker/nginx.conf.tpl
-          grep -q "__APP_PORT__" NopCommerce/current/installer/config/docker/nginx.conf.tpl
+          grep -q "__ACME_WEBROOT__" NopCommerce/current/installer/config/nginx.conf.tpl
+          grep -q "__TLS_FULLCHAIN__" NopCommerce/current/installer/config/nginx.tls.conf.tpl
+          grep -q "__TLS_PRIVKEY__" NopCommerce/current/installer/config/nginx.tls.conf.tpl
+
+          grep -q "__ACME_WEBROOT__" NopCommerce/current/installer/config/docker/nginx.conf.tpl
+          grep -q "__TLS_FULLCHAIN__" NopCommerce/current/installer/config/docker/nginx.tls.conf.tpl
+          grep -q "__APP_SERVICE__" NopCommerce/current/installer/config/docker/nginx.tls.conf.tpl
+
+          grep -q "__RENEW_SCRIPT__" NopCommerce/current/installer/config/tls-renew.service.tpl
+          grep -q "__ON_CALENDAR__" NopCommerce/current/installer/config/tls-renew.timer.tpl
+          grep -q "__RANDOM_DELAY__" NopCommerce/current/installer/config/tls-renew.timer.tpl

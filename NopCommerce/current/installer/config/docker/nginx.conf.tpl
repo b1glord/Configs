@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/config/docker/nginx.conf.tpl
-# 📌 Amac: Docker stack icindeki Nginx reverse proxy virtual host sablonunu tanimlamak
+# 📌 Amac: Docker stack icindeki Nginx HTTP reverse proxy ve ACME challenge sablonunu tanimlamak
 # 📌 Modul - Config
-# Version: 1.1.0
-# Aciklama: Compose app servisini internal HTTP portu uzerinden proxy eder
+# Version: 1.2.0
+# Aciklama: Compose app servisini proxy eder ve Let's Encrypt webroot challenge dosyalarini sunar
 # Bagimli Oldugu Katman: Tool
 
 server {
@@ -11,6 +11,12 @@ server {
 
     server_name __PUBLIC_HOST__;
     client_max_body_size 100m;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root __ACME_WEBROOT__;
+        default_type "text/plain";
+        try_files $uri =404;
+    }
 
     location / {
         proxy_pass http://__APP_SERVICE__:__APP_PORT__;

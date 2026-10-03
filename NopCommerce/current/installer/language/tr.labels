@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/language/tr.labels
 # 📌 Amac: Installer kullanici mesajlarini merkezi olarak tanimlamak
 # 📌 Modul - Language
-# Version: 1.5.0
-# Aciklama: Cok surumlu, DB-secimli, native ve tam Docker deployment mesajlarini merkezi olarak tutar
+# Version: 1.6.0
+# Aciklama: Cok surumlu, DB-secimli, native/Docker ve Let's Encrypt TLS mesajlarini merkezi olarak tutar
 # Bagimli Oldugu Katman: View | Service | Repo | Tool
 
 LABEL_INFO="BILGI"
@@ -33,6 +33,13 @@ MSG_EXACT_VERSION_SUPPORT="Desteklenen ailelerde GitHub'da bulunan tam patch sur
 MSG_APP_MODE="Secilen uygulama deployment modu"
 MSG_APP_MODES="Uygulama deployment modlari"
 MSG_APP_DOCKER_RUNTIME="Docker ASP.NET runtime image"
+MSG_TLS_MODE="Secilen TLS modu"
+MSG_TLS_MODES="TLS modlari"
+MSG_TLS_ISSUE="Let's Encrypt sertifikasi webroot ile aliniyor."
+MSG_TLS_CERTBOT_IMAGE="Certbot Docker image"
+MSG_TLS_CERT_EXISTS="Mevcut Let's Encrypt sertifikasi bulundu; yeniden sertifika istenmiyor."
+MSG_TLS_CERT_READY="Let's Encrypt sertifikasi hazir."
+MSG_TLS_RENEWAL_ENABLED="Let's Encrypt otomatik renewal timer etkinlestirildi."
 MSG_DOCKER_STACK_UP="nopCommerce Docker Compose stack build edilip baslatiliyor."
 MSG_DOCKER_STACK_READY="nopCommerce Docker Compose stack baslatildi."
 
@@ -48,7 +55,7 @@ MSG_DB_DOCKER_WAIT="Docker veritabani hazir olana kadar bekleniyor."
 MSG_DB_DOCKER_READY="Docker veritabani hazir."
 MSG_DB_DOCKER_REUSE="Mevcut Docker DB container ve kalici volume yeniden kullaniliyor."
 
-ERR_USAGE="Kullanim: install.sh --version <surum|latest|beta> --app-mode <native|docker> --db <web|sqlserver|mysql|postgresql> --db-mode <external|docker> --config <dosya>; liste: --list-versions, --list-databases veya --list-app-modes"
+ERR_USAGE="Kullanim: install.sh --version <surum|latest|beta> --app-mode <native|docker> --tls-mode <off|letsencrypt> --db <web|sqlserver|mysql|postgresql> --db-mode <external|docker> --config <dosya>; liste: --list-versions, --list-databases, --list-app-modes veya --list-tls-modes"
 ERR_CONFIG_FILE="Config dosyasi bulunamadi"
 ERR_ROOT="Bu installer root yetkisi ile calistirilmalidir."
 ERR_OS_RELEASE="OS release dosyasi bulunamadi."
@@ -70,7 +77,13 @@ ERR_DOCKER_STACK_PROJECT="Docker Compose project adi gecersiz"
 ERR_DOCKER_STACK_SERVICE_NAME="Docker Compose service adi gecersiz"
 ERR_DOCKER_STACK_PORT="Docker stack port degeri gecersiz"
 ERR_DOCKER_COMPOSE="Docker Compose plugin erisilebilir degil"
-ERR_DOCKER_STACK_PORT_BUSY="Docker stack public HTTP portu baska bir servis tarafindan kullaniliyor"
+ERR_DOCKER_STACK_PORT_BUSY="Docker stack public portu baska bir servis tarafindan kullaniliyor"
+ERR_TLS_MODE="Desteklenmeyen TLS modu"
+ERR_TLS_DOMAIN="Let's Encrypt icin gecerli tek bir FQDN domain gerekli"
+ERR_TLS_EMAIL="Let's Encrypt icin gecerli email gerekli"
+ERR_TLS_CERTBOT="Certbot executable bulunamadi"
+ERR_TLS_CERTIFICATE="Let's Encrypt sertifikasi alinamadi"
+ERR_TLS_NGINX_PHASE="Gecersiz Nginx HTTP/TLS fazi"
 
 ERR_DB_PROVIDER="Desteklenmeyen veritabani provider secimi"
 ERR_DB_UNSUPPORTED="Secilen nopCommerce surumu bu veritabani providerini desteklemiyor"

@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/tools/os_tool.sh
 # 📌 Amac: Linux platform, bagimlilik, side-by-side .NET runtime ve servis hesabini yonetmek
 # 📌 Modul - Shell
-# Version: 1.2.0
-# Aciklama: Native modda host .NET/Nginx bagimliliklarini, Docker modda yalniz ortak paketleri kurar
+# Version: 1.3.0
+# Aciklama: App/TLS moduna gore host paketlerini ayirir; native Let's Encrypt icin Certbot kurar
 # Bagimli Oldugu Katman: Config | View | Language
 
 set -Eeuo pipefail
@@ -44,6 +44,7 @@ os_tool_validate_platform() {
 
 os_tool_install_dependencies() {
     local app_mode="${1:-native}"
+    local tls_mode="${2:-off}"
     local package_string
     local packages
 
@@ -51,6 +52,10 @@ os_tool_install_dependencies() {
 
     if [[ "${app_mode}" == "native" ]]; then
         package_string+=" ${NOP_APT_NATIVE_PACKAGES}"
+
+        if [[ "${tls_mode}" == "letsencrypt" ]]; then
+            package_string+=" ${NOP_APT_TLS_PACKAGES}"
+        fi
     fi
 
     IFS=' ' read -r -a packages <<< "${package_string}"
