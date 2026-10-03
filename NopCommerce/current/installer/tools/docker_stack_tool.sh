@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/tools/docker_stack_tool.sh
 # 📌 Amac: nopCommerce uygulama, Nginx ve opsiyonel DB servislerini Docker Compose ile yonetmek
 # 📌 Modul - Shell
-# Version: 1.1.1
-# Aciklama: Resmi NoSource release'i surume uygun ASP.NET runtime image ile paketler ve tam Compose stack olusturur
+# Version: 1.2.1
+# Aciklama: Resmi NoSource release'i surume uygun ASP.NET runtime image ile paketler; HTTP/HTTPS Nginx ve Compose stack olusturur
 # Bagimli Oldugu Katman: Config | Repo | View | Language
 
 set -Eeuo pipefail
@@ -37,7 +37,14 @@ docker_stack_tool_validate_config() {
     docker_stack_tool_validate_service_name "NOP_DOCKER_STACK_DATABASE_SERVICE" "${NOP_DOCKER_STACK_DATABASE_SERVICE}"
     docker_stack_tool_validate_service_name "NOP_DOCKER_STACK_NGINX_SERVICE" "${NOP_DOCKER_STACK_NGINX_SERVICE}"
 
-    if ! docker_stack_tool_validate_port "${NOP_DOCKER_STACK_APP_PORT}" ||        ! docker_stack_tool_validate_port "${NOP_DOCKER_STACK_HTTP_PORT}"; then
+    if ! docker_stack_tool_validate_port "${NOP_DOCKER_STACK_APP_PORT}" || \
+       ! docker_stack_tool_validate_port "${NOP_DOCKER_STACK_HTTP_PORT}"; then
+        console_view_error "${ERR_DOCKER_STACK_PORT}"
+        return 64
+    fi
+
+    if [[ "${NOP_TLS_MODE_RESOLVED}" == "letsencrypt" ]] && \
+       ! docker_stack_tool_validate_port "${NOP_DOCKER_STACK_HTTPS_PORT}"; then
         console_view_error "${ERR_DOCKER_STACK_PORT}"
         return 64
     fi
@@ -60,17 +67,33 @@ docker_stack_tool_require_docker() {
     fi
 }
 
+docker_stack_tool_port_is_busy() {
+    local port="$1"
+
+    command -v ss >/dev/null 2>&1 && \
+        ss -ltnH 2>/dev/null | awk -v port=":${port}" '$4 ~ (port "$") { found=1 } END { exit !found }'
+}
+
 docker_stack_tool_validate_public_port() {
     local existing_container
 
-    existing_container="$("${NOP_DOCKER_EXECUTABLE}" ps -q         --filter "label=com.docker.compose.project=${NOP_DOCKER_STACK_PROJECT}"         --filter "label=com.docker.compose.service=${NOP_DOCKER_STACK_NGINX_SERVICE}"         | head -n 1)"
+    existing_container="$("${NOP_DOCKER_EXECUTABLE}" ps -q \
+        --filter "label=com.docker.compose.project=${NOP_DOCKER_STACK_PROJECT}" \
+        --filter "label=com.docker.compose.service=${NOP_DOCKER_STACK_NGINX_SERVICE}" \
+        | head -n 1)"
 
     if [[ -n "${existing_container}" ]]; then
         return 0
     fi
 
-    if command -v ss >/dev/null 2>&1 &&        ss -ltnH 2>/dev/null | awk -v port=":${NOP_DOCKER_STACK_HTTP_PORT}" '$4 ~ (port "$") { found=1 } END { exit !found }'; then
+    if docker_stack_tool_port_is_busy "${NOP_DOCKER_STACK_HTTP_PORT}"; then
         console_view_error "${ERR_DOCKER_STACK_PORT_BUSY}: ${NOP_DOCKER_STACK_HTTP_PORT}"
+        return 98
+    fi
+
+    if [[ "${NOP_TLS_MODE_RESOLVED}" == "letsencrypt" ]] && \
+       docker_stack_tool_port_is_busy "${NOP_DOCKER_STACK_HTTPS_PORT}"; then
+        console_view_error "${ERR_DOCKER_STACK_PORT_BUSY}: ${NOP_DOCKER_STACK_HTTPS_PORT}"
         return 98
     fi
 }
@@ -242,17 +265,50 @@ docker_stack_tool_prepare_persistent_data() {
 }
 
 docker_stack_tool_write_nginx_config() {
+    local phase="${1:-http}"
     local template_path
     local public_host
     local app_service
     local app_port
+    local acme_webroot
+    local fullchain
+    local privkey
 
-    template_path="${INSTALLER_ROOT}/config/docker/nginx.conf.tpl"
     public_host="$(docker_stack_tool_escape_sed "${NOP_PUBLIC_HOST}")"
     app_service="$(docker_stack_tool_escape_sed "${NOP_DOCKER_STACK_APP_SERVICE}")"
     app_port="$(docker_stack_tool_escape_sed "${NOP_DOCKER_STACK_APP_PORT}")"
+    acme_webroot="$(docker_stack_tool_escape_sed "${NOP_TLS_DOCKER_NGINX_WEBROOT}")"
 
-    sed         -e "s|__PUBLIC_HOST__|${public_host}|g"         -e "s|__APP_SERVICE__|${app_service}|g"         -e "s|__APP_PORT__|${app_port}|g"         "${template_path}" > "${NOP_DOCKER_STACK_NGINX_CONFIG}"
+    case "${phase}" in
+        http)
+            template_path="${INSTALLER_ROOT}/config/docker/nginx.conf.tpl"
+
+            sed \
+                -e "s|__PUBLIC_HOST__|${public_host}|g" \
+                -e "s|__APP_SERVICE__|${app_service}|g" \
+                -e "s|__APP_PORT__|${app_port}|g" \
+                -e "s|__ACME_WEBROOT__|${acme_webroot}|g" \
+                "${template_path}" > "${NOP_DOCKER_STACK_NGINX_CONFIG}"
+            ;;
+        tls)
+            template_path="${INSTALLER_ROOT}/config/docker/nginx.tls.conf.tpl"
+            fullchain="$(docker_stack_tool_escape_sed "${NOP_TLS_FULLCHAIN_PATH}")"
+            privkey="$(docker_stack_tool_escape_sed "${NOP_TLS_PRIVKEY_PATH}")"
+
+            sed \
+                -e "s|__PUBLIC_HOST__|${public_host}|g" \
+                -e "s|__APP_SERVICE__|${app_service}|g" \
+                -e "s|__APP_PORT__|${app_port}|g" \
+                -e "s|__ACME_WEBROOT__|${acme_webroot}|g" \
+                -e "s|__TLS_FULLCHAIN__|${fullchain}|g" \
+                -e "s|__TLS_PRIVKEY__|${privkey}|g" \
+                "${template_path}" > "${NOP_DOCKER_STACK_NGINX_CONFIG}"
+            ;;
+        *)
+            console_view_error "${ERR_TLS_NGINX_PHASE}: ${phase}"
+            return 64
+            ;;
+    esac
 }
 
 docker_stack_tool_write_app_service() {
@@ -373,9 +429,27 @@ docker_stack_tool_write_nginx_service() {
       - "${NOP_DOCKER_STACK_APP_SERVICE}"
     ports:
       - "${NOP_DOCKER_STACK_HTTP_BIND_HOST}:${NOP_DOCKER_STACK_HTTP_PORT}:80"
+EOF
+
+    if [[ "${NOP_TLS_MODE_RESOLVED}" == "letsencrypt" ]]; then
+        printf '      - "%s:%s:443"\n' \
+            "${NOP_DOCKER_STACK_HTTPS_BIND_HOST}" \
+            "${NOP_DOCKER_STACK_HTTPS_PORT}" >> "${compose_file}"
+    fi
+
+    cat >> "${compose_file}" <<EOF
     volumes:
       - "${NOP_DOCKER_STACK_NGINX_CONFIG}:/etc/nginx/conf.d/default.conf:ro"
 EOF
+
+    if [[ "${NOP_TLS_MODE_RESOLVED}" == "letsencrypt" ]]; then
+        printf '      - "%s:%s:ro"\n' \
+            "${NOP_TLS_WEBROOT_RESOLVED}" \
+            "${NOP_TLS_DOCKER_NGINX_WEBROOT}" >> "${compose_file}"
+        printf '      - "%s:%s:ro"\n' \
+            "${NOP_TLS_CERT_ROOT_RESOLVED}" \
+            "${NOP_TLS_DOCKER_NGINX_CERT_ROOT}" >> "${compose_file}"
+    fi
 }
 
 docker_stack_tool_write_compose() {
@@ -419,7 +493,30 @@ docker_stack_tool_up() {
     "${NOP_DOCKER_EXECUTABLE}" compose         -p "${NOP_DOCKER_STACK_PROJECT}"         -f "${NOP_DOCKER_STACK_COMPOSE_FILE}"         ps
 }
 
+docker_stack_tool_reload_nginx() {
+    "${NOP_DOCKER_EXECUTABLE}" compose \
+        -p "${NOP_DOCKER_STACK_PROJECT}" \
+        -f "${NOP_DOCKER_STACK_COMPOSE_FILE}" \
+        exec -T "${NOP_DOCKER_STACK_NGINX_SERVICE}" nginx -t
+
+    "${NOP_DOCKER_EXECUTABLE}" compose \
+        -p "${NOP_DOCKER_STACK_PROJECT}" \
+        -f "${NOP_DOCKER_STACK_COMPOSE_FILE}" \
+        exec -T "${NOP_DOCKER_STACK_NGINX_SERVICE}" nginx -s reload
+}
+
+docker_stack_tool_activate_tls() {
+    if [[ "${NOP_TLS_MODE_RESOLVED}" != "letsencrypt" ]]; then
+        return 0
+    fi
+
+    docker_stack_tool_write_nginx_config "tls"
+    docker_stack_tool_reload_nginx
+}
+
 docker_stack_tool_install() {
+    local phase="${1:-http}"
+
     if [[ "${NOP_APP_MODE_RESOLVED}" != "docker" ]]; then
         return 0
     fi
@@ -429,8 +526,9 @@ docker_stack_tool_install() {
     docker_stack_tool_validate_public_port
     docker_stack_tool_prepare_persistent_data
     docker_stack_tool_write_dockerfile
-    docker_stack_tool_write_nginx_config
+    docker_stack_tool_write_nginx_config "${phase}"
     docker_stack_tool_write_compose
     docker_stack_tool_validate_compose
     docker_stack_tool_up
 }
+

@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/README.md
 # 📌 Amac: Cok surumlu nopCommerce installer kullanimini, native/tam-Docker deployment ve DB modlarini tanimlamak
 # 📌 Modul - Markdown
-# Version: 1.6.0
-# Aciklama: nopCommerce 4.30-4.90 stable ve 5.00 beta icin surum/runtime/DB/deployment uyumlu installer dokumani
+# Version: 1.7.0
+# Aciklama: nopCommerce 4.30-4.90 stable ve 5.00 beta icin surum/runtime/DB/deployment/TLS uyumlu installer dokumani
 
 Bagimli Oldugu Katman: Controller | Service | Repo | Tool | View | Language | Config
 
@@ -34,6 +34,7 @@ Listele:
 
 ```bash
 bash installer/controllers/install.sh --list-app-modes
+bash installer/controllers/install.sh --list-tls-modes
 ```
 
 ### Native
@@ -199,6 +200,132 @@ NOP_DOCKER_STACK_HTTP_PORT="8080"
 
 Installer ayni Compose projesine ait mevcut Nginx container'i yoksa ve secilen host portu baska bir servis tarafindan dinleniyorsa kurulumdan once hata verir.
 
+
+## TLS / Let's Encrypt
+
+TLS varsayilan olarak kapali kalir:
+
+```text
+NOP_TLS_MODE="off"
+```
+
+Desteklenen modlari listelemek icin:
+
+```bash
+bash installer/controllers/install.sh --list-tls-modes
+```
+
+Let's Encrypt icin config dosyasinda gercek domain ve email tanimlanir:
+
+```bash
+NOP_TLS_DOMAIN="shop.example.com"
+NOP_TLS_EMAIL="admin@example.com"
+NOP_TLS_STAGING="0"
+```
+
+Native HTTPS kurulumu:
+
+```bash
+sudo bash installer/controllers/install.sh \
+  --version latest \
+  --app-mode native \
+  --tls-mode letsencrypt \
+  --db mysql \
+  --db-mode external \
+  --config /etc/nopcommerce-installer.env
+```
+
+Tam Docker HTTPS kurulumu:
+
+```bash
+sudo bash installer/controllers/install.sh \
+  --version latest \
+  --app-mode docker \
+  --tls-mode letsencrypt \
+  --db postgresql \
+  --db-mode docker \
+  --config /etc/nopcommerce-installer.env
+```
+
+Installer once HTTP konfigurasyonunu baslatir ve `/.well-known/acme-challenge/` webroot yolunu sunar. Sertifika basariyla alindiktan sonra Nginx HTTPS konfigurasyonuna gecilir ve HTTP istekleri HTTPS'e yonlendirilir.
+
+Let's Encrypt modu tek bir FQDN domain kullanir. HTTP-01 challenge nedeniyle domain DNS kaydinin hedef sunucuya gelmesi ve public port 80'in sertifika alma sirasinda erisilebilir olmasi gerekir. Wildcard sertifika bu webroot modulunun kapsami disindadir.
+
+### Native Certbot
+
+Native app modunda host paket yoneticisinden `certbot` kurulur ve webroot authenticator kullanilir.
+
+Varsayilan yollar:
+
+```text
+certificates: /etc/letsencrypt
+webroot:      /var/lib/nopcommerce/acme
+```
+
+### Docker Certbot
+
+Docker app modunda hosta Certbot paketi kurulmaz. Sabit image kullanilir:
+
+```text
+certbot/certbot:v5.8.0
+```
+
+Host persistent TLS alanlari:
+
+```text
+/opt/nopcommerce/docker/tls/letsencrypt
+/opt/nopcommerce/docker/tls/webroot
+```
+
+Nginx container bunlari salt-okunur olarak:
+
+```text
+/etc/letsencrypt
+/var/www/certbot
+```
+
+altinda gorur.
+
+HTTPS aktifken Docker Nginx varsayilan olarak hem `80` hem `443` portlarini publish eder. MySQL/PostgreSQL servisleri yine hosta publish edilmez.
+
+### Otomatik renewal
+
+Installer kendi systemd timer'ini kurar:
+
+```text
+nopcommerce-certbot-renew.timer
+```
+
+Varsayilan kontrol plani gunde iki kezdir ve ayni anda cok sayida hostun CA'ya gitmesini engellemek icin rastgele gecikme uygulanir.
+
+Native modda Certbot `renew --deploy-hook` kullanir. Nginx yalniz basarili sertifika yenilenmesinden sonra config test edilerek reload edilir.
+
+Docker modunda Certbot container renewal sonrasi paylasilan webroot'a marker birakir. Host renewal scripti bu marker'i gorurse Compose Nginx servisini `nginx -t` ile kontrol edip reload eder.
+
+TLS daha sonra `off` yapilirsa installer kendi renewal timer/script/hook dosyalarini devre disi birakir ve siler; mevcut sertifika arsivi otomatik silinmez.
+
+### Staging
+
+Rate-limit riski olmadan akisi test etmek icin:
+
+```bash
+NOP_TLS_STAGING="1"
+```
+
+kullanilabilir. Staging sertifikasi tarayicida guvenilir kabul edilmez; production gecisinde bu deger tekrar `0` yapilmalidir.
+
+### HTTPS guvenlik ayarlari
+
+Uretilen HTTPS Nginx profili:
+
+- TLS 1.2 ve TLS 1.3,
+- HTTP -> HTTPS redirect,
+- `Strict-Transport-Security: max-age=31536000`,
+- Let's Encrypt fullchain/private key,
+- reverse proxy `X-Forwarded-Proto https`
+
+ayarlarini uygular.
+
 ## Kalici uygulama verisi
 
 Docker stack verileri varsayilan olarak:
@@ -281,13 +408,15 @@ installer/
 │   ├── application_repository.sh
 │   ├── database_repository.sh
 │   ├── release_repository.sh
+│   ├── tls_repository.sh
 │   └── version_repository.sh
 ├── tools/
 │   ├── docker_database_tool.sh
 │   ├── docker_stack_tool.sh
 │   ├── nginx_tool.sh
 │   ├── os_tool.sh
-│   └── systemd_tool.sh
+│   ├── systemd_tool.sh
+│   └── tls_tool.sh
 ├── views/
 │   └── console_view.sh
 ├── language/
@@ -295,13 +424,18 @@ installer/
 └── config/
     ├── application-catalog.env
     ├── database-catalog.env
+    ├── tls-catalog.env
     ├── database/
     ├── docker/
-    │   └── nginx.conf.tpl
+    │   ├── nginx.conf.tpl
+    │   └── nginx.tls.conf.tpl
     ├── installer.env.example
     ├── version-catalog.env
     ├── nginx.conf.tpl
-    └── nopcommerce.service.tpl
+    ├── nginx.tls.conf.tpl
+    ├── nopcommerce.service.tpl
+    ├── tls-renew.service.tpl
+    └── tls-renew.timer.tpl
 ```
 
 ## Sinirlar
@@ -310,5 +444,5 @@ installer/
 - Docker Engine ve Compose plugin installer tarafindan kurulmaz; mevcut olmalidir.
 - Bu mekanizma database upgrade/migration zinciri degildir.
 - Eski ve yeni nopCommerce surumlerini ayni DB uzerinde gelisiguzel calistirmak upgrade degildir.
-- TLS/Let's Encrypt henuz ayri modul olarak eklenmemistir.
+- Let's Encrypt webroot modu wildcard sertifika vermez; wildcard icin ileride DNS-01 provider modulu gerekir.
 - 4.30/4.40 gibi EOL runtime/container base tag'leri upstream registry erisilebilirligine baglidir.

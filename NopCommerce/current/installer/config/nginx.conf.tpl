@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/config/nginx.conf.tpl
-# 📌 Amac: nopCommerce icin Nginx reverse proxy virtual host sablonunu tanimlamak
+# 📌 Amac: Native nopCommerce icin HTTP reverse proxy ve ACME challenge sablonunu tanimlamak
 # 📌 Modul - Config
-# Version: 1.0.1
-# Aciklama: Public host ve upstream degerleri Tool katmani tarafindan doldurulur
+# Version: 1.1.0
+# Aciklama: Public host, ACME webroot ve upstream degerleri Tool katmani tarafindan doldurulur
 # Bagimli Oldugu Katman: Tool
 
 server {
@@ -11,6 +11,12 @@ server {
 
     server_name __PUBLIC_HOST__;
     client_max_body_size 100m;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root __ACME_WEBROOT__;
+        default_type "text/plain";
+        try_files $uri =404;
+    }
 
     location / {
         proxy_pass __UPSTREAM__;

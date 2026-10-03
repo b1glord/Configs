@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/README.md
 # 📌 Amac: NopCommerce current installer, legacy script, nginx konfigurasyon ve arsiv yapisini dokumante etmek
 # 📌 Modul - Markdown
-# Version: 2.4.0
-# Aciklama: Cok surumlu native/tam-Docker current installer ile tarihsel dosyalarin ayrimini aciklar
+# Version: 2.5.0
+# Aciklama: Cok surumlu native/tam-Docker + Let's Encrypt current installer ile tarihsel dosyalarin ayrimini aciklar
 
 Bagimli Oldugu Katman: Controller | Service | Repo | Tool | View | Language | Config
 
@@ -22,6 +22,7 @@ Bu klasor nopCommerce icin guncel cok surumlu installer'i, eski kurulum scriptle
 - PostgreSQL Docker provisioning: `postgres:17`.
 - Docker Nginx: `nginx:1.30.5-alpine`.
 - Tam Docker DB servisleri hosta port publish etmez.
+- Native ve Docker modlarinda Let's Encrypt webroot TLS, HTTP->HTTPS ve otomatik renewal desteklenir.
 - Release paketi resmi GitHub metadata ile dogrulanir.
 - Eski installer dosyalari `legacy/` altinda korunur.
 
@@ -33,6 +34,7 @@ Listele:
 bash NopCommerce/current/installer/controllers/install.sh --list-versions
 bash NopCommerce/current/installer/controllers/install.sh --list-databases
 bash NopCommerce/current/installer/controllers/install.sh --list-app-modes
+bash NopCommerce/current/installer/controllers/install.sh --list-tls-modes
 ```
 
 Native:
@@ -52,6 +54,7 @@ Tam Docker:
 sudo bash NopCommerce/current/installer/controllers/install.sh \
   --version latest \
   --app-mode docker \
+  --tls-mode letsencrypt \
   --db postgresql \
   --db-mode docker \
   --config /etc/nopcommerce-installer.env
@@ -95,7 +98,7 @@ Legacy scriptler yeni sunucularda production installer olarak kullanilmamalidir.
 
 Native modda eski .NET runtime'lari modern Linux dagitimlarinda sistem kutuphanesi uyumsuzlugu yasayabilir. Tam Docker modu bu runtime'i container icine izole eder; ancak EOL Microsoft base image tag'lerinin registry erisilebilirligi upstream'e baglidir.
 
-DB secret dosyalari repo disinda ve `chmod 600` ile tutulur. Tam Docker stack icindeki DB servisi hosta port publish etmez. Installer mevcut persistent uygulama klasorlerini veya DB volume'larini otomatik silmez.
+DB secret dosyalari repo disinda ve `chmod 600` ile tutulur. Tam Docker stack icindeki DB servisi hosta port publish etmez. Let's Encrypt sertifikalari persistent alanda korunur ve renewal timer yalniz basarili yenilemeden sonra Nginx reload uygular. Installer mevcut persistent uygulama klasorlerini, DB volume'larini veya sertifika arsivini otomatik silmez.
 
 Prerelease surumler `latest` tarafindan otomatik secilmez.
 
