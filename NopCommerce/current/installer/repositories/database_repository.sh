@@ -129,9 +129,7 @@ database_repository_write_settings() {
         return 0
     fi
 
-    if ! database_repository_load_secret; then
-        return $?
-    fi
+    database_repository_load_secret || return $?
 
     target_file="${NOP_CURRENT_DIR}/${NOP_DB_SETTINGS_RELATIVE_PATH}"
     target_dir="$(dirname "${target_file}")"
