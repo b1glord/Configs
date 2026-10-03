@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/repositories/tls_repository.sh
 # 📌 Amac: TLS modunu, domain/email kurallarini ve native/docker sertifika yollarini cozumlemek
 # 📌 Modul - Shell
-# Version: 1.0.0
+# Version: 1.0.1
 # Aciklama: Let's Encrypt webroot profile business kurallarini merkezi olarak uygular
 # Bagimli Oldugu Katman: Config | View | Language
 
@@ -60,8 +60,8 @@ tls_repository_resolve_mode() {
         return 0
     fi
 
-    tls_repository_validate_domain "${NOP_TLS_DOMAIN}"
-    tls_repository_validate_email "${NOP_TLS_EMAIL}"
+    tls_repository_validate_domain "${NOP_TLS_DOMAIN}" || return $?
+    tls_repository_validate_email "${NOP_TLS_EMAIL}" || return $?
 
     export NOP_PUBLIC_HOST="${NOP_TLS_DOMAIN}"
 
