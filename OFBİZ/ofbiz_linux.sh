@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: /OFBİZ/ofbiz_linux.sh
 # 📌 Amac: Apache OFBiz 24.09.x surumunu JDK 17 ile Linux sistemine kurar
 # 📌 Tool - Shell
-# Version: 2.0.0
+# Version: 2.0.1
 # Aciklama: Guncel OFBiz kurulumu, SHA-512 dogrulamasi ve opsiyonel demo veri yukleme akisi
 #
 # Bagimli Oldugu Katman: Tool
@@ -15,6 +15,7 @@ OFBIZ_VERSION="${OFBIZ_VERSION:-${DEFAULT_OFBIZ_VERSION}}"
 OFBIZ_INSTALL_ROOT="${OFBIZ_INSTALL_ROOT:-${DEFAULT_INSTALL_ROOT}}"
 OFBIZ_LOAD_DEMO="${OFBIZ_LOAD_DEMO:-0}"
 OFBIZ_FORCE_REINSTALL="${OFBIZ_FORCE_REINSTALL:-0}"
+WORK_DIR=""
 
 readonly ARCHIVE_NAME="apache-ofbiz-${OFBIZ_VERSION}.zip"
 readonly DOWNLOAD_BASE_URL="https://dlcdn.apache.org/ofbiz"
@@ -29,6 +30,12 @@ log() {
 fail() {
     printf '[ofbiz-install] ERROR: %s\n' "$*" >&2
     exit 1
+}
+
+cleanup() {
+    if [[ -n "${WORK_DIR}" && -d "${WORK_DIR}" ]]; then
+        rm -rf "${WORK_DIR}"
+    fi
 }
 
 require_root() {
@@ -52,21 +59,34 @@ install_packages() {
     fi
 }
 
-verify_java() {
-    command -v javac >/dev/null 2>&1 || fail "JDK is missing; javac was not found."
-
+configure_java17() {
+    local javac_path
     local java_major
-    java_major="$(javac -version 2>&1 | awk '{print $2}' | cut -d. -f1)"
 
-    if [[ "${java_major}" != "17" ]]; then
-        fail "OFBiz 24.09 requires JDK 17. Detected javac major version: ${java_major}"
+    if command -v javac >/dev/null 2>&1; then
+        java_major="$(javac -version 2>&1 | awk '{print $2}' | cut -d. -f1)"
+        if [[ "${java_major}" == "17" ]]; then
+            export JAVA_HOME
+            JAVA_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v javac)")")")"
+            return
+        fi
     fi
+
+    while IFS= read -r javac_path; do
+        java_major="$("${javac_path}" -version 2>&1 | awk '{print $2}' | cut -d. -f1)"
+        if [[ "${java_major}" == "17" ]]; then
+            export JAVA_HOME
+            JAVA_HOME="$(dirname "$(dirname "${javac_path}")")"
+            export PATH="${JAVA_HOME}/bin:${PATH}"
+            return
+        fi
+    done < <(find /usr/lib/jvm -maxdepth 4 -type f -path '*/bin/javac' 2>/dev/null | sort)
+
+    fail "OFBiz 24.09 requires JDK 17, but a JDK 17 installation could not be selected."
 }
 
 download_and_extract() {
-    local work_dir
-    work_dir="$(mktemp -d)"
-    trap 'rm -rf "${work_dir}"' EXIT
+    WORK_DIR="$(mktemp -d)"
 
     if [[ -d "${RELEASE_DIR}" && "${OFBIZ_FORCE_REINSTALL}" != "1" ]]; then
         log "Release already exists: ${RELEASE_DIR}"
@@ -77,15 +97,15 @@ download_and_extract() {
     mkdir -p "${RELEASES_DIR}"
 
     log "Downloading OFBiz ${OFBIZ_VERSION}"
-    curl --fail --location --retry 3 --output "${work_dir}/${ARCHIVE_NAME}"         "${DOWNLOAD_BASE_URL}/${ARCHIVE_NAME}"
-    curl --fail --location --retry 3 --output "${work_dir}/${ARCHIVE_NAME}.sha512"         "${DOWNLOAD_BASE_URL}/${ARCHIVE_NAME}.sha512"
+    curl --fail --location --retry 3 --output "${WORK_DIR}/${ARCHIVE_NAME}" "${DOWNLOAD_BASE_URL}/${ARCHIVE_NAME}"
+    curl --fail --location --retry 3 --output "${WORK_DIR}/${ARCHIVE_NAME}.sha512" "${DOWNLOAD_BASE_URL}/${ARCHIVE_NAME}.sha512"
 
     (
-        cd "${work_dir}"
+        cd "${WORK_DIR}"
         sha512sum --check "${ARCHIVE_NAME}.sha512"
     )
 
-    unzip -q "${work_dir}/${ARCHIVE_NAME}" -d "${RELEASES_DIR}"
+    unzip -q "${WORK_DIR}/${ARCHIVE_NAME}" -d "${RELEASES_DIR}"
     [[ -d "${RELEASE_DIR}" ]] || fail "Expected release directory was not created: ${RELEASE_DIR}"
 }
 
@@ -107,9 +127,10 @@ print_summary() {
     cat <<EOF
 OFBiz installation completed.
 
-Version : ${OFBIZ_VERSION}
-Path    : ${CURRENT_LINK}
-Java    : $(javac -version 2>&1)
+Version   : ${OFBIZ_VERSION}
+Path      : ${CURRENT_LINK}
+JAVA_HOME : ${JAVA_HOME}
+Java      : $(javac -version 2>&1)
 
 Start:
   cd ${CURRENT_LINK}
@@ -123,9 +144,10 @@ EOF
 }
 
 main() {
+    trap cleanup EXIT
     require_root
     install_packages
-    verify_java
+    configure_java17
     download_and_extract
     prepare_ofbiz
     print_summary
