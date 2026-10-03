@@ -1,9 +1,9 @@
 # 📄 Dosya Yolu: /.github/workflows/nopcommerce-current-installer.yml
-# 📌 Amac: NopCommerce current installer dosyalarinin shell ve config butunlugunu CI uzerinde dogrulamak
+# 📌 Amac: NopCommerce cok surumlu installer dosyalarinin shell, config, surum cozumleme ve template butunlugunu CI uzerinde dogrulamak
 # 📌 Modul - YAML
-# Version: 1.0.0
-# Aciklama: bash syntax, config yukleme ve template placeholder kontrollerini calistirir
-# Bagimli Oldugu Katman: Tool | Config
+# Version: 1.2.0
+# Aciklama: Stable, patch, prerelease, config ve template kontrollerini calistirir
+# Bagimli Oldugu Katman: Repo | Tool | View | Config | Language
 
 name: NopCommerce Current Installer
 
@@ -11,12 +11,16 @@ on:
   pull_request:
     paths:
       - "NopCommerce/current/installer/**"
+      - "NopCommerce/current/README.md"
+      - "NopCommerce/README.md"
       - ".github/workflows/nopcommerce-current-installer.yml"
   push:
     branches:
       - master
     paths:
       - "NopCommerce/current/installer/**"
+      - "NopCommerce/current/README.md"
+      - "NopCommerce/README.md"
       - ".github/workflows/nopcommerce-current-installer.yml"
 
 permissions:
@@ -43,6 +47,7 @@ jobs:
             done
 
           bash -n NopCommerce/current/installer/config/installer.env.example
+          bash -n NopCommerce/current/installer/config/version-catalog.env
           bash -n NopCommerce/current/installer/language/tr.labels
 
       - name: Validate config load
@@ -51,14 +56,52 @@ jobs:
           set -Eeuo pipefail
 
           source NopCommerce/current/installer/config/installer.env.example
+          source NopCommerce/current/installer/config/version-catalog.env
           source NopCommerce/current/installer/language/tr.labels
 
-          test -n "$NOP_VERSION"
-          test -n "$NOP_PACKAGE_SHA256"
-          test -n "$NOP_DOTNET_RUNTIME_PACKAGE"
-          test -n "$NOP_SUPPORTED_OS"
+          test -n "$NOP_DEFAULT_VERSION"
+          test -n "$NOP_RELEASE_API_BASE"
+          test -n "$NOP_DOTNET_ROOT"
+          test -n "$NOP_SUPPORTED_VERSION_FAMILIES"
+          test -n "$NOP_RUNTIME_CHANNELS"
+          test -n "$NOP_PACKAGE_NAME_OVERRIDES"
           test -n "$MSG_START"
-          test -n "$ERR_CHECKSUM"
+          test -n "$ERR_VERSION"
+
+      - name: Validate version resolver
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
+
+          source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/version-catalog.env"
+          source "$INSTALLER_ROOT/language/tr.labels"
+          source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/version_repository.sh"
+
+          version_repository_resolve "4.30"
+          test "$NOP_VERSION" = "4.30"
+          test "$NOP_DOTNET_RUNTIME_CHANNEL" = "3.1"
+          test "$NOP_PACKAGE_NAME" = "nopCommerce_4.30_NoSource_linux_x64.zip"
+
+          version_repository_resolve "latest-4.60"
+          test "$NOP_VERSION" = "4.60.6"
+          test "$NOP_DOTNET_RUNTIME_CHANNEL" = "7.0"
+
+          version_repository_resolve "4.80.9"
+          test "$NOP_VERSION" = "4.80.9"
+          test "$NOP_DOTNET_RUNTIME_CHANNEL" = "9.0"
+
+          version_repository_resolve "beta"
+          test "$NOP_VERSION" = "5.00.0-beta"
+          test "$NOP_DOTNET_RUNTIME_CHANNEL" = "10.0"
+          test "$NOP_PACKAGE_NAME" = "nopCommerce_5.00.0_beta_NoSource_linux_x64.zip"
+
+          if version_repository_resolve "4.10"; then
+            exit 1
+          fi
 
       - name: Validate templates
         shell: bash
@@ -67,6 +110,7 @@ jobs:
 
           grep -q "__APP_DIR__" NopCommerce/current/installer/config/nopcommerce.service.tpl
           grep -q "__DOTNET_EXECUTABLE__" NopCommerce/current/installer/config/nopcommerce.service.tpl
+          grep -q "__DOTNET_ROOT__" NopCommerce/current/installer/config/nopcommerce.service.tpl
           grep -q "__ASPNETCORE_URLS__" NopCommerce/current/installer/config/nopcommerce.service.tpl
           grep -q "__PUBLIC_HOST__" NopCommerce/current/installer/config/nginx.conf.tpl
           grep -q "__UPSTREAM__" NopCommerce/current/installer/config/nginx.conf.tpl

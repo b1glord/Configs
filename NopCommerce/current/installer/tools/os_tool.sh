@@ -1,15 +1,15 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/tools/os_tool.sh
-# 📌 Amac: Linux platform, paket yoneticisi, .NET runtime ve servis hesabini yonetmek
+# 📌 Amac: Linux platform, bagimlilik, side-by-side .NET runtime ve servis hesabini yonetmek
 # 📌 Modul - Shell
-# Version: 1.0.1
-# Aciklama: Config ile tanimlanan Debian tabanli Linux sistemleri icin dis sistem adaptoru
-# Bagimli Oldugu Katman: Config | Language
+# Version: 1.1.0
+# Aciklama: Ubuntu ve Debian icin cok surumlu runtime dis sistem adaptoru
+# Bagimli Oldugu Katman: Config | View | Language
 
 set -Eeuo pipefail
 
 os_tool_require_root() {
     if [[ "${EUID}" -ne 0 ]]; then
-        printf '%s\n' "${ERR_ROOT}" >&2
+        console_view_error "${ERR_ROOT}"
         return 77
     fi
 }
@@ -20,7 +20,7 @@ os_tool_validate_platform() {
     local is_supported
 
     if [[ ! -f "${NOP_OS_RELEASE_FILE}" ]]; then
-        printf '%s\n' "${ERR_OS_RELEASE}" >&2
+        console_view_error "${ERR_OS_RELEASE}"
         return 69
     fi
 
@@ -37,7 +37,7 @@ os_tool_validate_platform() {
     done
 
     if [[ "${is_supported}" != "1" ]]; then
-        printf '%s: %s\n' "${ERR_UNSUPPORTED_OS}" "${ID}" >&2
+        console_view_error "${ERR_UNSUPPORTED_OS}: ${ID}"
         return 69
     fi
 }
@@ -47,29 +47,41 @@ os_tool_install_dependencies() {
 
     IFS=' ' read -r -a packages <<< "${NOP_APT_BASE_PACKAGES}"
 
-    printf '%s\n' "${MSG_DEPENDENCIES}"
+    console_view_info "${MSG_DEPENDENCIES}"
     apt-get update
     DEBIAN_FRONTEND=noninteractive apt-get install -y "${packages[@]}"
 }
 
-os_tool_install_dotnet_runtime() {
-    local feed_url
-    local feed_package
+os_tool_runtime_is_installed() {
+    if [[ ! -x "${NOP_DOTNET_EXECUTABLE}" ]]; then
+        return 1
+    fi
 
-    if command -v "${NOP_DOTNET_EXECUTABLE}" >/dev/null 2>&1 &&        "${NOP_DOTNET_EXECUTABLE}" --list-runtimes | grep -q "^Microsoft.AspNetCore.App ${NOP_DOTNET_RUNTIME_VERSION_PREFIX}"; then
+    "${NOP_DOTNET_EXECUTABLE}" --list-runtimes 2>/dev/null |         grep -q "^Microsoft.AspNetCore.App ${NOP_DOTNET_RUNTIME_CHANNEL}\."
+}
+
+os_tool_install_dotnet_runtime() {
+    local install_script
+
+    if os_tool_runtime_is_installed; then
         return 0
     fi
 
-    source "${NOP_OS_RELEASE_FILE}"
+    install_script="${NOP_TEMP_DIR}/dotnet-install.sh"
 
-    feed_package="${NOP_TEMP_DIR}/packages-microsoft-prod.deb"
-    feed_url="${NOP_MICROSOFT_PACKAGES_BASE_URL}/${ID}/${VERSION_ID}/packages-microsoft-prod.deb"
+    mkdir -p "${NOP_TEMP_DIR}" "${NOP_DOTNET_ROOT}"
 
-    printf '%s\n' "${MSG_DOTNET}"
-    curl --fail --location --retry 3 --output "${feed_package}" "${feed_url}"
-    dpkg -i "${feed_package}"
-    apt-get update
-    DEBIAN_FRONTEND=noninteractive apt-get install -y "${NOP_DOTNET_RUNTIME_PACKAGE}"
+    console_view_info "${MSG_DOTNET}"
+    curl --fail --location --retry 3         --output "${install_script}"         "${NOP_DOTNET_INSTALL_SCRIPT_URL}"
+
+    bash "${install_script}"         --channel "${NOP_DOTNET_RUNTIME_CHANNEL}"         --runtime "${NOP_DOTNET_RUNTIME_KIND}"         --install-dir "${NOP_DOTNET_ROOT}"         --no-path
+
+    if ! os_tool_runtime_is_installed; then
+        console_view_error "${ERR_DOTNET_INSTALL}: ${NOP_DOTNET_RUNTIME_CHANNEL}"
+        return 70
+    fi
+
+    ln -sfn "${NOP_DOTNET_EXECUTABLE}" "${NOP_DOTNET_SYMLINK}"
 }
 
 os_tool_ensure_service_account() {

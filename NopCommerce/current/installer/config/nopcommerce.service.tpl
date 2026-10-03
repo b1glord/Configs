@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/config/nopcommerce.service.tpl
 # 📌 Amac: nopCommerce systemd service unit sablonunu tanimlamak
 # 📌 Modul - Config
-# Version: 1.0.1
-# Aciklama: Runtime path, kullanici ve ASP.NET URL degerleri Tool katmani tarafindan doldurulur
+# Version: 1.1.0
+# Aciklama: Secilen runtime, uygulama yolu, kullanici ve ASP.NET URL degerleri Tool katmani tarafindan doldurulur
 # Bagimli Oldugu Katman: Tool
 
 [Unit]
@@ -21,6 +21,7 @@ User=__SERVICE_USER__
 Group=__SERVICE_GROUP__
 Environment=ASPNETCORE_ENVIRONMENT=Production
 Environment=ASPNETCORE_URLS=__ASPNETCORE_URLS__
+Environment=DOTNET_ROOT=__DOTNET_ROOT__
 Environment=DOTNET_NOLOGO=true
 NoNewPrivileges=true
 PrivateTmp=true

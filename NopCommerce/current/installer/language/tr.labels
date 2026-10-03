@@ -1,9 +1,13 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/language/tr.labels
 # 📌 Amac: Installer kullanici mesajlarini merkezi olarak tanimlamak
 # 📌 Modul - Language
-# Version: 1.0.1
-# Aciklama: Shell katmanlarindaki kullaniciya donuk metinleri magic string olmaktan cikarir
-# Bagimli Oldugu Katman: Service | Repo | Tool
+# Version: 1.2.0
+# Aciklama: Cok surumlu stable ve prerelease yukleyici mesajlarini merkezi olarak tutar
+# Bagimli Oldugu Katman: View | Service | Repo | Tool
+
+LABEL_INFO="BILGI"
+LABEL_WARN="UYARI"
+LABEL_ERROR="HATA"
 
 MSG_START="nopCommerce kurulumu baslatiliyor."
 MSG_DEPENDENCIES="Sistem bagimliliklari kuruluyor."
@@ -13,13 +17,31 @@ MSG_DEPLOY="nopCommerce release paketi deploy ediliyor."
 MSG_SYSTEMD="systemd servisi yapilandiriliyor."
 MSG_NGINX="Nginx reverse proxy yapilandiriliyor."
 MSG_DONE="nopCommerce kurulumu tamamlandi."
-MSG_URL="Ilk kurulum icin host:"
+MSG_URL="Ilk kurulum icin host"
+MSG_SELECTED_VERSION="Secilen nopCommerce surumu"
+MSG_RUNTIME_CHANNEL="Gerekli .NET runtime kanali"
+MSG_RELEASE_VERIFIED="GitHub release metadata dogrulandi."
+MSG_SHA256_VERIFIED="Release paketi SHA-256 ile dogrulandi."
+MSG_SIZE_VERIFIED="Release paketi boyut bilgisi ile dogrulandi."
+MSG_LEGACY_RUNTIME="Eski nopCommerce/.NET surumleri modern Linux dagitimlarinda calismayabilir. Kurulum yapilabilir ancak runtime OS uyumlulugu ayrica test edilmelidir."
+MSG_NO_DIGEST="Bu eski GitHub release kaydinda SHA-256 digest yayinlanmamis. Dosya boyutu dogrulanarak devam ediliyor."
+MSG_PRERELEASE="Prerelease surum acikca secildi. Production ortaminda stable surum tercih edilmelidir."
+MSG_AVAILABLE_VERSIONS="Desteklenen surum secenekleri"
+MSG_VERSION_EXAMPLES="Ornekler: 4.30, 4.50, 4.60.6, latest-4.80, 4.90.8, latest, beta"
+MSG_EXACT_VERSION_SUPPORT="Desteklenen ailelerde GitHub'da bulunan tam patch surumu de dogrudan verilebilir."
 
-ERR_USAGE="Kullanim: sudo bash installer/controllers/install.sh /path/installer.env"
+ERR_USAGE="Kullanim: install.sh --version <surum|latest|beta> --config <dosya> veya install.sh --list-versions"
 ERR_CONFIG_FILE="Config dosyasi bulunamadi"
 ERR_ROOT="Bu installer root yetkisi ile calistirilmalidir."
 ERR_OS_RELEASE="OS release dosyasi bulunamadi."
 ERR_UNSUPPORTED_OS="Desteklenmeyen Linux dagitimi"
 ERR_CONFIG_KEY="Eksik config anahtari"
 ERR_CHECKSUM="Release paketi SHA-256 kontrolunden gecemedi."
+ERR_PACKAGE_SIZE="Release paketi beklenen dosya boyutu ile uyusmuyor."
 ERR_PACKAGE_CONTENT="Release paketi Nop.Web.dll icermiyor."
+ERR_VERSION="Desteklenmeyen nopCommerce surumu"
+ERR_RUNTIME_MAPPING="Surum icin .NET runtime eslestirmesi bulunamadi"
+ERR_RELEASE_METADATA="GitHub release metadata alinamadi"
+ERR_RELEASE_ASSET="Istenen Linux x64 NoSource release paketi bulunamadi"
+ERR_MISSING_DIGEST="Release SHA-256 bilgisi yok ve legacy checksum istisnasi kapali."
+ERR_DOTNET_INSTALL="Gerekli .NET runtime kurulamadi."
