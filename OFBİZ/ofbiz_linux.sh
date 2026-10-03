@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: /OFBİZ/ofbiz_linux.sh
 # 📌 Amac: Secilen Apache OFBiz release surumunu uygun JDK ile yan yana kurar ve aktif surumu yonetir
 # 📌 Controller - Shell
-# Version: 3.0.0
+# Version: 3.0.1
 # Aciklama: OFBiz release listeleme, kurma, aktif surum secme ve kurulu surum goruntuleme komutlari
 #
 # Bagimli Oldugu Katman: Controller | Service | Config | Tool
