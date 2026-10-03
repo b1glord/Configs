@@ -1,0 +1,22 @@
+# 📄 Dosya Yolu: /OFBİZ/config/Dockerfile.compat
+# 📌 Amac: Resmi Dockerfile bulunmayan eski OFBiz release paketleri icin uyumluluk image'i olusturur
+# 📌 Config - Dockerfile
+# Version: 1.0.0
+# Aciklama: Secilen OFBiz serisinin Java major surumune gore generic container image tanimi
+#
+# Bagimli Oldugu Katman: Config | Tool
+
+ARG JAVA_MAJOR=17
+FROM eclipse-temurin:${JAVA_MAJOR}-jdk
+
+ARG OFBIZ_LOAD_DEMO=1
+
+WORKDIR /ofbiz
+
+COPY . /ofbiz
+
+RUN chmod +x gradlew     && if [ -f gradle/init-gradle-wrapper.sh ]; then bash gradle/init-gradle-wrapper.sh; fi     && if [ "${OFBIZ_LOAD_DEMO}" = "1" ]; then ./gradlew --no-daemon loadAll; fi
+
+EXPOSE 8443 8009 5005
+
+CMD ["./gradlew", "ofbiz"]
