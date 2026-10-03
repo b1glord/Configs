@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/README.md
 # 📌 Amac: NopCommerce current installer, legacy script, nginx konfigurasyon ve arsiv yapisini dokumante etmek
 # 📌 Modul - Markdown
-# Version: 2.3.0
-# Aciklama: Cok surumlu current installer, DB secimi ve Docker DB provisioning ile tarihsel dosyalarin ayrimini aciklar
+# Version: 2.4.0
+# Aciklama: Cok surumlu native/tam-Docker current installer ile tarihsel dosyalarin ayrimini aciklar
 
 Bagimli Oldugu Katman: Controller | Service | Repo | Tool | View | Language | Config
 
@@ -10,16 +10,54 @@ Bagimli Oldugu Katman: Controller | Service | Repo | Tool | View | Language | Co
 
 Bu klasor nopCommerce icin guncel cok surumlu installer'i, eski kurulum scriptlerini, Nginx ayarlarini ve tarihsel varliklari saklar.
 
-## Surum durumu
+## Current installer yetenekleri
 
-- Current installer 4.30-4.90 stable ailelerini destekler.
-- Genel `latest` alias'i bu duzenleme tarihinde 4.90.8'e gider.
+- 4.30-4.90 stable surum aileleri desteklenir.
 - 5.00.0-beta yalniz acikca secilirse kurulur.
-- Tam patch surumu verilebilir; release varligi resmi GitHub metadata ile dogrulanir.
-- SQL Server/MySQL/PostgreSQL provider secimi surume gore dogrulanir.
-- MySQL ve PostgreSQL istege bagli Docker DB provisioning ile kurulabilir.
-- SQL Server Docker provisioning henuz yoktur; external SQL Server desteklenir.
-- Eski CentOS/ISPConfig/Pardus scriptleri `legacy/` altinda tarihsel referans olarak korunur.
+- `native` mod: host .NET + systemd + host Nginx.
+- `docker` mod: nopCommerce + container Nginx + opsiyonel MySQL/PostgreSQL Docker Compose stack.
+- Native app ile DB-only Docker modu korunur.
+- SQL Server external olarak desteklenir.
+- MySQL Docker provisioning: `mysql:8.4`.
+- PostgreSQL Docker provisioning: `postgres:17`.
+- Docker Nginx: `nginx:1.30.5-alpine`.
+- Tam Docker DB servisleri hosta port publish etmez.
+- Release paketi resmi GitHub metadata ile dogrulanir.
+- Eski installer dosyalari `legacy/` altinda korunur.
+
+## Hizli kullanim
+
+Listele:
+
+```bash
+bash NopCommerce/current/installer/controllers/install.sh --list-versions
+bash NopCommerce/current/installer/controllers/install.sh --list-databases
+bash NopCommerce/current/installer/controllers/install.sh --list-app-modes
+```
+
+Native:
+
+```bash
+sudo bash NopCommerce/current/installer/controllers/install.sh \
+  --version latest \
+  --app-mode native \
+  --db mysql \
+  --db-mode external \
+  --config /etc/nopcommerce-installer.env
+```
+
+Tam Docker:
+
+```bash
+sudo bash NopCommerce/current/installer/controllers/install.sh \
+  --version latest \
+  --app-mode docker \
+  --db postgresql \
+  --db-mode docker \
+  --config /etc/nopcommerce-installer.env
+```
+
+Detayli surum/runtime/DB matrisi, secret dosyalari, persistent path'ler ve Docker davranisi icin `current/README.md` dosyasina bak.
 
 ## Klasor yapisi
 
@@ -37,47 +75,6 @@ NopCommerce/
 └── archive/
 ```
 
-## Current installer ornekleri
-
-Surumleri listele:
-
-```bash
-bash NopCommerce/current/installer/controllers/install.sh --list-versions
-bash NopCommerce/current/installer/controllers/install.sh --list-databases
-```
-
-External DB:
-
-```bash
-sudo bash NopCommerce/current/installer/controllers/install.sh \
-  --version 4.90.8 \
-  --db mysql \
-  --db-mode external \
-  --config /etc/nopcommerce-installer.env
-```
-
-Docker MySQL:
-
-```bash
-sudo bash NopCommerce/current/installer/controllers/install.sh \
-  --version 4.90.8 \
-  --db mysql \
-  --db-mode docker \
-  --config /etc/nopcommerce-installer.env
-```
-
-Docker PostgreSQL:
-
-```bash
-sudo bash NopCommerce/current/installer/controllers/install.sh \
-  --version 4.90.8 \
-  --db postgresql \
-  --db-mode docker \
-  --config /etc/nopcommerce-installer.env
-```
-
-Detayli kullanim, secret dosyalari, Docker volume davranisi ve destek matrisi icin `current/README.md` dosyasina bak.
-
 ## Legacy installer envanteri
 
 | Platform | Tip | nopCommerce |
@@ -90,24 +87,17 @@ Detayli kullanim, secret dosyalari, Docker volume davranisi ve destek matrisi ic
 | CentOS | ISPConfig | 4.60 |
 | Pardus | Standalone | 4.30 |
 
-Not: Eski `installcentos430.sh` ve `installcentos440.sh` dosyalari ayni Git blob icerigine sahipti. Tarihsel kayit kaybolmasin diye ikisi de legacy alanda korunmustur.
-
-## Nginx
-
-- `config/nginx/reverse-proxy.location.conf`: Eski reverse proxy blogu.
-- `config/nginx/timeout.conf`: Eski uzun proxy timeout degerleri.
-- `archive/notes/nginxsecurity.sh`: Eski guvenlik notlari.
-- Current installer kendi Nginx template'ini `current/installer/config/nginx.conf.tpl` altinda tutar.
+Eski `installcentos430.sh` ve `installcentos440.sh` dosyalari ayni tarihsel Git blob icerigine sahipti; kayit kaybolmasin diye ikisi de legacy alanda korunur.
 
 ## Guvenlik ve uyumluluk
 
 Legacy scriptler yeni sunucularda production installer olarak kullanilmamalidir.
 
-Current installer eski nopCommerce surumlerini kurabilir; eski .NET runtime'lari modern Linux dagitimlarinda ek sistem kutuphanesi veya eski OS gerektirebilir.
+Native modda eski .NET runtime'lari modern Linux dagitimlarinda sistem kutuphanesi uyumsuzlugu yasayabilir. Tam Docker modu bu runtime'i container icine izole eder; ancak EOL Microsoft base image tag'lerinin registry erisilebilirligi upstream'e baglidir.
 
-DB secret dosyalari repo disinda ve `chmod 600` ile tutulur. Docker DB portlari varsayilan olarak yalniz `127.0.0.1` adresine bind edilir. Installer mevcut DB volume'larini otomatik silmez.
+DB secret dosyalari repo disinda ve `chmod 600` ile tutulur. Tam Docker stack icindeki DB servisi hosta port publish etmez. Installer mevcut persistent uygulama klasorlerini veya DB volume'larini otomatik silmez.
 
-Eski GitHub release kayitlarinda SHA-256 digest bulunmadiginda dosya boyutu kontrol edilir. Prerelease surumler `latest` tarafindan otomatik secilmez.
+Prerelease surumler `latest` tarafindan otomatik secilmez.
 
 ## Arsiv
 

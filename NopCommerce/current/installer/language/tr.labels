@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/language/tr.labels
 # 📌 Amac: Installer kullanici mesajlarini merkezi olarak tanimlamak
 # 📌 Modul - Language
-# Version: 1.4.1
-# Aciklama: Cok surumlu, DB-secimli ve Docker DB provisioning mesajlarini merkezi olarak tutar
+# Version: 1.5.0
+# Aciklama: Cok surumlu, DB-secimli, native ve tam Docker deployment mesajlarini merkezi olarak tutar
 # Bagimli Oldugu Katman: View | Service | Repo | Tool
 
 LABEL_INFO="BILGI"
@@ -23,12 +23,19 @@ MSG_RUNTIME_CHANNEL="Gerekli .NET runtime kanali"
 MSG_RELEASE_VERIFIED="GitHub release metadata dogrulandi."
 MSG_SHA256_VERIFIED="Release paketi SHA-256 ile dogrulandi."
 MSG_SIZE_VERIFIED="Release paketi boyut bilgisi ile dogrulandi."
-MSG_LEGACY_RUNTIME="Eski nopCommerce/.NET surumleri modern Linux dagitimlarinda calismayabilir. Kurulum yapilabilir ancak runtime OS uyumlulugu ayrica test edilmelidir."
+MSG_LEGACY_RUNTIME="Eski nopCommerce/.NET surumleri modern Linux dagitimlarinda calismayabilir. Native kurulumda runtime OS uyumlulugu ayrica test edilmelidir."
 MSG_NO_DIGEST="Bu eski GitHub release kaydinda SHA-256 digest yayinlanmamis. Dosya boyutu dogrulanarak devam ediliyor."
 MSG_PRERELEASE="Prerelease surum acikca secildi. Production ortaminda stable surum tercih edilmelidir."
 MSG_AVAILABLE_VERSIONS="Desteklenen surum secenekleri"
 MSG_VERSION_EXAMPLES="Ornekler: 4.30, 4.50, 4.60.6, latest-4.80, 4.90.8, latest, beta"
 MSG_EXACT_VERSION_SUPPORT="Desteklenen ailelerde GitHub'da bulunan tam patch surumu de dogrudan verilebilir."
+
+MSG_APP_MODE="Secilen uygulama deployment modu"
+MSG_APP_MODES="Uygulama deployment modlari"
+MSG_APP_DOCKER_RUNTIME="Docker ASP.NET runtime image"
+MSG_DOCKER_STACK_UP="nopCommerce Docker Compose stack build edilip baslatiliyor."
+MSG_DOCKER_STACK_READY="nopCommerce Docker Compose stack baslatildi."
+
 MSG_DB_PROVIDER="Secilen veritabani provider"
 MSG_DB_MODE="Secilen veritabani modu"
 MSG_DB_WEB_SETUP="Veritabani otomatik yapilandirilmadi; nopCommerce web kurulum sihirbazi kullanilacak."
@@ -41,7 +48,7 @@ MSG_DB_DOCKER_WAIT="Docker veritabani hazir olana kadar bekleniyor."
 MSG_DB_DOCKER_READY="Docker veritabani hazir."
 MSG_DB_DOCKER_REUSE="Mevcut Docker DB container ve kalici volume yeniden kullaniliyor."
 
-ERR_USAGE="Kullanim: install.sh --version <surum|latest|beta> --db <web|sqlserver|mysql|postgresql> --db-mode <external|docker> --config <dosya>; liste: --list-versions veya --list-databases"
+ERR_USAGE="Kullanim: install.sh --version <surum|latest|beta> --app-mode <native|docker> --db <web|sqlserver|mysql|postgresql> --db-mode <external|docker> --config <dosya>; liste: --list-versions, --list-databases veya --list-app-modes"
 ERR_CONFIG_FILE="Config dosyasi bulunamadi"
 ERR_ROOT="Bu installer root yetkisi ile calistirilmalidir."
 ERR_OS_RELEASE="OS release dosyasi bulunamadi."
@@ -56,6 +63,15 @@ ERR_RELEASE_METADATA="GitHub release metadata alinamadi"
 ERR_RELEASE_ASSET="Istenen Linux x64 NoSource release paketi bulunamadi"
 ERR_MISSING_DIGEST="Release SHA-256 bilgisi yok ve legacy checksum istisnasi kapali."
 ERR_DOTNET_INSTALL="Gerekli .NET runtime kurulamadi."
+
+ERR_APP_MODE="Desteklenmeyen uygulama deployment modu"
+ERR_APP_DOCKER_RUNTIME="Surum icin Docker runtime image/profil eslestirmesi bulunamadi"
+ERR_DOCKER_STACK_PROJECT="Docker Compose project adi gecersiz"
+ERR_DOCKER_STACK_SERVICE_NAME="Docker Compose service adi gecersiz"
+ERR_DOCKER_STACK_PORT="Docker stack port degeri gecersiz"
+ERR_DOCKER_COMPOSE="Docker Compose plugin erisilebilir degil"
+ERR_DOCKER_STACK_PORT_BUSY="Docker stack public HTTP portu baska bir servis tarafindan kullaniliyor"
+
 ERR_DB_PROVIDER="Desteklenmeyen veritabani provider secimi"
 ERR_DB_UNSUPPORTED="Secilen nopCommerce surumu bu veritabani providerini desteklemiyor"
 ERR_DB_MODE="Desteklenmeyen veritabani modu"
@@ -64,10 +80,11 @@ ERR_DB_DOCKER_PROVIDER="Secilen provider icin Docker provisioning henuz destekle
 ERR_DB_SECRET_FILE="Veritabani secret dosyasi bulunamadi"
 ERR_DB_SECRET_PERMISSIONS="Veritabani secret dosyasi group/world tarafindan okunabilir; chmod 600 uygulanmali"
 ERR_DB_CONNECTION_STRING="External mod secret dosyasinda NOP_DB_CONNECTION_STRING tanimli degil"
+ERR_DB_CONNECTION_SCOPE="Gecersiz DB connection scope"
 ERR_DB_PASSWORD="Docker DB secret dosyasinda NOP_DB_PASSWORD tanimli degil"
 ERR_DB_ROOT_PASSWORD="Docker MySQL secret dosyasinda NOP_DB_ROOT_PASSWORD tanimli degil"
 ERR_DB_IDENTIFIER="Gecersiz veritabani identifier"
-ERR_DB_DOCKER_NUMBER="Docker DB port ve timeout degerleri pozitif sayi olmali"
+ERR_DB_DOCKER_NUMBER="Docker DB port ve timeout degerleri pozitif ve gecerli olmali"
 ERR_DB_DOCKER_NAME="Docker container/volume prefix degeri gecersiz"
 ERR_DOCKER_NOT_FOUND="Docker executable bulunamadi"
 ERR_DOCKER_DAEMON="Docker daemon erisilebilir degil"
