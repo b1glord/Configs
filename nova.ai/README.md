@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /Configs/nova.ai/README.md
 # 📌 Amac: Nova AI ile ilgili saklanan konfigurasyon ve marka varliklarini tanimlamak
 # 📌 View - Markdown
-# Version: 1.0.0
-# Aciklama: Nova AI arsivinin klasor yapisini, kapsamını ve kullanim amacini belgeler
+# Version: 1.0.1
+# Aciklama: Nova AI arsivinin klasor yapisini, kapsamini ve kullanim amacini belgeler
 # Bagimli Oldugu Katman: View
 
 # Nova AI Config Archive
