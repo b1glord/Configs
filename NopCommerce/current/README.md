@@ -1,29 +1,31 @@
 # 📄 Dosya Yolu: /NopCommerce/current/README.md
-# 📌 Amac: Cok surumlu nopCommerce Linux installer kullanimini, veritabani secimini ve destek matrisini tanimlamak
+# 📌 Amac: Cok surumlu nopCommerce Linux installer kullanimini, DB secimini ve Docker provisioning davranisini tanimlamak
 # 📌 Modul - Markdown
-# Version: 1.4.0
-# Aciklama: nopCommerce 4.30-4.90 stable ve acikca secilen 5.00 beta icin surum/runtime/DB uyumlu installer dokumani
+# Version: 1.5.0
+# Aciklama: nopCommerce 4.30-4.90 stable ve 5.00 beta icin surum/runtime/DB uyumlu installer dokumani
 
 Bagimli Oldugu Katman: Controller | Service | Repo | Tool | View | Language | Config
 
 # Current Installer
 
-Bu alan nopCommerce 4.30 ve sonrasi desteklenen Linux release paketlerini ayni installer mimarisi ile kurmak icin kullanilir.
+Bu alan nopCommerce 4.30 ve sonrasi desteklenen Linux release paketlerini ayni installer mimarisi ile kurar.
 
-## Desteklenen surum aileleri
+## Destek matrisi
 
-| nopCommerce | Runtime | Veritabani |
-| --- | --- | --- |
-| 4.30 | .NET Core 3.1 | SQL Server, MySQL |
-| 4.40 | .NET 5 | SQL Server, MySQL, PostgreSQL |
-| 4.50.x | .NET 6 | SQL Server, MySQL, PostgreSQL |
-| 4.60.x | .NET 7 | SQL Server, MySQL, PostgreSQL |
-| 4.70.x | .NET 8 | SQL Server, MySQL, PostgreSQL |
-| 4.80.x | .NET 9 | SQL Server, MySQL, PostgreSQL |
-| 4.90.x | .NET 9 | SQL Server, MySQL, PostgreSQL |
-| 5.00.0-beta | .NET 10 | SQL Server, MySQL, PostgreSQL |
+| nopCommerce | Runtime | SQL Server | MySQL | PostgreSQL |
+| --- | --- | --- | --- | --- |
+| 4.30 | .NET Core 3.1 | external | external/docker | - |
+| 4.40 | .NET 5 | external | external/docker | external/docker |
+| 4.50.x | .NET 6 | external | external/docker | external/docker |
+| 4.60.x | .NET 7 | external | external/docker | external/docker |
+| 4.70.x | .NET 8 | external | external/docker | external/docker |
+| 4.80.x | .NET 9 | external | external/docker | external/docker |
+| 4.90.x | .NET 9 | external | external/docker | external/docker |
+| 5.00.0-beta | .NET 10 | external | external/docker | external/docker |
 
-MySQL nopCommerce 4.30 ile, PostgreSQL nopCommerce 4.40 ile desteklenmeye baslar.
+MySQL nopCommerce 4.30 ile, PostgreSQL 4.40 ile desteklenmeye baslar.
+
+SQL Server provider desteklenir ancak bu modulde SQL Server Docker provisioning henuz acik degildir. Harici SQL Server kullanilabilir.
 
 ## Surum secimi
 
@@ -37,86 +39,153 @@ sudo bash installer/controllers/install.sh --version beta --config /etc/nopcomme
 
 `latest` stable surume gider. Prerelease otomatik secilmez.
 
-## Veritabani secimi
+## DB modu
 
-Varsayilan davranis `web` provideridir. Bu durumda installer veritabani bilgisi yazmaz ve nopCommerce ilk kurulum sihirbazi kullanilir.
+Iki mod vardir:
 
-```bash
-sudo bash installer/controllers/install.sh \
-  --version 4.90.8 \
-  --db web \
-  --config /etc/nopcommerce-installer.env
+- `external`: DB sunucusu zaten vardir. Secret dosyasinda tam connection string bulunur.
+- `docker`: Installer MySQL veya PostgreSQL containerini olusturur, kalici volume baglar ve connection string'i kendisi uretir.
+
+Varsayilan:
+
+```text
+NOP_DB_PROVIDER=web
+NOP_DB_MODE=external
 ```
 
-Otomatik DB config icin once secret dosyasini hazirla:
+## External DB
+
+MySQL ornegi:
 
 ```bash
 sudo cp installer/config/database/mysql.secret.env.example /etc/nopcommerce-db.secret.env
 sudo chmod 600 /etc/nopcommerce-db.secret.env
 sudo nano /etc/nopcommerce-db.secret.env
+
+sudo bash installer/controllers/install.sh \
+  --version 4.90.8 \
+  --db mysql \
+  --db-mode external \
+  --config /etc/nopcommerce-installer.env
 ```
 
-Sonra provideri sec:
+External secret:
+
+```bash
+NOP_DB_CONNECTION_STRING='Server=127.0.0.1;Port=3306;Database=nopcommerce;User=nopcommerce;Password=CHANGE_ME'
+```
+
+SQL Server external olarak ayni sekilde kullanilir.
+
+## Docker MySQL
+
+Docker Engine hostta kurulu ve daemon erisilebilir olmalidir.
+
+Secret olustur:
+
+```bash
+sudo cp installer/config/database/mysql-docker.secret.env.example /etc/nopcommerce-db.secret.env
+sudo chown root:root /etc/nopcommerce-db.secret.env
+sudo chmod 600 /etc/nopcommerce-db.secret.env
+sudo nano /etc/nopcommerce-db.secret.env
+```
+
+Kur:
+
+```bash
+sudo bash installer/controllers/install.sh \
+  --version 4.30 \
+  --db mysql \
+  --db-mode docker \
+  --config /etc/nopcommerce-installer.env
+```
+
+Varsayilan Docker kaynaklari:
+
+```text
+image:     mysql:8.4
+container: nopcommerce-mysql
+volume:    nopcommerce-mysql-data
+bind:      127.0.0.1:3306
+```
+
+Container sadece host loopback adresine publish edilir. Dis agdan DB portu acilmaz.
+
+## Docker PostgreSQL
+
+Secret olustur:
+
+```bash
+sudo cp installer/config/database/postgresql-docker.secret.env.example /etc/nopcommerce-db.secret.env
+sudo chown root:root /etc/nopcommerce-db.secret.env
+sudo chmod 600 /etc/nopcommerce-db.secret.env
+sudo nano /etc/nopcommerce-db.secret.env
+```
+
+Kur:
 
 ```bash
 sudo bash installer/controllers/install.sh \
   --version 4.90.8 \
-  --db mysql \
-  --config /etc/nopcommerce-installer.env
-```
-
-SQL Server:
-
-```bash
-sudo cp installer/config/database/sqlserver.secret.env.example /etc/nopcommerce-db.secret.env
-sudo chmod 600 /etc/nopcommerce-db.secret.env
-
-sudo bash installer/controllers/install.sh \
-  --version 4.30 \
-  --db sqlserver \
-  --config /etc/nopcommerce-installer.env
-```
-
-PostgreSQL:
-
-```bash
-sudo cp installer/config/database/postgresql.secret.env.example /etc/nopcommerce-db.secret.env
-sudo chmod 600 /etc/nopcommerce-db.secret.env
-
-sudo bash installer/controllers/install.sh \
-  --version 4.40 \
   --db postgresql \
+  --db-mode docker \
   --config /etc/nopcommerce-installer.env
 ```
 
-4.30 ile PostgreSQL secilirse installer kurulum baslamadan hata verir.
+Varsayilan Docker kaynaklari:
 
-## Secret yapisi
+```text
+image:     postgres:17
+container: nopcommerce-postgresql
+volume:    nopcommerce-postgresql-data
+bind:      127.0.0.1:5432
+```
 
-Secret dosyasi repo icine commit edilmez. Varsayilan konum:
+## Docker provisioning davranisi
+
+Installer:
+
+1. Docker executable ve daemon erisimini kontrol eder.
+2. DB secret dosyasini ve `chmod 600` kuralini kontrol eder.
+3. Provider/surum uyumlulugunu kontrol eder.
+4. Ilk kurulumda image'i ceker ve kalici named volume ile container olusturur.
+5. Container daha once olusturulmussa silmez; non-secret config fingerprint ayniysa gerekiyorsa yeniden baslatir. Image/DB adi/kullanici/bind/port degismisse config drift hatasi verir.
+6. MySQL icin kimlik dogrulamali `SELECT 1`, PostgreSQL icin `psql SELECT 1` ile gercek DB erisimini dogrular.
+7. DB hazir olduktan sonra geriye uyumlu `App_Data/dataSettings.json` dosyasini yazar.
+8. nopCommerce systemd servisini baslatir.
+
+Docker image, port, DB adi, kullanici, container/volume prefix ve timeout degerleri `installer.env` ile degistirilebilir.
+
+## Kalici veri ve parola degisikligi
+
+Named volume veriyi installer tekrar calistiginda korur.
+
+Mevcut volume ile secret dosyasindaki parolayi degistirmek veritabani icindeki kullanici parolasini otomatik degistirmez. Kimlik dogrulamali readiness sorgusu bu uyusmazligi hata olarak yakalar. Parola rotasyonu veritabani icinde ayrica uygulanmalidir.
+
+Installer mevcut DB volume'unu otomatik silmez.
+
+## Secret guvenligi
+
+Secret dosyasi varsayilan olarak:
 
 ```text
 /etc/nopcommerce-db.secret.env
 ```
 
-Icerik tek secret degiskenidir:
-
-```bash
-NOP_DB_CONNECTION_STRING='...'
-```
-
-Dosya group veya world tarafindan okunabiliyorsa installer varsayilan olarak islemi durdurur. Tavsiye edilen izin:
+Dosya group/world readable ise kurulum durur:
 
 ```bash
 sudo chown root:root /etc/nopcommerce-db.secret.env
 sudo chmod 600 /etc/nopcommerce-db.secret.env
 ```
 
-Connection string konsola yazdirilmaz.
+Connection string ve parolalar installer tarafindan konsola yazdirilmaz.
 
-## DB config uyumlulugu
+Docker Engine'e root yetkisi olan kullanicilar container environment metadata'sina erisebilir. Docker modu host root guven modelini esas alir.
 
-Installer `App_Data/dataSettings.json` dosyasini geriye uyumlu sekilde uretir:
+## dataSettings.json uyumlulugu
+
+Installer geriye uyumlu formati uretir:
 
 ```json
 {
@@ -125,9 +194,9 @@ Installer `App_Data/dataSettings.json` dosyasini geriye uyumlu sekilde uretir:
 }
 ```
 
-4.30 ve 4.40 bu dosyayi dogrudan okuyabilir. Yeni nopCommerce surumleri eski `dataSettings.json` formatini okuyup yeni `DataConfig` yapisina tasiyabilir. Bu nedenle tek adapter eski ve yeni kurulumlarda kullanilir.
+4.30/4.40 bu formati dogrudan okuyabilir. Yeni nopCommerce surumleri eski `dataSettings.json` dosyasini yeni `DataConfig` yapisina migrate edebilir.
 
-Provider isimleri nopCommerce'in bekledigi resmi enum isimleriyle yazilir:
+Provider isimleri:
 
 - `SqlServer`
 - `MySql`
@@ -139,17 +208,6 @@ Provider isimleri nopCommerce'in bekledigi resmi enum isimleriyle yazilir:
 bash installer/controllers/install.sh --list-versions
 bash installer/controllers/install.sh --list-databases
 ```
-
-## Runtime yonetimi
-
-.NET runtime paketleri `/opt/dotnet` altinda side-by-side tutulur. Eski .NET runtime'lari modern Linux dagitimlarinda ek kutuphane veya eski OS gerektirebilir.
-
-## Release dogrulamasi
-
-- Release resmi GitHub API uzerinden dogrulanir.
-- Linux x64 NoSource asset yoksa kurulum durur.
-- SHA-256 digest varsa checksum kontrol edilir.
-- Eski release kaydinda digest yoksa dosya boyutu kontrol edilir ve uyari verilir.
 
 ## Mimari
 
@@ -164,6 +222,7 @@ installer/
 │   ├── release_repository.sh
 │   └── version_repository.sh
 ├── tools/
+│   ├── docker_database_tool.sh
 │   ├── nginx_tool.sh
 │   ├── os_tool.sh
 │   └── systemd_tool.sh
@@ -174,7 +233,9 @@ installer/
 └── config/
     ├── database/
     │   ├── mysql.secret.env.example
+    │   ├── mysql-docker.secret.env.example
     │   ├── postgresql.secret.env.example
+    │   ├── postgresql-docker.secret.env.example
     │   └── sqlserver.secret.env.example
     ├── database-catalog.env
     ├── installer.env.example
@@ -185,8 +246,9 @@ installer/
 
 ## Sinirlar
 
-- DB provider ve connection config otomatiklestirildi; veritabani sunucusunun kendisi henuz provisioning edilmez.
+- SQL Server Docker provisioning henuz yoktur; external SQL Server desteklenir.
+- Docker Engine kurulumu bu modulun sorumlulugunda degildir.
 - Bu mekanizma database upgrade/migration zinciri degildir.
 - TLS/Let's Encrypt ayri modul olarak eklenmelidir.
-- Docker deployment ayri modul olarak eklenmelidir.
+- Tum nopCommerce uygulamasini container olarak calistiran Docker deployment ayri bir moduldur.
 - Eski .NET runtime'larinin modern OS uyumlulugu garanti edilmez.

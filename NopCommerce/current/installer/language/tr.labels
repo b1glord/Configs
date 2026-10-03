@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /NopCommerce/current/installer/language/tr.labels
 # 📌 Amac: Installer kullanici mesajlarini merkezi olarak tanimlamak
 # 📌 Modul - Language
-# Version: 1.3.0
-# Aciklama: Cok surumlu, prerelease ve veritabani-secimli yukleyici mesajlarini merkezi olarak tutar
+# Version: 1.4.1
+# Aciklama: Cok surumlu, DB-secimli ve Docker DB provisioning mesajlarini merkezi olarak tutar
 # Bagimli Oldugu Katman: View | Service | Repo | Tool
 
 LABEL_INFO="BILGI"
@@ -30,11 +30,18 @@ MSG_AVAILABLE_VERSIONS="Desteklenen surum secenekleri"
 MSG_VERSION_EXAMPLES="Ornekler: 4.30, 4.50, 4.60.6, latest-4.80, 4.90.8, latest, beta"
 MSG_EXACT_VERSION_SUPPORT="Desteklenen ailelerde GitHub'da bulunan tam patch surumu de dogrudan verilebilir."
 MSG_DB_PROVIDER="Secilen veritabani provider"
+MSG_DB_MODE="Secilen veritabani modu"
 MSG_DB_WEB_SETUP="Veritabani otomatik yapilandirilmadi; nopCommerce web kurulum sihirbazi kullanilacak."
 MSG_DB_CONFIG_WRITTEN="Veritabani ayari App_Data/dataSettings.json olarak guvenli sekilde yazildi."
 MSG_DB_MATRIX="Veritabani destek matrisi"
+MSG_DB_DOCKER_IMAGE="Docker DB image"
+MSG_DB_DOCKER_CONTAINER="Docker DB container olusturuluyor"
+MSG_DB_DOCKER_START="Mevcut Docker DB container baslatiliyor"
+MSG_DB_DOCKER_WAIT="Docker veritabani hazir olana kadar bekleniyor."
+MSG_DB_DOCKER_READY="Docker veritabani hazir."
+MSG_DB_DOCKER_REUSE="Mevcut Docker DB container ve kalici volume yeniden kullaniliyor."
 
-ERR_USAGE="Kullanim: install.sh --version <surum|latest|beta> --db <web|sqlserver|mysql|postgresql> --config <dosya>; liste: --list-versions veya --list-databases"
+ERR_USAGE="Kullanim: install.sh --version <surum|latest|beta> --db <web|sqlserver|mysql|postgresql> --db-mode <external|docker> --config <dosya>; liste: --list-versions veya --list-databases"
 ERR_CONFIG_FILE="Config dosyasi bulunamadi"
 ERR_ROOT="Bu installer root yetkisi ile calistirilmalidir."
 ERR_OS_RELEASE="OS release dosyasi bulunamadi."
@@ -51,6 +58,18 @@ ERR_MISSING_DIGEST="Release SHA-256 bilgisi yok ve legacy checksum istisnasi kap
 ERR_DOTNET_INSTALL="Gerekli .NET runtime kurulamadi."
 ERR_DB_PROVIDER="Desteklenmeyen veritabani provider secimi"
 ERR_DB_UNSUPPORTED="Secilen nopCommerce surumu bu veritabani providerini desteklemiyor"
+ERR_DB_MODE="Desteklenmeyen veritabani modu"
+ERR_DB_WEB_DOCKER="web provider Docker DB modu ile kullanilamaz"
+ERR_DB_DOCKER_PROVIDER="Secilen provider icin Docker provisioning henuz desteklenmiyor"
 ERR_DB_SECRET_FILE="Veritabani secret dosyasi bulunamadi"
 ERR_DB_SECRET_PERMISSIONS="Veritabani secret dosyasi group/world tarafindan okunabilir; chmod 600 uygulanmali"
-ERR_DB_CONNECTION_STRING="Secret dosyasinda NOP_DB_CONNECTION_STRING tanimli degil"
+ERR_DB_CONNECTION_STRING="External mod secret dosyasinda NOP_DB_CONNECTION_STRING tanimli degil"
+ERR_DB_PASSWORD="Docker DB secret dosyasinda NOP_DB_PASSWORD tanimli degil"
+ERR_DB_ROOT_PASSWORD="Docker MySQL secret dosyasinda NOP_DB_ROOT_PASSWORD tanimli degil"
+ERR_DB_IDENTIFIER="Gecersiz veritabani identifier"
+ERR_DB_DOCKER_NUMBER="Docker DB port ve timeout degerleri pozitif sayi olmali"
+ERR_DB_DOCKER_NAME="Docker container/volume prefix degeri gecersiz"
+ERR_DOCKER_NOT_FOUND="Docker executable bulunamadi"
+ERR_DOCKER_DAEMON="Docker daemon erisilebilir degil"
+ERR_DB_DOCKER_TIMEOUT="Docker veritabani hazirlik timeout"
+ERR_DB_DOCKER_DRIFT="Mevcut Docker DB container ayarlari installer config ile uyusmuyor; container manuel olarak yeniden olusturulmali"

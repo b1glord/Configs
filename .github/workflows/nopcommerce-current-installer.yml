@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: /.github/workflows/nopcommerce-current-installer.yml
-# 📌 Amac: NopCommerce cok surumlu installer dosyalarinin shell, config, surum, DB ve template butunlugunu CI uzerinde dogrulamak
+# 📌 Amac: NopCommerce cok surumlu installer dosyalarinin surum, DB, Docker provisioning ve template butunlugunu CI uzerinde dogrulamak
 # 📌 Modul - YAML
-# Version: 1.3.0
-# Aciklama: Stable, prerelease, veritabani provider uyumlulugu, secret ve dataSettings.json testlerini calistirir
+# Version: 1.4.1
+# Aciklama: Provider/mod uyumlulugu, secret, connection string, fake-Docker provisioning ve template testlerini calistirir
 # Bagimli Oldugu Katman: Repo | Tool | View | Config | Language
 
 name: NopCommerce Current Installer
@@ -48,6 +48,10 @@ jobs:
           bash -n NopCommerce/current/installer/config/database-catalog.env
           bash -n NopCommerce/current/installer/language/tr.labels
 
+          find NopCommerce/current/installer/config/database             -type f             -name "*.env.example"             -print0 | while IFS= read -r -d "" file; do
+              bash -n "$file"
+            done
+
       - name: Validate config load
         shell: bash
         run: |
@@ -59,14 +63,14 @@ jobs:
           source NopCommerce/current/installer/language/tr.labels
 
           test -n "$NOP_DEFAULT_VERSION"
-          test -n "$NOP_RELEASE_API_BASE"
           test -n "$NOP_DOTNET_ROOT"
-          test -n "$NOP_SUPPORTED_VERSION_FAMILIES"
-          test -n "$NOP_RUNTIME_CHANNELS"
           test -n "$NOP_DB_PROVIDER"
-          test -n "$NOP_DB_PROVIDER_ALIASES"
-          test -n "$NOP_DB_PROVIDER_SUPPORT"
-          test -n "$ERR_DB_UNSUPPORTED"
+          test -n "$NOP_DB_MODE"
+          test -n "$NOP_DB_MODES"
+          test -n "$NOP_DB_DOCKER_PROVIDERS"
+          test "$NOP_DB_DOCKER_MYSQL_IMAGE" = "mysql:8.4"
+          test "$NOP_DB_DOCKER_POSTGRESQL_IMAGE" = "postgres:17"
+          test -n "$ERR_DB_DOCKER_PROVIDER"
 
       - name: Validate version resolver
         shell: bash
@@ -100,7 +104,7 @@ jobs:
             exit 1
           fi
 
-      - name: Validate database compatibility
+      - name: Validate database compatibility and modes
         shell: bash
         run: |
           set -Eeuo pipefail
@@ -117,7 +121,9 @@ jobs:
 
           version_repository_resolve "4.30"
           database_repository_resolve_provider "mysql"
+          database_repository_resolve_mode "docker"
           test "$NOP_DB_PROVIDER_OFFICIAL" = "MySql"
+          test "$NOP_DB_MODE_RESOLVED" = "docker"
 
           if database_repository_resolve_provider "postgresql"; then
             exit 1
@@ -125,16 +131,25 @@ jobs:
 
           version_repository_resolve "4.40"
           database_repository_resolve_provider "postgres"
+          database_repository_resolve_mode "docker"
           test "$NOP_DB_PROVIDER_OFFICIAL" = "PostgreSQL"
 
           version_repository_resolve "4.90.8"
           database_repository_resolve_provider "mssql"
+          database_repository_resolve_mode "external"
           test "$NOP_DB_PROVIDER_OFFICIAL" = "SqlServer"
 
-          database_repository_resolve_provider "web"
-          test "$NOP_DB_PROVIDER_OFFICIAL" = "Web"
+          if database_repository_resolve_mode "docker"; then
+            exit 1
+          fi
 
-      - name: Validate database settings generation
+          database_repository_resolve_provider "web"
+          database_repository_resolve_mode "external"
+          if database_repository_resolve_mode "docker"; then
+            exit 1
+          fi
+
+      - name: Validate external database settings generation
         shell: bash
         run: |
           set -Eeuo pipefail
@@ -161,6 +176,8 @@ jobs:
 
           version_repository_resolve "4.90.8"
           database_repository_resolve_provider "mysql"
+          database_repository_resolve_mode "external"
+          database_repository_prepare_connection
           database_repository_write_settings
 
           test "$(jq -r '.DataProvider' "$NOP_CURRENT_DIR/App_Data/dataSettings.json")" = "MySql"
@@ -170,6 +187,121 @@ jobs:
           if database_repository_load_secret; then
             exit 1
           fi
+
+      - name: Validate Docker connection generation
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
+
+          source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/version-catalog.env"
+          source "$INSTALLER_ROOT/config/database-catalog.env"
+          source "$INSTALLER_ROOT/language/tr.labels"
+          source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/version_repository.sh"
+          source "$INSTALLER_ROOT/repositories/database_repository.sh"
+
+          NOP_DB_SECRET_FILE="$RUNNER_TEMP/mysql-docker.secret.env"
+          printf "%s\n"             "NOP_DB_PASSWORD='app-password'"             "NOP_DB_ROOT_PASSWORD='root-password'" > "$NOP_DB_SECRET_FILE"
+          chmod 600 "$NOP_DB_SECRET_FILE"
+
+          version_repository_resolve "4.90.8"
+          database_repository_resolve_provider "mysql"
+          database_repository_resolve_mode "docker"
+          database_repository_prepare_connection
+
+          test "$NOP_DB_CONNECTION_STRING" = "Server=127.0.0.1;Port=3306;Database=nopcommerce;User=nopcommerce;Password=app-password;SslMode=Preferred"
+
+          NOP_DB_SECRET_FILE="$RUNNER_TEMP/postgresql-docker.secret.env"
+          printf "%s\n" "NOP_DB_PASSWORD='pg-password'" > "$NOP_DB_SECRET_FILE"
+          chmod 600 "$NOP_DB_SECRET_FILE"
+
+          database_repository_resolve_provider "postgresql"
+          database_repository_resolve_mode "docker"
+          database_repository_prepare_connection
+
+          test "$NOP_DB_CONNECTION_STRING" = "Host=127.0.0.1;Port=5432;Database=nopcommerce;Username=nopcommerce;Password=pg-password"
+
+      - name: Validate Docker provisioning adapter
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          export INSTALLER_ROOT="$PWD/NopCommerce/current/installer"
+          export FAKE_DOCKER_LOG="$RUNNER_TEMP/fake-docker.log"
+
+          cat > "$RUNNER_TEMP/fake-docker" <<'EOF'
+          #!/usr/bin/env bash
+          set -Eeuo pipefail
+          printf '%s\n' "$*" >> "$FAKE_DOCKER_LOG"
+
+          if [[ "${1:-}" == "container" && "${2:-}" == "inspect" ]]; then
+            exit 1
+          fi
+
+          if [[ "${1:-}" == "inspect" ]]; then
+            printf '%s\n' "false"
+            exit 0
+          fi
+
+          exit 0
+          EOF
+
+          chmod 700 "$RUNNER_TEMP/fake-docker"
+
+          source "$INSTALLER_ROOT/config/installer.env.example"
+          source "$INSTALLER_ROOT/config/version-catalog.env"
+          source "$INSTALLER_ROOT/config/database-catalog.env"
+          source "$INSTALLER_ROOT/language/tr.labels"
+          source "$INSTALLER_ROOT/views/console_view.sh"
+          source "$INSTALLER_ROOT/repositories/version_repository.sh"
+          source "$INSTALLER_ROOT/repositories/database_repository.sh"
+          source "$INSTALLER_ROOT/tools/docker_database_tool.sh"
+
+          NOP_DOCKER_EXECUTABLE="$RUNNER_TEMP/fake-docker"
+          NOP_DB_DOCKER_START_TIMEOUT="2"
+          NOP_DB_SECRET_FILE="$RUNNER_TEMP/mysql-docker.secret.env"
+
+          printf "%s\n"             "NOP_DB_PASSWORD='app-password'"             "NOP_DB_ROOT_PASSWORD='root-password'" > "$NOP_DB_SECRET_FILE"
+          chmod 600 "$NOP_DB_SECRET_FILE"
+
+          version_repository_resolve "4.90.8"
+          database_repository_resolve_provider "mysql"
+          database_repository_resolve_mode "docker"
+          database_repository_prepare_connection
+          docker_database_tool_provision
+
+          grep -q "pull mysql:8.4" "$FAKE_DOCKER_LOG"
+          grep -q -- "--publish 127.0.0.1:3306:3306" "$FAKE_DOCKER_LOG"
+          grep -q -- "--volume nopcommerce-mysql-data:/var/lib/mysql" "$FAKE_DOCKER_LOG"
+          grep -q -- "--env-file" "$FAKE_DOCKER_LOG"
+          grep -q -- "com.turkuaz.nopcommerce.db.config-sha=" "$FAKE_DOCKER_LOG"
+          grep -q "mysql --host 127.0.0.1" "$FAKE_DOCKER_LOG"
+          ! grep -q "app-password" "$FAKE_DOCKER_LOG"
+          ! grep -q "root-password" "$FAKE_DOCKER_LOG"
+          ! find "$NOP_TEMP_DIR" -maxdepth 1 -name "docker-db-env.*" -print -quit | grep -q .
+
+          : > "$FAKE_DOCKER_LOG"
+
+          NOP_DB_SECRET_FILE="$RUNNER_TEMP/postgresql-docker.secret.env"
+          printf "%s\n" "NOP_DB_PASSWORD='pg-password'" > "$NOP_DB_SECRET_FILE"
+          chmod 600 "$NOP_DB_SECRET_FILE"
+
+          database_repository_resolve_provider "postgresql"
+          database_repository_resolve_mode "docker"
+          database_repository_prepare_connection
+          docker_database_tool_provision
+
+          grep -q "pull postgres:17" "$FAKE_DOCKER_LOG"
+          grep -q -- "--publish 127.0.0.1:5432:5432" "$FAKE_DOCKER_LOG"
+          grep -q -- "--volume nopcommerce-postgresql-data:/var/lib/postgresql/data" "$FAKE_DOCKER_LOG"
+          grep -q -- "--env-file" "$FAKE_DOCKER_LOG"
+          grep -q -- "com.turkuaz.nopcommerce.db.config-sha=" "$FAKE_DOCKER_LOG"
+          grep -q "psql --host 127.0.0.1" "$FAKE_DOCKER_LOG"
+          ! grep -q "pg-password" "$FAKE_DOCKER_LOG"
+          ! find "$NOP_TEMP_DIR" -maxdepth 1 -name "docker-db-env.*" -print -quit | grep -q .
 
       - name: Validate templates
         shell: bash
