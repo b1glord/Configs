@@ -1,0 +1,26 @@
+# Dosya Yolu: /OFBIZ/tools/docker/compose.yml
+# Amac: Local olarak build edilen Apache OFBiz Docker image'ini kalici volume'lerle calistirir
+# Tool - YAML
+# Version: 1.1.0
+# Aciklama: OFBiz HTTPS, AJP ve debug portlarini .env uzerinden yoneten Compose tanimi
+#
+# Bagimli Oldugu Katman: Tool | Config
+
+services:
+  ofbiz:
+    image: "${OFBIZ_IMAGE}"
+    container_name: "${OFBIZ_CONTAINER_NAME}"
+    restart: unless-stopped
+    ports:
+      - "${OFBIZ_HTTPS_PORT}:8443"
+      - "${OFBIZ_AJP_PORT}:8009"
+      - "${OFBIZ_DEBUG_PORT}:5005"
+    volumes:
+      - ofbiz_runtime:/ofbiz/runtime
+      - ofbiz_config:/ofbiz/config
+      - ofbiz_lib_extra:/ofbiz/lib-extra
+
+volumes:
+  ofbiz_runtime:
+  ofbiz_config:
+  ofbiz_lib_extra:
