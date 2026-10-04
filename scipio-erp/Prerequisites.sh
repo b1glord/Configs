@@ -13,8 +13,7 @@ chmod +x /tmp/install_github.sh
 /tmp/install_github.sh
 
 cd /tmp
-wget https://raw.githubusercontent.com/b1glord/Configs/master/OFBIZ/tools/legacy/java/oraclejdk8.sh
-chmod +x oraclejdk8.sh
-./oraclejdk8.sh
+wget -O oraclejdk8.sh https://raw.githubusercontent.com/TurkuazLabs/TurkuazOFBiz/main/tools/legacy/java/oraclejdk8.sh
+bash oraclejdk8.sh
 
 yum -y install ant
