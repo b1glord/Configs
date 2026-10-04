@@ -1,8 +1,8 @@
 # Dosya Yolu: /OFBIZ/tools/ci/validate-structure.sh
 # Amac: OFBiz konfigurasyon yapisinin syntax, katman ve resolver testlerini calistirir
 # Tool - Shell
-# Version: 1.1.0
-# Aciklama: CI icin hizli ve ag baglantisi gerektirmeyen statik dogrulama testleri
+# Version: 1.2.0
+# Aciklama: CI icin ag gerektirmeyen syntax, katman, release/snapshot ve Docker image cozumleme testleri
 #
 # Bagimli Oldugu Katman: Tool | Controller | Service | Repo | View | Language | Config
 
@@ -70,6 +70,8 @@ validate_resolvers() {
     source "${OFBIZ_ROOT_DIR}/services/version-resolver.sh"
     # shellcheck source=/dev/null
     source "${OFBIZ_ROOT_DIR}/services/snapshot-resolver.sh"
+    # shellcheck source=/dev/null
+    source "${OFBIZ_ROOT_DIR}/repositories/docker-repository.sh"
 
     assert_equals "24.09.07" "$(ofbiz_resolve_version latest)" "latest release"
     assert_equals "18.12.19" "$(ofbiz_resolve_version 18.12)" "18.12 release alias"
@@ -79,6 +81,18 @@ validate_resolvers() {
     assert_equals "release24.09" "$(ofbiz_snapshot_resolve_branch 24.09)" "24.09 snapshot"
     assert_equals "release22.01" "$(ofbiz_snapshot_resolve_branch 22.01)" "22.01 snapshot"
     assert_equals "17" "$(ofbiz_snapshot_required_java release22.01)" "22.01 Java"
+
+    assert_equals         "ghcr.io/apache/ofbiz:24.09.07"         "$(ofbiz_docker_repository_release_official_image 24.09.07 runtime)"         "release runtime image"
+
+    assert_equals         "ghcr.io/apache/ofbiz:24.09.07-preloaddemo"         "$(ofbiz_docker_repository_release_official_image 24.09.07 demo)"         "release demo image"
+
+    assert_equals         "ghcr.io/apache/ofbiz:trunk-snapshot"         "$(ofbiz_docker_repository_snapshot_official_image trunk runtime)"         "trunk snapshot image"
+
+    assert_equals         "ghcr.io/apache/ofbiz:release24.09-preloaddemo-snapshot"         "$(ofbiz_docker_repository_snapshot_official_image release24.09 demo)"         "24.09 snapshot demo image"
+
+    if ofbiz_docker_repository_snapshot_official_image release22.01 runtime >/dev/null 2>&1; then
+        fail "22.01 must use local Docker build"
+    fi
 }
 
 validate_controller_readonly_commands() {

@@ -1,8 +1,8 @@
 # Dosya Yolu: /OFBIZ/views/ARCHITECTURE.md
 # Amac: OFBiz konfigurasyon araclarinin katmanli mimarisini ve sorumluluk sinirlarini dokumante eder
 # View - Markdown
-# Version: 1.1.0
-# Aciklama: Controller, Service, Repo, Tool, View, Language ve Config akisini gelistirici icin aciklar
+# Version: 1.2.0
+# Aciklama: Release, snapshot, runtime ve Docker akislarinin katman bagimliliklarini aciklar
 #
 # Bagimli Oldugu Katman: View | Controller | Service | Repo | Tool | Language | Config
 
@@ -11,73 +11,45 @@
 ## Katmanlar
 
 ~~~text
-controllers/
+controllers/ofbiz.sh
     |
-    v
-services/
-    |
-    v
-repositories/
-    |
-    v
-tools/
+    +--> services/release-service.sh
+    +--> services/snapshot-service.sh
+    +--> services/runtime-service.sh
+    +--> services/docker-service.sh
+              |
+              +--> repositories/install-repository.sh
+              +--> repositories/docker-repository.sh
+              |
+              +--> tools/java-tool.sh
+              +--> tools/release-tool.sh
+              +--> tools/git-tool.sh
+              +--> tools/docker-tool.sh
+              +--> tools/ofbiz-run.sh
 
 views/
-    |
-    v
 language/
-
 config/
 ~~~
 
-Controller sadece CLI istegini yonlendirir.
+Controller yalnizca CLI routing yapar.
 
-Service release, snapshot ve runtime is kurallarini koordine eder.
+Service is kurallarini ve akislari koordine eder.
 
-Repository yerel storage, metadata ve current symlink islemlerini yonetir.
+Repository kurulum storage'i, metadata, image referansi ve container adlandirma bilgisini yonetir.
 
-Tool Git, Curl, Java, paket yoneticisi ve Gradle gibi dis dunya adaptorlerini icerir.
+Tool Git, Curl, Java, Gradle ve Docker CLI gibi dis sistem adaptorlerini kapsar.
 
-View yardim ve dokumantasyon ciktisini sunar.
+Config release/snapshot kataloglari, dis kaynaklar, Docker tag'leri ve runtime sabitlerini tutar.
 
-Language kullaniciya gosterilen etiketleri merkezi olarak tutar.
+View ve Language kullaniciya gosterilen yardim/dokumantasyon katmanidir.
 
-Config release katalogu, snapshot katalogu, dis kaynaklar ve runtime path sabitlerini tutar.
+## Docker karari
 
-## Kurulum modeli
+Modern release veya snapshot icin resmi Apache GHCR image'i varsa pull/run akisi tercih edilir.
 
-Release hedefleri:
+22.01 gibi resmi guncel image'i olmayan fakat Apache branch'i bulunan hedeflerde kaynak branch clone edilir ve branch'in kendi Dockerfile'i ile local image build edilir.
 
-~~~text
-/opt/ofbiz/releases/apache-ofbiz-24.09.07
-/opt/ofbiz/releases/apache-ofbiz-18.12.19
-~~~
+Eski release paketinde Dockerfile yoksa Dockerfile.compat kullanilir.
 
-Snapshot hedefleri:
-
-~~~text
-/opt/ofbiz/snapshots/apache-ofbiz-snapshot-trunk
-/opt/ofbiz/snapshots/apache-ofbiz-snapshot-release24.09
-/opt/ofbiz/snapshots/apache-ofbiz-snapshot-release22.01
-~~~
-
-JDK hedefleri:
-
-~~~text
-/opt/ofbiz/jdks/temurin-8
-/opt/ofbiz/jdks/temurin-17
-~~~
-
-Aktif hedef:
-
-~~~text
-/opt/ofbiz/current
-~~~
-
-Her yeni kurulum dizininde .ofbiz-meta dosyasi bulunur. Runtime Service bu metadata ile release/snapshot turunu ve gerekli Java major surumunu belirler.
-
-Release kurulumlari Apache ZIP paketlerinden gelir ve SHA-512 ile dogrulanir.
-
-Snapshot kurulumlari Apache Git branch'lerinden gelir. snapshot update komutu ilgili branch'in son commit'ini getirir.
-
-22.01 resmi release ZIP serisi olmadigi icin snapshot/branch modeliyle desteklenir.
+Docker Compose varsayilan olarak HTTPS portunu 127.0.0.1 adresine bind eder ve runtime/config/lib-extra/hook dizinlerini kalici volume olarak tutar.

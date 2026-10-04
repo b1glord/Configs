@@ -1,8 +1,8 @@
 # Dosya Yolu: /OFBIZ/views/help-view.sh
 # Amac: OFBiz CLI yardim metnini kullaniciya sunar
 # View - Shell
-# Version: 1.0.0
-# Aciklama: Language etiketlerini kullanarak release, snapshot ve runtime komutlarini gosterir
+# Version: 1.1.0
+# Aciklama: Release, snapshot, runtime ve Docker komutlarini gosterir
 #
 # Bagimli Oldugu Katman: View | Language
 
@@ -34,6 +34,20 @@ ${OFBIZ_LABEL_SNAPSHOT}:
 ${OFBIZ_LABEL_RUNTIME}:
   bash controllers/ofbiz.sh current
   bash controllers/ofbiz.sh run <start|background|stop|java> [target]
+
+Docker:
+  bash controllers/ofbiz.sh docker pull <release|snapshot> <target> <runtime|demo>
+  bash controllers/ofbiz.sh docker build <release|snapshot> <target> <runtime|demo>
+  OFBIZ_ADMIN_PASSWORD=<secret> bash controllers/ofbiz.sh docker run <release|snapshot> <target> <runtime|demo>
+  bash controllers/ofbiz.sh docker smoke <release|snapshot> <target> <runtime|demo>
+  bash controllers/ofbiz.sh docker status <container-name>
+  bash controllers/ofbiz.sh docker stop <container-name>
+
+Examples:
+  bash controllers/ofbiz.sh docker pull release 24.09.07 runtime
+  bash controllers/ofbiz.sh docker pull snapshot trunk runtime
+  bash controllers/ofbiz.sh docker build snapshot 22.01 runtime
+  bash controllers/ofbiz.sh docker smoke release 24.09.07 demo
 
 ${OFBIZ_LABEL_BACKWARD_COMPATIBLE}:
   list

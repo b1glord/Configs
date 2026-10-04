@@ -1,137 +1,21 @@
 # Dosya Yolu: /OFBIZ/tools/docker-build.sh
-# Amac: Secilen Apache OFBiz release surumu icin Docker image olusturur
+# Amac: Eski Docker build komutlarini yeni Controller Docker akisina yonlendirir
 # Tool - Shell
-# Version: 2.2.0
-# Aciklama: Release katalogundan surum ve Java secerek resmi veya uyumluluk Dockerfile'i ile image build eder
+# Version: 3.0.0
+# Aciklama: Geriye uyumlu wrapper; yeni kullanim controllers/ofbiz.sh docker komutlaridir
 #
-# Bagimli Oldugu Katman: Tool | Service | Config
+# Bagimli Oldugu Katman: Tool | Controller
 
 set -euo pipefail
 
 readonly TOOL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly OFBIZ_ROOT_DIR="$(cd "${TOOL_DIR}/.." && pwd)"
-readonly VERSION_RESOLVER="${OFBIZ_ROOT_DIR}/services/version-resolver.sh"
-readonly SOURCES_CONFIG="${OFBIZ_ROOT_DIR}/config/sources.conf"
-readonly COMPAT_DOCKERFILE="${OFBIZ_ROOT_DIR}/tools/docker/Dockerfile.compat"
+readonly CONTROLLER="${OFBIZ_ROOT_DIR}/controllers/ofbiz.sh"
 
-# shellcheck source=/dev/null
-source "${VERSION_RESOLVER}"
-# shellcheck source=/dev/null
-source "${SOURCES_CONFIG}"
+requested="${1:-latest}"
 
-OFBIZ_DOCKER_LOAD_DEMO="${OFBIZ_DOCKER_LOAD_DEMO:-1}"
-OFBIZ_DOCKER_TARGET="${OFBIZ_DOCKER_TARGET:-demo}"
+if [[ "${requested}" == "list" ]]; then
+    exec bash "${CONTROLLER}" release list
+fi
 
-WORK_DIR=""
-
-log() {
-    printf '[ofbiz-docker-build] %s\n' "$*" >&2
-}
-
-fail() {
-    printf '[ofbiz-docker-build] ERROR: %s\n' "$*" >&2
-    exit 1
-}
-
-cleanup() {
-    if [[ -n "${WORK_DIR}" && -d "${WORK_DIR}" ]]; then
-        rm -rf "${WORK_DIR}"
-    fi
-}
-
-usage() {
-    cat <<EOF
-Usage:
-  bash tools/docker-build.sh list
-  bash tools/docker-build.sh [latest|24.09|18.12|17.12|exact-version]
-EOF
-}
-
-check_dependencies() {
-    command -v docker >/dev/null 2>&1 || fail "docker command was not found"
-    command -v curl >/dev/null 2>&1 || fail "curl command was not found"
-    command -v unzip >/dev/null 2>&1 || fail "unzip command was not found"
-    command -v sha512sum >/dev/null 2>&1 || fail "sha512sum command was not found"
-    [[ -f "${COMPAT_DOCKERFILE}" ]] || fail "Compatibility Dockerfile not found: ${COMPAT_DOCKERFILE}"
-}
-
-download_release() {
-    local version="${1:?version required}"
-    local archive_name="apache-ofbiz-${version}.zip"
-    local archive_file="${WORK_DIR}/${archive_name}"
-    local checksum_file="${archive_file}.sha512"
-    local base_url
-    local found="0"
-
-    for base_url in "${OFBIZ_CURRENT_BASE_URL}" "${OFBIZ_ARCHIVE_BASE_URL}"; do
-        log "Trying release source: ${base_url}"
-
-        if curl --fail --location --retry 2 --output "${archive_file}" "${base_url}/${archive_name}"; then
-            if curl --fail --location --retry 2 --output "${checksum_file}" "${base_url}/${archive_name}.sha512"; then
-                found="1"
-                break
-            fi
-        fi
-    done
-
-    [[ "${found}" == "1" ]] || fail "Release package could not be downloaded: ${version}"
-
-    (
-        cd "${WORK_DIR}"
-        sha512sum --check "${archive_name}.sha512"
-    ) || fail "OFBiz SHA-512 verification failed"
-}
-
-build_image() {
-    local requested="${1:-latest}"
-    local version
-    local java_major
-    local image_name
-    local source_dir
-
-    version="$(ofbiz_resolve_version "${requested}")"
-    java_major="$(ofbiz_required_java "${version}")"
-    image_name="${OFBIZ_IMAGE:-local/ofbiz:${version}}"
-
-    WORK_DIR="$(mktemp -d)"
-    download_release "${version}"
-
-    unzip -q "${WORK_DIR}/apache-ofbiz-${version}.zip" -d "${WORK_DIR}"
-    source_dir="${WORK_DIR}/apache-ofbiz-${version}"
-
-    [[ -d "${source_dir}" ]] || fail "Extracted release directory not found: ${source_dir}"
-
-    if [[ -f "${source_dir}/Dockerfile" ]]; then
-        if docker build             --target "${OFBIZ_DOCKER_TARGET}"             --tag "${image_name}"             "${source_dir}"; then
-            log "Build completed: ${image_name}"
-            return
-        fi
-    fi
-
-    cp "${COMPAT_DOCKERFILE}" "${source_dir}/Dockerfile.compat"
-
-    docker build         --file "${source_dir}/Dockerfile.compat"         --build-arg "JAVA_MAJOR=${java_major}"         --build-arg "OFBIZ_LOAD_DEMO=${OFBIZ_DOCKER_LOAD_DEMO}"         --tag "${image_name}"         "${source_dir}"
-
-    log "Build completed: ${image_name}"
-}
-
-main() {
-    local command="${1:-latest}"
-
-    trap cleanup EXIT
-
-    case "${command}" in
-        list)
-            ofbiz_list_versions
-            ;;
-        -h|--help|help)
-            usage
-            ;;
-        *)
-            check_dependencies
-            build_image "${command}"
-            ;;
-    esac
-}
-
-main "$@"
+exec bash "${CONTROLLER}" docker build release "${requested}" "${OFBIZ_DOCKER_TARGET:-runtime}"

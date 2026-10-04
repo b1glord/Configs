@@ -1,8 +1,8 @@
 # Dosya Yolu: /OFBIZ/controllers/ofbiz.sh
 # Amac: OFBiz komut satiri isteklerini alip ilgili Service katmanina yonlendirir
 # Controller - Shell
-# Version: 4.1.0
-# Aciklama: Release, snapshot ve runtime komutlari icin ince routing controller'i
+# Version: 4.2.0
+# Aciklama: Release, snapshot, runtime ve Docker komutlari icin ince routing controller'i
 #
 # Bagimli Oldugu Katman: Controller | Service | View
 
@@ -17,6 +17,8 @@ source "${OFBIZ_ROOT_DIR}/services/release-service.sh"
 source "${OFBIZ_ROOT_DIR}/services/snapshot-service.sh"
 # shellcheck source=/dev/null
 source "${OFBIZ_ROOT_DIR}/services/runtime-service.sh"
+# shellcheck source=/dev/null
+source "${OFBIZ_ROOT_DIR}/services/docker-service.sh"
 # shellcheck source=/dev/null
 source "${OFBIZ_ROOT_DIR}/views/help-view.sh"
 
@@ -71,6 +73,38 @@ ofbiz_controller_snapshot() {
     esac
 }
 
+ofbiz_controller_docker() {
+    local action="${1:-help}"
+    local type="${2:-release}"
+    local target="${3:-latest}"
+    local variant="${4:-runtime}"
+
+    case "${action}" in
+        pull)
+            ofbiz_docker_service_pull "${type}" "${target}" "${variant}"
+            ;;
+        build)
+            ofbiz_docker_service_build "${type}" "${target}" "${variant}"
+            ;;
+        run)
+            ofbiz_docker_service_run "${type}" "${target}" "${variant}"
+            ;;
+        smoke)
+            ofbiz_docker_service_smoke "${type}" "${target}" "${variant}"
+            ;;
+        status)
+            ofbiz_docker_service_status "${2:-ofbiz}"
+            ;;
+        stop)
+            ofbiz_docker_service_stop "${2:?container name required}"
+            ;;
+        *)
+            ofbiz_view_help
+            return 1
+            ;;
+    esac
+}
+
 ofbiz_controller_main() {
     local domain="${1:-help}"
 
@@ -80,6 +114,9 @@ ofbiz_controller_main() {
             ;;
         snapshot)
             ofbiz_controller_snapshot "${2:-list}" "${3:-trunk}"
+            ;;
+        docker)
+            ofbiz_controller_docker "${2:-help}" "${3:-release}" "${4:-latest}" "${5:-runtime}"
             ;;
         current)
             ofbiz_runtime_service_current
