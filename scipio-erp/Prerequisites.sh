@@ -1,7 +1,7 @@
 # Dosya Yolu: /scipio-erp/Prerequisites.sh
 # Amac: Scipio ERP icin eski CentOS gelistirme bagimliliklarini kurar
 # Tool - Shell
-# Version: 1.1.0
+# Version: 1.2.0
 # Aciklama: Git, legacy Java 8 ve Ant kurulum adimlarini toplar
 #
 # Bagimli Oldugu Katman: Tool

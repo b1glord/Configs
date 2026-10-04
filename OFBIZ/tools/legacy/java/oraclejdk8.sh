@@ -1,22 +1,26 @@
+#!/bin/bash
 # Dosya Yolu: /OFBIZ/tools/legacy/java/oraclejdk8.sh
-# Amac: Eski Oracle JDK 8 RPM kurulum notunu arsivler
+# Amac: Eski raw GitHub yolunu yeni TurkuazOFBiz legacy Java scriptine yonlendirir
 # Tool - Shell
 # Version: 1.0.0
-# Aciklama: Legacy Oracle JDK 8 kurulumu; aktif OFBiz kurulumunda kullanilmaz
+# Aciklama: Geriye uyumluluk shim'i; aktif OFBiz kurulumunda kullanilmaz
 #
 # Bagimli Oldugu Katman: Tool
 
-#!/bin/bash
+set -e
 
-wget -nc https://github.com/frekele/oracle-java/releases/download/8u92-b14/jdk-8u92-linux-x64.rpm
-sudo rpm -i jdk-8u92-linux-x64.rpm
+TARGET_URL="https://raw.githubusercontent.com/TurkuazLabs/TurkuazOFBiz/main/tools/legacy/java/oraclejdk8.sh"
+TMP_FILE="$(mktemp)"
 
-cat <<'EOF' >> /etc/profile.d/javahome80.sh
-#!/bin/sh
-export JAVA_HOME=/usr/java/default
-export JRE_HOME=$JAVA_HOME/jre
-export PATH=$PATH:$JAVA_HOME/bin
-export CLASSPATH=$JAVA_HOME/jre/lib/ext:$JAVA_HOME/lib/tools.jar
-EOF
+cleanup() {
+    rm -f "${TMP_FILE}"
+}
+trap cleanup EXIT
 
-source /etc/profile.d/javahome80.sh
+if command -v curl >/dev/null 2>&1; then
+    curl --fail --location --silent --show-error "${TARGET_URL}" -o "${TMP_FILE}"
+else
+    wget -qO "${TMP_FILE}" "${TARGET_URL}"
+fi
+
+bash "${TMP_FILE}" "$@"
