@@ -1,7 +1,7 @@
 # Dosya Yolu: /OFBIZ/tools/docker-tool.sh
 # Amac: Docker CLI islemlerini OFBiz Service katmani icin adaptor olarak sunar
 # Tool - Shell
-# Version: 1.0.0
+# Version: 1.0.1
 # Aciklama: Image pull/build, container run/stop/status, manifest ve HTTPS smoke test islemlerini yonetir
 #
 # Bagimli Oldugu Katman: Tool
@@ -74,17 +74,22 @@ ofbiz_docker_tool_smoke() {
     local url="${4:?url required}"
     local timeout_seconds="${5:?timeout required}"
     local elapsed="0"
+    local http_code="000"
 
     docker rm -f "${container_name}" >/dev/null 2>&1 || true
 
     docker run -d         --name "${container_name}"         --publish "127.0.0.1:${port}:8443"         --env "OFBIZ_SKIP_INIT=1"         --env "OFBIZ_HOST=localhost"         "${image}" >/dev/null
 
     while (( elapsed < timeout_seconds )); do
-        if curl --insecure --location --fail --silent --show-error "${url}" >/dev/null 2>&1; then
+        http_code="$(curl             --insecure             --silent             --output /dev/null             --write-out '%{http_code}'             "${url}" 2>/dev/null || true)"
+
+        if [[ "${http_code}" =~ ^[23][0-9][0-9]$ ]]; then
+            printf '[ofbiz-docker] HTTPS ready with status %s after %ss\n' "${http_code}" "${elapsed}" >&2
             return 0
         fi
 
         if [[ "$(docker inspect --format '{{.State.Running}}' "${container_name}" 2>/dev/null || true)" != "true" ]]; then
+            printf '[ofbiz-docker] Container stopped before readiness.\n' >&2
             return 1
         fi
 
@@ -92,5 +97,6 @@ ofbiz_docker_tool_smoke() {
         elapsed=$((elapsed + 5))
     done
 
+    printf '[ofbiz-docker] HTTPS smoke timeout. Last status: %s\n' "${http_code}" >&2
     return 1
 }

@@ -1,7 +1,7 @@
 # Dosya Yolu: /.github/workflows/ofbiz-config-ci.yml
 # Amac: OFBiz konfigurasyon araclarinin statik ve gercek Docker smoke dogrulamasini calistirir
 # Tool - YAML
-# Version: 1.1.0
+# Version: 1.1.1
 # Aciklama: Syntax, ShellCheck, resolver ve resmi 24.09.07 demo container smoke testlerini kosar
 #
 # Bagimli Oldugu Katman: Tool | Controller | Service | Repo | Config
@@ -67,7 +67,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          trap 'docker logs ofbiz-smoke || true; docker rm -f ofbiz-smoke >/dev/null 2>&1 || true' EXIT
+          trap 'docker rm -f ofbiz-smoke >/dev/null 2>&1 || true' EXIT
 
           bash OFBIZ/controllers/ofbiz.sh docker smoke release 24.09.07 demo
 
